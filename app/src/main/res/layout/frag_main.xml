@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.derek_s.spacegallery.ui.widgets.CircleProgressView
+    <com.derek_s.hubble_gallery.ui.widgets.CircleProgressView
         android:id="@+id/cpv_grid"
         android:layout_width="@dimen/cpv_large"
         android:layout_height="@dimen/cpv_large"

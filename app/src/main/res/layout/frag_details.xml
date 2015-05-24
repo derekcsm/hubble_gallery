@@ -16,7 +16,7 @@
             android:layout_height="match_parent">
 
 
-            <com.derek_s.spacegallery.ui.widgets.StretchyImageView
+            <com.derek_s.hubble_gallery.ui.widgets.StretchyImageView
                 android:id="@+id/iv_display"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

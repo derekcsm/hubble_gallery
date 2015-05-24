@@ -7,7 +7,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.derek_s.spacegallery.ui.activities.ActDetails"
+        tools:context="com.derek_s.hubble_gallery.ui.activities.ActDetails"
         tools:ignore="MergeRootFrame" />
 
 </RelativeLayout>

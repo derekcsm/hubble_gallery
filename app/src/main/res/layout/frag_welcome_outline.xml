@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <com.derek_s.spacegallery.utils.svg.SvgView
+    <com.derek_s.hubble_gallery.utils.svg.SvgView
         android:id="@+id/hubble_outline"
         android:layout_width="match_parent"
         android:layout_height="300dp"
