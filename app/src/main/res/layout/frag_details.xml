@@ -30,7 +30,7 @@
                 android:id="@+id/view_below_title_bg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/tv_description"
+                android:layout_above="@+id/tv_body"
                 android:layout_below="@+id/iv_display"
                 android:background="@color/background"
                 android:minHeight="5dp" />
@@ -47,8 +47,17 @@
                 android:visibility="invisible"
                 tools:visibility="visible" />
 
+            <include
+                android:id="@+id/zero_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/zero_state_details"
+                android:layout_below="@+id/tv_title"
+                tools:visiblity="visible"
+                android:visibility="invisible" />
+
             <TextView
-                android:id="@+id/tv_description"
+                android:id="@+id/tv_body"
                 style="@style/text_body1_dark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

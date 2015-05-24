@@ -46,6 +46,8 @@ import com.nineoldandroids.view.ViewHelper;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.util.List;
 
@@ -71,14 +73,20 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
     public ImageView ivDisplay;
     @InjectView(R.id.tv_title)
     TextView tvTitle;
-    @InjectView(R.id.tv_description)
-    TextView tvDescription;
+    @InjectView(R.id.tv_body)
+    TextView tvBody;
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
     @InjectView(R.id.scroll)
     ObservableScrollView scrollView;
     @InjectView(R.id.square)
     View square;
+    @InjectView(R.id.zero_state)
+    View zeroState;
+    @InjectView(R.id.tv_zero_state_info)
+    TextView tvZeroStateInfo;
+    @InjectView(R.id.tv_retry)
+    TextView tvRetry;
     int imgLoadAttempt = 0;
     public static String successfulSrc;
     int titleBgColor;
@@ -118,25 +126,32 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
 
         Log.i(TAG, "detailsObject= " + detailsObject);
         if (savedInstanceState == null) {
-            final GetDetails getDetails = new GetDetails(tileObject.getHref());
-            getDetails.setGetDetailsCompleteListener(new GetDetails.OnTaskComplete() {
-                @Override
-                public void setTaskComplete(DetailsObject result, String newsUrl) {
-                    detailsObject = result;
-                    String description = detailsObject.getDescription();
-                    if (description != null) {
-                        description = description.replace("To access available information and downloadable versions " +
-                                "of images in this news release, click on any of the images below:", "");
-                    } else {
-                        description = "no description found from \n" + newsUrl;
-                    }
-                    detailsObject.setDescription(description);
-                    tvDescription.setText(Html.fromHtml(detailsObject.getDescription()));
-                    showLoadingAnimation(false, 1);
-                }
-            });
-            getDetails.execute();
+            getDetails();
         }
+    }
+
+    private final int TYPE_NO_DESCRIPTION = 0;
+    private final int TYPE_NO_INTERNET = 1;
+
+    private void getDetails() {
+        final GetDetails getDetails = new GetDetails(tileObject.getHref());
+        getDetails.setGetDetailsCompleteListener(new GetDetails.OnTaskComplete() {
+            @Override
+            public void setTaskComplete(DetailsObject result, String newsUrl) {
+                detailsObject = result;
+                String description = detailsObject.getDescription();
+                if (description != null) {
+                    description = description.replace("To access available information and downloadable versions " +
+                            "of images in this news release, click on any of the images below:", "");
+                } else {
+                    showZeroState(true, TYPE_NO_DESCRIPTION);
+                }
+                detailsObject.setDescription(description);
+                tvBody.setText(Html.fromHtml(detailsObject.getDescription()));
+                showLoadingAnimation(false, 1);
+            }
+        });
+        getDetails.execute();
     }
 
     @Override
@@ -145,8 +160,11 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
         View rootView = inflater.inflate(R.layout.frag_details, container, false);
         ButterKnife.inject(this, rootView);
 
-        tvDescription.setTextIsSelectable(true);
-        tvDescription.setMovementMethod(LinkMovementMethod.getInstance());
+        tvBody.setTextIsSelectable(true);
+        tvBody.setMovementMethod(LinkMovementMethod.getInstance());
+
+        tvZeroStateInfo.setTypeface(FontFactory.getRegular(getActivity()));
+        tvRetry.setTypeface(FontFactory.getCondensedLight(getActivity()));
 
         titleBgColor = getResources().getColor(R.color.title_background);
 
@@ -271,9 +289,9 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
         tvTitle.setText(tileObject.getTitle());
         tvTitle.setTypeface(FontFactory.getMedium(getActivity()));
 
-        tvDescription.setTypeface(FontFactory.getRegular(getActivity()));
+        tvBody.setTypeface(FontFactory.getRegular(getActivity()));
         if (savedInstanceState != null && detailsObject != null) {
-            tvDescription.setText(Html.fromHtml(detailsObject.getDescription()));
+            tvBody.setText(Html.fromHtml(detailsObject.getDescription()));
         }
 
         ivDisplay.setOnClickListener(new View.OnClickListener() {
@@ -362,6 +380,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
             case 0:
                 if (show) {
                     showSquareFlipper(true);
+                    showZeroState(false, 0);
                 } else {
                     showSquareFlipper(false);
 
@@ -381,12 +400,36 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
             case 1:
                 if (ivDisplay != null && ivDisplay.getVisibility() == View.VISIBLE)
                     if (show) {
-                        tvDescription.setVisibility(View.INVISIBLE);
+                        tvBody.setVisibility(View.INVISIBLE);
                     } else {
-                        tvDescription.setVisibility(View.VISIBLE);
-                        YoYo.with(Techniques.FadeInUp).duration(240).playOn(tvDescription);
+                        tvBody.setVisibility(View.VISIBLE);
+                        YoYo.with(Techniques.FadeInUp).duration(240).playOn(tvBody);
                     }
                 break;
+        }
+    }
+
+    public void showZeroState(boolean show, final int type) {
+        if (show) {
+            switch (type) {
+                case TYPE_NO_DESCRIPTION:
+                    tvZeroStateInfo.setText("no description found from \\n" + tileObject.getHref());
+                    break;
+            }
+            zeroState.setVisibility(View.VISIBLE);
+            tvRetry.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // TODO
+                    switch (type) {
+                        case TYPE_NO_DESCRIPTION:
+                            getDetails();
+                            break;
+                    }
+                }
+            });
+        } else {
+            tvZeroStateInfo.setVisibility(View.INVISIBLE);
         }
     }
 

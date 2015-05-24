@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_zero_state_info"
+        android:padding="16dp"
+        style="@style/text_body1_dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Unable to load URL hot_tinder_babes.biz.co.uk" />
+
+    <TextView
+        android:id="@+id/tv_retry"
+        style="@style/text_title_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_default"
+        android:padding="16dp"
+        android:text="@string/retry"
+        android:textAllCaps="true" />
+
+</LinearLayout>
