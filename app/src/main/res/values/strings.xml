@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Hubble Gallery</string>
+    <string name="hubble">Hubble</string>
+    <string name="title_activity_act_onboarding">Welcome</string>
+
+    <!-- main -->
+    <string name="favorites">Favorites</string>
+    <string name="search">Search</string>
+    <string name="about">About</string>
+    <string name="rate">Rate and share</string>
+
+    <string name="sort_by">Sort by</string>
+    <string name="most_popular">Most popular</string>
+    <string name="highest_resolution">Highest resolution</string>
+    <string name="title_activity_act_details">Details</string>
+
+    <!-- details -->
+    <string name="set_as">Set image as&#8230;</string>
+    <string name="share_image">Share image</string>
+    <string name="save_image">Save image</string>
+    <string name="open_in_browser">Open in browser</string>
+    <string name="share_link">Share link</string>
+    <string name="copy_link">Copy link</string>
+    <string name="add_favorite">Add to favorites</string>
+    <string name="remove_favorite">Remove from favorites</string>
+
+    <string name="error_saving_image">Error during image saving</string>
+    <string name="image_saved">Image saved to /Pictures/Hubble</string>
+
+    <!-- zero states -->
+    <string name="zero_state_favorites_1">Explore and favorite images, they'll show up here</string>
+    <string name="zero_state_favorites_2">You have no favorites&#8230; yet</string>
+    <string name="zero_state_favorites_3">You have no favorites&#8230; yet</string>
+
+    <!-- error states -->
+    <string name="no_connection">No internet connection</string>
+    <string name="retry">Retry</string>
+
+    <!-- on boarding -->
+    <string name="enter">Enter</string>
+    <string name="info_1">The Hubble Space Telescope was launched into
+        low Earth orbit in 1990, and remains in operation. With a 2.4-meter (7.9 ft) mirror, Hubble\'s
+        four main instruments observe in the near ultraviolet, visible, and near infrared spectra.</string>
+
+    <string name="info_2">Hubble\'s orbit outside the distortion of Earth\'s atmosphere allows it to take
+        extremely high-resolution images with negligible background light. Hubble has recorded some of
+        the most detailed visible-light images ever, allowing a deep view into space and time. Many
+        Hubble observations have led to breakthroughs in astrophysics, such as accurately determining
+        the rate of expansion of the universe.</string>
+
+    <string name="info_3">The content showcased in this app comes from HubbleSite, run by
+    the Space Telescope Science Institute\'s Office of Public Outreach.
+    This is not an official app, though I wish it was (if you\'re from NASA email me), I just think Hubble is awesome.</string>
+
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+
+</resources>

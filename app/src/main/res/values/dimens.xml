@@ -1,0 +1,34 @@
+<resources>
+    <!-- Default screen margins -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Typography -->
+    <dimen name="display_4">112sp</dimen>
+    <dimen name="display_3">56sp</dimen>
+    <dimen name="display_2">45sp</dimen>
+    <dimen name="display_1">34sp</dimen>
+    <dimen name="headline">24sp</dimen>
+    <dimen name="title">20sp</dimen>
+    <dimen name="subhead">14sp</dimen>
+    <dimen name="body">14sp</dimen>
+    <dimen name="caption">12sp</dimen>
+
+    <integer name="text_switch_anim_duration">200</integer>
+
+    <dimen name="navigation_drawer_width">300dp</dimen>
+
+    <!-- num of columns in portrait -->
+    <integer name="grid_columns">2</integer>
+
+    <dimen name="toolbar_height">?attr/actionBarSize</dimen>
+
+    <integer name="cpv_circle_dur">1400</integer>
+    <integer name="cpv_sweep_dur">950</integer>
+    <dimen name="cpv_small">24dp</dimen>
+    <dimen name="cpv_large">32dp</dimen>
+
+    <integer name="act_transition_length">350</integer>
+    <item name="act_fade_deg" format="float" type="dimen">0.6</item>
+
+</resources>

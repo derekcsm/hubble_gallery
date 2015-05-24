@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:background="@android:color/black"/>
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize" />
+
+    </RelativeLayout>
+
+
+    <com.derek_s.spacegallery.ui.widgets.ScrimInsetsFrameLayout
+        android:id="@+id/scrimInsetsFrameLayout"
+        android:layout_width="@dimen/navigation_drawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:elevation="10dp"
+        android:fitsSystemWindows="true"
+        app:insetForeground="@android:color/black">
+
+        <fragment
+            android:id="@+id/navigation_drawer"
+            android:layout_width="@dimen/navigation_drawer_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:name="com.derek_s.spacegallery.ui.fragments.FragNavigationDrawer"
+            layout="@layout/frag_navigation_drawer" />
+
+    </com.derek_s.spacegallery.ui.widgets.ScrimInsetsFrameLayout>
+
+</android.support.v4.widget.DrawerLayout>

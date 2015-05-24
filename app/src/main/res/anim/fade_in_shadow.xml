@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@anim/decelerate_interpolator" >
+
+    <alpha
+        android:duration="@integer/act_transition_length"
+        android:fromAlpha="@dimen/act_fade_deg"
+        android:toAlpha="1.0" />
+
+</set>

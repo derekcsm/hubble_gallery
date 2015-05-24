@@ -1,0 +1,34 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.derek_s.spacegallery.ui.widgets.CircleProgressView
+        android:id="@+id/cpv_grid"
+        android:layout_width="@dimen/cpv_large"
+        android:layout_height="@dimen/cpv_large"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        app:cpvColor="@android:color/white"
+        app:cpvStrokeWidth="3dp" />
+
+    <com.github.ksoichiro.android.observablescrollview.ObservableGridView
+        android:id="@+id/gv_main"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:choiceMode="singleChoice"
+        android:drawSelectorOnTop="true"
+        android:listSelector="@drawable/selector_default"
+        android:numColumns="@integer/grid_columns" />
+
+    <include
+        android:id="@+id/zero_state"
+        layout="@layout/zero_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible" />
+</RelativeLayout>

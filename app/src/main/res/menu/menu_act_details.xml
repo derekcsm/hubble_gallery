@@ -1,0 +1,48 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.derek_s.spacegallery.ui.activities.ActDetails">
+
+    <item
+        android:id="@+id/action_favorite"
+        android:icon="@drawable/ic_favorite_outline_white_24dp"
+        android:title="@string/add_favorite"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_share_image"
+        android:orderInCategory="0"
+        android:title="@string/share_image"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_save_image"
+        android:orderInCategory="1"
+        android:title="@string/save_image"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_set_image"
+        android:orderInCategory="2"
+        android:title="@string/set_as"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_open_in_browser"
+        android:orderInCategory="3"
+        android:title="@string/open_in_browser"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_share_link"
+        android:orderInCategory="4"
+        android:title="@string/share_link"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_copy_link"
+        android:orderInCategory="4"
+        android:title="@string/copy_link"
+        app:showAsAction="never" />
+
+</menu>

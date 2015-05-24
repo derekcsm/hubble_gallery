@@ -1,0 +1,94 @@
+package com.derek_s.spacegallery.ui.fragments;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.derek_s.spacegallery.R;
+import com.derek_s.spacegallery.ui.activities.ActMain;
+import com.derek_s.spacegallery.utils.ui.FontFactory;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
+/**
+ * Created by dereksmith on 15-05-15.
+ */
+public class FragWelcomeInfo extends Fragment {
+
+    private static String TAG = "FragWelcomeInfo";
+    private static int pagePos = 1;
+    private static String PAGE_KEY = "page_number";
+
+    public static FragWelcomeInfo newInstance(int position) {
+        FragWelcomeInfo fragment = new FragWelcomeInfo();
+
+        // Supply int position as an argument.
+        Bundle args = new Bundle();
+        args.putInt(PAGE_KEY, position);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        pagePos = getArguments() != null ? getArguments().getInt(PAGE_KEY) : 1;
+    }
+
+    @InjectView(R.id.tv_welcome_info)
+    TextView tvInfo;
+    @InjectView(R.id.tv_enter)
+    TextView tvEnter;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.frag_welcome_info, container, false);
+        ButterKnife.inject(this, rootView);
+
+        tvInfo.setTypeface(FontFactory.getCondensedRegular(getActivity()));
+        tvInfo.setVisibility(View.VISIBLE);
+        tvEnter.setVisibility(View.INVISIBLE);
+
+        Log.i(TAG, "onCreateView pagePos = " + pagePos);
+
+        switch (pagePos) {
+            case (1):
+                tvInfo.setText(getActivity().getResources().getText(R.string.info_1));
+                break;
+            case (2):
+                tvInfo.setText(getActivity().getResources().getText(R.string.info_2));
+                break;
+            case (3):
+                tvInfo.setText(getActivity().getResources().getText(R.string.info_3));
+                break;
+            case (4):
+                tvInfo.setVisibility(View.INVISIBLE);
+                tvEnter.setTypeface(FontFactory.getCondensedLight(getActivity()));
+                tvEnter.setVisibility(View.VISIBLE);
+                tvEnter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // TODO
+                        Intent i = new Intent(getActivity(), ActMain.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(i);
+                        getActivity().overridePendingTransition(android.R.anim.fade_in, R.anim.zoom_in_exit);
+                    }
+                });
+                break;
+        }
+
+        return rootView;
+    }
+
+
+}

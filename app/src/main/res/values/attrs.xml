@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ScrimInsetsView">
+        <attr name="insetForeground" format="reference|color" />
+    </declare-styleable>
+    <declare-styleable name="CircleProgressView">
+        <attr name="cpvColor" format="color|reference" />
+        <attr name="cpvStrokeWidth" format="dimension|reference" />
+        <attr name="cpvCircleAnimDuration" format="integer|reference" />
+        <attr name="cpvSweepAnimDuration" format="integer|reference" />
+        <attr name="cpvColors" format="reference" />
+        <attr name="cpvSpeed" format="float" />
+        <attr name="cpvMinSweepAngle" format="integer" />
+        <attr name="cpvMaxSweepAngle" format="integer" />
+        <attr name="cpvPopOutColor" format="color|reference" />
+        <attr name="cpvPopOutStrokeWidth" format="dimension|reference" />
+    </declare-styleable>
+    <declare-styleable name="IntroView">
+        <attr name="strokeWidth" format="float" />
+        <attr name="strokeColor" format="color|reference" />
+        <attr name="phase" format="float" />
+        <attr name="duration" format="integer" />
+        <attr name="fadeFactor" format="float" />
+        <attr name="waitRadius" format="dimension" />
+        <attr name="arrowLength" format="dimension" />
+        <attr name="arrowHeight" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="StateView">
+        <attr name="strokeWidth" />
+        <attr name="strokeColor" />
+        <attr name="phase" />
+        <attr name="duration" />
+        <attr name="fadeFactor" />
+    </declare-styleable>
+</resources>
