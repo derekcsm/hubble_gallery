@@ -222,12 +222,25 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
             tvZero.setTypeface(FontFactory.getCondensedRegular(getActivity()));
 
             if (mode == Constants.FAVORITES_MODE) {
-                // set "no favorites" text
-                // TODO make random that'd be cool
-                tvZero.setText("You don't have even 1 favorite?!");
+                int min = 0;
+                int max = 2;
+                int zero = min + (int)(Math.random() * ((max - min) + 1));
+
+                switch (zero) {
+                    case 0:
+                        tvZero.setText(R.string.zero_state_favorites_1);
+                        break;
+                    case 1:
+                        tvZero.setText(R.string.zero_state_favorites_2);
+                        break;
+                    case 2:
+                        tvZero.setText(R.string.zero_state_favorites_3);
+                        break;
+                }
+
             } else {
-                // set "bad connection" text
-                tvZero.setText("Couldn't find items, bad connection");
+                // bad connection
+                tvZero.setText(R.string.no_connection);
             }
 
             IndeterminateAnimator.stop(cpvGrid, Techniques.FadeOutDown);

@@ -30,9 +30,9 @@
     <string name="image_saved">Image saved to /Pictures/Hubble</string>
 
     <!-- zero states -->
-    <string name="zero_state_favorites_1">Explore and favorite images, they'll show up here</string>
+    <string name="zero_state_favorites_1">Explore and favorite images, they\'ll show up here</string>
     <string name="zero_state_favorites_2">You have no favorites&#8230; yet</string>
-    <string name="zero_state_favorites_3">You have no favorites&#8230; yet</string>
+    <string name="zero_state_favorites_3">I\'m sure you\'ll find some favorites!</string>
 
     <!-- error states -->
     <string name="no_connection">No internet connection</string>
