@@ -94,14 +94,19 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
         mAdapter = new GridAdapter(getActivity(), c);
         gvMain.setAdapter(mAdapter);
 
-
         if (savedInstanceState == null) {
             loadInitialItems(currentQuery);
         } else {
             currentQuery = savedInstanceState.getString(CURRENT_QUERY);
             canLoadMore = savedInstanceState.getBoolean(CAN_LOAD_MORE);
             hiRes = savedInstanceState.getBoolean(IS_HIRES);
-            mAdapter.addItems(Tiles.create(savedInstanceState.getString(CURRENT_TILES)).getTiles());
+
+            Tiles nTiles = Tiles.create(savedInstanceState.getString(CURRENT_TILES));
+            if (nTiles.getTiles().isEmpty()) {
+                loadInitialItems(currentQuery);
+            } else {
+                mAdapter.addItems(Tiles.create(savedInstanceState.getString(CURRENT_TILES)).getTiles());
+            }
         }
 
         /*
@@ -249,7 +254,7 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
                 tvRetry.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // TODO reload
+                        loadInitialItems(currentQuery);
                     }
                 });
             }
