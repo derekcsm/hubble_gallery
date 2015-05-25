@@ -51,6 +51,10 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
     CircleProgressView cpvGrid;
     @InjectView(R.id.zero_state)
     RelativeLayout zeroState;
+    @InjectView(R.id.tv_zero_state)
+    TextView tvZeroTitle;
+    @InjectView(R.id.tv_retry)
+    TextView tvRetry;
     public GridAdapter mAdapter;
     public static int currentPage = 1;
     public boolean isLoading = false;
@@ -218,29 +222,36 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
     public void showZeroState(boolean show) {
 
         if (show) {
-            TextView tvZero = (TextView) zeroState.findViewById(R.id.tv_zero_state);
-            tvZero.setTypeface(FontFactory.getCondensedRegular(getActivity()));
+            tvZeroTitle.setTypeface(FontFactory.getCondensedRegular(getActivity()));
 
             if (mode == Constants.FAVORITES_MODE) {
+                tvRetry.setVisibility(View.GONE);
                 int min = 0;
                 int max = 2;
                 int zero = min + (int)(Math.random() * ((max - min) + 1));
 
                 switch (zero) {
                     case 0:
-                        tvZero.setText(R.string.zero_state_favorites_1);
+                        tvZeroTitle.setText(R.string.zero_state_favorites_1);
                         break;
                     case 1:
-                        tvZero.setText(R.string.zero_state_favorites_2);
+                        tvZeroTitle.setText(R.string.zero_state_favorites_2);
                         break;
                     case 2:
-                        tvZero.setText(R.string.zero_state_favorites_3);
+                        tvZeroTitle.setText(R.string.zero_state_favorites_3);
                         break;
                 }
 
             } else {
                 // bad connection
-                tvZero.setText(R.string.no_connection);
+                tvRetry.setVisibility(View.VISIBLE);
+                tvZeroTitle.setText(R.string.no_connection);
+                tvRetry.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // TODO reload
+                    }
+                });
             }
 
             IndeterminateAnimator.stop(cpvGrid, Techniques.FadeOutDown);
