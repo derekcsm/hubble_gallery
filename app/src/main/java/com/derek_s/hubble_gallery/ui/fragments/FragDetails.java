@@ -123,35 +123,6 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
         if (getArguments() != null) {
             tileObject = TileObject.create(getArguments().getString(Constants.PARAM_TILE_KEY));
         }
-
-        Log.i(TAG, "detailsObject= " + detailsObject);
-        if (savedInstanceState == null) {
-            getDetails();
-        }
-    }
-
-    private final int TYPE_NO_DESCRIPTION = 0;
-    private final int TYPE_NO_INTERNET = 1;
-
-    private void getDetails() {
-        final GetDetails getDetails = new GetDetails(tileObject.getHref());
-        getDetails.setGetDetailsCompleteListener(new GetDetails.OnTaskComplete() {
-            @Override
-            public void setTaskComplete(DetailsObject result, String newsUrl) {
-                detailsObject = result;
-                String description = detailsObject.getDescription();
-                if (description != null) {
-                    description = description.replace("To access available information and downloadable versions " +
-                            "of images in this news release, click on any of the images below:", "");
-                } else {
-                    showZeroState(true, TYPE_NO_DESCRIPTION);
-                }
-                detailsObject.setDescription(description);
-                tvBody.setText(Html.fromHtml(detailsObject.getDescription()));
-                showLoadingAnimation(false, 1);
-            }
-        });
-        getDetails.execute();
     }
 
     @Override
@@ -283,9 +254,6 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
             }
         });
 
-        showLoadingAnimation(true, 0);
-        loadImage(tileObject.getSrc());
-
         tvTitle.setText(tileObject.getTitle());
         tvTitle.setTypeface(FontFactory.getMedium(getActivity()));
 
@@ -302,13 +270,44 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
         });
 
         scrollView.setScrollViewCallbacks(this);
+
+        showLoadingAnimation(true, 0);
         if (savedInstanceState != null) {
+            loadImage(tileObject.getSrc());
             onScrollChanged(scrollView.getCurrentScrollY(), false, false);
             alphaTitleBgColor = savedInstanceState.getInt(Constants.ALPHA_TITLE);
             toolbar.setBackgroundColor(alphaTitleBgColor);
+        } else {
+            loadPage();
         }
 
         return rootView;
+    }
+
+    private void loadPage() {
+        getDetails();
+        loadImage(tileObject.getSrc());
+    }
+
+    private void getDetails() {
+        final GetDetails getDetails = new GetDetails(tileObject.getHref());
+        getDetails.setGetDetailsCompleteListener(new GetDetails.OnTaskComplete() {
+            @Override
+            public void setTaskComplete(DetailsObject result, String newsUrl) {
+                detailsObject = result;
+                String description = detailsObject.getDescription();
+                if (description != null) {
+                    showLoadingAnimation(false, 1);
+                    description = description.replace("To access available information and downloadable versions " +
+                            "of images in this news release, click on any of the images below:", "");
+                } else {
+                    showZeroState(true);
+                }
+                detailsObject.setDescription(description);
+                tvBody.setText(Html.fromHtml(detailsObject.getDescription()));
+            }
+        });
+        getDetails.execute();
     }
 
     private void loadImage(final String src) {
@@ -380,7 +379,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
             case 0:
                 if (show) {
                     showSquareFlipper(true);
-                    showZeroState(false, 0);
+                    showZeroState(false);
                 } else {
                     showSquareFlipper(false);
 
@@ -409,27 +408,20 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
         }
     }
 
-    public void showZeroState(boolean show, final int type) {
+    public void showZeroState(boolean show) {
         if (show) {
-            switch (type) {
-                case TYPE_NO_DESCRIPTION:
-                    tvZeroStateInfo.setText("no description found from \\n" + tileObject.getHref());
-                    break;
-            }
             zeroState.setVisibility(View.VISIBLE);
+            tvBody.setVisibility(View.GONE);
+
+            tvZeroStateInfo.setText("Unable to load description");
             tvRetry.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO
-                    switch (type) {
-                        case TYPE_NO_DESCRIPTION:
-                            getDetails();
-                            break;
-                    }
+                    loadPage();
                 }
             });
         } else {
-            tvZeroStateInfo.setVisibility(View.INVISIBLE);
+            zeroState.setVisibility(View.INVISIBLE);
         }
     }
 

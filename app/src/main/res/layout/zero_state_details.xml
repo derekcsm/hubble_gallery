@@ -2,15 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_zero_state_info"
-        android:padding="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="72dp"
+        android:paddingRight="16dp"
         style="@style/text_body1_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:editable="true"
         tools:text="Unable to load URL hot_tinder_babes.biz.co.uk" />
 
     <TextView
@@ -20,7 +24,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/selector_default"
         android:padding="16dp"
-        android:text="@string/retry"
-        android:textAllCaps="true" />
+        android:text="@string/reload"
+        android:textAllCaps="true"
+        android:layout_gravity="right" />
 
 </LinearLayout>

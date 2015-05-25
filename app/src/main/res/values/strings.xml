@@ -37,6 +37,7 @@
     <!-- error states -->
     <string name="no_connection">No internet connection</string>
     <string name="retry">Retry</string>
+    <string name="reload">Reload</string>
 
     <!-- on boarding -->
     <string name="enter">Enter</string>
