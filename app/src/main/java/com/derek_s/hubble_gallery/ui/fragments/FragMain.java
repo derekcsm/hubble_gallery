@@ -170,6 +170,7 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
     }
 
     public void loadInitialItems(String query) {
+        mAdapter.clear();
         ActMain.instance.toggleFilterVisible(true);
         mode = Constants.LOADED_MODE;
         showLoadingAnimation(true);
