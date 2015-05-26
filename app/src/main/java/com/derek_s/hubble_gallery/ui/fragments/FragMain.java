@@ -22,6 +22,7 @@ import com.derek_s.hubble_gallery.model.TileObject;
 import com.derek_s.hubble_gallery.model.Tiles;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
 import com.derek_s.hubble_gallery.ui.widgets.CircleProgressView;
+import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 import com.derek_s.hubble_gallery.utils.ui.IndeterminateAnimator;
@@ -47,8 +48,8 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
     Context c;
     @InjectView(R.id.gv_main)
     ObservableGridView gvMain;
-    @InjectView(R.id.cpv_grid)
-    CircleProgressView cpvGrid;
+    @InjectView(R.id.square)
+    View square;
     @InjectView(R.id.zero_state)
     RelativeLayout zeroState;
     @InjectView(R.id.tv_zero_state)
@@ -217,11 +218,21 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
     public void showLoadingAnimation(boolean show) {
         showZeroState(false);
         if (show) {
-            IndeterminateAnimator.show(cpvGrid, Techniques.FadeInUp);
+            showSquareFlipper(true);
             YoYo.with(Techniques.FadeOut).duration(200).playOn(gvMain);
         } else {
-            IndeterminateAnimator.stop(cpvGrid, Techniques.FadeOutDown);
+            showSquareFlipper(false);
             YoYo.with(Techniques.FadeIn).duration(320).playOn(gvMain);
+        }
+    }
+
+    public SquareFlipper squareFlipper = new SquareFlipper();
+
+    public void showSquareFlipper(boolean show) {
+        if (show) {
+            squareFlipper.startAnimation(square);
+        } else {
+            squareFlipper.stopAnimation();
         }
     }
 
@@ -234,7 +245,7 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
                 tvRetry.setVisibility(View.GONE);
                 int min = 0;
                 int max = 2;
-                int zero = min + (int)(Math.random() * ((max - min) + 1));
+                int zero = min + (int) (Math.random() * ((max - min) + 1));
 
                 switch (zero) {
                     case 0:
@@ -260,7 +271,7 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
                 });
             }
 
-            IndeterminateAnimator.stop(cpvGrid, Techniques.FadeOutDown);
+            showSquareFlipper(false);
             YoYo.with(Techniques.FadeOut).duration(200).playOn(gvMain);
 
             zeroState.setVisibility(View.VISIBLE);
