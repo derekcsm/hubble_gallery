@@ -190,7 +190,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
                         if (imgUri != null) {
                             Intent shareIntent = new Intent(Intent.ACTION_SEND);
                             shareIntent.setType("*/*");
-                            shareIntent.putExtra(Intent.EXTRA_TEXT, "Shared from Hubble Gallery");
+                            shareIntent.putExtra(Intent.EXTRA_TEXT, "via Hubble Gallery"); // TODO replace with shortened playstore link
                             shareIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
 
                             startActivity(Intent.createChooser(shareIntent, getActivity().getResources().getString(R.string.share_image)));
@@ -277,6 +277,12 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
             onScrollChanged(scrollView.getCurrentScrollY(), false, false);
             alphaTitleBgColor = savedInstanceState.getInt(Constants.ALPHA_TITLE);
             toolbar.setBackgroundColor(alphaTitleBgColor);
+
+            if (detailsObject == null) {
+                loadPage();
+            } else if (detailsObject.getDescription() == null || detailsObject.getDescription().length() == 0) {
+                loadPage();
+            }
         } else {
             loadPage();
         }
@@ -300,11 +306,12 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
                     showLoadingAnimation(false, 1);
                     description = description.replace("To access available information and downloadable versions " +
                             "of images in this news release, click on any of the images below:", "");
+                    detailsObject.setDescription(description);
+                    tvBody.setText(Html.fromHtml(detailsObject.getDescription()));
                 } else {
                     showZeroState(true);
                 }
-                detailsObject.setDescription(description);
-                tvBody.setText(Html.fromHtml(detailsObject.getDescription()));
+
             }
         });
         getDetails.execute();

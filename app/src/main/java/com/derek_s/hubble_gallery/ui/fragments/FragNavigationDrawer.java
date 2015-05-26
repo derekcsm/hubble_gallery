@@ -3,6 +3,8 @@ package com.derek_s.hubble_gallery.ui.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -100,6 +102,18 @@ public class FragNavigationDrawer extends Fragment {
         View rootView = inflater.inflate(R.layout.frag_navigation_drawer, container, false);
         ButterKnife.inject(this, rootView);
 
+        // header
+        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.header_nav_drawer, lvMenu, false);
+        TextView tvVersionName = (TextView) header.findViewById(R.id.tv_version_name);
+        tvVersionName.setTypeface(FontFactory.getCondensedLight(getActivity()));
+        PackageInfo pInfo = null;
+        try {
+            pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        tvVersionName.setText("BETA " + pInfo.versionName);
+
         // footer
         ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.footer_nav_drawer, lvMenu, false);
         tvFavorites = (TextView) footer.findViewById(R.id.tv_favorites);
@@ -140,6 +154,7 @@ public class FragNavigationDrawer extends Fragment {
 
         mAdapter = new SectionsAdapter(getActivity(), getActivity());
         lvMenu.addFooterView(footer, null, false);
+        lvMenu.addHeaderView(header, null, false);
         lvMenu.setAdapter(mAdapter);
         mAdapter.addItems();
 
