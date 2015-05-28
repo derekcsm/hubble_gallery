@@ -42,7 +42,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/iv_display"
                 android:background="@color/background"
-                android:padding="16dp"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp"
+                android:paddingLeft="72dp"
+                android:paddingBottom="16dp"
                 android:text="Nebula shows largest black hole ever discovered"
                 android:visibility="invisible"
                 tools:visibility="visible" />

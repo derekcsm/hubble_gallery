@@ -23,8 +23,8 @@ android {
         applicationId "com.derek_s.spacegallery"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 7
-        versionName "0.85"
+        versionCode 8
+        versionName "0.9.0"
     }
     buildTypes {
         release {

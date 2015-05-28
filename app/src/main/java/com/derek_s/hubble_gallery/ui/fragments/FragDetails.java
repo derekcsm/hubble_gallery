@@ -236,8 +236,8 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
                         break;
                     case R.id.action_share_link:
                         Intent sendIntent = new Intent();
-                        sendIntent.setAction(Intent.ACTION_SEND);
-                        sendIntent.putExtra(Intent.EXTRA_TEXT, tileObject.getTitle() + " - http://hubblesite.org" + tileObject.getHref() + " - Hubble Gallery for Android");
+                        sendIntent.setAction(Intent.ACTION_SEND); // TODO replace with shortened playstore link
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, tileObject.getTitle() + " - http://hubblesite.org" + tileObject.getHref() + " via Hubble Gallery for Android");
                         sendIntent.setType("text/plain");
                         startActivity(sendIntent);
                         break;
@@ -253,7 +253,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
         });
 
         tvTitle.setText(tileObject.getTitle());
-        tvTitle.setTypeface(FontFactory.getMedium(getActivity()));
+        tvTitle.setTypeface(FontFactory.getCondensedBold(getActivity()));
 
         tvBody.setTypeface(FontFactory.getRegular(getActivity()));
         if (savedInstanceState != null && detailsObject != null) {

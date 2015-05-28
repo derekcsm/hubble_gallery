@@ -105,14 +105,14 @@ public class FragNavigationDrawer extends Fragment {
         // header
         ViewGroup header = (ViewGroup) inflater.inflate(R.layout.header_nav_drawer, lvMenu, false);
         TextView tvVersionName = (TextView) header.findViewById(R.id.tv_version_name);
-        tvVersionName.setTypeface(FontFactory.getCondensedLight(getActivity()));
+        tvVersionName.setTypeface(FontFactory.getCondensedRegular(getActivity()));
         PackageInfo pInfo = null;
         try {
             pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
         } catch (PackageManager.NameNotFoundException ex) {
             ex.printStackTrace();
         }
-        tvVersionName.setText("BETA " + pInfo.versionName);
+        tvVersionName.setText("ALPHA V " + pInfo.versionName);
 
         // footer
         ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.footer_nav_drawer, lvMenu, false);
@@ -171,7 +171,6 @@ public class FragNavigationDrawer extends Fragment {
                 tvFavorites.setTextColor(getResources().getColor(R.color.seleted_item_color));
             }
         }
-
 
         return rootView;
     }
