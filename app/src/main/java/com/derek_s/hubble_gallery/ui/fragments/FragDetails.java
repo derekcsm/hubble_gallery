@@ -46,8 +46,6 @@ import com.nineoldandroids.view.ViewHelper;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.io.File;
 import java.util.List;
 
@@ -182,7 +180,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
                         break;
                     case R.id.action_share_image:
                         filename = ImageUtils.saveImage(ivDisplay, successfulSrc, getActivity(), false);
-                        path = "/mnt/sdcard/Pictures/Hubble/" + filename;
+                        path = Constants.imageDirectory() + filename;
                         f = new File(path);
                         imgUri = Uri.fromFile(f);
 
@@ -204,7 +202,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
                         break;
                     case R.id.action_set_image:
                         filename = ImageUtils.saveImage(ivDisplay, successfulSrc, getActivity(), false);
-                        path = "/mnt/sdcard/Pictures/Hubble/" + filename;
+                        path = Constants.imageDirectory() + filename;
                         f = new File(path);
                         imgUri = Uri.fromFile(f);
 
@@ -476,7 +474,6 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
 
             return rootView;
         }
-
     }
 
     @Override

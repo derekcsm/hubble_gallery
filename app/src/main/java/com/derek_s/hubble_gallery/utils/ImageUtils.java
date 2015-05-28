@@ -3,10 +3,10 @@ package com.derek_s.hubble_gallery.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Environment;
 import android.widget.ImageView;
 
 import com.derek_s.hubble_gallery.R;
+import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.utils.ui.Toasty;
 
 import java.io.File;
@@ -40,9 +40,8 @@ public class ImageUtils {
             return savedUri;
         }
 
-        File sdCardDirectory = Environment.getExternalStorageDirectory();
-        new File(sdCardDirectory + "/Pictures/Hubble").mkdirs();
-        File image = new File(sdCardDirectory + "/Pictures/Hubble", imgUrl);
+        new File(Constants.imageDirectory()).mkdirs();
+        File image = new File(Constants.imageDirectory(), imgUrl);
 
         boolean success = false;
         // Encode the file as a PNG image.
