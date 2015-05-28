@@ -1,18 +1,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.derek_s.spacegallery.ui.widgets.CircleProgressView
-        android:id="@+id/cpv_grid"
+    <View
+        android:id="@+id/square"
         android:layout_width="@dimen/cpv_large"
         android:layout_height="@dimen/cpv_large"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:visibility="visible"
-        app:cpvColor="@android:color/white"
-        app:cpvStrokeWidth="3dp" />
+        android:background="@android:color/white"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
     <com.github.ksoichiro.android.observablescrollview.ObservableGridView
         android:id="@+id/gv_main"
@@ -27,7 +28,7 @@
 
     <include
         android:id="@+id/zero_state"
-        layout="@layout/zero_state"
+        layout="@layout/zero_state_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible" />
