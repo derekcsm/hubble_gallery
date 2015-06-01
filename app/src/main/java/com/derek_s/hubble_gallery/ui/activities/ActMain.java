@@ -1,15 +1,15 @@
 package com.derek_s.hubble_gallery.ui.activities;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
@@ -38,7 +38,7 @@ import butterknife.InjectView;
 import io.fabric.sdk.android.Fabric;
 
 
-public class ActMain extends ActionBarActivity implements FragMain.FragMainCallbacks {
+public class ActMain extends AppCompatActivity implements FragMain.FragMainCallbacks {
 
     private static String TAG = "ActMain";
     private static String CUR_TITLE = "current_title";

@@ -55,6 +55,12 @@
     the Space Telescope Science Institute\'s Office of Public Outreach.
     This is not an official app, though I wish it was (if you\'re from NASA email me), I just think Hubble is awesome.</string>
 
+    <!-- about -->
+    <string name="built_by">Built by —</string>
+    <string name="source_code">Source code —</string>
+    <string name="show_intro">Show intro</string>
+
+
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
 

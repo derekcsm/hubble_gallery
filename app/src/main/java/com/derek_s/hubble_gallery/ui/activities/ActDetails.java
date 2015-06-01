@@ -2,14 +2,14 @@ package com.derek_s.hubble_gallery.ui.activities;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.ui.fragments.FragDetails;
 
-public class ActDetails extends ActionBarActivity implements FragDetails.OnFragmentInteractionListener {
+public class ActDetails extends AppCompatActivity implements FragDetails.OnFragmentInteractionListener {
 
     private String TAG = getClass().getSimpleName();
     FragDetails fragDetails;
