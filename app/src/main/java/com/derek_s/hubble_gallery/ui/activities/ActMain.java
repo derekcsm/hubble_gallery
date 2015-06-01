@@ -22,6 +22,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.base.Constants;
+import com.derek_s.hubble_gallery.base.TinyDB;
 import com.derek_s.hubble_gallery.model.TileObject;
 import com.derek_s.hubble_gallery.ui.fragments.FragMain;
 import com.derek_s.hubble_gallery.ui.fragments.FragNavigationDrawer;
@@ -46,6 +47,7 @@ public class ActMain extends ActionBarActivity implements FragMain.FragMainCallb
     private DrawerLayout mDrawerLayout;
     public String mTitle = "";
     public static ActMain instance = null;
+    private TinyDB DB;
     @InjectView(R.id.toolbar)
     public Toolbar toolbar;
     @InjectView(R.id.switcher_title)
@@ -58,6 +60,16 @@ public class ActMain extends ActionBarActivity implements FragMain.FragMainCallb
         instance = this;
         setContentView(R.layout.act_main);
         ButterKnife.inject(this);
+
+        DB = new TinyDB(this);
+        if (!DB.getBoolean(Constants.ONBOARDING_SHOWN)) {
+            /*
+            show user on-boarding screen
+             */
+            DB.putBoolean(Constants.ONBOARDING_SHOWN, true);
+            Intent intent = new Intent(ActMain.this, ActOnboarding.class);
+            startActivity(intent);
+        }
 
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
