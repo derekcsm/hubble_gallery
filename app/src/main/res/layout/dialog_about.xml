@@ -43,35 +43,8 @@
             android:paddingBottom="16dp"
             android:paddingLeft="8dp"
             android:paddingRight="@dimen/dialog_margin"
+            android:textColorLink="@color/accent"
             tools:text="Derek Smith \nderek-s.com" />
-
-        <TextView
-            android:id="@+id/tv_source_code"
-            style="@style/text_body1_dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/tv_source_code_content"
-            android:paddingBottom="20dp"
-            android:paddingLeft="@dimen/dialog_margin"
-            android:text="@string/source_code" />
-
-        <TextView
-            android:id="@+id/tv_source_code_content"
-            style="@style/text_body1_dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/tv_built_content"
-            android:layout_alignRight="@+id/tv_built_content"
-            android:layout_below="@+id/tv_built_content"
-            android:layout_toRightOf="@+id/tv_source_code"
-            android:gravity="right"
-            android:lineSpacingExtra="4dp"
-            android:paddingBottom="20dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="@dimen/dialog_margin"
-            tools:text="Han Solo \nJim Lahey \nMark Zuckerburg" />
 
     </RelativeLayout>
 
@@ -82,11 +55,24 @@
         android:background="@color/divider_dark_theme" />
 
     <TextView
-        android:id="@+id/tv_show_intro"
+        android:id="@+id/tv_source_code"
         style="@style/text_body1_light"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/selector_default"
+        android:gravity="center_vertical|right"
+        android:paddingLeft="@dimen/dialog_margin"
+        android:paddingRight="@dimen/dialog_margin"
+        android:text="@string/source_code"
+        android:textAllCaps="true"
+        android:textColor="@color/accent" />
+
+    <TextView
+        android:id="@+id/tv_show_intro"
+        style="@style/text_body1_light"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:background="@drawable/selector_default"
         android:gravity="center_vertical|right"
         android:paddingLeft="@dimen/dialog_margin"

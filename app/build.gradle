@@ -12,6 +12,7 @@ apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
+    maven { url 'https://dl.bintray.com/drummer-aidan/maven' }
 }
 
 
@@ -52,4 +53,5 @@ dependencies {
     }
     compile 'com.github.castorflex.verticalviewpager:library:19.0.1'
     compile 'com.caverock:androidsvg:1.2.2-beta-1'
+    compile 'com.afollestad:material-dialogs:0.7.4.2'
 }

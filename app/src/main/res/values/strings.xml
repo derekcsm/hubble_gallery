@@ -57,7 +57,7 @@
 
     <!-- about -->
     <string name="built_by">Built by —</string>
-    <string name="source_code">Source code —</string>
+    <string name="source_code">View source code</string>
     <string name="show_intro">Show intro</string>
 
 

@@ -24,6 +24,7 @@ import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.adapters.SectionsAdapter;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
 import com.derek_s.hubble_gallery.ui.activities.ActOnboarding;
+import com.derek_s.hubble_gallery.ui.dialog.DialogAbout;
 import com.derek_s.hubble_gallery.ui.widgets.AnimatedExpandableListView;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 import com.derek_s.hubble_gallery.utils.ui.Toasty;
@@ -147,8 +148,8 @@ public class FragNavigationDrawer extends Fragment {
         tvAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO
-                Toasty.show(getActivity(), R.string.about, Toasty.LENGTH_SHORT);
+                DialogAbout dialogAbout = new DialogAbout(getActivity());
+                dialogAbout.displayDialog();
             }
         });
 
