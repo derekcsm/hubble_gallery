@@ -6,14 +6,15 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.adapters.SectionsAdapter;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
 import com.derek_s.hubble_gallery.ui.activities.ActOnboarding;
+import com.derek_s.hubble_gallery.ui.dialog.DialogAbout;
 import com.derek_s.hubble_gallery.ui.widgets.AnimatedExpandableListView;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 import com.derek_s.hubble_gallery.utils.ui.Toasty;
@@ -112,7 +114,7 @@ public class FragNavigationDrawer extends Fragment {
         } catch (PackageManager.NameNotFoundException ex) {
             ex.printStackTrace();
         }
-        tvVersionName.setText("ALPHA V " + pInfo.versionName);
+        tvVersionName.setText("BETA V " + pInfo.versionName);
 
         // footer
         ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.footer_nav_drawer, lvMenu, false);
@@ -138,8 +140,12 @@ public class FragNavigationDrawer extends Fragment {
         tvRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ActOnboarding.class);
-                startActivity(intent);
+                final String appPackageName = context.getPackageName();
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                }
             }
         });
         tvAbout = (TextView) footer.findViewById(R.id.tv_about);
@@ -147,8 +153,8 @@ public class FragNavigationDrawer extends Fragment {
         tvAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO
-                Toasty.show(getActivity(), R.string.about, Toasty.LENGTH_SHORT);
+                DialogAbout dialogAbout = new DialogAbout(getActivity());
+                dialogAbout.displayDialog();
             }
         });
 
@@ -276,7 +282,7 @@ public class FragNavigationDrawer extends Fragment {
     }
 
     private ActionBar getActionBar() {
-        return ((ActionBarActivity) getActivity()).getSupportActionBar();
+        return ((AppCompatActivity) getActivity()).getSupportActionBar();
     }
 
 }

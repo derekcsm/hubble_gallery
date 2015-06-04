@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.SurfaceView;
 import android.view.View;
@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 
-public class ActOnboarding extends ActionBarActivity {
+public class ActOnboarding extends AppCompatActivity {
 
     @InjectView(R.id.rl_onboarding)
     RelativeLayout rlOnboarding;

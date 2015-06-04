@@ -1,15 +1,15 @@
 package com.derek_s.hubble_gallery.ui.activities;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
@@ -22,6 +22,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.base.Constants;
+import com.derek_s.hubble_gallery.base.TinyDB;
 import com.derek_s.hubble_gallery.model.TileObject;
 import com.derek_s.hubble_gallery.ui.fragments.FragMain;
 import com.derek_s.hubble_gallery.ui.fragments.FragNavigationDrawer;
@@ -37,7 +38,7 @@ import butterknife.InjectView;
 import io.fabric.sdk.android.Fabric;
 
 
-public class ActMain extends ActionBarActivity implements FragMain.FragMainCallbacks {
+public class ActMain extends AppCompatActivity implements FragMain.FragMainCallbacks {
 
     private static String TAG = "ActMain";
     private static String CUR_TITLE = "current_title";
@@ -46,6 +47,7 @@ public class ActMain extends ActionBarActivity implements FragMain.FragMainCallb
     private DrawerLayout mDrawerLayout;
     public String mTitle = "";
     public static ActMain instance = null;
+    private TinyDB DB;
     @InjectView(R.id.toolbar)
     public Toolbar toolbar;
     @InjectView(R.id.switcher_title)
@@ -58,6 +60,16 @@ public class ActMain extends ActionBarActivity implements FragMain.FragMainCallb
         instance = this;
         setContentView(R.layout.act_main);
         ButterKnife.inject(this);
+
+        DB = new TinyDB(this);
+        if (!DB.getBoolean(Constants.ONBOARDING_SHOWN)) {
+            /*
+            show user on-boarding screen
+             */
+            DB.putBoolean(Constants.ONBOARDING_SHOWN, true);
+            Intent intent = new Intent(ActMain.this, ActOnboarding.class);
+            startActivity(intent);
+        }
 
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

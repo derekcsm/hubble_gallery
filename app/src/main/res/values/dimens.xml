@@ -2,6 +2,7 @@
     <!-- Default screen margins -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="dialog_margin">24dp</dimen>
 
     <!-- Typography -->
     <dimen name="display_4">112sp</dimen>

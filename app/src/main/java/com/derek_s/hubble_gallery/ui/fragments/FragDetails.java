@@ -407,7 +407,6 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
                         tvBody.setVisibility(View.INVISIBLE);
                     } else {
                         tvBody.setVisibility(View.VISIBLE);
-                        YoYo.with(Techniques.FadeInUp).duration(240).playOn(tvBody);
                     }
                 break;
         }

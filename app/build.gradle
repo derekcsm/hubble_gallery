@@ -12,6 +12,7 @@ apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
+    maven { url 'https://dl.bintray.com/drummer-aidan/maven' }
 }
 
 
@@ -23,13 +24,12 @@ android {
         applicationId "com.derek_s.spacegallery"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 8
-        versionName "0.9.0"
+        versionCode 10
+        versionName "1.0.0"
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -52,4 +52,5 @@ dependencies {
     }
     compile 'com.github.castorflex.verticalviewpager:library:19.0.1'
     compile 'com.caverock:androidsvg:1.2.2-beta-1'
+    compile 'com.afollestad:material-dialogs:0.7.4.2'
 }
