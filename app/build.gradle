@@ -19,9 +19,8 @@ repositories {
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
-
     defaultConfig {
-        applicationId "com.derek_s.spacegallery"
+        applicationId 'com.derek_s.hubble_gallery'
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 10
@@ -31,6 +30,8 @@ android {
         release {
             minifyEnabled false
         }
+    }
+    productFlavors {
     }
 }
 
