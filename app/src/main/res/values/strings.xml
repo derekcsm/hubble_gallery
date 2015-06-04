@@ -60,6 +60,26 @@
     <string name="source_code">View source code</string>
     <string name="show_intro">Show intro</string>
 
+    <!-- font faces -->
+    <string name="roboto_black">fonts/Roboto-Black.ttf</string>
+    <string name="roboto_black_italic">fonts/Roboto-BlackItalic.ttf</string>
+    <string name="roboto_bold">fonts/Roboto-Bold.ttf</string>
+    <string name="roboto_bold_italic">fonts/Roboto-BoldItalic.ttf</string>
+    <string name="roboto_regular">fonts/Roboto-Regular.ttf</string>
+    <string name="roboto_thin">fonts/Roboto-Thin.ttf</string>
+    <string name="roboto_thin_italic">fonts/Roboto-ThinItalic.ttf</string>
+    <string name="roboto_italic">fonts/Roboto-Italic.ttf</string>
+    <string name="roboto_light">fonts/Roboto-Light.ttf</string>
+    <string name="roboto_light_italic">fonts/Roboto-LightItalic.ttf</string>
+    <string name="roboto_medium">fonts/Roboto-Medium.ttf</string>
+    <string name="roboto_medium_italic">fonts/Roboto-MediumItalic.ttf</string>
+
+    <string name="roboto_condensed_bold">fonts/RobotoCondensed-Bold.ttf</string>
+    <string name="roboto_condensed_bold_italic">fonts/RobotoCondensed-BoldItalic.ttf</string>
+    <string name="roboto_condensed_italic">fonts/RobotoCondensed-Italic.ttf</string>
+    <string name="roboto_condensed_light">fonts/RobotoCondensed-Light.ttf</string>
+    <string name="roboto_condensed_light_italic">fonts/RobotoCondensed-LightItalic.ttf</string>
+    <string name="roboto_condensed_regular">fonts/RobotoCondensed-Regular.ttf</string>
 
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>

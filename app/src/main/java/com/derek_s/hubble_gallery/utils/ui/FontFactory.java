@@ -3,6 +3,8 @@ package com.derek_s.hubble_gallery.utils.ui;
 import android.content.Context;
 import android.graphics.Typeface;
 
+import com.derek_s.hubble_gallery.R;
+
 /**
  * Created by dereksmith on 15-03-07.
  */
@@ -16,7 +18,7 @@ public class FontFactory {
 
     public static Typeface getBlack(Context c) {
         if (t1 == null) {
-            t1 = Typeface.createFromAsset(c.getAssets(), "fonts/Roboto-Black.ttf");
+            t1 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_black));
         }
         return t1;
     }
@@ -25,7 +27,7 @@ public class FontFactory {
 
     public static Typeface getBlackItalic(Context c) {
         if (t2 == null) {
-            t2 = Typeface.createFromAsset(c.getAssets(), "fonts/Roboto-BlackItalic.ttf");
+            t2 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_black_italic));
         }
         return t2;
     }
@@ -34,7 +36,7 @@ public class FontFactory {
 
     public static Typeface getBold(Context c) {
         if (t3 == null) {
-            t3 = Typeface.createFromAsset(c.getAssets(), "fonts/Roboto-Bold.ttf");
+            t3 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_bold));
         }
         return t3;
     }
@@ -43,7 +45,7 @@ public class FontFactory {
 
     public static Typeface getBoldItalic(Context c) {
         if (t4 == null) {
-            t4 = Typeface.createFromAsset(c.getAssets(), "fonts/Roboto-BoldItalic.ttf");
+            t4 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_bold_italic));
         }
         return t4;
     }
@@ -52,7 +54,7 @@ public class FontFactory {
 
     public static Typeface getItalic(Context c) {
         if (t5 == null) {
-            t5 = Typeface.createFromAsset(c.getAssets(), "fonts/Roboto-Italic.ttf");
+            t5 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_italic));
         }
         return t5;
     }
@@ -61,7 +63,7 @@ public class FontFactory {
 
     public static Typeface getLight(Context c) {
         if (t6 == null) {
-            t6 = Typeface.createFromAsset(c.getAssets(), "fonts/Roboto-Light.ttf");
+            t6 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_light));
         }
         return t6;
     }
@@ -70,7 +72,7 @@ public class FontFactory {
 
     public static Typeface getLightItalic(Context c) {
         if (t7 == null) {
-            t7 = Typeface.createFromAsset(c.getAssets(), "fonts/Roboto-LightItalic.ttf");
+            t7 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_light_italic));
         }
         return t7;
     }
@@ -79,7 +81,7 @@ public class FontFactory {
 
     public static Typeface getMedium(Context c) {
         if (t8 == null) {
-            t8 = Typeface.createFromAsset(c.getAssets(), "fonts/Roboto-Medium.ttf");
+            t8 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_medium));
         }
         return t8;
     }
@@ -88,7 +90,7 @@ public class FontFactory {
 
     public static Typeface getMediumItalic(Context c) {
         if (t9 == null) {
-            t9 = Typeface.createFromAsset(c.getAssets(), "fonts/Roboto-MediumItalic.ttf");
+            t9 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_medium_italic));
         }
         return t9;
     }
@@ -97,7 +99,7 @@ public class FontFactory {
 
     public static Typeface getRegular(Context c) {
         if (t10 == null) {
-            t10 = Typeface.createFromAsset(c.getAssets(), "fonts/Roboto-Regular.ttf");
+            t10 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_regular));
         }
         return t10;
     }
@@ -106,7 +108,7 @@ public class FontFactory {
 
     public static Typeface getThin(Context c) {
         if (t11 == null) {
-            t11 = Typeface.createFromAsset(c.getAssets(), "fonts/Roboto-Thin.ttf");
+            t11 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_thin));
         }
         return t11;
     }
@@ -115,7 +117,7 @@ public class FontFactory {
 
     public static Typeface getThinItalic(Context c) {
         if (t12 == null) {
-            t12 = Typeface.createFromAsset(c.getAssets(), "fonts/Roboto-ThinItalic.ttf");
+            t12 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_thin_italic));
         }
         return t12;
     }
@@ -124,7 +126,7 @@ public class FontFactory {
 
     public static Typeface getCondensedBold(Context c) {
         if (t13 == null) {
-            t13 = Typeface.createFromAsset(c.getAssets(), "fonts/RobotoCondensed-Bold.ttf");
+            t13 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_condensed_bold));
         }
         return t13;
     }
@@ -133,7 +135,7 @@ public class FontFactory {
 
     public static Typeface getCondensedBoldItalic(Context c) {
         if (t14 == null) {
-            t14 = Typeface.createFromAsset(c.getAssets(), "fonts/RobotoCondensed-BoldItalic.ttf");
+            t14 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_condensed_bold_italic));
         }
         return t14;
     }
@@ -142,7 +144,7 @@ public class FontFactory {
 
     public static Typeface getCondensedItalic(Context c) {
         if (t15 == null) {
-            t15 = Typeface.createFromAsset(c.getAssets(), "fonts/RobotoCondensed-Italic.ttf");
+            t15 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_condensed_italic));
         }
         return t15;
     }
@@ -151,7 +153,7 @@ public class FontFactory {
 
     public static Typeface getCondensedLight(Context c) {
         if (t16 == null) {
-            t16 = Typeface.createFromAsset(c.getAssets(), "fonts/RobotoCondensed-Light.ttf");
+            t16 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_condensed_light));
         }
         return t16;
     }
@@ -160,7 +162,7 @@ public class FontFactory {
 
     public static Typeface getCondensedLightItalic(Context c) {
         if (t17 == null) {
-            t17 = Typeface.createFromAsset(c.getAssets(), "fonts/RobotoCondensed-LightItalic.ttf");
+            t17 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_condensed_light_italic));
         }
         return t17;
     }
@@ -169,8 +171,9 @@ public class FontFactory {
 
     public static Typeface getCondensedRegular(Context c) {
         if (t18 == null) {
-            t18 = Typeface.createFromAsset(c.getAssets(), "fonts/RobotoCondensed-Regular.ttf");
+            t18 = Typeface.createFromAsset(c.getAssets(), c.getString(R.string.roboto_condensed_regular));
         }
         return t18;
     }
+
 }

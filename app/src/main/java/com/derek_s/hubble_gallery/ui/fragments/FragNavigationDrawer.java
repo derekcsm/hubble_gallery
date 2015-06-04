@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -113,7 +114,7 @@ public class FragNavigationDrawer extends Fragment {
         } catch (PackageManager.NameNotFoundException ex) {
             ex.printStackTrace();
         }
-        tvVersionName.setText("ALPHA V " + pInfo.versionName);
+        tvVersionName.setText("BETA V " + pInfo.versionName);
 
         // footer
         ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.footer_nav_drawer, lvMenu, false);
@@ -139,8 +140,12 @@ public class FragNavigationDrawer extends Fragment {
         tvRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ActOnboarding.class);
-                startActivity(intent);
+                final String appPackageName = context.getPackageName();
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                }
             }
         });
         tvAbout = (TextView) footer.findViewById(R.id.tv_about);
