@@ -23,8 +23,8 @@ android {
         applicationId 'com.derek_s.hubble_gallery'
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 10
-        versionName "1.0.0"
+        versionCode 11
+        versionName "1.0.1"
     }
     buildTypes {
         release {
