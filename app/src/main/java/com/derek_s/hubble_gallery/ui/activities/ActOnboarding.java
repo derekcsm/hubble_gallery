@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.SurfaceView;
@@ -14,6 +15,7 @@ import android.widget.RelativeLayout;
 
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.adapters.OnboardingFragmentPager;
+import com.derek_s.hubble_gallery.ui.fragments.FragWelcomeInfo;
 import com.derek_s.hubble_gallery.utils.ui.starfield.StarField;
 
 import butterknife.ButterKnife;
@@ -30,7 +32,6 @@ public class ActOnboarding extends AppCompatActivity {
     VerticalViewPager verticalViewPager;
 
     private StarField starField;
-
     int width;
     int height;
 
@@ -48,6 +49,12 @@ public class ActOnboarding extends AppCompatActivity {
 
         starField = new StarField(svStarfield.getHolder(), width, height);
         starField.start();
+
+        // remove all fragments from manager
+        if (getSupportFragmentManager().getFragments() != null)
+            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+            }
 
         verticalViewPager.setAdapter(new OnboardingFragmentPager(getSupportFragmentManager()));
         verticalViewPager.setOffscreenPageLimit(5);

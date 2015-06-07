@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -14,6 +13,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.utils.svg.SvgView;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
+import com.nineoldandroids.animation.Animator;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -27,14 +27,13 @@ public class FragWelcomeOutline extends Fragment {
     SvgView hubbleOutline;
     @InjectView(R.id.tv_app_title)
     TextView tvTitle;
-    @InjectView(R.id.iv_scroll_more_down)
-    ImageView ivScrollDown;
+    @InjectView(R.id.tv_scroll_down)
+    TextView tvScrollDown;
     Handler showTitleHandler;
 
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
-        setRetainInstance(true);
     }
 
     @Override
@@ -50,6 +49,7 @@ public class FragWelcomeOutline extends Fragment {
         hubbleOutline.setSvgResource(R.raw.hubble_outline);
         hubbleOutline.setVisibility(View.VISIBLE);
         tvTitle.setTypeface(FontFactory.getCondensedLight(getActivity()));
+        tvScrollDown.setTypeface(FontFactory.getCondensedRegular(getActivity()));
 
         showTitleHandler = new Handler();
         showTitleHandler.postDelayed(new Runnable() {
@@ -57,11 +57,10 @@ public class FragWelcomeOutline extends Fragment {
             public void run() {
                 tvTitle.setVisibility(View.VISIBLE);
                 YoYo.with(Techniques.FadeInUp).duration(1000).playOn(tvTitle);
-                ivScrollDown.setVisibility(View.VISIBLE);
-                YoYo.with(Techniques.FadeInUp).duration(1200).playOn(ivScrollDown);
+                tvScrollDown.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.FadeIn).duration(1000).playOn(tvScrollDown);
             }
         }, 4000);
-
 
         return rootView;
     }
