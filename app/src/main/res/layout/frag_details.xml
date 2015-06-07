@@ -71,6 +71,7 @@
                 android:paddingRight="16dp"
                 android:paddingTop="16dp"
                 android:textColorLink="@color/accent"
+                android:lineSpacingExtra="1dp"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
