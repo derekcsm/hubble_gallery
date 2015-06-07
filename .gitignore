@@ -2,5 +2,6 @@
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
+/app/fabric.properties
 .DS_Store
 /build
