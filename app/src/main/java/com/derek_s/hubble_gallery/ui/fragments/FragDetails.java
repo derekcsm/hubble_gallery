@@ -190,7 +190,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
                         if (imgUri != null) {
                             Intent shareIntent = new Intent(Intent.ACTION_SEND);
                             shareIntent.setType("*/*");
-                            shareIntent.putExtra(Intent.EXTRA_TEXT, "via Hubble Gallery"); // TODO replace with shortened playstore link
+                            shareIntent.putExtra(Intent.EXTRA_TEXT, "via http://bit.ly/1dm23ZQ");
                             shareIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
 
                             startActivity(Intent.createChooser(shareIntent, getActivity().getResources().getString(R.string.share_image)));
@@ -210,23 +210,9 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
 
                         Log.i(TAG, "imgUri" + imgUri);
                         if (imgUri != null) {
-                            PackageManager pm = getActivity().getPackageManager();
                             Intent attachIntent = new Intent(Intent.ACTION_ATTACH_DATA);
                             attachIntent.setDataAndType(imgUri, "image/jpeg");
                             Intent openInChooser = Intent.createChooser(attachIntent, getActivity().getResources().getString(R.string.set_as));
-
-                            List<ResolveInfo> resInfo = pm.queryIntentActivities(attachIntent, 0);
-                            Intent[] extraIntents = new Intent[resInfo.size()];
-                            for (int i = 0; i < resInfo.size(); i++) {
-                                ResolveInfo ri = resInfo.get(i);
-                                String packageName = ri.activityInfo.packageName;
-                                Intent intent = new Intent();
-                                intent.setComponent(new ComponentName(packageName, ri.activityInfo.name));
-                                intent.setAction(Intent.ACTION_ATTACH_DATA);
-                                intent.setDataAndType(imgUri, "image/jpeg");
-                                extraIntents[i] = new Intent(intent);
-                            }
-                            openInChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, extraIntents);
                             startActivity(openInChooser);
                         } else {
                             Toasty.show(getActivity(), R.string.error_saving_image, Toasty.LENGTH_LONG);
@@ -238,8 +224,8 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
                         break;
                     case R.id.action_share_link:
                         Intent sendIntent = new Intent();
-                        sendIntent.setAction(Intent.ACTION_SEND); // TODO replace with shortened playstore link
-                        sendIntent.putExtra(Intent.EXTRA_TEXT, tileObject.getTitle() + " - http://hubblesite.org" + tileObject.getHref() + " via Hubble Gallery for Android");
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, tileObject.getTitle() + " - http://hubblesite.org" + tileObject.getHref() + " via http://bit.ly/1dm23ZQ");
                         sendIntent.setType("text/plain");
                         startActivity(sendIntent);
                         break;
