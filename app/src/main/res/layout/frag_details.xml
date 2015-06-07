@@ -96,8 +96,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
         android:visibility="invisible"
-        app:popupTheme="@style/toolbar_popup_style"
-        app:theme="@style/toolbar"
+        android:popupTheme="@style/toolbar_popup_style"
+        android:theme="@style/toolbar"
         tools:visibility="visible" />
 
 </FrameLayout>
