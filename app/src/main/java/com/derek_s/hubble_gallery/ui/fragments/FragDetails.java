@@ -65,6 +65,9 @@ available resolution
 public class FragDetails extends android.support.v4.app.Fragment implements ObservableScrollViewCallbacks {
 
     private static String TAG = "FragDetails";
+    private static final String TOOLBAR_CURRENT_ALPHA = "toolbar_current_alpha";
+    private static final String TOOLBAR_COLOR = "toolbar_current_color";
+
     private TileObject tileObject;
     private DetailsObject detailsObject;
     @InjectView(R.id.iv_display)
@@ -85,14 +88,13 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
     TextView tvZeroStateInfo;
     @InjectView(R.id.tv_retry)
     TextView tvRetry;
+
     int imgLoadAttempt = 0;
     public static String successfulSrc;
     int titleBgColor;
     int alphaTitleBgColor;
     FavoriteUtils favoriteUtils;
     MenuItem actionFavorite;
-
-    private OnFragmentInteractionListener mCallbacks;
 
     /*
     must pass a TileObject for the fragment to use
@@ -188,7 +190,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
                         if (imgUri != null) {
                             Intent shareIntent = new Intent(Intent.ACTION_SEND);
                             shareIntent.setType("*/*");
-                            shareIntent.putExtra(Intent.EXTRA_TEXT, "via Hubble Gallery"); // TODO replace with shortened playstore link
+                            shareIntent.putExtra(Intent.EXTRA_TEXT, "via http://bit.ly/1dm23ZQ");
                             shareIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
 
                             startActivity(Intent.createChooser(shareIntent, getActivity().getResources().getString(R.string.share_image)));
@@ -208,23 +210,9 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
 
                         Log.i(TAG, "imgUri" + imgUri);
                         if (imgUri != null) {
-                            PackageManager pm = getActivity().getPackageManager();
                             Intent attachIntent = new Intent(Intent.ACTION_ATTACH_DATA);
                             attachIntent.setDataAndType(imgUri, "image/jpeg");
                             Intent openInChooser = Intent.createChooser(attachIntent, getActivity().getResources().getString(R.string.set_as));
-
-                            List<ResolveInfo> resInfo = pm.queryIntentActivities(attachIntent, 0);
-                            Intent[] extraIntents = new Intent[resInfo.size()];
-                            for (int i = 0; i < resInfo.size(); i++) {
-                                ResolveInfo ri = resInfo.get(i);
-                                String packageName = ri.activityInfo.packageName;
-                                Intent intent = new Intent();
-                                intent.setComponent(new ComponentName(packageName, ri.activityInfo.name));
-                                intent.setAction(Intent.ACTION_ATTACH_DATA);
-                                intent.setDataAndType(imgUri, "image/jpeg");
-                                extraIntents[i] = new Intent(intent);
-                            }
-                            openInChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, extraIntents);
                             startActivity(openInChooser);
                         } else {
                             Toasty.show(getActivity(), R.string.error_saving_image, Toasty.LENGTH_LONG);
@@ -236,8 +224,8 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
                         break;
                     case R.id.action_share_link:
                         Intent sendIntent = new Intent();
-                        sendIntent.setAction(Intent.ACTION_SEND); // TODO replace with shortened playstore link
-                        sendIntent.putExtra(Intent.EXTRA_TEXT, tileObject.getTitle() + " - http://hubblesite.org" + tileObject.getHref() + " via Hubble Gallery for Android");
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, tileObject.getTitle() + " - http://hubblesite.org" + tileObject.getHref() + " via http://bit.ly/1dm23ZQ");
                         sendIntent.setType("text/plain");
                         startActivity(sendIntent);
                         break;
@@ -266,15 +254,20 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
                 showDialog();
             }
         });
-
         scrollView.setScrollViewCallbacks(this);
 
         showLoadingAnimation(true, 0);
         if (savedInstanceState != null) {
             loadImage(tileObject.getSrc());
-            onScrollChanged(scrollView.getCurrentScrollY(), false, false);
-            alphaTitleBgColor = savedInstanceState.getInt(Constants.ALPHA_TITLE);
+            titleBgColor = savedInstanceState.getInt(TOOLBAR_COLOR);
+            alphaTitleBgColor = savedInstanceState.getInt(TOOLBAR_CURRENT_ALPHA);
             toolbar.setBackgroundColor(alphaTitleBgColor);
+
+            scrollView.post(new Runnable() {
+                public void run() {
+                    scrollView.scrollTo(0, scrollView.getCurrentScrollY());
+                }
+            });
 
             if (detailsObject == null) {
                 loadPage();
@@ -478,18 +471,11 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        try {
-            mCallbacks = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mCallbacks = null;
     }
 
     @Override
@@ -497,7 +483,9 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
         outstate.putString(Constants.PARAM_TILE_KEY, tileObject.serialize());
         if (detailsObject != null)
             outstate.putString(Constants.PARAM_DETAILS_KEY, detailsObject.serialize());
-        outstate.putInt(Constants.ALPHA_TITLE, alphaTitleBgColor);
+
+        outstate.putInt(TOOLBAR_CURRENT_ALPHA, alphaTitleBgColor);
+        outstate.putInt(TOOLBAR_COLOR, titleBgColor);
         super.onSaveInstanceState(outstate);
     }
 
@@ -521,9 +509,4 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
     @Override
     public void onUpOrCancelMotionEvent(ScrollState scrollState) {
     }
-
-    public interface OnFragmentInteractionListener {
-        public void onFragmentInteraction(Uri uri);
-    }
-
 }

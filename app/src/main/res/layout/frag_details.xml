@@ -66,10 +66,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_title"
                 android:background="@color/background"
+                android:lineSpacingExtra="1dp"
                 android:paddingBottom="32dp"
                 android:paddingLeft="72dp"
                 android:paddingRight="16dp"
                 android:paddingTop="16dp"
+                android:scrollHorizontally="false"
                 android:textColorLink="@color/accent"
                 android:visibility="gone"
                 tools:visibility="visible" />
@@ -80,8 +82,8 @@
 
     <View
         android:id="@+id/square"
-        android:layout_width="@dimen/cpv_large"
-        android:layout_height="@dimen/cpv_large"
+        android:layout_width="@dimen/square_flipper_large"
+        android:layout_height="@dimen/square_flipper_large"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
@@ -94,9 +96,9 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
+        android:popupTheme="@style/toolbar_popup_style"
+        android:theme="@style/toolbar"
         android:visibility="invisible"
-        app:popupTheme="@style/toolbar_popup_style"
-        app:theme="@style/toolbar"
         tools:visibility="visible" />
 
 </FrameLayout>

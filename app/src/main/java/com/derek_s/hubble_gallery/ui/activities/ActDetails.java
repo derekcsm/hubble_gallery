@@ -1,7 +1,6 @@
 package com.derek_s.hubble_gallery.ui.activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -9,7 +8,7 @@ import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.ui.fragments.FragDetails;
 
-public class ActDetails extends AppCompatActivity implements FragDetails.OnFragmentInteractionListener {
+public class ActDetails extends AppCompatActivity {
 
     private String TAG = getClass().getSimpleName();
     FragDetails fragDetails;
@@ -35,10 +34,4 @@ public class ActDetails extends AppCompatActivity implements FragDetails.OnFragm
         super.onBackPressed();
         this.overridePendingTransition(R.anim.fade_in_shadow, R.anim.slide_out_right);
     }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-        // TODO
-    }
-
 }

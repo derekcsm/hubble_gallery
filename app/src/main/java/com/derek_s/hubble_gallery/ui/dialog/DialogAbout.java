@@ -22,7 +22,7 @@ import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 // private String TAG = getClass().getSimpleName();
 public class DialogAbout {
     private Context context;
-    private TextView tvTitle, tvBuiltBy, tvSourceCode, tvBuiltContent, tvSourceContent, tvShowIntro;
+    private TextView tvTitle, tvBuiltBy, tvSourceCode, tvBuiltContent, tvShowIntro;
     private View divider;
 
     public DialogAbout(Context context) {

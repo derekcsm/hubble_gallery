@@ -6,8 +6,8 @@
 
     <View
         android:id="@+id/square"
-        android:layout_width="@dimen/cpv_large"
-        android:layout_height="@dimen/cpv_large"
+        android:layout_width="@dimen/square_flipper_large"
+        android:layout_height="@dimen/square_flipper_large"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"

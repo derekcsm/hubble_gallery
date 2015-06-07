@@ -20,14 +20,14 @@ import butterknife.InjectView;
  * Created by dereksmith on 15-05-15.
  */
 public class FragWelcomeInfo extends Fragment {
-
     private static String TAG = "FragWelcomeInfo";
-    private static int pagePos = 1;
     private static String PAGE_KEY = "page_number";
+    private static final String CURRENT_PAGE = "current_page";
 
-    public static FragWelcomeInfo newInstance(int position) {
-        FragWelcomeInfo fragment = new FragWelcomeInfo();
+    private static int pagePos = 1;
 
+    public static final FragWelcomeInfo newInstance(int position) {
+        final FragWelcomeInfo fragment = new FragWelcomeInfo();
         // Supply int position as an argument.
         Bundle args = new Bundle();
         args.putInt(PAGE_KEY, position);
@@ -39,7 +39,11 @@ public class FragWelcomeInfo extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pagePos = getArguments() != null ? getArguments().getInt(PAGE_KEY) : 1;
+        if (savedInstanceState == null) {
+            pagePos = getArguments() != null ? getArguments().getInt(PAGE_KEY) : 1;
+        } else {
+            pagePos = savedInstanceState.getInt(CURRENT_PAGE);
+        }
     }
 
     @InjectView(R.id.tv_welcome_info)
@@ -50,7 +54,6 @@ public class FragWelcomeInfo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.frag_welcome_info, container, false);
         ButterKnife.inject(this, rootView);
 
@@ -88,6 +91,12 @@ public class FragWelcomeInfo extends Fragment {
         }
 
         return rootView;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putInt(CURRENT_PAGE, pagePos);
+        super.onSaveInstanceState(outState);
     }
 
 
