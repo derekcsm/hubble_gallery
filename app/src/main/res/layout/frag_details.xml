@@ -66,12 +66,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_title"
                 android:background="@color/background"
+                android:lineSpacingExtra="1dp"
                 android:paddingBottom="32dp"
                 android:paddingLeft="72dp"
                 android:paddingRight="16dp"
                 android:paddingTop="16dp"
+                android:scrollHorizontally="false"
                 android:textColorLink="@color/accent"
-                android:lineSpacingExtra="1dp"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
@@ -95,9 +96,9 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
-        android:visibility="invisible"
         android:popupTheme="@style/toolbar_popup_style"
         android:theme="@style/toolbar"
+        android:visibility="invisible"
         tools:visibility="visible" />
 
 </FrameLayout>

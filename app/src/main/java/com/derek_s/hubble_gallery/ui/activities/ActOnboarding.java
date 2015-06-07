@@ -15,7 +15,6 @@ import android.widget.RelativeLayout;
 
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.adapters.OnboardingFragmentPager;
-import com.derek_s.hubble_gallery.ui.fragments.FragWelcomeInfo;
 import com.derek_s.hubble_gallery.utils.ui.starfield.StarField;
 
 import butterknife.ButterKnife;
