@@ -10,7 +10,6 @@ public class Constants {
     public static final String MODE_KEY = "current_mode";
     public static final String PARAM_TILE_KEY = "tile_param";
     public static final String PARAM_DETAILS_KEY = "details_param";
-    public static final String ALPHA_TITLE = "toolbar_current_alpha";
     public static final String ONBOARDING_SHOWN ="onboarding_shown";
 
     public static String imageDirectory() {
