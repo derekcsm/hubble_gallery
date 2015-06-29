@@ -28,6 +28,7 @@
 
     <string name="error_saving_image">Error during image saving</string>
     <string name="image_saved">Image saved to /Pictures/Hubble</string>
+    <string name="image_fullscreen">Show image fullscreen</string>
 
     <!-- zero states -->
     <string name="zero_state_favorites_1">Explore and favorite images, they\'ll show up here</string>

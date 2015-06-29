@@ -19,6 +19,7 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,7 +95,8 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
     int titleBgColor;
     int alphaTitleBgColor;
     FavoriteUtils favoriteUtils;
-    MenuItem actionFavorite;
+    private MenuItem actionFavorite;
+    private Menu menu;
 
     /*
     must pass a TileObject for the fragment to use
@@ -148,6 +150,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
             }
         });
         toolbar.inflateMenu(R.menu.menu_act_details);
+        menu = toolbar.getMenu();
 
         favoriteUtils = new FavoriteUtils(getActivity());
         actionFavorite = toolbar.getMenu().findItem(R.id.action_favorite);
@@ -494,12 +497,35 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
         super.onActivityCreated(savedState);
     }
 
+    boolean expandImageItemShowing = false;
+
     @Override
     public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
         float alpha = 1 - (float) Math.max(0, ivDisplay.getHeight() - scrollY) / ivDisplay.getHeight();
+        Log.d(TAG, "alpha: " + alpha);
         alphaTitleBgColor = ScrollUtils.getColorWithAlpha(alpha, titleBgColor);
         toolbar.setBackgroundColor(alphaTitleBgColor);
         ViewHelper.setTranslationY(ivDisplay, scrollY / 2);
+
+        if (alpha >= 1 && !expandImageItemShowing) {
+            // TODO add expand item to toolbar menu
+           // toolbar.addI
+        } else if (alpha < 1 && expandImageItemShowing) {
+            // TODO remove item
+            expandImageItemShowing = false;
+        }
+    }
+
+    private void hideOption(int id)
+    {
+        MenuItem item = menu.findItem(id);
+        item.setVisible(false);
+    }
+
+    private void showOption(int id)
+    {
+        MenuItem item = menu.findItem(id);
+        item.setVisible(true);
     }
 
     @Override
