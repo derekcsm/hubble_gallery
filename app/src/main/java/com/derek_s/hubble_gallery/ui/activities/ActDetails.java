@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.derek_s.hubble_gallery.R;
+import com.derek_s.hubble_gallery.base.BaseActivity;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.ui.fragments.FragDetails;
 
-public class ActDetails extends AppCompatActivity {
+public class ActDetails extends BaseActivity {
 
     private String TAG = getClass().getSimpleName();
     FragDetails fragDetails;
