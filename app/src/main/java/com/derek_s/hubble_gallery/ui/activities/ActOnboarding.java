@@ -5,7 +5,6 @@ import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.SurfaceView;
 import android.view.View;
@@ -15,13 +14,14 @@ import android.widget.RelativeLayout;
 
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.adapters.OnboardingFragmentPager;
+import com.derek_s.hubble_gallery.base.BaseActivity;
 import com.derek_s.hubble_gallery.utils.ui.starfield.StarField;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 
-public class ActOnboarding extends AppCompatActivity {
+public class ActOnboarding extends BaseActivity {
 
     @InjectView(R.id.rl_onboarding)
     RelativeLayout rlOnboarding;

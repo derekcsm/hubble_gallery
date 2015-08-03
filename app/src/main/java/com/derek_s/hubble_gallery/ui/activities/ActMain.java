@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -17,16 +16,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
-import com.crashlytics.android.Crashlytics;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.derek_s.hubble_gallery.R;
+import com.derek_s.hubble_gallery.base.BaseActivity;
 import com.derek_s.hubble_gallery.base.Constants;
-import com.derek_s.hubble_gallery.base.TinyDB;
 import com.derek_s.hubble_gallery.model.TileObject;
 import com.derek_s.hubble_gallery.ui.fragments.FragMain;
 import com.derek_s.hubble_gallery.ui.fragments.FragNavigationDrawer;
-import com.derek_s.hubble_gallery.utils.network.NetworkUtil;
 import com.derek_s.hubble_gallery.utils.ui.Toasty;
 import com.derek_s.hubble_gallery.utils.ui.ToolbarTitle;
 import com.github.ksoichiro.android.observablescrollview.ObservableGridView;
@@ -35,19 +32,20 @@ import com.github.ksoichiro.android.observablescrollview.Scrollable;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import io.fabric.sdk.android.Fabric;
 
 
-public class ActMain extends AppCompatActivity implements FragMain.FragMainCallbacks {
+public class ActMain extends BaseActivity implements FragMain.FragMainCallbacks {
 
     private static String TAG = "ActMain";
+    public static ActMain instance = null; // TODO remove
+
     private static String CUR_TITLE = "current_title";
+    public String mTitle = "";
+
     public FragMain fragMain;
     public FragNavigationDrawer mNavigationDrawerFragment;
     private DrawerLayout mDrawerLayout;
-    public String mTitle = "";
-    public static ActMain instance = null;
-    private TinyDB DB;
+
     @InjectView(R.id.toolbar)
     public Toolbar toolbar;
     @InjectView(R.id.switcher_title)
@@ -56,17 +54,15 @@ public class ActMain extends AppCompatActivity implements FragMain.FragMainCallb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
         instance = this;
         setContentView(R.layout.act_main);
         ButterKnife.inject(this);
 
-        DB = new TinyDB(this);
-        if (!DB.getBoolean(Constants.ONBOARDING_SHOWN)) {
+        if (!db.getBoolean(Constants.ONBOARDING_SHOWN)) {
             /*
             show user on-boarding screen
              */
-            DB.putBoolean(Constants.ONBOARDING_SHOWN, true);
+            db.putBoolean(Constants.ONBOARDING_SHOWN, true);
             Intent intent = new Intent(ActMain.this, ActOnboarding.class);
             startActivity(intent);
         }
@@ -175,7 +171,7 @@ public class ActMain extends AppCompatActivity implements FragMain.FragMainCallb
 
     @Override
     public void onGridItemClicked(TileObject tileObject) {
-        if (NetworkUtil.isConnected(this)) {
+        if (networkUtil.isConnected()) {
             Intent intent = new Intent(this, ActDetails.class);
             intent.putExtra(Constants.PARAM_TILE_KEY, tileObject.serialize());
             startActivity(intent);
