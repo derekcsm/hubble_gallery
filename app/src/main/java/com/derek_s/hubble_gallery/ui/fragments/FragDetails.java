@@ -1,11 +1,8 @@
 package com.derek_s.hubble_gallery.ui.fragments;
 
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -43,12 +40,12 @@ import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
+import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.view.ViewHelper;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -96,6 +93,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
     int alphaTitleBgColor;
     FavoriteUtils favoriteUtils;
     private MenuItem actionFavorite;
+    private View actionExpand;
     private Menu menu;
 
     /*
@@ -132,12 +130,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.frag_details, container, false);
         ButterKnife.inject(this, rootView);
-
-        tvBody.setTextIsSelectable(true);
-        tvBody.setMovementMethod(LinkMovementMethod.getInstance());
-
-        tvZeroStateInfo.setTypeface(FontFactory.getRegular(getActivity()));
-        tvRetry.setTypeface(FontFactory.getCondensedLight(getActivity()));
+        beautifyViews();
 
         titleBgColor = getResources().getColor(R.color.title_background);
 
@@ -153,7 +146,11 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
         menu = toolbar.getMenu();
 
         favoriteUtils = new FavoriteUtils(getActivity());
-        actionFavorite = toolbar.getMenu().findItem(R.id.action_favorite);
+        actionFavorite = menu.findItem(R.id.action_favorite);
+
+        actionExpand = rootView.findViewById(R.id.action_expand);
+        actionExpand.setVisibility(View.GONE);
+
         if (favoriteUtils.isFavorited(tileObject)) {
             actionFavorite.setIcon(R.drawable.ic_favorite_white_24dp);
             actionFavorite.setTitle(R.string.remove_favorite);
@@ -244,9 +241,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
         });
 
         tvTitle.setText(tileObject.getTitle());
-        tvTitle.setTypeface(FontFactory.getCondensedBold(getActivity()));
 
-        tvBody.setTypeface(FontFactory.getRegular(getActivity()));
         if (savedInstanceState != null && detailsObject != null) {
             tvBody.setText(Html.fromHtml(detailsObject.getDescription()));
         }
@@ -471,6 +466,16 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
         }
     }
 
+    private void beautifyViews() {
+        tvBody.setTextIsSelectable(true);
+        tvBody.setMovementMethod(LinkMovementMethod.getInstance());
+
+        tvZeroStateInfo.setTypeface(FontFactory.getRegular(getActivity()));
+        tvRetry.setTypeface(FontFactory.getCondensedLight(getActivity()));
+        tvTitle.setTypeface(FontFactory.getCondensedBold(getActivity()));
+        tvBody.setTypeface(FontFactory.getRegular(getActivity()));
+    }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -507,25 +512,41 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
         toolbar.setBackgroundColor(alphaTitleBgColor);
         ViewHelper.setTranslationY(ivDisplay, scrollY / 2);
 
-        if (alpha >= 1 && !expandImageItemShowing) {
-            // TODO add expand item to toolbar menu
-           // toolbar.addI
-        } else if (alpha < 1 && expandImageItemShowing) {
-            // TODO remove item
+        if (alpha >= 0.9 && !expandImageItemShowing) {
+            /**
+             * show the expand option
+             */
+            actionExpand.setVisibility(View.VISIBLE);
+            YoYo.with(Techniques.FadeInDown).duration(200).playOn(actionExpand);
+            expandImageItemShowing = true;
+
+        } else if (alpha < 0.9 && expandImageItemShowing) {
+            /**
+             * hide the expand option
+             */
+            YoYo.with(Techniques.FadeOutUp).duration(200).withListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    actionExpand.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+            }).playOn(actionExpand);
             expandImageItemShowing = false;
         }
-    }
-
-    private void hideOption(int id)
-    {
-        MenuItem item = menu.findItem(id);
-        item.setVisible(false);
-    }
-
-    private void showOption(int id)
-    {
-        MenuItem item = menu.findItem(id);
-        item.setVisible(true);
     }
 
     @Override

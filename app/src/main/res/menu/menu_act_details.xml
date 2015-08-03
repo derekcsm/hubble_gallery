@@ -4,32 +4,34 @@
     tools:context="com.derek_s.hubble_gallery.ui.activities.ActDetails">
 
     <item
-        android:id="@+id/action_favorite"
-        android:icon="@drawable/ic_favorite_outline_white_24dp"
-        android:title="@string/add_favorite"
+        android:id="@+id/action_expand"
+        android:icon="@drawable/ic_fullscreen_white_24dp"
+        android:title="@string/image_fullscreen"
+        android:orderInCategory="0"
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/action_fullscreen"
-        android:icon="@drawable/ic_fullscreen_white_24dp"
-        android:title="@string/image_fullscreen"
+        android:id="@+id/action_favorite"
+        android:icon="@drawable/ic_favorite_outline_white_24dp"
+        android:title="@string/add_favorite"
+        android:orderInCategory="1"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_share_image"
-        android:orderInCategory="0"
+        android:orderInCategory="2"
         android:title="@string/share_image"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_save_image"
-        android:orderInCategory="1"
+        android:orderInCategory="3"
         android:title="@string/save_image"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_set_image"
-        android:orderInCategory="2"
+        android:orderInCategory="4"
         android:title="@string/set_as"
         app:showAsAction="never" />
 
@@ -41,13 +43,13 @@
 
     <item
         android:id="@+id/action_share_link"
-        android:orderInCategory="4"
+        android:orderInCategory="5"
         android:title="@string/share_link"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_copy_link"
-        android:orderInCategory="4"
+        android:orderInCategory="6"
         android:title="@string/copy_link"
         app:showAsAction="never" />
 
