@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -72,8 +73,9 @@ public class ActDetails extends BaseActivity implements ObservableScrollViewCall
     TextView tvZeroStateInfo;
     @Bind(R.id.tv_retry)
     TextView tvRetry;
+    @Bind(R.id.fl_stretchy)
+    FrameLayout flStretchy;
 
-    private boolean expandImageItemShowing = true;
     private int imgLoadAttempt = 0;
     public static String successfulSrc;
     private int titleBgColor;
@@ -109,6 +111,8 @@ public class ActDetails extends BaseActivity implements ObservableScrollViewCall
         /**
          * toolbar - actionbar setup
          */
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,8 +121,6 @@ public class ActDetails extends BaseActivity implements ObservableScrollViewCall
                 overridePendingTransition(R.anim.fade_in_shadow, R.anim.slide_out_right);
             }
         });
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         /**
          * set title and description from `Tile` object
@@ -128,10 +130,10 @@ public class ActDetails extends BaseActivity implements ObservableScrollViewCall
             tvBody.setText(Html.fromHtml(detailsObject.getDescription()));
         }
 
-        ivDisplay.setOnClickListener(new View.OnClickListener() {
+        flStretchy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog();
+                openImageViewer();
             }
         });
         scrollView.setScrollViewCallbacks(this);
@@ -239,7 +241,11 @@ public class ActDetails extends BaseActivity implements ObservableScrollViewCall
         });
     }
 
-    private void showDialog() {
+    private void openImageViewer() {
+        /**
+         * TODO
+         */
+        Toasty.show(this, "open image viewer", Toasty.LENGTH_SHORT);
 //        FragmentTransaction ft = getFragmentManager().beginTransaction();
 //        DialogFragment newFragment = imageViewerDialogFragment.newInstance();
 //        newFragment.show(ft, "dialog");
@@ -354,10 +360,8 @@ public class ActDetails extends BaseActivity implements ObservableScrollViewCall
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu = menu;
         getMenuInflater().inflate(R.menu.menu_act_details, menu);
-
         favoriteUtils = new FavoriteUtils(this);
         actionFavorite = menu.findItem(R.id.action_favorite);
-        //actionExpand.setVisibility(View.GONE);
 
         if (favoriteUtils.isFavorited(tileObject)) {
             actionFavorite.setIcon(R.drawable.ic_favorite_white_24dp);
@@ -378,6 +382,9 @@ public class ActDetails extends BaseActivity implements ObservableScrollViewCall
         File f;
         Uri imgUri;
         switch (id) {
+            case R.id.action_expand:
+                openImageViewer();
+                break;
             case R.id.action_favorite:
                 if (favoriteUtils.isFavorited(tileObject)) {
                     favoriteUtils.removeFavorite(tileObject);
@@ -466,42 +473,6 @@ public class ActDetails extends BaseActivity implements ObservableScrollViewCall
         alphaTitleBgColor = ScrollUtils.getColorWithAlpha(alpha, titleBgColor);
         toolbar.setBackgroundColor(alphaTitleBgColor);
         ViewHelper.setTranslationY(ivDisplay, scrollY / 2);
-
-//        if (alpha >= 0.9 && !expandImageItemShowing) {
-//            /**
-//             * show the expand option
-//             */
-//            actionExpand.setVisibility(View.VISIBLE);
-//            YoYo.with(Techniques.FadeInDown).duration(200).playOn(actionExpand);
-//            expandImageItemShowing = true;
-//
-//        } else if (alpha < 0.9 && expandImageItemShowing) {
-//            /**
-//             * hide the expand option
-//             */
-//            YoYo.with(Techniques.FadeOutUp).duration(200).withListener(new Animator.AnimatorListener() {
-//                @Override
-//                public void onAnimationStart(Animator animation) {
-//
-//                }
-//
-//                @Override
-//                public void onAnimationEnd(Animator animation) {
-//                    actionExpand.setVisibility(View.GONE);
-//                }
-//
-//                @Override
-//                public void onAnimationCancel(Animator animation) {
-//
-//                }
-//
-//                @Override
-//                public void onAnimationRepeat(Animator animation) {
-//
-//                }
-//            }).playOn(actionExpand);
-//            expandImageItemShowing = false;
-//        }
     }
 
     @Override
