@@ -24,26 +24,18 @@ import butterknife.ButterKnife;
  */
 public class GridAdapter extends BaseAdapter {
 
-    public static String TAG = "ChannelAdapter";
-    private Activity activity;
+    private String TAG = getClass().getSimpleName();
     Context context;
     private static LayoutInflater inflater = null;
     public ArrayList<TileObject> mTiles;
 
-    public GridAdapter(Activity a, Context context) {
-        activity = a;
+    public GridAdapter(Activity activity, Context context) {
         this.context = context;
         mTiles = new ArrayList<>();
         inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     public void addItems(ArrayList<TileObject> tiles) {
-        mTiles = new ArrayList<>();
-        mTiles.addAll(tiles);
-        notifyDataSetChanged();
-    }
-
-    public void addItemsToBottom(ArrayList<TileObject> tiles) {
         mTiles.addAll(tiles);
         notifyDataSetChanged();
     }
@@ -63,22 +55,6 @@ public class GridAdapter extends BaseAdapter {
         return this.mTiles.get(pos);
     }
 
-    public int getCount() {
-        return this.mTiles.size();
-    }
-
-
-    static class ViewHolder {
-        @Bind(R.id.iv_tile)
-        ImageView ivTile;
-        @Bind(R.id.tv_title)
-        TextView tvTitle;
-
-        public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
-    }
-
     public View getView(int position, View view, ViewGroup parent) {
         ViewHolder holder;
 
@@ -91,11 +67,26 @@ public class GridAdapter extends BaseAdapter {
             view.setTag(holder);
         }
 
-       holder.tvTitle.setTypeface(FontFactory.getCondensedRegular(context));
+        holder.tvTitle.setTypeface(FontFactory.getCondensedRegular(context));
         holder.tvTitle.setText(getItem(position).getTitle());
-       Picasso.with(context).load(getItem(position).getSrc()).into(holder.ivTile);
+        Picasso.with(context).load(getItem(position).getSrc()).into(holder.ivTile);
 
         return view;
     }
 
+
+    public int getCount() {
+        return this.mTiles.size();
+    }
+
+    static class ViewHolder {
+        @Bind(R.id.iv_tile)
+        ImageView ivTile;
+        @Bind(R.id.tv_title)
+        TextView tvTitle;
+
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+    }
 }

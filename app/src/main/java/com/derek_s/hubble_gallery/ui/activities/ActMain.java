@@ -36,7 +36,7 @@ import butterknife.ButterKnife;
 
 public class ActMain extends BaseActivity implements FragMain.FragMainCallbacks {
 
-    private static String TAG = "ActMain";
+    private String TAG = getClass().getSimpleName();
     public static ActMain instance = null; // TODO remove
 
     private static String CUR_TITLE = "current_title";

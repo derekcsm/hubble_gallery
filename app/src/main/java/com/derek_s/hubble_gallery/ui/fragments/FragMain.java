@@ -1,7 +1,6 @@
 package com.derek_s.hubble_gallery.ui.fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -43,7 +42,6 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
     private static String CAN_LOAD_MORE = "can_load_more";
     private static String IS_HIRES = "is_hires";
     private static String CURRENT_QUERY = "current_query";
-    Context c;
     @Bind(R.id.gv_main)
     ObservableGridView gvMain;
     @Bind(R.id.square)
@@ -67,7 +65,6 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
-        c = getActivity();
         if (savedState != null) {
             mode = savedState.getInt(Constants.MODE_KEY);
             currentPage = savedState.getInt(CURRENT_PAGE);
@@ -83,14 +80,12 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
         ButterKnife.bind(this, rootView);
 
         gvMain.setScrollViewCallbacks(this);
-
         gvMain.setTouchInterceptionViewGroup((ViewGroup) getActivity().findViewById(R.id.container));
-
         if (getActivity() instanceof ObservableScrollViewCallbacks) {
             gvMain.setScrollViewCallbacks((ObservableScrollViewCallbacks) getActivity());
         }
 
-        mAdapter = new GridAdapter(getActivity(), c);
+        mAdapter = new GridAdapter(getActivity(), getActivity());
         gvMain.setAdapter(mAdapter);
 
         if (savedInstanceState == null) {
@@ -136,7 +131,7 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
                         getAlbum.setGetAlbumCompleteListener(new GetAlbum.OnTaskComplete() {
                             @Override
                             public void setTaskComplete(ArrayList<TileObject> result) {
-                                mAdapter.addItemsToBottom(result);
+                                mAdapter.addItems(result);
                                 canLoadMore = (result.size() == loadAmount);
                                 isLoading = false;
                             }
@@ -160,11 +155,9 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
 
     @Override
     public void onResume() {
-
         if (mode == Constants.FAVORITES_MODE) {
             openFavorites(false);
         }
-
         super.onResume();
     }
 
@@ -280,7 +273,7 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
             /*
              TODO for test set listener with 120 sec delay
               after delay set visibility to invisible
-              */
+             */
         }
     }
 
@@ -327,7 +320,7 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
         mCallbacks.adjustToolbar(scrollState, gvMain);
     }
 
-    public static interface FragMainCallbacks {
+    public interface FragMainCallbacks {
         void onGridItemClicked(TileObject tileObject);
 
         void adjustToolbar(ScrollState scrollState, ObservableGridView gridView);
