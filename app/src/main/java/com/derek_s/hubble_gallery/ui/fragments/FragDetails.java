@@ -47,8 +47,8 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /*
 Work with -a-xlarge_web if image not available catch in picasso
@@ -68,23 +68,23 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
 
     private TileObject tileObject;
     private DetailsObject detailsObject;
-    @InjectView(R.id.iv_display)
+    @Bind(R.id.iv_display)
     public ImageView ivDisplay;
-    @InjectView(R.id.tv_title)
+    @Bind(R.id.tv_title)
     TextView tvTitle;
-    @InjectView(R.id.tv_body)
+    @Bind(R.id.tv_body)
     TextView tvBody;
-    @InjectView(R.id.toolbar)
+    @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.scroll)
+    @Bind(R.id.scroll)
     ObservableScrollView scrollView;
-    @InjectView(R.id.square)
+    @Bind(R.id.square)
     View square;
-    @InjectView(R.id.zero_state)
+    @Bind(R.id.zero_state)
     View zeroState;
-    @InjectView(R.id.tv_zero_state_info)
+    @Bind(R.id.tv_zero_state_info)
     TextView tvZeroStateInfo;
-    @InjectView(R.id.tv_retry)
+    @Bind(R.id.tv_retry)
     TextView tvRetry;
 
     int imgLoadAttempt = 0;
@@ -129,7 +129,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.frag_details, container, false);
-        ButterKnife.inject(this, rootView);
+        ButterKnife.bind(this, rootView);
         beautifyViews();
 
         titleBgColor = getResources().getColor(R.color.title_background);
@@ -436,7 +436,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
             return new imageViewerDialogFragment();
         }
 
-        @InjectView(R.id.ivTouch)
+        @Bind(R.id.ivTouch)
         TouchImageView ivTouch;
 
         @Override
@@ -449,7 +449,7 @@ public class FragDetails extends android.support.v4.app.Fragment implements Obse
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.dialog_image_viewer, container, false);
-            ButterKnife.inject(this, rootView);
+            ButterKnife.bind(this, rootView);
 
             Picasso.with(getActivity()).load(successfulSrc).into(ivTouch, new Callback() {
                 @Override

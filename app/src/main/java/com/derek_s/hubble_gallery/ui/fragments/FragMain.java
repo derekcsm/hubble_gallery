@@ -21,19 +21,17 @@ import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.model.TileObject;
 import com.derek_s.hubble_gallery.model.Tiles;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
-import com.derek_s.hubble_gallery.ui.widgets.CircleProgressView;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
-import com.derek_s.hubble_gallery.utils.ui.IndeterminateAnimator;
 import com.github.ksoichiro.android.observablescrollview.ObservableGridView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by dereksmith on 15-02-26.
@@ -46,15 +44,15 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
     private static String IS_HIRES = "is_hires";
     private static String CURRENT_QUERY = "current_query";
     Context c;
-    @InjectView(R.id.gv_main)
+    @Bind(R.id.gv_main)
     ObservableGridView gvMain;
-    @InjectView(R.id.square)
+    @Bind(R.id.square)
     View square;
-    @InjectView(R.id.zero_state)
+    @Bind(R.id.zero_state)
     RelativeLayout zeroState;
-    @InjectView(R.id.tv_zero_state)
+    @Bind(R.id.tv_zero_state)
     TextView tvZeroTitle;
-    @InjectView(R.id.tv_retry)
+    @Bind(R.id.tv_retry)
     TextView tvRetry;
     public GridAdapter mAdapter;
     public static int currentPage = 1;
@@ -82,7 +80,7 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.frag_main, container, false);
-        ButterKnife.inject(this, rootView);
+        ButterKnife.bind(this, rootView);
 
         gvMain.setScrollViewCallbacks(this);
 

@@ -13,8 +13,8 @@ import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by dereksmith on 15-05-15.
@@ -46,16 +46,16 @@ public class FragWelcomeInfo extends Fragment {
         }
     }
 
-    @InjectView(R.id.tv_welcome_info)
+    @Bind(R.id.tv_welcome_info)
     TextView tvInfo;
-    @InjectView(R.id.tv_enter)
+    @Bind(R.id.tv_enter)
     TextView tvEnter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.frag_welcome_info, container, false);
-        ButterKnife.inject(this, rootView);
+        ButterKnife.bind(this, rootView);
 
         tvInfo.setTypeface(FontFactory.getCondensedRegular(getActivity()));
         tvInfo.setVisibility(View.VISIBLE);

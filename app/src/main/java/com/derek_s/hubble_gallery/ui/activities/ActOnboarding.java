@@ -17,17 +17,17 @@ import com.derek_s.hubble_gallery.adapters.OnboardingFragmentPager;
 import com.derek_s.hubble_gallery.base.BaseActivity;
 import com.derek_s.hubble_gallery.utils.ui.starfield.StarField;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 
 public class ActOnboarding extends BaseActivity {
 
-    @InjectView(R.id.rl_onboarding)
+    @Bind(R.id.rl_onboarding)
     RelativeLayout rlOnboarding;
-    @InjectView(R.id.sv_starfield)
+    @Bind(R.id.sv_starfield)
     SurfaceView svStarfield;
-    @InjectView(R.id.vertical_pager)
+    @Bind(R.id.vertical_pager)
     VerticalViewPager verticalViewPager;
 
     private StarField starField;
@@ -41,7 +41,7 @@ public class ActOnboarding extends BaseActivity {
         super.onCreate(savedInstanceState);
         fromOnCreate = true;
         setContentView(R.layout.act_onboarding);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         setWindowAttributes();
         setWindowSizes();

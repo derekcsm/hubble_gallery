@@ -30,8 +30,8 @@ import com.github.ksoichiro.android.observablescrollview.ObservableGridView;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.Scrollable;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 
 public class ActMain extends BaseActivity implements FragMain.FragMainCallbacks {
@@ -46,9 +46,9 @@ public class ActMain extends BaseActivity implements FragMain.FragMainCallbacks 
     public FragNavigationDrawer mNavigationDrawerFragment;
     private DrawerLayout mDrawerLayout;
 
-    @InjectView(R.id.toolbar)
+    @Bind(R.id.toolbar)
     public Toolbar toolbar;
-    @InjectView(R.id.switcher_title)
+    @Bind(R.id.switcher_title)
     TextSwitcher switcherTitle;
 
     @Override
@@ -56,7 +56,7 @@ public class ActMain extends BaseActivity implements FragMain.FragMainCallbacks 
         super.onCreate(savedInstanceState);
         instance = this;
         setContentView(R.layout.act_main);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         if (!db.getBoolean(Constants.ONBOARDING_SHOWN)) {
             /*

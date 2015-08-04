@@ -16,8 +16,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by dereksmith on 15-02-26.
@@ -69,13 +69,13 @@ public class GridAdapter extends BaseAdapter {
 
 
     static class ViewHolder {
-        @InjectView(R.id.iv_tile)
+        @Bind(R.id.iv_tile)
         ImageView ivTile;
-        @InjectView(R.id.tv_title)
+        @Bind(R.id.tv_title)
         TextView tvTitle;
 
         public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 

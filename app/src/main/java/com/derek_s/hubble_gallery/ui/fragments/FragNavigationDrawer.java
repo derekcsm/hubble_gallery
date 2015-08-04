@@ -24,16 +24,14 @@ import android.widget.TextView;
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.adapters.SectionsAdapter;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
-import com.derek_s.hubble_gallery.ui.activities.ActOnboarding;
 import com.derek_s.hubble_gallery.ui.dialog.DialogAbout;
 import com.derek_s.hubble_gallery.ui.widgets.AnimatedExpandableListView;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
-import com.derek_s.hubble_gallery.utils.ui.Toasty;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class FragNavigationDrawer extends Fragment {
 
@@ -42,7 +40,7 @@ public class FragNavigationDrawer extends Fragment {
     public static DrawerLayout mDrawerLayout;
     private View mFragmentContainerView;
     private static Context context;
-    @InjectView(R.id.lv_menu)
+    @Bind(R.id.lv_menu)
     public AnimatedExpandableListView lvMenu;
     public SectionsAdapter mAdapter;
     private boolean mFromSavedInstanceState;
@@ -102,7 +100,7 @@ public class FragNavigationDrawer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.frag_navigation_drawer, container, false);
-        ButterKnife.inject(this, rootView);
+        ButterKnife.bind(this, rootView);
 
         // header
         ViewGroup header = (ViewGroup) inflater.inflate(R.layout.header_nav_drawer, lvMenu, false);
