@@ -9,6 +9,11 @@
         <item name="actionOverflowButtonStyle">@style/toolbar_overflow_style</item>
     </style>
 
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
     <!-- Toolbar -->
     <style name="toolbar" parent="Theme.AppCompat">
         <item name="popupTheme">@style/toolbar_popup_style</item>
@@ -83,24 +88,5 @@
         <item name="android:textSize">@dimen/caption</item>
         <item name="android:textColor">@color/caption_dark_theme</item>
     </style>
-
-    <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowBackground">@null</item>
-        <item name="metaButtonBarStyle">@style/ButtonBar</item>
-        <item name="metaButtonBarButtonStyle">@style/ButtonBarButton</item>
-    </style>
-
-    <!-- Backward-compatible version of ?android:attr/buttonBarStyle -->
-    <style name="ButtonBar">
-        <item name="android:paddingLeft">2dp</item>
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingRight">2dp</item>
-        <item name="android:paddingBottom">0dp</item>
-        <item name="android:background">@android:drawable/bottom_bar</item>
-    </style>
-
-    <!-- Backward-compatible version of ?android:attr/buttonBarButtonStyle -->
-    <style name="ButtonBarButton" />
 
 </resources>
