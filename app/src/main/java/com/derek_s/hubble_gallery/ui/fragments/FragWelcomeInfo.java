@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.derek_s.hubble_gallery.R;
+import com.derek_s.hubble_gallery.base.FragBase;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
 /**
  * Created by dereksmith on 15-05-15.
  */
-public class FragWelcomeInfo extends Fragment {
+public class FragWelcomeInfo extends FragBase {
     private static String TAG = "FragWelcomeInfo";
     private static String PAGE_KEY = "page_number";
     private static final String CURRENT_PAGE = "current_page";

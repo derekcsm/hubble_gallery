@@ -26,7 +26,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.api.GetDetails;
-import com.derek_s.hubble_gallery.base.BaseActivity;
+import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.model.DetailsObject;
 import com.derek_s.hubble_gallery.model.TileObject;
@@ -49,7 +49,7 @@ import java.io.File;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ActDetails extends BaseActivity implements ObservableScrollViewCallbacks {
+public class ActDetails extends ActBase implements ObservableScrollViewCallbacks {
 
     private String TAG = getClass().getSimpleName();
     private static final String TOOLBAR_CURRENT_ALPHA = "toolbar_current_alpha";
@@ -246,9 +246,9 @@ public class ActDetails extends BaseActivity implements ObservableScrollViewCall
          * TODO
          */
         Toasty.show(this, "open image viewer", Toasty.LENGTH_SHORT);
-//        FragmentTransaction ft = getFragmentManager().beginTransaction();
-//        DialogFragment newFragment = imageViewerDialogFragment.newInstance();
-//        newFragment.show(ft, "dialog");
+
+        Intent intent = new Intent(ActDetails.this, ActImageViewer.class);
+        startActivity(intent);
     }
 
     public void showLoadingAnimation(boolean show, int type) {

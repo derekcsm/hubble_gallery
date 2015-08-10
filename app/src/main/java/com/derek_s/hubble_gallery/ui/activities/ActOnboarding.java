@@ -14,14 +14,14 @@ import android.widget.RelativeLayout;
 
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.adapters.OnboardingFragmentPager;
-import com.derek_s.hubble_gallery.base.BaseActivity;
+import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.utils.ui.starfield.StarField;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 
-public class ActOnboarding extends BaseActivity {
+public class ActOnboarding extends ActBase {
 
     @Bind(R.id.rl_onboarding)
     RelativeLayout rlOnboarding;
