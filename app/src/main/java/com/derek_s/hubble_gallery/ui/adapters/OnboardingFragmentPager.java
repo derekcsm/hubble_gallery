@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.adapters;
+package com.derek_s.hubble_gallery.ui.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

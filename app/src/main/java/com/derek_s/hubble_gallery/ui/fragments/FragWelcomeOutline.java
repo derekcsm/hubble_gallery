@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.derek_s.hubble_gallery.R;
+import com.derek_s.hubble_gallery.base.FragBase;
 import com.derek_s.hubble_gallery.utils.svg.SvgView;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 
@@ -20,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * Created by dereksmith on 15-05-15.
  */
-public class FragWelcomeOutline extends Fragment {
+public class FragWelcomeOutline extends FragBase {
 
     @Bind(R.id.hubble_outline)
     SvgView hubbleOutline;

@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery.base.BaseActivity;
+import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.model.TileObject;
 import com.derek_s.hubble_gallery.ui.fragments.FragMain;
@@ -34,7 +34,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class ActMain extends BaseActivity implements FragMain.FragMainCallbacks {
+public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
 
     private String TAG = getClass().getSimpleName();
     public static ActMain instance = null; // TODO remove

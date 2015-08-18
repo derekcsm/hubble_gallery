@@ -58,24 +58,27 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.android.support:palette-v7:22.2.1'
 
-    compile 'com.google.dagger:dagger:2.0'
-    compile 'com.google.code.gson:gson:2.3'
 
-    compile 'com.google.dagger:dagger:2.0.1'
     apt "org.projectlombok:lombok:1.16.2"
-    apt'com.google.dagger:dagger-compiler:2.0.1'
+    apt 'com.google.dagger:dagger-compiler:2.0.1'
 
     provided 'javax.annotation:jsr250-api:1.0'
     provided "org.projectlombok:lombok:1.16.2"
 
-    compile 'org.jsoup:jsoup:1.8.1'
 
+
+
+    compile('com.crashlytics.sdk.android:crashlytics:2.2.3@aar') {
+        transitive = true;
+    }
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:palette-v7:22.2.1'
+    compile 'com.google.dagger:dagger:2.0.1'
+    compile 'com.google.code.gson:gson:2.3'
+    compile 'org.jsoup:jsoup:1.8.1'
     compile 'com.squareup.picasso:picasso:2.5.0'
     compile 'com.jakewharton:butterknife:7.0.1'
-
     compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.easing:library:1.0.1@aar'
@@ -84,8 +87,5 @@ dependencies {
     compile 'com.github.castorflex.verticalviewpager:library:19.0.1'
     compile 'com.caverock:androidsvg:1.2.2-beta-1'
     compile 'com.afollestad:material-dialogs:0.7.4.2'
-
-    compile('com.crashlytics.sdk.android:crashlytics:2.2.3@aar') {
-        transitive = true;
-    }
+    compile 'com.android.support:support-v4:22.2.1'
 }

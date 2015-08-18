@@ -26,10 +26,11 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.api.GetDetails;
-import com.derek_s.hubble_gallery.base.BaseActivity;
+import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.model.DetailsObject;
 import com.derek_s.hubble_gallery.model.TileObject;
+import com.derek_s.hubble_gallery.ui.views.ActDetailsView;
 import com.derek_s.hubble_gallery.ui.widgets.TouchImageView;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
@@ -49,7 +50,7 @@ import java.io.File;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ActDetails extends BaseActivity implements ObservableScrollViewCallbacks {
+public class ActDetails extends ActBase implements ObservableScrollViewCallbacks, ActDetailsView {
 
     private String TAG = getClass().getSimpleName();
     private static final String TOOLBAR_CURRENT_ALPHA = "toolbar_current_alpha";
@@ -76,17 +77,18 @@ public class ActDetails extends BaseActivity implements ObservableScrollViewCall
     @Bind(R.id.fl_stretchy)
     FrameLayout flStretchy;
 
-    private int imgLoadAttempt = 0;
-    public static String successfulSrc;
+    private SquareFlipper squareFlipper = new SquareFlipper();
+
     private int titleBgColor;
     private int alphaTitleBgColor;
     private FavoriteUtils favoriteUtils;
     private MenuItem actionFavorite;
     private Menu menu;
+
+    private int imgLoadAttempt = 0;
     private TileObject tileObject;
     private DetailsObject detailsObject;
-    private SquareFlipper squareFlipper = new SquareFlipper();
-
+    public static String successfulSrc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -242,13 +244,13 @@ public class ActDetails extends BaseActivity implements ObservableScrollViewCall
     }
 
     private void openImageViewer() {
-        /**
-         * TODO
-         */
-        Toasty.show(this, "open image viewer", Toasty.LENGTH_SHORT);
-//        FragmentTransaction ft = getFragmentManager().beginTransaction();
-//        DialogFragment newFragment = imageViewerDialogFragment.newInstance();
-//        newFragment.show(ft, "dialog");
+        if (successfulSrc == null) {
+            Toasty.show(this, R.string.error_loading_image, Toasty.LENGTH_MEDIUM);
+        } else {
+            Intent intent = new Intent(ActDetails.this, ActImageViewer.class);
+            intent.putExtra(ActImageViewer.EXTRA_IMAGE_SRC, successfulSrc);
+            startActivity(intent);
+        }
     }
 
     public void showLoadingAnimation(boolean show, int type) {
