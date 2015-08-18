@@ -13,7 +13,7 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery.adapters.OnboardingFragmentPager;
+import com.derek_s.hubble_gallery.ui.adapters.OnboardingFragmentPager;
 import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.utils.ui.starfield.StarField;
 

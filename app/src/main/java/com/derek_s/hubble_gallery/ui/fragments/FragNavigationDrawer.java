@@ -9,7 +9,6 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -22,7 +21,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery.adapters.SectionsAdapter;
+import com.derek_s.hubble_gallery.ui.adapters.SectionsAdapter;
 import com.derek_s.hubble_gallery.base.FragBase;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
 import com.derek_s.hubble_gallery.ui.dialog.DialogAbout;

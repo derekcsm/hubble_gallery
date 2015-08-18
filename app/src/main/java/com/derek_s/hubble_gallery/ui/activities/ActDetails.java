@@ -30,6 +30,7 @@ import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.model.DetailsObject;
 import com.derek_s.hubble_gallery.model.TileObject;
+import com.derek_s.hubble_gallery.ui.views.ActDetailsView;
 import com.derek_s.hubble_gallery.ui.widgets.TouchImageView;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
@@ -49,7 +50,7 @@ import java.io.File;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ActDetails extends ActBase implements ObservableScrollViewCallbacks {
+public class ActDetails extends ActBase implements ObservableScrollViewCallbacks, ActDetailsView {
 
     private String TAG = getClass().getSimpleName();
     private static final String TOOLBAR_CURRENT_ALPHA = "toolbar_current_alpha";
@@ -88,8 +89,6 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
     private TileObject tileObject;
     private DetailsObject detailsObject;
     public static String successfulSrc;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
