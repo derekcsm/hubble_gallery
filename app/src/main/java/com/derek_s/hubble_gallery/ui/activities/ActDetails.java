@@ -76,16 +76,19 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
     @Bind(R.id.fl_stretchy)
     FrameLayout flStretchy;
 
-    private int imgLoadAttempt = 0;
-    public static String successfulSrc;
+    private SquareFlipper squareFlipper = new SquareFlipper();
+
     private int titleBgColor;
     private int alphaTitleBgColor;
     private FavoriteUtils favoriteUtils;
     private MenuItem actionFavorite;
     private Menu menu;
+
+    private int imgLoadAttempt = 0;
     private TileObject tileObject;
     private DetailsObject detailsObject;
-    private SquareFlipper squareFlipper = new SquareFlipper();
+    public static String successfulSrc;
+
 
 
     @Override
@@ -242,13 +245,13 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
     }
 
     private void openImageViewer() {
-        /**
-         * TODO
-         */
-        Toasty.show(this, "open image viewer", Toasty.LENGTH_SHORT);
-
-        Intent intent = new Intent(ActDetails.this, ActImageViewer.class);
-        startActivity(intent);
+        if (successfulSrc == null) {
+            Toasty.show(this, R.string.error_loading_image, Toasty.LENGTH_MEDIUM);
+        } else {
+            Intent intent = new Intent(ActDetails.this, ActImageViewer.class);
+            intent.putExtra(ActImageViewer.EXTRA_IMAGE_SRC, successfulSrc);
+            startActivity(intent);
+        }
     }
 
     public void showLoadingAnimation(boolean show, int type) {

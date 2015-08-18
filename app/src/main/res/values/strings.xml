@@ -39,6 +39,7 @@
     <string name="no_connection">No internet connection</string>
     <string name="retry">Retry</string>
     <string name="reload">Reload</string>
+    <string name="error_loading_image">Error loading image</string>
 
     <!-- on boarding -->
     <string name="scroll_down">Scroll down</string>

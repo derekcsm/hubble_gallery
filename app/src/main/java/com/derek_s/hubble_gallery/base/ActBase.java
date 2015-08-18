@@ -11,9 +11,7 @@ import javax.inject.Inject;
  * Created by derek on 15-08-03.
  */
 
-// private String TAG = getClass().getSimpleName();
 public class ActBase extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedState) {
