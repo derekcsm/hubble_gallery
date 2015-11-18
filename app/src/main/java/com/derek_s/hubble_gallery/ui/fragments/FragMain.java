@@ -320,10 +320,4 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
         mCallbacks.adjustToolbar(scrollState, gvMain);
     }
 
-    public interface FragMainCallbacks {
-        void onGridItemClicked(TileObject tileObject);
-
-        void adjustToolbar(ScrollState scrollState, ObservableGridView gridView);
-    }
-
 }
