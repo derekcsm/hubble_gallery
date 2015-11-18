@@ -5,22 +5,24 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 
 import com.derek_s.hubble_gallery.base.TinyDB;
-import com.derek_s.hubble_gallery.utils.dagger.PerApp;
 import com.derek_s.hubble_gallery.utils.network.NetworkUtil;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 
 /**
- * Created by derek on 15-08-03.
+ * This module resolves everything on an AppContext, things that need to be instantiated
+ * only once or need an App Context.
  */
 
 @Module
-public class SystemServicesModule {
+public class AppModule {
 
     private final Application application;
 
-    public SystemServicesModule(Application application) {
+    public AppModule(Application application) {
         this.application = application;
     }
 
@@ -30,19 +32,19 @@ public class SystemServicesModule {
     }
 
     @Provides
-    @PerApp
+    @Singleton
     ConnectivityManager provideConnectivityManager() {
         return (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 
     @Provides
-    @PerApp
+    @Singleton
     NetworkUtil provideNetworkStateManager(ConnectivityManager connectivityManagerCompat, Context context) {
         return new NetworkUtil(connectivityManagerCompat, context);
     }
 
     @Provides
-    @PerApp
+    @Singleton
     TinyDB provideTinyDb(Context context) {
         return new TinyDB(context);
     }

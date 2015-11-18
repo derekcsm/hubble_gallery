@@ -1,28 +1,30 @@
 package com.derek_s.hubble_gallery.base;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.derek_s.hubble_gallery.utils.network.NetworkUtil;
+import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
+import com.derek_s.hubble_gallery.internal.di.DaggerActivityComponent;
 
-import javax.inject.Inject;
-
-/**
- * Created by derek on 15-08-03.
- */
-
-public class ActBase extends AppCompatActivity {
+public abstract class ActBase extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedState) {
+    protected void onCreate(@Nullable Bundle savedState) {
         super.onCreate(savedState);
-        HubbleApplication.component(this).inject(this);
+
+        injectComponent(DaggerActivityComponent.builder()
+                .appComponent(((HubbleApplication) getApplication()).getAppComponent())
+                .build());
     }
 
-    @Inject
-    public NetworkUtil networkUtil;
-
-    @Inject
-    public TinyDB db;
-
+    /**
+     * <p>
+     * This method must be implemented
+     * </p>
+     * <code>component.inject(this)</code>
+     *
+     * @param component
+     */
+    protected abstract void injectComponent(ActivityComponent component);
 }

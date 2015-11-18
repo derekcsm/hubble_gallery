@@ -21,18 +21,22 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.base.Constants;
+import com.derek_s.hubble_gallery.base.TinyDB;
+import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
 import com.derek_s.hubble_gallery.model.TileObject;
 import com.derek_s.hubble_gallery.ui.fragments.FragMain;
 import com.derek_s.hubble_gallery.ui.fragments.FragNavigationDrawer;
+import com.derek_s.hubble_gallery.utils.network.NetworkUtil;
 import com.derek_s.hubble_gallery.utils.ui.Toasty;
 import com.derek_s.hubble_gallery.utils.ui.ToolbarTitle;
 import com.github.ksoichiro.android.observablescrollview.ObservableGridView;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.Scrollable;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
 
 public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
 
@@ -51,6 +55,11 @@ public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
     @Bind(R.id.switcher_title)
     TextSwitcher switcherTitle;
 
+    @Inject
+    TinyDB db;
+    @Inject
+    NetworkUtil networkUtil;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,12 +77,7 @@ public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
         }
 
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mNavigationDrawerFragment.toggleDrawerState();
-            }
-        });
+        toolbar.setNavigationOnClickListener((v) -> mNavigationDrawerFragment.toggleDrawerState());
         toolbar.inflateMenu(R.menu.act_main);
         ToolbarTitle toolbarTitle = new ToolbarTitle();
         switcherTitle = toolbarTitle.init(switcherTitle, instance);
@@ -281,5 +285,10 @@ public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
 
         a.setDuration(200);
         v.startAnimation(a);
+    }
+
+    @Override
+    protected void injectComponent(ActivityComponent component) {
+        component.inject(this);
     }
 }

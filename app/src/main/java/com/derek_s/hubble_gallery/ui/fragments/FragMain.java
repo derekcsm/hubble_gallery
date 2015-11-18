@@ -13,13 +13,13 @@ import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery.ui.adapters.GridAdapter;
 import com.derek_s.hubble_gallery.api.GetAlbum;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.base.FragBase;
 import com.derek_s.hubble_gallery.model.TileObject;
 import com.derek_s.hubble_gallery.model.Tiles;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
+import com.derek_s.hubble_gallery.ui.adapters.GridAdapter;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
@@ -32,9 +32,6 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by dereksmith on 15-02-26.
- */
 public class FragMain extends FragBase implements ObservableScrollViewCallbacks {
 
     private static String CURRENT_PAGE = "current_page";

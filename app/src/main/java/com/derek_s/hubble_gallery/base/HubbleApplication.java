@@ -1,20 +1,35 @@
 package com.derek_s.hubble_gallery.base;
 
+import android.app.Application;
+
 import com.crashlytics.android.Crashlytics;
+import com.derek_s.hubble_gallery.internal.di.AppComponent;
+import com.derek_s.hubble_gallery.internal.di.AppModule;
+import com.derek_s.hubble_gallery.internal.di.DaggerAppComponent;
 
 import io.fabric.sdk.android.Fabric;
 
-/**
- * Created by derek on 15-08-03.
- */
+public class HubbleApplication extends Application {
 
-// private String TAG = getClass().getSimpleName();
-public class HubbleApplication extends HubbleBaseApplication {
+    private AppComponent appComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
+        this.initializeInjector();
         Fabric.with(this, new Crashlytics());
+    }
+
+    private void initializeInjector() {
+        this.appComponent = DaggerAppComponent
+                .builder()
+                .appModule(new AppModule(this))
+                .build();
+
+        this.appComponent.inject(this);
+    }
+
+    public AppComponent getAppComponent() {
+        return appComponent;
     }
 }

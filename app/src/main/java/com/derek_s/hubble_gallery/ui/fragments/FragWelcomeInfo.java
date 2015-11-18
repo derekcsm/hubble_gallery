@@ -2,7 +2,6 @@ package com.derek_s.hubble_gallery.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +16,6 @@ import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by dereksmith on 15-05-15.
- */
 public class FragWelcomeInfo extends FragBase {
     private static String TAG = "FragWelcomeInfo";
     private static String PAGE_KEY = "page_number";
@@ -78,15 +74,11 @@ public class FragWelcomeInfo extends FragBase {
                 tvInfo.setVisibility(View.INVISIBLE);
                 tvEnter.setTypeface(FontFactory.getCondensedLight(getActivity()));
                 tvEnter.setVisibility(View.VISIBLE);
-                tvEnter.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // TODO
-                        Intent i = new Intent(getActivity(), ActMain.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(i);
-                        getActivity().overridePendingTransition(android.R.anim.fade_in, R.anim.zoom_in_exit);
-                    }
+                tvEnter.setOnClickListener((v) -> {
+                    Intent i = new Intent(getActivity(), ActMain.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(i);
+                    getActivity().overridePendingTransition(android.R.anim.fade_in, R.anim.zoom_in_exit);
                 });
                 break;
         }

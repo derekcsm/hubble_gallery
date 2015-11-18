@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.base.ActBase;
+import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
 import com.derek_s.hubble_gallery.ui.widgets.TouchImageView;
 import com.squareup.picasso.Picasso;
 
@@ -40,5 +41,10 @@ public class ActImageViewer extends ActBase {
     public void onSaveInstanceState(Bundle outState) {
         outState.putString(EXTRA_IMAGE_SRC, imgSrc);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void injectComponent(ActivityComponent component) {
+        component.inject(this);
     }
 }
