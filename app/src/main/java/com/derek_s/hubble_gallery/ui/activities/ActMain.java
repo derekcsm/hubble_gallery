@@ -3,6 +3,7 @@ package com.derek_s.hubble_gallery.ui.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +24,7 @@ import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.model.TileObject;
 import com.derek_s.hubble_gallery.ui.fragments.FragMain;
+import com.derek_s.hubble_gallery.ui.fragments.FragMainCallbacks;
 import com.derek_s.hubble_gallery.ui.fragments.FragNavigationDrawer;
 import com.derek_s.hubble_gallery.utils.ui.Toasty;
 import com.derek_s.hubble_gallery.utils.ui.ToolbarTitle;
@@ -34,7 +36,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
+public class ActMain extends ActBase implements FragMainCallbacks {
 
     private String TAG = getClass().getSimpleName();
     public static ActMain instance = null; // TODO remove
@@ -84,7 +86,7 @@ public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackgroundColor(
-                getResources().getColor(R.color.primary_dark));
+                ContextCompat.getColor(this.getApplicationContext(), R.color.primary_dark));
 
         mNavigationDrawerFragment = (FragNavigationDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
