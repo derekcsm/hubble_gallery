@@ -1,8 +1,8 @@
 package com.derek_s.hubble_gallery.internal.di;
 
-import com.derek_s.hubble_gallery.base.BaseActivity;
+import com.derek_s.hubble_gallery.base.ActBase;
+import com.derek_s.hubble_gallery.base.FragBase;
 import com.derek_s.hubble_gallery.base.HubbleApplication;
-import com.derek_s.hubble_gallery.ui.fragments.FragDetails;
 import com.derek_s.hubble_gallery.ui.fragments.FragMain;
 import com.derek_s.hubble_gallery.ui.fragments.FragNavigationDrawer;
 
@@ -13,12 +13,8 @@ import com.derek_s.hubble_gallery.ui.fragments.FragNavigationDrawer;
 public interface CoreGraph {
     void inject(HubbleApplication app);
 
-    void inject(BaseActivity app);
+    void inject(ActBase app);
 
-    void inject(FragNavigationDrawer app);
-
-    void inject(FragDetails app);
-
-    void inject(FragMain app);
+    void inject(FragBase app);
 }
 

@@ -9,6 +9,11 @@
         <item name="actionOverflowButtonStyle">@style/toolbar_overflow_style</item>
     </style>
 
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
     <!-- Toolbar -->
     <style name="toolbar" parent="Theme.AppCompat">
         <item name="popupTheme">@style/toolbar_popup_style</item>
