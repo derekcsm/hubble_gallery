@@ -92,7 +92,7 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.google.dagger:dagger:2.0.1'
-    compile 'com.google.code.gson:gson:2.3'
+    compile 'com.google.code.gson:gson:2.4'
 
     compile('com.crashlytics.sdk.android:crashlytics:2.2.3@aar') {
         transitive = true;

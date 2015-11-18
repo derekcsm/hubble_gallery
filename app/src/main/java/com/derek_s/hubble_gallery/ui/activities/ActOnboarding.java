@@ -13,8 +13,9 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery.ui.adapters.OnboardingFragmentPager;
 import com.derek_s.hubble_gallery.base.ActBase;
+import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
+import com.derek_s.hubble_gallery.ui.adapters.OnboardingFragmentPager;
 import com.derek_s.hubble_gallery.utils.ui.starfield.StarField;
 
 import butterknife.Bind;
@@ -59,6 +60,24 @@ public class ActOnboarding extends ActBase {
         verticalViewPager.setOffscreenPageLimit(5);
     }
 
+    @Override
+    public void onPause() {
+        starField.stop();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        if (fromOnCreate) {
+            fromOnCreate = false;
+        } else {
+            setWindowSizes();
+            starField = new StarField(svStarfield.getHolder(), width, height);
+            starField.start();
+        }
+        super.onResume();
+    }
+
     private void setWindowSizes() {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -91,24 +110,8 @@ public class ActOnboarding extends ActBase {
         }
     }
 
-
     @Override
-    public void onPause() {
-        starField.stop();
-        super.onPause();
+    protected void injectComponent(ActivityComponent activityComponent) {
+        activityComponent.inject(this);
     }
-
-
-    @Override
-    public void onResume() {
-        if (fromOnCreate) {
-            fromOnCreate = false;
-        } else {
-            setWindowSizes();
-            starField = new StarField(svStarfield.getHolder(), width, height);
-            starField.start();
-        }
-        super.onResume();
-    }
-
 }

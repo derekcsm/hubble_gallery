@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.text.ClipboardManager;
@@ -28,9 +29,11 @@ import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.api.GetDetails;
 import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.base.Constants;
+import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
 import com.derek_s.hubble_gallery.model.DetailsObject;
 import com.derek_s.hubble_gallery.model.TileObject;
-import com.derek_s.hubble_gallery.ui.views.ActDetailsView;
+import com.derek_s.hubble_gallery.ui.presenters.DetailsPresenter;
+import com.derek_s.hubble_gallery.ui.views.DetailsView;
 import com.derek_s.hubble_gallery.ui.widgets.TouchImageView;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
@@ -47,10 +50,12 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ActDetails extends ActBase implements ObservableScrollViewCallbacks, ActDetailsView {
+public class ActDetails extends ActBase implements ObservableScrollViewCallbacks, DetailsView {
 
     private String TAG = getClass().getSimpleName();
     private static final String TOOLBAR_CURRENT_ALPHA = "toolbar_current_alpha";
@@ -77,6 +82,9 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
     @Bind(R.id.fl_stretchy)
     FrameLayout flStretchy;
 
+    @Inject
+    DetailsPresenter presenter;
+
     private SquareFlipper squareFlipper = new SquareFlipper();
 
     private int titleBgColor;
@@ -93,6 +101,7 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        presenter.setView(this);
         setContentView(R.layout.act_details);
         ButterKnife.bind(this);
         beautifyViews();
@@ -132,12 +141,7 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
             tvBody.setText(Html.fromHtml(detailsObject.getDescription()));
         }
 
-        flStretchy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openImageViewer();
-            }
-        });
+        flStretchy.setOnClickListener((v) -> openImageViewer());
         scrollView.setScrollViewCallbacks(this);
 
         showLoadingAnimation(true, 0);
@@ -146,12 +150,7 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
             titleBgColor = savedInstanceState.getInt(TOOLBAR_COLOR);
             alphaTitleBgColor = savedInstanceState.getInt(TOOLBAR_CURRENT_ALPHA);
             toolbar.setBackgroundColor(alphaTitleBgColor);
-
-            scrollView.post(new Runnable() {
-                public void run() {
-                    scrollView.scrollTo(0, scrollView.getCurrentScrollY());
-                }
-            });
+            scrollView.post(() -> scrollView.scrollTo(0, scrollView.getCurrentScrollY()));
 
             if (detailsObject == null) {
                 loadPage();
@@ -171,24 +170,37 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
 
     private void getDetails() {
         final GetDetails getDetails = new GetDetails(tileObject.getHref());
-        getDetails.setGetDetailsCompleteListener(new GetDetails.OnTaskComplete() {
-            @Override
-            public void setTaskComplete(DetailsObject result, String newsUrl) {
-                detailsObject = result;
-                String description = detailsObject.getDescription();
-                if (description != null) {
-                    showLoadingAnimation(false, 1);
-                    description = description.replace("To access available information and downloadable versions " +
-                            "of images in this news release, click on any of the images below:", "");
-                    detailsObject.setDescription(description);
-                    tvBody.setText(Html.fromHtml(detailsObject.getDescription()));
-                } else {
-                    showZeroState(true);
-                }
-
+        getDetails.setGetDetailsCompleteListener((result, newsUrl) -> {
+            detailsObject = result;
+            String description = detailsObject.getDescription();
+            if (description != null) {
+                showLoadingAnimation(false, 1);
+                description = description.replace("To access available information and downloadable versions " +
+                        "of images in this news release, click on any of the images below:", "");
+                detailsObject.setDescription(description);
+                tvBody.setText(Html.fromHtml(detailsObject.getDescription()));
+            } else {
+                showZeroState(true);
             }
         });
         getDetails.execute();
+    }
+
+    public void getPalete() {
+        Palette.from(((BitmapDrawable) ivDisplay.getDrawable()).getBitmap()).generate((palette) -> {
+            titleBgColor = palette.getDarkVibrantColor(ContextCompat.getColor(this, R.color.title_background));
+            tvTitle.setBackgroundColor(titleBgColor);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                getWindow().setStatusBarColor(palette.getDarkMutedColor(ContextCompat.getColor(this, android.R.color.black)));
+            }
+
+            Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+            if (swatch != null) {
+                tvTitle.setTextColor(swatch.getTitleTextColor());
+            }
+
+        });
     }
 
     private void loadImage(final String src) {
@@ -223,25 +235,6 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
         });
     }
 
-    private void getPalete() {
-        Palette.generateAsync(((BitmapDrawable) ivDisplay.getDrawable()).getBitmap(), new Palette.PaletteAsyncListener() {
-            public void onGenerated(Palette palette) {
-
-                titleBgColor = palette.getDarkVibrantColor(R.color.title_background);
-                tvTitle.setBackgroundColor(titleBgColor);
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    getWindow().setStatusBarColor(palette.getDarkMutedColor(android.R.color.black));
-                }
-
-                Palette.Swatch swatch = palette.getDarkVibrantSwatch();
-                if (swatch != null) {
-                    tvTitle.setTextColor(swatch.getTitleTextColor());
-                }
-
-            }
-        });
-    }
 
     private void openImageViewer() {
         if (successfulSrc == null) {
@@ -297,12 +290,7 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
             tvBody.setVisibility(View.GONE);
 
             tvZeroStateInfo.setText("Unable to load description");
-            tvRetry.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    loadPage();
-                }
-            });
+            tvRetry.setOnClickListener((v) -> loadPage());
         } else {
             zeroState.setVisibility(View.INVISIBLE);
         }
@@ -483,5 +471,10 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
 
     @Override
     public void onUpOrCancelMotionEvent(ScrollState scrollState) {
+    }
+
+    @Override
+    protected void injectComponent(ActivityComponent activityComponent) {
+        activityComponent.inject(this);
     }
 }
