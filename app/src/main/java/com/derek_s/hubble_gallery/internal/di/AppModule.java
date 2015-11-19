@@ -2,6 +2,7 @@ package com.derek_s.hubble_gallery.internal.di;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 
 import com.derek_s.hubble_gallery.base.TinyDB;
@@ -29,6 +30,12 @@ public class AppModule {
     @Provides
     Context provideContext() {
         return application.getBaseContext();
+    }
+
+    @Provides
+    @Singleton
+    Resources provideResources(Context context) {
+        return context.getResources();
     }
 
     @Provides

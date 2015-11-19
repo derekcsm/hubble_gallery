@@ -19,9 +19,6 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by dereksmith on 15-02-26.
- */
 public class GridAdapter extends BaseAdapter {
 
     private String TAG = getClass().getSimpleName();
@@ -73,7 +70,6 @@ public class GridAdapter extends BaseAdapter {
 
         return view;
     }
-
 
     public int getCount() {
         return this.mTiles.size();

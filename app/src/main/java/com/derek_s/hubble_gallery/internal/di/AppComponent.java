@@ -1,11 +1,13 @@
 package com.derek_s.hubble_gallery.internal.di;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 
 import com.derek_s.hubble_gallery.base.HubbleApplication;
 import com.derek_s.hubble_gallery.base.TinyDB;
 import com.derek_s.hubble_gallery.ui.presenters.DetailsPresenter;
+import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.network.NetworkUtil;
 
 import javax.inject.Singleton;
@@ -18,6 +20,8 @@ public interface AppComponent {
 
     Context context();
 
+    Resources resources();
+
     ConnectivityManager provideConnectivityManager();
 
     NetworkUtil provideNetworkUtil();
@@ -25,6 +29,8 @@ public interface AppComponent {
     TinyDB provideTinyDB();
 
     DetailsPresenter provideActDetailsPresenter();
+
+    FavoriteUtils provideFavoriteUtils();
 
     void inject(HubbleApplication app);
 }

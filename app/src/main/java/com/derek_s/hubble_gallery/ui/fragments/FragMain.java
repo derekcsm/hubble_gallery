@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,7 +20,6 @@ import com.derek_s.hubble_gallery.model.Tiles;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
 import com.derek_s.hubble_gallery.ui.adapters.GridAdapter;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
-import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 import com.github.ksoichiro.android.observablescrollview.ObservableGridView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
@@ -138,13 +136,10 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
             }
         });
 
-        gvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        gvMain.setOnItemClickListener((parent, view, position, id)  -> {
                 if (mCallbacks != null) {
                     mCallbacks.onGridItemClicked(mAdapter.getItem(position));
                 }
-            }
         });
 
         return rootView;
@@ -167,9 +162,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
         currentQuery = query;
         final GetAlbum getAlbum = new GetAlbum(loadAmount, 1, query, hiRes);
         getAlbum.execute();
-        getAlbum.setGetAlbumCompleteListener(new GetAlbum.OnTaskComplete() {
-            @Override
-            public void setTaskComplete(ArrayList<TileObject> result) {
+        getAlbum.setGetAlbumCompleteListener((result) -> {
                 isLoading = false;
                 /*
                 scroll to the top (aka position 0)
@@ -182,14 +175,13 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
                     canLoadMore = (result.size() == loadAmount);
                     showLoadingAnimation(false);
                 }
-            }
         });
     }
 
     public void openFavorites(boolean scroll) {
         ActMain.instance.toggleFilterVisible(false);
         mode = Constants.FAVORITES_MODE;
-        FavoriteUtils favoriteUtils = new FavoriteUtils(getActivity());
+        mAdapter.clear();
         if (favoriteUtils.getFavorites() != null) {
             mAdapter.addItems(favoriteUtils.getFavorites().getTiles());
             if (scroll)
@@ -251,12 +243,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
                 // bad connection
                 tvRetry.setVisibility(View.VISIBLE);
                 tvZeroTitle.setText(R.string.no_connection);
-                tvRetry.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        loadInitialItems(currentQuery);
-                    }
-                });
+                tvRetry.setOnClickListener((v) -> loadInitialItems(currentQuery));
             }
 
             showSquareFlipper(false);
