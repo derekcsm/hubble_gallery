@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 /**
  * Created by dereksmith on 15-02-26.
  */
-public class TileObject extends SerializableModel {
+public class TileObject {
 
     private String id;
     private String title;
@@ -74,11 +74,13 @@ public class TileObject extends SerializableModel {
 
     public String serialize() {
         // Serialize this class into a JSON string using GSON
-        super();
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 
     static public TileObject create(String serializedData) {
         // Use GSON to instantiate this class using the JSON representation of the state
-            super(serializedData);
+        Gson gson = new Gson();
+        return gson.fromJson(serializedData, TileObject.class);
     }
 }

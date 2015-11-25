@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by dereksmith on 15-03-03.
  */
-public class Tiles extends SerializableModel{
+public class Tiles {
 
     private ArrayList<TileObject> tiles = new ArrayList<>();
 
@@ -27,11 +27,13 @@ public class Tiles extends SerializableModel{
 
     public String serialize() {
         // Serialize this class into a JSON string using GSON
-        super();
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 
-    static public DetailsObject create(String serializedData) {
+    static public Tiles create(String serializedData) {
         // Use GSON to instantiate this class using the JSON representation of the state
-            super(serializedData);
+        Gson gson = new Gson();
+        return gson.fromJson(serializedData, Tiles.class);
     }
 }
