@@ -74,13 +74,11 @@ public class TileObject {
 
     public String serialize() {
         // Serialize this class into a JSON string using GSON
-        Gson gson = new Gson();
-        return gson.toJson(this);
+        super();
     }
 
-    static public TileObject create(String serializedData) {
+    static public DetailsObject create(String serializedData) {
         // Use GSON to instantiate this class using the JSON representation of the state
-        Gson gson = new Gson();
-        return gson.fromJson(serializedData, TileObject.class);
+            super(serializedData);
     }
 }
