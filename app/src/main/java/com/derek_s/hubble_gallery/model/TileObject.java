@@ -77,7 +77,7 @@ public class TileObject extends SerializableModel {
         super();
     }
 
-    static public DetailsObject create(String serializedData) {
+    static public TileObject create(String serializedData) {
         // Use GSON to instantiate this class using the JSON representation of the state
             super(serializedData);
     }
