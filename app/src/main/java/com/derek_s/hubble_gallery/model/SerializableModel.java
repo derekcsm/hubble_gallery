@@ -15,7 +15,7 @@ public class SerializableModel {
     static public DetailsObject create(String serializedData) {
         // Use GSON to instantiate this class using the JSON representation of the state
         Gson gson = new Gson();
-        return gson.fromJson(serializedData, DetailsObject.class);
+        return gson.fromJson(serializedData, SerializableModel.class);
     }
 
 }
