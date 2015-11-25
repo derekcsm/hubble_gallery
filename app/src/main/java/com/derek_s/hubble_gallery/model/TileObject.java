@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 /**
  * Created by dereksmith on 15-02-26.
  */
-public class TileObject {
+public class TileObject extends SerializableModel {
 
     private String id;
     private String title;
