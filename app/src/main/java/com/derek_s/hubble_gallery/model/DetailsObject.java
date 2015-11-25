@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by dereksmith on 15-03-15.
  */
-public class DetailsObject {
+public class DetailsObject extends SerializableModel{
     @Expose
     private String description;
     @Expose
@@ -76,14 +76,12 @@ public class DetailsObject {
 
     public String serialize() {
         // Serialize this class into a JSON string using GSON
-        Gson gson = new Gson();
-        return gson.toJson(this);
+        super();
     }
 
     static public DetailsObject create(String serializedData) {
         // Use GSON to instantiate this class using the JSON representation of the state
-        Gson gson = new Gson();
-        return gson.fromJson(serializedData, DetailsObject.class);
+            super(serializedData);
     }
 
 }
