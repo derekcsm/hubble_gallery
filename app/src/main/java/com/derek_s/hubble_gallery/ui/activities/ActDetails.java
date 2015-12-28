@@ -85,6 +85,7 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
 
         beautifyViews();
 
+        presenter.toolbarBgColorAlpha = ScrollUtils.getColorWithAlpha(0, presenter.darkVibrantColor);
         toolbar.setBackgroundColor(presenter.toolbarBgColorAlpha);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolbar.setNavigationOnClickListener((v) -> {
