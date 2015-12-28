@@ -22,7 +22,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 
-public class ActOnboarding extends ActBase {
+public class ActWelcome extends ActBase {
 
     @Bind(R.id.rl_onboarding)
     RelativeLayout rlOnboarding;
@@ -41,7 +41,7 @@ public class ActOnboarding extends ActBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fromOnCreate = true;
-        setContentView(R.layout.act_onboarding);
+        setContentView(R.layout.act_welcome);
         ButterKnife.bind(this);
 
         setWindowAttributes();

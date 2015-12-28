@@ -5,7 +5,7 @@ import com.derek_s.hubble_gallery.base.FragBase;
 import com.derek_s.hubble_gallery.ui.activities.ActDetails;
 import com.derek_s.hubble_gallery.ui.activities.ActImageViewer;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
-import com.derek_s.hubble_gallery.ui.activities.ActOnboarding;
+import com.derek_s.hubble_gallery.ui.activities.ActWelcome;
 
 import dagger.Component;
 
@@ -25,7 +25,7 @@ public interface ActivityComponent {
 
     void inject(ActImageViewer app);
 
-    void inject(ActOnboarding app);
+    void inject(ActWelcome app);
 
     void inject(FragBase app);
 }

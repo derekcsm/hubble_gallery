@@ -72,7 +72,7 @@ public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
             show user on-boarding screen
              */
             db.putBoolean(Constants.ONBOARDING_SHOWN, true);
-            Intent intent = new Intent(ActMain.this, ActOnboarding.class);
+            Intent intent = new Intent(ActMain.this, ActWelcome.class);
             startActivity(intent);
         }
 

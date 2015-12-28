@@ -99,11 +99,11 @@ public class FragNavigationDrawer extends FragBase {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.frag_navigation_drawer, container, false);
+        View rootView = inflater.inflate(R.layout.frag_nav_drawer, container, false);
         ButterKnife.bind(this, rootView);
 
         // header
-        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.header_nav_drawer, lvMenu, false);
+        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.item_header_nav_drawer, lvMenu, false);
         TextView tvVersionName = (TextView) header.findViewById(R.id.tv_version_name);
         tvVersionName.setTypeface(FontFactory.getCondensedRegular(getActivity()));
         PackageInfo pInfo = null;
@@ -115,7 +115,7 @@ public class FragNavigationDrawer extends FragBase {
         tvVersionName.setText("BETA V " + pInfo.versionName);
 
         // footer
-        ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.footer_nav_drawer, lvMenu, false);
+        ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.item_footer_nav_drawer, lvMenu, false);
         tvFavorites = (TextView) footer.findViewById(R.id.tv_favorites);
         tvFavorites.setTypeface(FontFactory.getMedium(getActivity()));
         tvFavorites.setOnClickListener(new View.OnClickListener() {
