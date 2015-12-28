@@ -61,7 +61,7 @@ android {
 }
 
 dependencies {
-    def supportVersion = "23.1.0"
+    def supportVersion = "23.1.1"
     compile fileTree(dir: 'libs', include: ['*.jar'])
     apt "org.projectlombok:lombok:1.16.2"
     apt 'com.google.dagger:dagger-compiler:2.0.1'
