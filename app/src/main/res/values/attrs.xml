@@ -3,6 +3,7 @@
     <declare-styleable name="ScrimInsetsView">
         <attr name="insetForeground" format="reference|color" />
     </declare-styleable>
+
     <declare-styleable name="CircleProgressView">
         <attr name="cpvColor" format="color|reference" />
         <attr name="cpvStrokeWidth" format="dimension|reference" />
@@ -15,6 +16,7 @@
         <attr name="cpvPopOutColor" format="color|reference" />
         <attr name="cpvPopOutStrokeWidth" format="dimension|reference" />
     </declare-styleable>
+
     <declare-styleable name="IntroView">
         <attr name="strokeWidth" format="float" />
         <attr name="strokeColor" format="color|reference" />
@@ -25,6 +27,7 @@
         <attr name="arrowLength" format="dimension" />
         <attr name="arrowHeight" format="dimension" />
     </declare-styleable>
+
     <declare-styleable name="StateView">
         <attr name="strokeWidth" />
         <attr name="strokeColor" />
@@ -33,10 +36,6 @@
         <attr name="fadeFactor" />
     </declare-styleable>
 
-    <!-- Declare custom theme attributes that allow changing which styles are
-         used for button bars depending on the API level.
-         ?android:attr/buttonBarStyle is new as of API 11 so this is
-         necessary to support previous API levels. -->
     <declare-styleable name="ButtonBarContainerTheme">
         <attr name="metaButtonBarStyle" format="reference" />
         <attr name="metaButtonBarButtonStyle" format="reference" />

@@ -1,0 +1,3 @@
+<resources>
+    <integer name="grid_columns">5</integer>
+</resources>

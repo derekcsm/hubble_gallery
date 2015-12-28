@@ -228,9 +228,10 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
         Palette.from(((BitmapDrawable) ivDisplay.getDrawable()).getBitmap()).generate((palette) -> {
             presenter.setPaletteColors(palette);
             tvTitle.setBackgroundColor(presenter.darkVibrantColor);
+            tvBody.setLinkTextColor(presenter.lightVibrantColor);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                getWindow().setStatusBarColor(palette.getDarkMutedColor(ContextCompat.getColor(this, android.R.color.black)));
+                getWindow().setStatusBarColor(presenter.darker(presenter.darkVibrantColor, 0.6f));
             }
 
             Palette.Swatch swatch = palette.getDarkVibrantSwatch();

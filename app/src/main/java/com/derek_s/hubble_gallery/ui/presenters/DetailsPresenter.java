@@ -3,6 +3,7 @@ package com.derek_s.hubble_gallery.ui.presenters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -48,6 +49,7 @@ public class DetailsPresenter {
     public int scrollYPos;
 
     public int darkVibrantColor;
+    public int lightVibrantColor;
     public int toolbarBgColorAlpha;
 
     @Inject
@@ -166,7 +168,7 @@ public class DetailsPresenter {
                     case R.id.action_favorite:
                         if (favoriteUtils.isFavorited(tileObject))
                             favoriteUtils.removeFavorite(tileObject);
-                         else
+                        else
                             favoriteUtils.saveFavorite(tileObject);
                         view.updateMenu();
 
@@ -237,6 +239,22 @@ public class DetailsPresenter {
 
     public void setPaletteColors(Palette palette) {
         darkVibrantColor = palette.getDarkVibrantColor(ContextCompat.getColor(context, R.color.title_background));
+        lightVibrantColor = palette.getLightVibrantColor(ContextCompat.getColor(context, R.color.accent));
+    }
+
+    /**
+     * Returns darker version of specified <code>color</code>.
+     */
+    public int darker(int color, float factor) {
+        int a = Color.alpha(color);
+        int r = Color.red(color);
+        int g = Color.green(color);
+        int b = Color.blue(color);
+
+        return Color.argb(a,
+                Math.max((int) (r * factor), 0),
+                Math.max((int) (g * factor), 0),
+                Math.max((int) (b * factor), 0));
     }
 
 }
