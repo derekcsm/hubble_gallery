@@ -42,7 +42,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:name="com.derek_s.hubble_gallery.ui.fragments.FragNavigationDrawer"
-            layout="@layout/frag_navigation_drawer" />
+            layout="@layout/frag_nav_drawer" />
 
     </com.derek_s.hubble_gallery.ui.widgets.ScrimInsetsFrameLayout>
 

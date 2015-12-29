@@ -1,0 +1,13 @@
+<resources>
+
+    <!-- nav drawer -->
+    <dimen name="navigation_drawer_width">400dp</dimen>
+
+    <!-- num of columns in portrait -->
+    <integer name="grid_columns">3</integer>
+
+    <!-- square flipper -->
+    <dimen name="square_flipper_small">32dp</dimen>
+    <dimen name="square_flipper_large">48dp</dimen>
+
+</resources>

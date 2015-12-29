@@ -23,4 +23,6 @@
     <color name="seleted_item_color">#00BCD4</color>
     <color name="selector_color">#6700bcd4</color>
     <color name="focused_color">#2100bcd4</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

@@ -15,6 +15,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <FrameLayout
+                android:id="@+id/fl_stretchy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:foreground="@drawable/selector_default">
 
             <com.derek_s.hubble_gallery.ui.widgets.StretchyImageView
                 android:id="@+id/iv_display"
@@ -26,12 +32,14 @@
                 android:visibility="invisible"
                 tools:visibility="visible" />
 
+            </FrameLayout>
+
             <View
                 android:id="@+id/view_below_title_bg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/tv_body"
-                android:layout_below="@+id/iv_display"
+                android:layout_below="@+id/fl_stretchy"
                 android:background="@color/background"
                 android:minHeight="5dp" />
 
@@ -40,7 +48,7 @@
                 style="@style/text_title_dark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_display"
+                android:layout_below="@+id/fl_stretchy"
                 android:background="@color/background"
                 android:paddingBottom="16dp"
                 android:paddingLeft="72dp"

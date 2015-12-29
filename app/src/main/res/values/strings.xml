@@ -28,6 +28,7 @@
 
     <string name="error_saving_image">Error during image saving</string>
     <string name="image_saved">Image saved to /Pictures/Hubble</string>
+    <string name="image_fullscreen">Show image fullscreen</string>
 
     <!-- zero states -->
     <string name="zero_state_favorites_1">Explore and favorite images, they\'ll show up here</string>
@@ -38,6 +39,7 @@
     <string name="no_connection">No internet connection</string>
     <string name="retry">Retry</string>
     <string name="reload">Reload</string>
+    <string name="error_loading_image">Error loading image</string>
 
     <!-- on boarding -->
     <string name="scroll_down">Scroll down</string>
@@ -84,5 +86,9 @@
 
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+
+    <string name="title_activity_act_image_viewer">ImageViewer</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>

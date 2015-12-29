@@ -9,7 +9,6 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -22,27 +21,26 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery.adapters.SectionsAdapter;
+import com.derek_s.hubble_gallery.ui.adapters.SectionsAdapter;
+import com.derek_s.hubble_gallery.base.FragBase;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
-import com.derek_s.hubble_gallery.ui.activities.ActOnboarding;
 import com.derek_s.hubble_gallery.ui.dialog.DialogAbout;
 import com.derek_s.hubble_gallery.ui.widgets.AnimatedExpandableListView;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
-import com.derek_s.hubble_gallery.utils.ui.Toasty;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
-public class FragNavigationDrawer extends Fragment {
+public class FragNavigationDrawer extends FragBase {
 
     private static final String SELECTED_POSITIONS = "selected_positions";
     private ActionBarDrawerToggle mDrawerToggle;
     public static DrawerLayout mDrawerLayout;
     private View mFragmentContainerView;
     private static Context context;
-    @InjectView(R.id.lv_menu)
+    @Bind(R.id.lv_menu)
     public AnimatedExpandableListView lvMenu;
     public SectionsAdapter mAdapter;
     private boolean mFromSavedInstanceState;
@@ -101,11 +99,11 @@ public class FragNavigationDrawer extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.frag_navigation_drawer, container, false);
-        ButterKnife.inject(this, rootView);
+        View rootView = inflater.inflate(R.layout.frag_nav_drawer, container, false);
+        ButterKnife.bind(this, rootView);
 
         // header
-        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.header_nav_drawer, lvMenu, false);
+        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.item_header_nav_drawer, lvMenu, false);
         TextView tvVersionName = (TextView) header.findViewById(R.id.tv_version_name);
         tvVersionName.setTypeface(FontFactory.getCondensedRegular(getActivity()));
         PackageInfo pInfo = null;
@@ -117,7 +115,7 @@ public class FragNavigationDrawer extends Fragment {
         tvVersionName.setText("BETA V " + pInfo.versionName);
 
         // footer
-        ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.footer_nav_drawer, lvMenu, false);
+        ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.item_footer_nav_drawer, lvMenu, false);
         tvFavorites = (TextView) footer.findViewById(R.id.tv_favorites);
         tvFavorites.setTypeface(FontFactory.getMedium(getActivity()));
         tvFavorites.setOnClickListener(new View.OnClickListener() {

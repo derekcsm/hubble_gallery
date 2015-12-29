@@ -5,7 +5,6 @@ import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.SurfaceView;
 import android.view.View;
@@ -14,20 +13,22 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery.adapters.OnboardingFragmentPager;
+import com.derek_s.hubble_gallery.base.ActBase;
+import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
+import com.derek_s.hubble_gallery.ui.adapters.OnboardingFragmentPager;
 import com.derek_s.hubble_gallery.utils.ui.starfield.StarField;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 
-public class ActOnboarding extends AppCompatActivity {
+public class ActWelcome extends ActBase {
 
-    @InjectView(R.id.rl_onboarding)
+    @Bind(R.id.rl_onboarding)
     RelativeLayout rlOnboarding;
-    @InjectView(R.id.sv_starfield)
+    @Bind(R.id.sv_starfield)
     SurfaceView svStarfield;
-    @InjectView(R.id.vertical_pager)
+    @Bind(R.id.vertical_pager)
     VerticalViewPager verticalViewPager;
 
     private StarField starField;
@@ -40,8 +41,8 @@ public class ActOnboarding extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fromOnCreate = true;
-        setContentView(R.layout.act_onboarding);
-        ButterKnife.inject(this);
+        setContentView(R.layout.act_welcome);
+        ButterKnife.bind(this);
 
         setWindowAttributes();
         setWindowSizes();
@@ -57,6 +58,24 @@ public class ActOnboarding extends AppCompatActivity {
 
         verticalViewPager.setAdapter(new OnboardingFragmentPager(getSupportFragmentManager()));
         verticalViewPager.setOffscreenPageLimit(5);
+    }
+
+    @Override
+    public void onPause() {
+        starField.stop();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        if (fromOnCreate) {
+            fromOnCreate = false;
+        } else {
+            setWindowSizes();
+            starField = new StarField(svStarfield.getHolder(), width, height);
+            starField.start();
+        }
+        super.onResume();
     }
 
     private void setWindowSizes() {
@@ -91,24 +110,8 @@ public class ActOnboarding extends AppCompatActivity {
         }
     }
 
-
     @Override
-    public void onPause() {
-        starField.stop();
-        super.onPause();
+    protected void injectComponent(ActivityComponent activityComponent) {
+        activityComponent.inject(this);
     }
-
-
-    @Override
-    public void onResume() {
-        if (fromOnCreate) {
-            fromOnCreate = false;
-        } else {
-            setWindowSizes();
-            starField = new StarField(svStarfield.getHolder(), width, height);
-            starField.start();
-        }
-        super.onResume();
-    }
-
 }

@@ -1,60 +1,51 @@
 package com.derek_s.hubble_gallery.ui.fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery.adapters.GridAdapter;
 import com.derek_s.hubble_gallery.api.GetAlbum;
 import com.derek_s.hubble_gallery.base.Constants;
+import com.derek_s.hubble_gallery.base.FragBase;
 import com.derek_s.hubble_gallery.model.TileObject;
 import com.derek_s.hubble_gallery.model.Tiles;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
-import com.derek_s.hubble_gallery.ui.widgets.CircleProgressView;
+import com.derek_s.hubble_gallery.ui.adapters.GridAdapter;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
-import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
-import com.derek_s.hubble_gallery.utils.ui.IndeterminateAnimator;
 import com.github.ksoichiro.android.observablescrollview.ObservableGridView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
-/**
- * Created by dereksmith on 15-02-26.
- */
-public class FragMain extends Fragment implements ObservableScrollViewCallbacks {
+public class FragMain extends FragBase implements ObservableScrollViewCallbacks {
 
     private static String CURRENT_PAGE = "current_page";
     private static String CURRENT_TILES = "current_tiles";
     private static String CAN_LOAD_MORE = "can_load_more";
     private static String IS_HIRES = "is_hires";
     private static String CURRENT_QUERY = "current_query";
-    Context c;
-    @InjectView(R.id.gv_main)
+    @Bind(R.id.gv_main)
     ObservableGridView gvMain;
-    @InjectView(R.id.square)
+    @Bind(R.id.square)
     View square;
-    @InjectView(R.id.zero_state)
+    @Bind(R.id.zero_state)
     RelativeLayout zeroState;
-    @InjectView(R.id.tv_zero_state)
+    @Bind(R.id.tv_zero_state)
     TextView tvZeroTitle;
-    @InjectView(R.id.tv_retry)
+    @Bind(R.id.tv_retry)
     TextView tvRetry;
     public GridAdapter mAdapter;
     public static int currentPage = 1;
@@ -69,7 +60,6 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
-        c = getActivity();
         if (savedState != null) {
             mode = savedState.getInt(Constants.MODE_KEY);
             currentPage = savedState.getInt(CURRENT_PAGE);
@@ -82,17 +72,15 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.frag_main, container, false);
-        ButterKnife.inject(this, rootView);
+        ButterKnife.bind(this, rootView);
 
         gvMain.setScrollViewCallbacks(this);
-
         gvMain.setTouchInterceptionViewGroup((ViewGroup) getActivity().findViewById(R.id.container));
-
         if (getActivity() instanceof ObservableScrollViewCallbacks) {
             gvMain.setScrollViewCallbacks((ObservableScrollViewCallbacks) getActivity());
         }
 
-        mAdapter = new GridAdapter(getActivity(), c);
+        mAdapter = new GridAdapter(getActivity(), getActivity());
         gvMain.setAdapter(mAdapter);
 
         if (savedInstanceState == null) {
@@ -138,7 +126,7 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
                         getAlbum.setGetAlbumCompleteListener(new GetAlbum.OnTaskComplete() {
                             @Override
                             public void setTaskComplete(ArrayList<TileObject> result) {
-                                mAdapter.addItemsToBottom(result);
+                                mAdapter.addItems(result);
                                 canLoadMore = (result.size() == loadAmount);
                                 isLoading = false;
                             }
@@ -148,13 +136,10 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
             }
         });
 
-        gvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        gvMain.setOnItemClickListener((parent, view, position, id)  -> {
                 if (mCallbacks != null) {
                     mCallbacks.onGridItemClicked(mAdapter.getItem(position));
                 }
-            }
         });
 
         return rootView;
@@ -162,11 +147,9 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
 
     @Override
     public void onResume() {
-
         if (mode == Constants.FAVORITES_MODE) {
             openFavorites(false);
         }
-
         super.onResume();
     }
 
@@ -179,9 +162,7 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
         currentQuery = query;
         final GetAlbum getAlbum = new GetAlbum(loadAmount, 1, query, hiRes);
         getAlbum.execute();
-        getAlbum.setGetAlbumCompleteListener(new GetAlbum.OnTaskComplete() {
-            @Override
-            public void setTaskComplete(ArrayList<TileObject> result) {
+        getAlbum.setGetAlbumCompleteListener((result) -> {
                 isLoading = false;
                 /*
                 scroll to the top (aka position 0)
@@ -194,14 +175,13 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
                     canLoadMore = (result.size() == loadAmount);
                     showLoadingAnimation(false);
                 }
-            }
         });
     }
 
     public void openFavorites(boolean scroll) {
         ActMain.instance.toggleFilterVisible(false);
         mode = Constants.FAVORITES_MODE;
-        FavoriteUtils favoriteUtils = new FavoriteUtils(getActivity());
+        mAdapter.clear();
         if (favoriteUtils.getFavorites() != null) {
             mAdapter.addItems(favoriteUtils.getFavorites().getTiles());
             if (scroll)
@@ -263,12 +243,7 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
                 // bad connection
                 tvRetry.setVisibility(View.VISIBLE);
                 tvZeroTitle.setText(R.string.no_connection);
-                tvRetry.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        loadInitialItems(currentQuery);
-                    }
-                });
+                tvRetry.setOnClickListener((v) -> loadInitialItems(currentQuery));
             }
 
             showSquareFlipper(false);
@@ -282,7 +257,7 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
             /*
              TODO for test set listener with 120 sec delay
               after delay set visibility to invisible
-              */
+             */
         }
     }
 
@@ -329,7 +304,7 @@ public class FragMain extends Fragment implements ObservableScrollViewCallbacks 
         mCallbacks.adjustToolbar(scrollState, gvMain);
     }
 
-    public static interface FragMainCallbacks {
+    public interface FragMainCallbacks {
         void onGridItemClicked(TileObject tileObject);
 
         void adjustToolbar(ScrollState scrollState, ObservableGridView gridView);

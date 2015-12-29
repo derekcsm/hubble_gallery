@@ -12,9 +12,6 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-/**
- * Created by dereksmith on 15-03-15.
- */
 public class GetDetails extends AsyncTask<Void, Void, DetailsObject> {
 
     private static String TAG = "GetDetails";

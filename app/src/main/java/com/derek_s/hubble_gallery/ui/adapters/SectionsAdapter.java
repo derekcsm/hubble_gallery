@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.adapters;
+package com.derek_s.hubble_gallery.ui.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,14 +14,14 @@ import com.derek_s.hubble_gallery.model.SectionObject;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
 import com.derek_s.hubble_gallery.ui.fragments.FragNavigationDrawer;
 import com.derek_s.hubble_gallery.ui.widgets.AnimatedExpandableListView;
-import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 import com.derek_s.hubble_gallery.utils.NavDataUtils;
+import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by dereksmith on 15-03-05.
@@ -65,11 +65,11 @@ public class SectionsAdapter extends AnimatedExpandableListView.AnimatedExpandab
     }
 
     static class ChildViewHolder {
-        @InjectView(R.id.tv_group_child)
+        @Bind(R.id.tv_group_child)
         TextView tvTitle;
 
         public ChildViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 
@@ -127,13 +127,13 @@ public class SectionsAdapter extends AnimatedExpandableListView.AnimatedExpandab
     }
 
     static class GroupViewHolder {
-        @InjectView(R.id.iv_expand)
+        @Bind(R.id.iv_expand)
         ImageView ivExpand;
-        @InjectView(R.id.tv_group_title)
+        @Bind(R.id.tv_group_title)
         TextView tvTitle;
 
         public GroupViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 

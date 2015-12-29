@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -17,12 +16,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
-import com.crashlytics.android.Crashlytics;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.derek_s.hubble_gallery.R;
+import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.base.TinyDB;
+import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
 import com.derek_s.hubble_gallery.model.TileObject;
 import com.derek_s.hubble_gallery.ui.fragments.FragMain;
 import com.derek_s.hubble_gallery.ui.fragments.FragNavigationDrawer;
@@ -33,51 +33,51 @@ import com.github.ksoichiro.android.observablescrollview.ObservableGridView;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.Scrollable;
 
+import javax.inject.Inject;
+
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
-import io.fabric.sdk.android.Fabric;
 
+public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
 
-public class ActMain extends AppCompatActivity implements FragMain.FragMainCallbacks {
+    private String TAG = getClass().getSimpleName();
+    public static ActMain instance = null; // TODO remove
 
-    private static String TAG = "ActMain";
     private static String CUR_TITLE = "current_title";
+    public String mTitle = "";
+
     public FragMain fragMain;
     public FragNavigationDrawer mNavigationDrawerFragment;
     private DrawerLayout mDrawerLayout;
-    public String mTitle = "";
-    public static ActMain instance = null;
-    private TinyDB DB;
-    @InjectView(R.id.toolbar)
+
+    @Bind(R.id.toolbar)
     public Toolbar toolbar;
-    @InjectView(R.id.switcher_title)
+    @Bind(R.id.switcher_title)
     TextSwitcher switcherTitle;
+
+    @Inject
+    TinyDB db;
+    @Inject
+    NetworkUtil networkUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
         instance = this;
         setContentView(R.layout.act_main);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
-        DB = new TinyDB(this);
-        if (!DB.getBoolean(Constants.ONBOARDING_SHOWN)) {
+        if (!db.getBoolean(Constants.ONBOARDING_SHOWN)) {
             /*
             show user on-boarding screen
              */
-            DB.putBoolean(Constants.ONBOARDING_SHOWN, true);
-            Intent intent = new Intent(ActMain.this, ActOnboarding.class);
+            db.putBoolean(Constants.ONBOARDING_SHOWN, true);
+            Intent intent = new Intent(ActMain.this, ActWelcome.class);
             startActivity(intent);
         }
 
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mNavigationDrawerFragment.toggleDrawerState();
-            }
-        });
+        toolbar.setNavigationOnClickListener((v) -> mNavigationDrawerFragment.toggleDrawerState());
         toolbar.inflateMenu(R.menu.act_main);
         ToolbarTitle toolbarTitle = new ToolbarTitle();
         switcherTitle = toolbarTitle.init(switcherTitle, instance);
@@ -175,7 +175,7 @@ public class ActMain extends AppCompatActivity implements FragMain.FragMainCallb
 
     @Override
     public void onGridItemClicked(TileObject tileObject) {
-        if (NetworkUtil.isConnected(this)) {
+        if (networkUtil.isConnected()) {
             Intent intent = new Intent(this, ActDetails.class);
             intent.putExtra(Constants.PARAM_TILE_KEY, tileObject.serialize());
             startActivity(intent);
@@ -285,5 +285,10 @@ public class ActMain extends AppCompatActivity implements FragMain.FragMainCallb
 
         a.setDuration(200);
         v.startAnimation(a);
+    }
+
+    @Override
+    protected void injectComponent(ActivityComponent component) {
+        component.inject(this);
     }
 }

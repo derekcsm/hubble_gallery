@@ -7,12 +7,13 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".base.HubbleApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.derek_s.hubble_gallery.ui.activities.ActMain"
+            android:name=".ui.activities.ActMain"
             android:label="@string/hubble" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +22,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.derek_s.hubble_gallery.ui.activities.ActDetails"
+            android:name=".ui.activities.ActDetails"
             android:label="@string/title_activity_act_details"
-            android:parentActivityName="com.derek_s.hubble_gallery.ui.activities.ActMain" >
+            android:parentActivityName=".ui.activities.ActMain" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.derek_s.hubble_gallery.ui.activities.ActMain" />
@@ -34,8 +35,18 @@
             android:value="86709631566e2c951c17207f1f0c8f7fbd20ccfc" />
 
         <activity
-            android:name="com.derek_s.hubble_gallery.ui.activities.ActOnboarding"
+            android:name=".ui.activities.ActWelcome"
             android:label="@string/title_activity_act_onboarding" >
+        </activity>
+        <activity
+            android:name=".ui.activities.ActImageViewer"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_act_image_viewer"
+            android:parentActivityName=".ui.activities.ActDetails"
+            android:theme="@style/FullscreenTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.derek_s.hubble_gallery.ui.activities.ActDetails" />
         </activity>
     </application>
 

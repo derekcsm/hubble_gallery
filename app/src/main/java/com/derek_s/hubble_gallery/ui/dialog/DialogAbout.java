@@ -12,7 +12,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
-import com.derek_s.hubble_gallery.ui.activities.ActOnboarding;
+import com.derek_s.hubble_gallery.ui.activities.ActWelcome;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 
 /**
@@ -62,7 +62,7 @@ public class DialogAbout {
         tvShowIntro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActMain.instance, ActOnboarding.class);
+                Intent intent = new Intent(ActMain.instance, ActWelcome.class);
                 ActMain.instance.startActivity(intent);
             }
         });
