@@ -25,15 +25,19 @@ import com.derek_s.hubble_gallery.ui.adapters.SectionsAdapter;
 import com.derek_s.hubble_gallery.base.FragBase;
 import com.derek_s.hubble_gallery.ui.activities.ActMain;
 import com.derek_s.hubble_gallery.ui.dialog.DialogAbout;
+import com.derek_s.hubble_gallery.ui.presenters.NavigationPresenter;
+import com.derek_s.hubble_gallery.ui.views.NavigationView;
 import com.derek_s.hubble_gallery.ui.widgets.AnimatedExpandableListView;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class FragNavigationDrawer extends FragBase {
+public class FragNavigationDrawer extends FragBase implements NavigationView {
 
     private static final String SELECTED_POSITIONS = "selected_positions";
     private ActionBarDrawerToggle mDrawerToggle;
@@ -45,6 +49,8 @@ public class FragNavigationDrawer extends FragBase {
     public SectionsAdapter mAdapter;
     private boolean mFromSavedInstanceState;
     public static ArrayList<Integer> mCurSelectedPositions;
+
+    private NavigationPresenter presenter;
 
     public FragNavigationDrawer() {
     }
@@ -80,6 +86,7 @@ public class FragNavigationDrawer extends FragBase {
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
+        presenter = new NavigationPresenter(this);
         context = getActivity();
         if (savedState != null) {
             mCurSelectedPositions = savedState.getIntegerArrayList(SELECTED_POSITIONS);

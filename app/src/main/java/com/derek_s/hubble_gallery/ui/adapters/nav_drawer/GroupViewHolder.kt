@@ -26,7 +26,7 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
     }
 
     fun onBind(item: NavigationAdapterItem<SectionObject>) {
-        //tvTitle.setText(item.getObject().getName())
+        //tvTitle.setText(item.mObject.getName())
     }
 
     companion object {
