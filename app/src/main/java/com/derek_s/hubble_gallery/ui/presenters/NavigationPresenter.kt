@@ -4,7 +4,6 @@ import com.derek_s.hubble_gallery.model.SectionObject
 import com.derek_s.hubble_gallery.ui.adapters.nav_drawer.NavigationAdapterItem
 import com.derek_s.hubble_gallery.ui.views.NavigationView
 import java.util.*
-import javax.inject.Inject
 
 
 class NavigationPresenter constructor(view: NavigationView) {

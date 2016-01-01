@@ -121,7 +121,7 @@ public class FragNavigationDrawer extends FragBase implements NavigationView {
         }
         tvVersionName.setText("BETA V " + pInfo.versionName);
 
-        // footer
+        // footer TODO
         ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.item_footer_nav_drawer, lvMenu, false);
         tvFavorites = (TextView) footer.findViewById(R.id.tv_favorites);
         tvFavorites.setTypeface(FontFactory.getMedium(getActivity()));
@@ -162,6 +162,7 @@ public class FragNavigationDrawer extends FragBase implements NavigationView {
                 dialogAbout.displayDialog();
             }
         });
+        // TODO
 
         mAdapter = new SectionsAdapter(getActivity(), getActivity());
         lvMenu.addFooterView(footer, null, false);

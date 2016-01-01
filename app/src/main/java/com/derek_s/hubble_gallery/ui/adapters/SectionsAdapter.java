@@ -65,7 +65,7 @@ public class SectionsAdapter extends AnimatedExpandableListView.AnimatedExpandab
     }
 
     static class ChildViewHolder {
-        @Bind(R.id.tv_group_child)
+        @Bind(R.id.tv_title)
         TextView tvTitle;
 
         public ChildViewHolder(View view) {
@@ -81,9 +81,9 @@ public class SectionsAdapter extends AnimatedExpandableListView.AnimatedExpandab
         if (view != null) {
             holder = (ChildViewHolder) view.getTag();
         } else {
-            view = inflater.inflate(R.layout.item_group_child, null);
+            view = inflater.inflate(R.layout.item_section, null);
             holder = new ChildViewHolder(view);
-            holder.tvTitle = (TextView) view.findViewById(R.id.tv_group_child);
+            holder.tvTitle = (TextView) view.findViewById(R.id.tv_title);
             view.setTag(holder);
         }
 
