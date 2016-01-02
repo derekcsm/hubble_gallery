@@ -12,7 +12,6 @@ buildscript {
 }
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'io.fabric'
 apply plugin: 'me.tatarka.retrolambda'
 
@@ -79,12 +78,13 @@ android {
 dependencies {
     def supportVersion = "23.1.1"
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    apt "org.projectlombok:lombok:1.16.2"
-    apt 'com.google.dagger:dagger-compiler:2.0.1'
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     provided 'javax.annotation:jsr250-api:1.0'
-    provided "org.projectlombok:lombok:1.16.2"
+    provided "org.projectlombok:lombok:1.16.6"
+
+    kapt "org.projectlombok:lombok:1.16.2"
+    kapt 'com.google.dagger:dagger-compiler:2.0.1'
 
     compile "com.android.support:support-v4:$supportVersion"
     compile "com.android.support:appcompat-v7:$supportVersion"

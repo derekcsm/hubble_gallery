@@ -8,7 +8,6 @@ import android.widget.TextView
 import butterknife.Bind
 import butterknife.ButterKnife
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ChildViewHolder
-import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder
 import com.derek_s.hubble_gallery.R
 import com.derek_s.hubble_gallery.model.SectionObject
 import com.derek_s.hubble_gallery.utils.ui.FontFactory

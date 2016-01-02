@@ -87,26 +87,26 @@ public class SectionsAdapter extends AnimatedExpandableListView.AnimatedExpandab
             view.setTag(holder);
         }
 
-        if (FragNavigationDrawer.mCurSelectedPositions.get(1) == childPosition
-                && FragNavigationDrawer.mCurSelectedPositions.get(0) == groupPosition) {
-            holder.tvTitle.setTextColor(context.getResources().getColor(R.color.seleted_item_color));
-            holder.tvTitle.setBackgroundColor(context.getResources().getColor(R.color.focused_color));
-        } else {
-            holder.tvTitle.setTextColor(context.getResources().getColor(R.color.body_dark_theme));
-            holder.tvTitle.setBackgroundResource(R.drawable.selector_default);
-        }
+//        if (FragNavigationDrawer.mCurSelectedPositions.get(1) == childPosition
+//                && FragNavigationDrawer.mCurSelectedPositions.get(0) == groupPosition) {
+//            holder.tvTitle.setTextColor(context.getResources().getColor(R.color.seleted_item_color));
+//            holder.tvTitle.setBackgroundColor(context.getResources().getColor(R.color.focused_color));
+//        } else {
+//            holder.tvTitle.setTextColor(context.getResources().getColor(R.color.body_dark_theme));
+//            holder.tvTitle.setBackgroundResource(R.drawable.selector_default);
+//        }
 
-        holder.tvTitle.setTypeface(FontFactory.getRegular(context));
-        holder.tvTitle.setText(getChild(groupPosition, childPosition).getSectionTitle());
-        holder.tvTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragNavigationDrawer.updateSelectedItem(groupPosition, childPosition, holder.tvTitle.getText().toString());
-                ActMain.instance.fragMain.loadInitialItems(getChild(groupPosition, childPosition).getQuery());
-                FragNavigationDrawer.closeDrawer();
-                notifyDataSetChanged();
-            }
-        });
+//        holder.tvTitle.setTypeface(FontFactory.getRegular(context));
+//        holder.tvTitle.setText(getChild(groupPosition, childPosition).getSectionTitle());
+//        holder.tvTitle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FragNavigationDrawer.updateSelectedItem(groupPosition, childPosition, holder.tvTitle.getText().toString());
+//                ActMain.instance.fragMain.loadInitialItems(getChild(groupPosition, childPosition).getQuery());
+//                FragNavigationDrawer.closeDrawer();
+//                notifyDataSetChanged();
+//            }
+//        });
 
         return view;
     }
@@ -151,47 +151,47 @@ public class SectionsAdapter extends AnimatedExpandableListView.AnimatedExpandab
             view.setTag(holder);
         }
 
-        if (FragNavigationDrawer.mCurSelectedPositions.get(0) == groupPosition) {
-            holder.tvTitle.setTextColor(context.getResources().getColor(R.color.seleted_item_color));
-            holder.tvTitle.setBackgroundColor(context.getResources().getColor(R.color.focused_color));
-        } else {
-            holder.tvTitle.setTextColor(context.getResources().getColor(R.color.body_dark_theme));
-            holder.tvTitle.setBackgroundResource(R.drawable.selector_default);
-        }
+//        if (FragNavigationDrawer.mCurSelectedPositions.get(0) == groupPosition) {
+//            holder.tvTitle.setTextColor(context.getResources().getColor(R.color.seleted_item_color));
+//            holder.tvTitle.setBackgroundColor(context.getResources().getColor(R.color.focused_color));
+//        } else {
+//            holder.tvTitle.setTextColor(context.getResources().getColor(R.color.body_dark_theme));
+//            holder.tvTitle.setBackgroundResource(R.drawable.selector_default);
+//        }
 
-        holder.tvTitle.setTypeface(FontFactory.getMedium(context));
-        holder.tvTitle.setText(getGroup(groupPosition).getSectionTitle());
-        if (getGroup(groupPosition).getIsExpandable()) {
-            holder.ivExpand.setVisibility(View.VISIBLE);
-            holder.ivExpand.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (isExpanded) {
-                        ActMain.instance.mNavigationDrawerFragment.lvMenu.collapseGroupWithAnimation(groupPosition);
-                    } else {
-                        ActMain.instance.mNavigationDrawerFragment.lvMenu.expandGroupWithAnimation(groupPosition);
-                    }
-                }
-            });
-
-            if (isExpanded) {
-                holder.ivExpand.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_keyboard_arrow_up_white_24dp));
-            } else {
-                holder.ivExpand.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_keyboard_arrow_down_white_24dp));
-            }
-        } else {
-            holder.ivExpand.setVisibility(View.GONE);
-        }
-
-        holder.tvTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActMain.instance.fragMain.loadInitialItems(getGroup(groupPosition).getQuery());
-                FragNavigationDrawer.closeDrawer();
-                FragNavigationDrawer.updateSelectedItem(groupPosition, -1, holder.tvTitle.getText().toString());
-                notifyDataSetChanged();
-            }
-        });
+//        holder.tvTitle.setTypeface(FontFactory.getMedium(context));
+//        holder.tvTitle.setText(getGroup(groupPosition).getSectionTitle());
+//        if (getGroup(groupPosition).getIsExpandable()) {
+//            holder.ivExpand.setVisibility(View.VISIBLE);
+//            holder.ivExpand.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if (isExpanded) {
+//                        ActMain.instance.navDrawer.lvMenu.collapseGroupWithAnimation(groupPosition);
+//                    } else {
+//                        ActMain.instance.navDrawer.lvMenu.expandGroupWithAnimation(groupPosition);
+//                    }
+//                }
+//            });
+//
+//            if (isExpanded) {
+//                holder.ivExpand.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_keyboard_arrow_up_white_24dp));
+//            } else {
+//                holder.ivExpand.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_keyboard_arrow_down_white_24dp));
+//            }
+//        } else {
+//            holder.ivExpand.setVisibility(View.GONE);
+//        }
+//
+//        holder.tvTitle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ActMain.instance.fragMain.loadInitialItems(getGroup(groupPosition).getQuery());
+//                FragNavigationDrawer.closeDrawer();
+//                FragNavigationDrawer.updateSelectedItem(groupPosition, -1, holder.tvTitle.getText().toString());
+//                notifyDataSetChanged();
+//            }
+//        });
 
         return view;
     }

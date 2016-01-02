@@ -47,13 +47,14 @@ public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
     public String mTitle = "";
 
     public FragMain fragMain;
-    public FragNavigationDrawer mNavigationDrawerFragment;
-    private DrawerLayout mDrawerLayout;
+    public FragNavigationDrawer navDrawer;
 
     @Bind(R.id.toolbar)
     public Toolbar toolbar;
     @Bind(R.id.switcher_title)
     TextSwitcher switcherTitle;
+    @Bind(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
 
     @Inject
     TinyDB db;
@@ -67,9 +68,16 @@ public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
         setContentView(R.layout.act_main);
         ButterKnife.bind(this);
 
+        /**
+         * setup navigation drawer
+         */
+        navDrawer = (FragNavigationDrawer)
+                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+        navDrawer.setUp(mDrawerLayout);
+
         if (!db.getBoolean(Constants.ONBOARDING_SHOWN)) {
             /*
-            show user on-boarding screen
+            show user welcome screen
              */
             db.putBoolean(Constants.ONBOARDING_SHOWN, true);
             Intent intent = new Intent(ActMain.this, ActWelcome.class);
@@ -77,7 +85,7 @@ public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
         }
 
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener((v) -> mNavigationDrawerFragment.toggleDrawerState());
+        toolbar.setNavigationOnClickListener((v) -> navDrawer.toggleDrawerState());
         toolbar.inflateMenu(R.menu.act_main);
         ToolbarTitle toolbarTitle = new ToolbarTitle();
         switcherTitle = toolbarTitle.init(switcherTitle, instance);
@@ -86,16 +94,7 @@ public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
             mTitle = savedInstanceState.getString(CUR_TITLE);
         }
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerLayout.setStatusBarBackgroundColor(
-                getResources().getColor(R.color.primary_dark));
 
-        mNavigationDrawerFragment = (FragNavigationDrawer)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragMain = (FragMain) fragmentManager.findFragmentById(R.id.container);
