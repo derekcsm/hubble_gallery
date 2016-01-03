@@ -26,6 +26,7 @@ import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
 import com.derek_s.hubble_gallery.model.TileObject;
 import com.derek_s.hubble_gallery.ui.fragments.FragMain;
 import com.derek_s.hubble_gallery.ui.fragments.FragNavigationDrawer;
+import com.derek_s.hubble_gallery.ui.fragments.NavDrawerListeners;
 import com.derek_s.hubble_gallery.utils.network.NetworkUtil;
 import com.derek_s.hubble_gallery.utils.ui.Toasty;
 import com.derek_s.hubble_gallery.utils.ui.ToolbarTitle;
@@ -33,12 +34,15 @@ import com.github.ksoichiro.android.observablescrollview.ObservableGridView;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.Scrollable;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
+public class ActMain extends ActBase implements FragMain.FragMainCallbacks,
+        NavDrawerListeners {
 
     private String TAG = getClass().getSimpleName();
     public static ActMain instance = null; // TODO remove
@@ -93,7 +97,6 @@ public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
         if (savedInstanceState != null) {
             mTitle = savedInstanceState.getString(CUR_TITLE);
         }
-
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -284,6 +287,12 @@ public class ActMain extends ActBase implements FragMain.FragMainCallbacks {
 
         a.setDuration(200);
         v.startAnimation(a);
+    }
+
+    @NotNull
+    @Override
+    public Toolbar getToolbar() {
+        return toolbar;
     }
 
     @Override

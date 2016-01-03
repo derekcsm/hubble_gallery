@@ -1,5 +1,7 @@
 package com.derek_s.hubble_gallery.ui.fragments;
 
+import android.app.Activity
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
@@ -10,6 +12,7 @@ import android.support.v7.app.ActionBar
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.Toolbar
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +23,11 @@ import com.derek_s.hubble_gallery.R
 import com.derek_s.hubble_gallery.ui.presenters.NavigationPresenter
 import com.derek_s.hubble_gallery.ui.views.NavigationView
 import java.util.*
+
+interface NavDrawerListeners {
+    val toolbar: Toolbar
+        get
+}
 
 class FragNavigationDrawer : Fragment(), NavigationView {
 
@@ -33,6 +41,8 @@ class FragNavigationDrawer : Fragment(), NavigationView {
     @Bind(R.id.rv_drawer)
     lateinit var rvDrawer: RecyclerView
 
+    private var mCallbacks: NavDrawerListeners? = null
+
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
         presenter = NavigationPresenter(this)
@@ -40,6 +50,24 @@ class FragNavigationDrawer : Fragment(), NavigationView {
             mCurSelectedPositions = savedState.getIntegerArrayList(SELECTED_POSITIONS)
         else
             updateSelectedItem(0, -1, "Entire Collection")
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context);
+
+        var act: Activity
+
+        if (context is Activity) {
+            act = context
+            try {
+                mCallbacks = act as NavDrawerListeners
+            } catch (e: ClassCastException) {
+                throw ClassCastException(act.toString() + " must implement listeners")
+            }
+
+        } else {
+            throw ClassCastException("Must be attached to activity & implement listeners")
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -104,12 +132,9 @@ class FragNavigationDrawer : Fragment(), NavigationView {
         mDrawerLayout = drawerLayout
         mDrawerLayout?.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START)
 
-//        val actionBar = actionBar
-//        actionBar.setDisplayHomeAsUpEnabled(true)
-//        actionBar.setHomeButtonEnabled(true)
-
         mDrawerToggle = object : ActionBarDrawerToggle(getActivity(),
                 drawerLayout,
+                mCallbacks!!.toolbar,
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close) {
             override fun onDrawerClosed(drawerView: View) {

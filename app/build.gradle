@@ -52,7 +52,8 @@ android {
                             'src/main/res-details',
                             'src/main/res-navigation',
                             'src/main/res-welcome']
-        main.java.srcDirs += 'src/main/kotlin'
+        main.java.srcDirs = ['src/main/kotlin',
+                            'src/main/java']
     }
 
     packagingOptions {
