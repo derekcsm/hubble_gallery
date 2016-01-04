@@ -3,7 +3,6 @@ package com.derek_s.hubble_gallery.ui.fragments;
 import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
@@ -33,8 +32,7 @@ class FragNavigationDrawer : Fragment(), NavigationView {
     private var mDrawerLayout: DrawerLayout? = null
     private var presenter: NavigationPresenter? = null
 
-    private val SELECTED_POSITIONS = "selected_positions"
-    var mCurSelectedPositions = ArrayList<Int>()
+    //var mCurSelectedPositions = ArrayList<Int>() // TODO new implementation for selection
 
     @Bind(R.id.rv_drawer)
     lateinit var rvDrawer: RecyclerView
@@ -43,18 +41,12 @@ class FragNavigationDrawer : Fragment(), NavigationView {
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
-        presenter = NavigationPresenter(this)
-        if (savedState != null)
-            mCurSelectedPositions = savedState.getIntegerArrayList(SELECTED_POSITIONS)
-        else
-            updateSelectedItem(0, -1, "Entire Collection")
+        presenter = NavigationPresenter(this, getContext())
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context);
-
         var act: Activity
-
         if (context is Activity) {
             act = context
             try {
@@ -91,12 +83,8 @@ class FragNavigationDrawer : Fragment(), NavigationView {
         // lvMenu.addHeaderView(header, null, false);
         // lvMenu.setAdapter(mAdapter);
         // mAdapter.addItems();
-        /*
-     on Lollipop add padding for status bar height
-     */
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            rvDrawer.setPadding(0, statusBarHeight, 0, 0)
-        }
+
+
         //        if (savedInstanceState != null) {
         //            if (mCurSelectedPositions.get(0) === -2) {
         //                tvFavorites.setBackgroundColor(getResources().getColor(R.color.focused_color))
@@ -107,7 +95,6 @@ class FragNavigationDrawer : Fragment(), NavigationView {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putIntegerArrayList(SELECTED_POSITIONS, mCurSelectedPositions)
         super.onSaveInstanceState(outState)
     }
 
@@ -115,16 +102,6 @@ class FragNavigationDrawer : Fragment(), NavigationView {
         super.onConfigurationChanged(newConfig)
         mDrawerToggle?.onConfigurationChanged(newConfig)
     }
-
-    val statusBarHeight: Int
-        get() {
-            var result = 0
-            val resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android")
-            if (resourceId > 0) {
-                result = getResources().getDimensionPixelSize(resourceId)
-            }
-            return result
-        }
 
     fun setUp(drawerLayout: DrawerLayout) {
         mDrawerLayout = drawerLayout
@@ -155,21 +132,12 @@ class FragNavigationDrawer : Fragment(), NavigationView {
         mDrawerLayout?.setDrawerListener(mDrawerToggle)
     }
 
-
     fun openDrawer() {
         mDrawerLayout?.openDrawer(Gravity.LEFT)
     }
 
     fun closeDrawer() {
         mDrawerLayout?.closeDrawer(Gravity.LEFT)
-    }
-
-    fun lockDrawer() {
-        mDrawerLayout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-    }
-
-    fun unlockDrawer() {
-        mDrawerLayout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
     }
 
     val isOpen: Boolean
@@ -188,22 +156,24 @@ class FragNavigationDrawer : Fragment(), NavigationView {
         }
     }
 
-    fun updateSelectedItem(groupPosition: Int, childPosition: Int, title: String) {
+    fun updateSelectedItem(groupPosition: Int, childPosition: Int, title: String) { // TODO
         // if (groupPosition != -2 && tvFavorites != null) {
         // tvFavorites.setBackgroundResource(R.drawable.selector_default);
         // tvFavorites.setTextColor(context.getResources().getColor(R.color.body_dark_theme));
         // }
         /*
-   if childPosition == -1, then there are no children
-   for the group item
-   */
-        mCurSelectedPositions = ArrayList()
-        mCurSelectedPositions.add(0, groupPosition)
-        mCurSelectedPositions.add(1, childPosition)
+        if childPosition == -1, then there are no children
+        for the group item
+        */
+//        mCurSelectedPositions = ArrayList()
+//        mCurSelectedPositions.add(0, groupPosition)
+//        mCurSelectedPositions.add(1, childPosition)
         // ActMain.instance.mTitle = title;
         // ActMain.instance.restoreActionBar();
         // if (ActMain.instance.toolbar != null)
         // ActMain.instance.showToolbar();
     }
 
+    override val recycler: RecyclerView
+        get() = rvDrawer
 }
