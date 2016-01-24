@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import butterknife.*
+import butterknife.Bind
+import butterknife.ButterKnife
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder
 import com.derek_s.hubble_gallery.R
 import com.derek_s.hubble_gallery.model.SectionObject
@@ -25,7 +26,7 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
         tvTitle.setTypeface(FontFactory.getMedium(itemView.getContext()))
     }
 
-    fun onBind(item: NavigationAdapterItem<SectionObject>) {
+    fun onBind(item: SectionAdapterItem<SectionObject>) {
         //tvTitle.setText(item.mObject.getName())
     }
 

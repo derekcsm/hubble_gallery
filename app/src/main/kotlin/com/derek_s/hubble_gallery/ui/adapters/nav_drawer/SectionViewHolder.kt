@@ -26,7 +26,7 @@ class SectionViewHolder private constructor(itemView: View) : ChildViewHolder(it
         tvTitle.setTypeface(FontFactory.getMedium(itemView.getContext()))
     }
 
-    fun onBind(item: NavigationAdapterItem<SectionObject>) {
+    fun onBind(item: SectionAdapterItem<SectionObject>) {
         //tvTitle.setText(item.mObject.getName())
     }
 
