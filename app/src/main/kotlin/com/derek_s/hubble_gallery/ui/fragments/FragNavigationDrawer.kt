@@ -19,161 +19,161 @@ import butterknife.ButterKnife
 import com.derek_s.hubble_gallery.R
 import com.derek_s.hubble_gallery.ui.presenters.NavigationPresenter
 import com.derek_s.hubble_gallery.ui.views.NavigationView
-import java.util.*
 
 interface NavDrawerListeners {
-    val toolbar: Toolbar
-        get
+  val toolbar: Toolbar
+    get
 }
 
 class FragNavigationDrawer : Fragment(), NavigationView {
 
-    private var mDrawerToggle: ActionBarDrawerToggle? = null
-    private var mDrawerLayout: DrawerLayout? = null
-    private var presenter: NavigationPresenter? = null
+  private var mDrawerToggle: ActionBarDrawerToggle? = null
+  private var mDrawerLayout: DrawerLayout? = null
+  private var presenter: NavigationPresenter? = null
 
-    //var mCurSelectedPositions = ArrayList<Int>() // TODO new implementation for selection
+  @Bind(R.id.rv_drawer)
+  lateinit var rvDrawer: RecyclerView
 
-    @Bind(R.id.rv_drawer)
-    lateinit var rvDrawer: RecyclerView
+  private var mCallbacks: NavDrawerListeners? = null
 
-    private var mCallbacks: NavDrawerListeners? = null
+  override fun onCreate(savedState: Bundle?) {
+    super.onCreate(savedState)
+    presenter = NavigationPresenter(this, getContext())
+  }
 
-    override fun onCreate(savedState: Bundle?) {
-        super.onCreate(savedState)
-        presenter = NavigationPresenter(this, getContext())
+  override fun onAttach(context: Context) {
+    super.onAttach(context);
+    var act: Activity
+    if (context is Activity) {
+      act = context
+      try {
+        mCallbacks = act as NavDrawerListeners
+      } catch (e: ClassCastException) {
+        throw ClassCastException(act.toString() + " must implement listeners")
+      }
+
+    } else {
+      throw ClassCastException("Must be attached to activity & implement listeners")
+    }
+  }
+
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                            savedInstanceState: Bundle?): View? {
+
+    val rootView = inflater.inflate(R.layout.frag_nav_drawer, container, false)
+    ButterKnife.bind(this, rootView)
+
+    presenter!!.populateAdapter()
+
+    // header
+    // ViewGroup header = (ViewGroup) inflater.inflate(R.layout.item_header_nav_drawer, lvMenu, false);
+    // TextView tvVersionName = (TextView) header.findViewById(R.id.tv_version_name);
+    // tvVersionName.setTypeface(FontFactory.getCondensedRegular(getActivity()));
+    // PackageInfo pInfo = null;
+    // try {
+    // pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+    // } catch (PackageManager.NameNotFoundException ex) {
+    // ex.printStackTrace();
+    // }
+    // tvVersionName.setText("BETA V " + pInfo.versionName);
+    // adapter TODO
+    // mAdapter = new SectionsAdapter(getActivity(), getActivity());
+    // lvMenu.addFooterView(footer, null, false);
+    // lvMenu.addHeaderView(header, null, false);
+    // lvMenu.setAdapter(mAdapter);
+    // mAdapter.addItems();
+
+
+    //        if (savedInstanceState != null) {
+    //            if (mCurSelectedPositions.get(0) === -2) {
+    //                tvFavorites.setBackgroundColor(getResources().getColor(R.color.focused_color))
+    //                tvFavorites.setTextColor(getResources().getColor(R.color.seleted_item_color))
+    //            }
+    //        }
+    return rootView
+  }
+
+  override fun onSaveInstanceState(outState: Bundle) {
+    super.onSaveInstanceState(outState)
+  }
+
+  override fun onConfigurationChanged(newConfig: Configuration) {
+    super.onConfigurationChanged(newConfig)
+    mDrawerToggle?.onConfigurationChanged(newConfig)
+  }
+
+  fun setUp(drawerLayout: DrawerLayout) {
+    mDrawerLayout = drawerLayout
+    mDrawerLayout?.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START)
+
+    mDrawerToggle = object : ActionBarDrawerToggle(getActivity(),
+        drawerLayout,
+        mCallbacks!!.toolbar,
+        R.string.navigation_drawer_open,
+        R.string.navigation_drawer_close) {
+      override fun onDrawerClosed(drawerView: View) {
+        super.onDrawerClosed(drawerView)
+        if (!isAdded())
+          return
+      }
+
+      override fun onDrawerOpened(drawerView: View) {
+        super.onDrawerOpened(drawerView)
+        if (!isAdded())
+          return
+      }
+    }
+    mDrawerLayout?.post(object : Runnable {
+      public override fun run() {
+        mDrawerToggle?.syncState()
+      }
+    })
+    mDrawerLayout?.setDrawerListener(mDrawerToggle)
+  }
+
+  fun openDrawer() {
+    mDrawerLayout?.openDrawer(Gravity.LEFT)
+  }
+
+  fun closeDrawer() {
+    mDrawerLayout?.closeDrawer(Gravity.LEFT)
+  }
+
+  val isOpen: Boolean
+    get() {
+      if (mDrawerLayout == null)
+        return false
+      else
+        return mDrawerLayout!!.isDrawerOpen(Gravity.LEFT)
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context);
-        var act: Activity
-        if (context is Activity) {
-            act = context
-            try {
-                mCallbacks = act as NavDrawerListeners
-            } catch (e: ClassCastException) {
-                throw ClassCastException(act.toString() + " must implement listeners")
-            }
-
-        } else {
-            throw ClassCastException("Must be attached to activity & implement listeners")
-        }
+  fun toggleDrawerState() {
+    if (isOpen) {
+      closeDrawer()
+    } else {
+      openDrawer()
     }
+  }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+  fun updateSelectedItem(groupPosition: Int, childPosition: Int, title: String) {
+    // TODO
+    // if (groupPosition != -2 && tvFavorites != null) {
+    // tvFavorites.setBackgroundResource(R.drawable.selector_default);
+    // tvFavorites.setTextColor(context.getResources().getColor(R.color.body_dark_theme));
+    // }
+    /*
+    if childPosition == -1, then there are no children
+    for the group item
+    */
+    //        mCurSelectedPositions = ArrayList()
+    //        mCurSelectedPositions.add(0, groupPosition)
+    //        mCurSelectedPositions.add(1, childPosition)
+    // ActMain.instance.mTitle = title;
+    // ActMain.instance.restoreActionBar();
+    // if (ActMain.instance.toolbar != null)
+    // ActMain.instance.showToolbar();
+  }
 
-        val rootView = inflater.inflate(R.layout.frag_nav_drawer, container, false)
-        ButterKnife.bind(this, rootView)
-
-        // header
-        // ViewGroup header = (ViewGroup) inflater.inflate(R.layout.item_header_nav_drawer, lvMenu, false);
-        // TextView tvVersionName = (TextView) header.findViewById(R.id.tv_version_name);
-        // tvVersionName.setTypeface(FontFactory.getCondensedRegular(getActivity()));
-        // PackageInfo pInfo = null;
-        // try {
-        // pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-        // } catch (PackageManager.NameNotFoundException ex) {
-        // ex.printStackTrace();
-        // }
-        // tvVersionName.setText("BETA V " + pInfo.versionName);
-        // adapter TODO
-        // mAdapter = new SectionsAdapter(getActivity(), getActivity());
-        // lvMenu.addFooterView(footer, null, false);
-        // lvMenu.addHeaderView(header, null, false);
-        // lvMenu.setAdapter(mAdapter);
-        // mAdapter.addItems();
-
-
-        //        if (savedInstanceState != null) {
-        //            if (mCurSelectedPositions.get(0) === -2) {
-        //                tvFavorites.setBackgroundColor(getResources().getColor(R.color.focused_color))
-        //                tvFavorites.setTextColor(getResources().getColor(R.color.seleted_item_color))
-        //            }
-        //        }
-        return rootView
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        mDrawerToggle?.onConfigurationChanged(newConfig)
-    }
-
-    fun setUp(drawerLayout: DrawerLayout) {
-        mDrawerLayout = drawerLayout
-        mDrawerLayout?.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START)
-
-        mDrawerToggle = object : ActionBarDrawerToggle(getActivity(),
-                drawerLayout,
-                mCallbacks!!.toolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close) {
-            override fun onDrawerClosed(drawerView: View) {
-                super.onDrawerClosed(drawerView)
-                if (!isAdded())
-                    return
-            }
-
-            override fun onDrawerOpened(drawerView: View) {
-                super.onDrawerOpened(drawerView)
-                if (!isAdded())
-                    return
-            }
-        }
-        mDrawerLayout?.post(object : Runnable {
-            public override fun run() {
-                mDrawerToggle?.syncState()
-            }
-        })
-        mDrawerLayout?.setDrawerListener(mDrawerToggle)
-    }
-
-    fun openDrawer() {
-        mDrawerLayout?.openDrawer(Gravity.LEFT)
-    }
-
-    fun closeDrawer() {
-        mDrawerLayout?.closeDrawer(Gravity.LEFT)
-    }
-
-    val isOpen: Boolean
-        get() {
-            if (mDrawerLayout == null)
-                return false
-            else
-                return mDrawerLayout!!.isDrawerOpen(Gravity.LEFT)
-        }
-
-    fun toggleDrawerState() {
-        if (isOpen) {
-            closeDrawer()
-        } else {
-            openDrawer()
-        }
-    }
-
-    fun updateSelectedItem(groupPosition: Int, childPosition: Int, title: String) { // TODO
-        // if (groupPosition != -2 && tvFavorites != null) {
-        // tvFavorites.setBackgroundResource(R.drawable.selector_default);
-        // tvFavorites.setTextColor(context.getResources().getColor(R.color.body_dark_theme));
-        // }
-        /*
-        if childPosition == -1, then there are no children
-        for the group item
-        */
-//        mCurSelectedPositions = ArrayList()
-//        mCurSelectedPositions.add(0, groupPosition)
-//        mCurSelectedPositions.add(1, childPosition)
-        // ActMain.instance.mTitle = title;
-        // ActMain.instance.restoreActionBar();
-        // if (ActMain.instance.toolbar != null)
-        // ActMain.instance.showToolbar();
-    }
-
-    override val recycler: RecyclerView
-        get() = rvDrawer
+  override val recycler: RecyclerView
+    get() = rvDrawer
 }

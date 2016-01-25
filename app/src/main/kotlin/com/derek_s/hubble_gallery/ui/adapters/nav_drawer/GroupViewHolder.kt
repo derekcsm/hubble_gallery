@@ -14,26 +14,26 @@ import com.derek_s.hubble_gallery.utils.ui.FontFactory
 
 class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(itemView) {
 
-    @Bind(R.id.tv_group_title)
-    lateinit var tvTitle: TextView
+  @Bind(R.id.tv_group_title)
+  lateinit var tvTitle: TextView
 
-    init {
-        ButterKnife.bind(this, itemView)
-        beautifyViews()
-    }
+  init {
+    ButterKnife.bind(this, itemView)
+    beautifyViews()
+  }
 
-    fun beautifyViews() {
-        tvTitle.setTypeface(FontFactory.getMedium(itemView.getContext()))
-    }
+  fun beautifyViews() {
+    tvTitle.setTypeface(FontFactory.getMedium(itemView.getContext()))
+  }
 
-    fun onBind(item: SectionAdapterItem<SectionObject>) {
-        //tvTitle.setText(item.mObject.getName())
-    }
+  fun onBind(item: NavigationAdapterItem<SectionObject>) {
+    tvTitle.setText("testing group")
+  }
 
-    companion object {
-        fun create(context: Context, viewGroup: ViewGroup): GroupViewHolder {
-            return GroupViewHolder(LayoutInflater.from(context).inflate(R.layout.item_group,
-                    viewGroup, false))
-        }
+  companion object {
+    fun create(context: Context, viewGroup: ViewGroup): GroupViewHolder {
+      return GroupViewHolder(LayoutInflater.from(context).inflate(R.layout.item_group,
+          viewGroup, false))
     }
+  }
 }
