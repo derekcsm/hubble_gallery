@@ -2,12 +2,9 @@ package com.derek_s.hubble_gallery.base;
 
 import android.app.Application;
 
-import com.crashlytics.android.Crashlytics;
 import com.derek_s.hubble_gallery.internal.di.AppComponent;
 import com.derek_s.hubble_gallery.internal.di.AppModule;
 import com.derek_s.hubble_gallery.internal.di.DaggerAppComponent;
-
-import io.fabric.sdk.android.Fabric;
 
 public class HubbleApplication extends Application {
 
@@ -17,7 +14,6 @@ public class HubbleApplication extends Application {
     public void onCreate() {
         super.onCreate();
         this.initializeInjector();
-        Fabric.with(this, new Crashlytics());
     }
 
     private void initializeInjector() {
