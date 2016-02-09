@@ -28,13 +28,13 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) {
 
     var section = SectionObject()
     // Standalone
-    section.sectionTitle = "Entire Collection"
-    section.query = "entire"
-    drawerItems.add(NavigationAdapterItem(section, NavigationAdapterItem.STANDALONE_SECTION))
-
-    section.sectionTitle = "Hubble Heritage"
-    section.query = "heritage"
-    drawerItems.add(NavigationAdapterItem(section, NavigationAdapterItem.STANDALONE_SECTION))
+//    section.sectionTitle = "Entire Collection"
+//    section.query = "entire"
+//    drawerItems.add(NavigationAdapterItem(section, NavigationAdapterItem.STANDALONE_SECTION))
+//
+//    section.sectionTitle = "Hubble Heritage"
+//    section.query = "heritage"
+//    drawerItems.add(NavigationAdapterItem(section, NavigationAdapterItem.STANDALONE_SECTION))
 
     //Groups TODO
     section.sectionTitle = "The Universe"
