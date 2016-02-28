@@ -26,20 +26,22 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) {
 
     // TODO header here
 
-    var section = SectionObject()
     // Standalone
-    section.sectionTitle = "Entire Collection"
-    section.query = "entire"
-    drawerItems.add(NavigationAdapterItem(section, NavigationAdapterItem.STANDALONE_SECTION))
+    var entireSection = SectionObject()
+    entireSection.sectionTitle = "Entire Collection"
+    entireSection.query = "entire"
+    drawerItems.add(NavigationAdapterItem(entireSection, NavigationAdapterItem.STANDALONE_SECTION))
 
-    section.sectionTitle = "Hubble Heritage"
-    section.query = "heritage"
-    drawerItems.add(NavigationAdapterItem(section, NavigationAdapterItem.STANDALONE_SECTION))
+    var heritageSection = SectionObject()
+    heritageSection.sectionTitle = "Hubble Heritage"
+    heritageSection.query = "heritage"
+    drawerItems.add(NavigationAdapterItem(heritageSection, NavigationAdapterItem.STANDALONE_SECTION))
 
     //Groups TODO
-    section.sectionTitle = "The Universe"
-    section.query = "the_universe"
-    drawerItems.add(NavigationAdapterItem(section, NavigationAdapterItem.GROUP))
+    var universeGroup = SectionObject()
+    universeGroup.sectionTitle = "The Universe"
+    universeGroup.query = "the_universe"
+    drawerItems.add(NavigationAdapterItem(universeGroup, NavigationAdapterItem.GROUP))
 
     // TODO footer below groups
 
