@@ -26,12 +26,15 @@ class NavDrawerAdapter(context: Context, parentItemList: ArrayList<ParentListIte
     when (viewType) {
 
       NavigationAdapterItem.GROUP.toInt() -> {
-        val pvh = GroupViewHolder.create(mContext, viewGroup)
-        return pvh
+        return GroupViewHolder.create(mContext, viewGroup)
       }
 
       NavigationAdapterItem.SECTION.toInt() -> {
         return SectionViewHolder.create(mContext, viewGroup)
+      }
+
+      NavigationAdapterItem.STANDALONE_SECTION.toInt() -> {
+        return StandaloneSectionViewHolder.create(mContext, viewGroup)
       }
 
       else -> throw IllegalStateException("Incorrect ViewType found")
@@ -44,6 +47,8 @@ class NavDrawerAdapter(context: Context, parentItemList: ArrayList<ParentListIte
     if (holder is GroupViewHolder) {
       holder.onBind(currentItem)
     } else if (holder is SectionViewHolder) {
+      holder.onBind(currentItem)
+    } else if (holder is StandaloneSectionViewHolder) {
       holder.onBind(currentItem)
     } else {
       super.onBindViewHolder(holder, position)

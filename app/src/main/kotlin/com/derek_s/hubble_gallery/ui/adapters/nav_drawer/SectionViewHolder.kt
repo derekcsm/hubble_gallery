@@ -14,7 +14,7 @@ import com.derek_s.hubble_gallery.utils.ui.FontFactory
 
 class SectionViewHolder private constructor(itemView: View) : ChildViewHolder(itemView) {
 
-    @Bind(R.id.tv_group_title)
+    @Bind(R.id.tv_title)
     lateinit var tvTitle: TextView
 
     init {
