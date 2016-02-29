@@ -26,7 +26,7 @@ class StandaloneSectionViewHolder private constructor(itemView: View) : ParentVi
   }
 
   fun onBind(item: NavigationAdapterItem<SectionObject>) {
-    var section:SectionObject = item.`object` as SectionObject
+    var section: SectionObject = item.`object` as SectionObject
 
     tvTitle.setText(section.sectionTitle)
   }

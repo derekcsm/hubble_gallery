@@ -43,8 +43,6 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) {
     universeGroup.query = "the_universe"
     drawerItems.add(NavigationAdapterItem(universeGroup, NavigationAdapterItem.GROUP))
 
-
-
     // TODO footer below groups
 
     mAdapter = NavDrawerAdapter(context, drawerItems)

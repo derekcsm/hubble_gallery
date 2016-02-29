@@ -11,11 +11,8 @@ import android.widget.TextView;
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.model.SectionChildObject;
 import com.derek_s.hubble_gallery.model.SectionObject;
-import com.derek_s.hubble_gallery.ui.activities.ActMain;
-import com.derek_s.hubble_gallery.ui.fragments.FragNavigationDrawer;
 import com.derek_s.hubble_gallery.ui.widgets.AnimatedExpandableListView;
 import com.derek_s.hubble_gallery.utils.NavDataUtils;
-import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
