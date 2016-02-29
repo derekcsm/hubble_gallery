@@ -27,7 +27,9 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
   }
 
   fun onBind(item: NavigationAdapterItem<SectionObject>) {
-    tvTitle.setText("testing group")
+    var section:SectionObject = item.`object` as SectionObject
+
+    tvTitle.setText(section.sectionTitle)
   }
 
   companion object {

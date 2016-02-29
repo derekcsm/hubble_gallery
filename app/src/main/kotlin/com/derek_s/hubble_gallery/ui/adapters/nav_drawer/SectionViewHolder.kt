@@ -27,7 +27,9 @@ class SectionViewHolder private constructor(itemView: View) : ChildViewHolder(it
     }
 
     fun onBind(item: NavigationAdapterItem<SectionObject>) {
-        //tvTitle.setText(item.mObject.getName())
+        var section:SectionObject = item.`object` as SectionObject
+
+        tvTitle.setText(section.sectionTitle)
     }
 
     companion object {
