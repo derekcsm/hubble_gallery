@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher.ViewFactory;
 
 import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery.ui.activities.ActMain;
+import com.derek_s.hubble_gallery.nav_drawer.ui.activities.ActMain;
 
 /**
  * Created by dereksmith on 15-05-17.

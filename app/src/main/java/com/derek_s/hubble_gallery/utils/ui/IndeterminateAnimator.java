@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.derek_s.hubble_gallery.ui.widgets.CircleProgressView;
+import com.derek_s.hubble_gallery.nav_drawer.ui.widgets.CircleProgressView;
 
 /**
  * Created by dereksmith on 15-03-22.

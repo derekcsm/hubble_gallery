@@ -2,8 +2,8 @@ package com.derek_s.hubble_gallery.api;
 
 import android.os.AsyncTask;
 
-import com.derek_s.hubble_gallery.model.TileObject;
-import com.derek_s.hubble_gallery.ui.fragments.FragMain;
+import com.derek_s.hubble_gallery._shared.model.TileObject;
+import com.derek_s.hubble_gallery.nav_drawer.fragments.FragMain;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

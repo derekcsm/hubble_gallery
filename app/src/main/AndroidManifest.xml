@@ -13,7 +13,7 @@
     android:label="@string/app_name"
     android:theme="@style/AppTheme">
     <activity
-      android:name=".ui.activities.ActMain"
+      android:name=".nav_drawer.ui.activities.ActMain"
       android:label="@string/hubble">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
@@ -22,12 +22,12 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".ui.activities.ActDetails"
+      android:name=".nav_drawer.ui.activities.ActDetails"
       android:label="@string/title_activity_act_details"
-      android:parentActivityName=".ui.activities.ActMain">
+      android:parentActivityName=".nav_drawer.ui.activities.ActMain">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value="com.derek_s.hubble_gallery.ui.activities.ActMain"/>
+        android:value=".nav_drawer.ui.activities.ActMain"/>
     </activity>
 
     <meta-data
@@ -35,18 +35,18 @@
       android:value="86709631566e2c951c17207f1f0c8f7fbd20ccfc"/>
 
     <activity
-      android:name=".ui.activities.ActWelcome"
+      android:name=".nav_drawer.ui.activities.ActWelcome"
       android:label="@string/title_activity_act_onboarding">
     </activity>
     <activity
-      android:name=".ui.activities.ActImageViewer"
+      android:name=".nav_drawer.ui.activities.ActImageViewer"
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:label="@string/title_activity_act_image_viewer"
-      android:parentActivityName=".ui.activities.ActDetails"
+      android:parentActivityName=".nav_drawer.ui.activities.ActDetails"
       android:theme="@style/FullscreenTheme">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value="com.derek_s.hubble_gallery.ui.activities.ActDetails"/>
+        android:value=".nav_drawer.ui.activities.ActDetails"/>
     </activity>
   </application>
 

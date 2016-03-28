@@ -1,8 +1,8 @@
 package com.derek_s.hubble_gallery.utils;
 
+import com.derek_s.hubble_gallery._shared.model.TileObject;
+import com.derek_s.hubble_gallery._shared.model.Tiles;
 import com.derek_s.hubble_gallery.base.TinyDB;
-import com.derek_s.hubble_gallery.model.TileObject;
-import com.derek_s.hubble_gallery.model.Tiles;
 
 import java.util.ArrayList;
 

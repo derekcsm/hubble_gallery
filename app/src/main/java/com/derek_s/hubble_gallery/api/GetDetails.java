@@ -3,7 +3,7 @@ package com.derek_s.hubble_gallery.api;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.derek_s.hubble_gallery.model.DetailsObject;
+import com.derek_s.hubble_gallery._shared.model.DetailsObject;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

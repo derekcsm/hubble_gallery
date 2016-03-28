@@ -2,10 +2,10 @@ package com.derek_s.hubble_gallery.internal.di;
 
 import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.base.FragBase;
-import com.derek_s.hubble_gallery.ui.activities.ActDetails;
-import com.derek_s.hubble_gallery.ui.activities.ActImageViewer;
-import com.derek_s.hubble_gallery.ui.activities.ActMain;
-import com.derek_s.hubble_gallery.ui.activities.ActWelcome;
+import com.derek_s.hubble_gallery.nav_drawer.ui.activities.ActDetails;
+import com.derek_s.hubble_gallery.nav_drawer.ui.activities.ActImageViewer;
+import com.derek_s.hubble_gallery.nav_drawer.ui.activities.ActMain;
+import com.derek_s.hubble_gallery.nav_drawer.ui.activities.ActWelcome;
 
 import dagger.Component;
 
