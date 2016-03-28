@@ -17,15 +17,15 @@ import dagger.Component;
 @Component(dependencies = {AppComponent.class})
 public interface ActivityComponent {
 
-    void inject(ActBase app);
+  void inject(ActBase app);
 
-    void inject(ActDetails app);
+  void inject(ActDetails app);
 
-    void inject(ActMain app);
+  void inject(ActMain app);
 
-    void inject(ActImageViewer app);
+  void inject(ActImageViewer app);
 
-    void inject(ActWelcome app);
+  void inject(ActWelcome app);
 
-    void inject(FragBase app);
+  void inject(FragBase app);
 }

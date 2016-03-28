@@ -18,19 +18,19 @@ import dagger.Component;
 @Component(modules = {AppModule.class})
 public interface AppComponent {
 
-    Context context();
+  Context context();
 
-    Resources resources();
+  Resources resources();
 
-    ConnectivityManager provideConnectivityManager();
+  ConnectivityManager provideConnectivityManager();
 
-    NetworkUtil provideNetworkUtil();
+  NetworkUtil provideNetworkUtil();
 
-    TinyDB provideTinyDB();
+  TinyDB provideTinyDB();
 
-    DetailsPresenter provideActDetailsPresenter();
+  DetailsPresenter provideActDetailsPresenter();
 
-    FavoriteUtils provideFavoriteUtils();
+  FavoriteUtils provideFavoriteUtils();
 
-    void inject(HubbleApplication app);
+  void inject(HubbleApplication app);
 }

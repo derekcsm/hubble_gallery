@@ -14,7 +14,6 @@ buildscript {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'io.fabric'
-apply plugin: 'me.tatarka.retrolambda'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -45,16 +44,6 @@ android {
         release {
             minifyEnabled false
         }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    dexOptions {
-        javaMaxHeapSize "4g"
-        incremental = false
     }
 
     sourceSets {
@@ -95,16 +84,17 @@ dependencies {
     compile "com.android.support:palette-v7:$android_support_version"
     compile "com.android.support:multidex:$multidex_version"
 
-    // kotlin
+    // kotlin related
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    provided "org.glassfish:javax.annotation:$javaxannotations_version"
 
     // general
+    compile "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    compile "com.squareup.picasso:picasso:$picasso_version"
     compile "com.jakewharton:butterknife:$butterknife_version"
     kapt "com.jakewharton:butterknife:$butterknife_version"
-    compile "com.google.dagger:dagger:$dagger_version"
     compile "com.google.code.gson:gson:$gson_version"
+    compile "com.squareup.picasso:picasso:$picasso_version"
     compile "com.nineoldandroids:library:$nineoldandroids_version"
     provided "javax.annotation:jsr250-api:$jsr250_version"
     provided "org.projectlombok:lombok:$lombok_version"

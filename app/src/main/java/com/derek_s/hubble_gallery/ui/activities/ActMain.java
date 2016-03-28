@@ -89,7 +89,12 @@ public class ActMain extends ActBase implements FragMain.FragMainCallbacks,
         }
 
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener((v) -> navDrawer.toggleDrawerState());
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navDrawer.toggleDrawerState();
+            }
+        });
         toolbar.inflateMenu(R.menu.act_main);
         ToolbarTitle toolbarTitle = new ToolbarTitle();
         switcherTitle = toolbarTitle.init(switcherTitle, instance);

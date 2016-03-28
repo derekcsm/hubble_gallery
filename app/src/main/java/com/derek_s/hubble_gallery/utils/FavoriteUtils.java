@@ -27,7 +27,7 @@ public class FavoriteUtils {
       currentFaves = new Tiles();
 
     if (currentFaves.getTiles() == null)
-      currentFaves.setTiles(new ArrayList<>());
+      currentFaves.setTiles(new ArrayList<TileObject>());
 
     currentFaves.getTiles().add(tileObject);
 
