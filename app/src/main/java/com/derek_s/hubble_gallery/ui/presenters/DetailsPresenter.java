@@ -68,8 +68,12 @@ public class DetailsPresenter {
 
     if (savedState != null) {
       loadImage(tileObject.getSrc());
-      view.getScrollView().post(() ->
-          view.getScrollView().scrollTo(0, scrollYPos));
+      view.getScrollView().post(new Runnable() {
+        @Override
+        public void run() {
+          view.getScrollView().scrollTo(0, scrollYPos);
+        }
+      });
 
       if (detailsObject == null) {
         loadPage();
@@ -99,22 +103,25 @@ public class DetailsPresenter {
 
   private void getDetails() {
     final GetDetails getDetails = new GetDetails(tileObject.getHref());
-    getDetails.setGetDetailsCompleteListener((result, newsUrl) -> {
-      detailsObject = result;
-      String description = detailsObject.getDescription();
-      if (description != null) {
-        /**
-         * Note this is sometimes suffixed at the end of image descriptions, but it doesn't
-         * make sense to say in the app so we trim it out here
-         */
-        description = description.replace("To access available information and downloadable versions " +
-            "of images in this news release, click on any of the images below:", "");
+    getDetails.setGetDetailsCompleteListener(new GetDetails.OnTaskComplete() {
+      @Override
+      public void setTaskComplete(DetailsObject result, String newsUrl) {
+        detailsObject = result;
+        String description = detailsObject.getDescription();
+        if (description != null) {
+          /**
+           * Note this is sometimes suffixed at the end of image descriptions, but it doesn't
+           * make sense to say in the app so we trim it out here
+           */
+          description = description.replace("To access available information and downloadable versions " +
+              "of images in this news release, click on any of the images below:", "");
 
-        detailsObject.setDescription(description);
-        view.populateDetails(detailsObject);
-        view.showLoadingAnimation(false, 1);
-      } else {
-        view.showZeroState(true);
+          detailsObject.setDescription(description);
+          view.populateDetails(detailsObject);
+          view.showLoadingAnimation(false, 1);
+        } else {
+          view.showZeroState(true);
+        }
       }
     });
     getDetails.execute();

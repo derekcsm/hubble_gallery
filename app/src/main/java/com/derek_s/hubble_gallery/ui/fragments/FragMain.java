@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -136,9 +137,12 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
       }
     });
 
-    gvMain.setOnItemClickListener((parent, view, position, id) -> {
-      if (mCallbacks != null) {
-        mCallbacks.onGridItemClicked(mAdapter.getItem(position));
+    gvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (mCallbacks != null) {
+          mCallbacks.onGridItemClicked(mAdapter.getItem(position));
+        }
       }
     });
 
@@ -162,18 +166,21 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
     currentQuery = query;
     final GetAlbum getAlbum = new GetAlbum(loadAmount, 1, query, hiRes);
     getAlbum.execute();
-    getAlbum.setGetAlbumCompleteListener((result) -> {
-      isLoading = false;
-                /*
-                scroll to the top (aka position 0)
-                */
-      gvMain.smoothScrollToPositionFromTop(0, 0);
-      if (result == null || result.size() == 0) {
-        showZeroState(true);
-      } else {
-        mAdapter.addItems(result);
-        canLoadMore = (result.size() == loadAmount);
-        showLoadingAnimation(false);
+    getAlbum.setGetAlbumCompleteListener(new GetAlbum.OnTaskComplete() {
+      @Override
+      public void setTaskComplete(ArrayList<TileObject> result) {
+        isLoading = false;
+        /*
+         scroll to the top (aka position 0)
+         */
+        gvMain.smoothScrollToPositionFromTop(0, 0);
+        if (result == null || result.size() == 0) {
+          showZeroState(true);
+        } else {
+          mAdapter.addItems(result);
+          canLoadMore = (result.size() == loadAmount);
+          showLoadingAnimation(false);
+        }
       }
     });
   }
@@ -243,7 +250,12 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
         // bad connection
         tvRetry.setVisibility(View.VISIBLE);
         tvZeroTitle.setText(R.string.no_connection);
-        tvRetry.setOnClickListener((v) -> loadInitialItems(currentQuery));
+        tvRetry.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            loadInitialItems(currentQuery);
+          }
+        });
       }
 
       showSquareFlipper(false);
