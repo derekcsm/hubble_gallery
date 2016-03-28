@@ -1,14 +1,11 @@
 package com.derek_s.hubble_gallery.utils;
 
-import com.derek_s.hubble_gallery._shared.model.SectionChildObject;
+import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject;
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by dereksmith on 15-03-05.
- */
 public class NavDataUtils {
 
     public static ArrayList<SectionObject> addAllGroups() {

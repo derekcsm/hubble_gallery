@@ -23,13 +23,17 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
   }
 
   fun beautifyViews() {
-    tvTitle.setTypeface(FontFactory.getMedium(itemView.getContext()))
+    tvTitle.typeface = FontFactory.getMedium(itemView.context)
   }
 
-  fun onBind(item: NavigationAdapterItem<SectionObject>) {
+  fun onBind(item: NavigationAdapterItem<SectionObject>, listener: NavDrawerAdapter.NavAdapterListener) {
     var section: SectionObject = item.`object` as SectionObject
 
-    tvTitle.setText(section.sectionTitle)
+    tvTitle.text = section.sectionTitle
+
+    tvTitle.setOnClickListener {
+      listener.onSectionClicked(section)
+    }
   }
 
   companion object {

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery._shared.model.SectionChildObject;
+import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject;
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionObject;
 import com.derek_s.hubble_gallery.nav_drawer.ui.widgets.AnimatedExpandableListView;
 import com.derek_s.hubble_gallery.utils.NavDataUtils;
@@ -20,9 +20,6 @@ import java.util.HashMap;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by dereksmith on 15-03-05.
- */
 public class SectionsAdapter extends AnimatedExpandableListView.AnimatedExpandableListAdapter {
 
     public static String TAG = "SectionsAdapter";

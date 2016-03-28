@@ -12,7 +12,7 @@ import com.derek_s.hubble_gallery.utils.ui.FontFactory
 
 class StandaloneSectionViewHolder private constructor(itemView: View) : ParentViewHolder(itemView) {
 
- // @Bind(R.id.tv_title)
+  // @Bind(R.id.tv_title)
   lateinit var tvTitle: TextView
 
   init {
@@ -25,10 +25,14 @@ class StandaloneSectionViewHolder private constructor(itemView: View) : ParentVi
     tvTitle.typeface = FontFactory.getMedium(itemView.context)
   }
 
-  fun onBind(item: NavigationAdapterItem<SectionObject>) {
+  fun onBind(item: NavigationAdapterItem<SectionObject>, listener: NavDrawerAdapter.NavAdapterListener) {
     var section: SectionObject = item.`object` as SectionObject
 
     tvTitle.setText(section.sectionTitle)
+
+    tvTitle.setOnClickListener {
+      listener.onSectionClicked(section)
+    }
   }
 
   companion object {
