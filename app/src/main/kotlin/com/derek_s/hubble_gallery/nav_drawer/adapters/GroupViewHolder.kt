@@ -6,8 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import butterknife.Bind
-import butterknife.ButterKnife
+import butterknife.bindView
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder
 import com.derek_s.hubble_gallery.R
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionObject
@@ -15,13 +14,10 @@ import com.derek_s.hubble_gallery.utils.ui.FontFactory
 
 class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(itemView) {
 
-  @Bind(R.id.tv_group_title)
-  lateinit var tvTitle: TextView
-  @Bind(R.id.iv_expand)
-  lateinit var ivExpand: ImageView
+  val tvTitle: TextView by bindView(R.id.tv_title)
+  val ivExpand: ImageView by bindView(R.id.iv_expand)
 
   init {
-    ButterKnife.bind(this, itemView)
     beautifyViews()
   }
 

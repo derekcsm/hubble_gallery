@@ -5,7 +5,7 @@
                 android:layout_height="48dp">
 
     <TextView
-        android:id="@+id/tv_group_title"
+        android:id="@+id/tv_title"
         style="@style/text_body1_dark"
         android:layout_width="match_parent"
         android:layout_height="48dp"

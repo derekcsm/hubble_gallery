@@ -5,8 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import butterknife.Bind
-import butterknife.ButterKnife
+import butterknife.bindView
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ChildViewHolder
 import com.derek_s.hubble_gallery.R
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionObject
@@ -14,11 +13,9 @@ import com.derek_s.hubble_gallery.utils.ui.FontFactory
 
 class SectionViewHolder private constructor(itemView: View) : ChildViewHolder(itemView) {
 
-  @Bind(R.id.tv_title)
-  lateinit var tvTitle: TextView
+  val tvTitle: TextView by bindView(R.id.tv_title)
 
   init {
-    ButterKnife.bind(this, itemView)
     beautifyViews()
   }
 

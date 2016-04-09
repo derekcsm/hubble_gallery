@@ -123,7 +123,7 @@ public class SectionsAdapter extends AnimatedExpandableListView.AnimatedExpandab
     static class GroupViewHolder {
         @Bind(R.id.iv_expand)
         ImageView ivExpand;
-        @Bind(R.id.tv_group_title)
+        @Bind(R.id.tv_title)
         TextView tvTitle;
 
         public GroupViewHolder(View view) {
@@ -141,7 +141,7 @@ public class SectionsAdapter extends AnimatedExpandableListView.AnimatedExpandab
             view = inflater.inflate(R.layout.item_group, null);
             holder = new GroupViewHolder(view);
             holder.ivExpand = (ImageView) view.findViewById(R.id.iv_expand);
-            holder.tvTitle = (TextView) view.findViewById(R.id.tv_group_title);
+            holder.tvTitle = (TextView) view.findViewById(R.id.tv_title);
             view.setTag(holder);
         }
 
