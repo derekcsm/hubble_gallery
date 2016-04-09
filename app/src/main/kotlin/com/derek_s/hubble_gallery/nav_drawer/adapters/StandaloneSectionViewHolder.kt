@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import butterknife.Bind
+import butterknife.ButterKnife
+import butterknife.bindView
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder
 import com.derek_s.hubble_gallery.R
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionObject
@@ -12,12 +15,9 @@ import com.derek_s.hubble_gallery.utils.ui.FontFactory
 
 class StandaloneSectionViewHolder private constructor(itemView: View) : ParentViewHolder(itemView) {
 
-  // @Bind(R.id.tv_title)
-  lateinit var tvTitle: TextView
+  val tvTitle: TextView by bindView(R.id.tv_title)
 
   init {
-    tvTitle = itemView.findViewById(R.id.tv_title) as TextView
-    //ButterKnife.bind(this, itemView)
     beautifyViews()
   }
 
@@ -25,10 +25,10 @@ class StandaloneSectionViewHolder private constructor(itemView: View) : ParentVi
     tvTitle.typeface = FontFactory.getMedium(itemView.context)
   }
 
-  fun onBind(item: NavigationAdapterItem<SectionObject>, listener: NavDrawerAdapter.NavAdapterListener) {
+  fun onBind(item: NavigationAdapterItem<*>, listener: NavDrawerAdapter.NavAdapterListener) {
     var section: SectionObject = item.`object` as SectionObject
 
-    tvTitle.setText(section.sectionTitle)
+    tvTitle.text = section.sectionTitle
 
     tvTitle.setOnClickListener {
       listener.onSectionClicked(section)

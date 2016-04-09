@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import butterknife.Bind
 import butterknife.ButterKnife
@@ -16,6 +17,8 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
 
   @Bind(R.id.tv_group_title)
   lateinit var tvTitle: TextView
+  @Bind(R.id.iv_expand)
+  lateinit var ivExpand: ImageView
 
   init {
     ButterKnife.bind(this, itemView)
@@ -26,7 +29,7 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
     tvTitle.typeface = FontFactory.getMedium(itemView.context)
   }
 
-  fun onBind(item: NavigationAdapterItem<SectionObject>, listener: NavDrawerAdapter.NavAdapterListener) {
+  fun onBind(item: NavigationAdapterItem<*>, listener: NavDrawerAdapter.NavAdapterListener) {
     var section: SectionObject = item.`object` as SectionObject
 
     tvTitle.text = section.sectionTitle
@@ -34,6 +37,18 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
     tvTitle.setOnClickListener {
       listener.onSectionClicked(section)
     }
+
+    ivExpand.setOnClickListener {
+      if (isExpanded()) {
+        collapseView()
+      } else {
+        expandView()
+      }
+    }
+  }
+
+  override fun shouldItemViewClickToggleExpansion(): Boolean {
+    return false
   }
 
   companion object {
@@ -42,4 +57,6 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
           viewGroup, false))
     }
   }
+
+
 }

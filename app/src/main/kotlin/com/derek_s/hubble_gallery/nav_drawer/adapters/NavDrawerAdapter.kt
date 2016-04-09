@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.ViewGroup
 import com.bignerdranch.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem
+import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionObject
 import java.util.*
 
@@ -44,7 +45,7 @@ class NavDrawerAdapter(context: Context, parentItemList: ArrayList<ParentListIte
   }
 
   override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-    val currentItem = mItemList[position] as NavigationAdapterItem<SectionObject>
+    val currentItem = mItemList[position] as NavigationAdapterItem<*>
 
     if (holder is GroupViewHolder) {
       holder.onBind(currentItem, listener)
@@ -67,11 +68,11 @@ class NavDrawerAdapter(context: Context, parentItemList: ArrayList<ParentListIte
 
   override fun onBindChildViewHolder(childViewHolder: SectionViewHolder, position: Int,
                                      childListItem: Any?)
-      = childViewHolder.onBind(childListItem as NavigationAdapterItem<SectionObject>, listener)
+      = childViewHolder.onBind(childListItem as NavigationAdapterItem<*>, listener)
 
   override fun onBindParentViewHolder(parentViewHolder: GroupViewHolder, position: Int,
                                       parentListItem: ParentListItem?)
-      = parentViewHolder.onBind(parentListItem as NavigationAdapterItem<SectionObject>, listener)
+      = parentViewHolder.onBind(parentListItem as NavigationAdapterItem<*>, listener)
 
   override fun getItemViewType(position: Int): Int {
     return (mItemList[position] as NavigationAdapterItem<*>).viewType.toInt()
