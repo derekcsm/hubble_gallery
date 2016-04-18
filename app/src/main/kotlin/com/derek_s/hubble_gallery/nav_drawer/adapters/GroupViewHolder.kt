@@ -9,6 +9,7 @@ import android.widget.TextView
 import butterknife.bindView
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder
 import com.derek_s.hubble_gallery.R
+import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionObject
 import com.derek_s.hubble_gallery.utils.ui.FontFactory
 
@@ -26,12 +27,12 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
   }
 
   fun onBind(item: NavigationAdapterItem, listener: NavDrawerAdapter.NavAdapterListener) {
-    var section: SectionObject = item.`object` as SectionObject
+    var section: SectionChildObject = item.`object` as SectionChildObject
 
     tvTitle.text = section.sectionTitle
 
     tvTitle.setOnClickListener {
-      listener.onSectionClicked(section)
+      //listener.onSectionClicked(section)
     }
 
     if (item.childObjectList == null) {

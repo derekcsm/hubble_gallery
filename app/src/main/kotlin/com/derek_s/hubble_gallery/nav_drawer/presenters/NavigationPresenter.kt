@@ -27,61 +27,115 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
   fun populateAdapter() {
     var drawerItems = ArrayList<ParentListItem>()
 
-    var entireSection = SectionObject()
-    entireSection.sectionTitle = "Entire Collection"
-    entireSection.query = "entire"
-    drawerItems.add(NavigationAdapterItem(entireSection, NavigationAdapterItem.STANDALONE_SECTION, null))
+    drawerItems.add(NavigationAdapterItem(SectionChildObject("Entire Collection", "entire"),
+        NavigationAdapterItem.STANDALONE_SECTION, null))
 
-    var heritageSection = SectionObject()
-    heritageSection.sectionTitle = "Hubble Heritage"
-    heritageSection.query = "heritage"
-    drawerItems.add(NavigationAdapterItem(heritageSection, NavigationAdapterItem.STANDALONE_SECTION, null))
+    drawerItems.add(NavigationAdapterItem(SectionChildObject("Hubble Heritage", "heritage"),
+        NavigationAdapterItem.STANDALONE_SECTION, null))
 
     /**
      * the universe
      */
-    var universeGroup = SectionObject()
-    universeGroup.sectionTitle = "The Universe"
-    universeGroup.query = "the_universe"
-
     var universeItems = ArrayList<SectionChildObject>()
+    universeItems.add(createChildObject("Distant Galaxies", "the_universe/distant_galaxies"))
+    universeItems.add(createChildObject("GOODS", "the_universe/goods"))
+    universeItems.add(createChildObject("Hubble Deep Field", "the_universe/hubble_deep_field"))
+    universeItems.add(createChildObject("Hubble Ultra Deep Field", "the_universe/hubble_ultra_deep_field"))
+    universeItems.add(createChildObject("Intergalactic Gas", "the_universe/intergalactic_gas"))
+    universeItems.add(createChildObject("Medium Deep Survey", "the_universe/medium_deep_survey"))
 
-    var uni1 = SectionChildObject()
-    uni1.sectionTitle = "Distant Galaxies"
-    uni1.query = "the_universe/distant_galaxies"
-    universeItems.add(uni1)
+    drawerItems.add(NavigationAdapterItem(SectionChildObject("The Universe", "the_universe"),
+        NavigationAdapterItem.GROUP, universeItems))
 
-    var uni2 = SectionChildObject()
-    uni2.sectionTitle = "Intergalactic Gas"
-    uni2.query = "the_universe/intergalactic_gas"
-    universeItems.add(uni2)
+    /**
+     * exotic
+     */
+    var exoticItems = ArrayList<SectionChildObject>()
+    exoticItems.add(createChildObject("Black Hole", "exotic/black_hole"))
+    exoticItems.add(createChildObject("Dark Matter", "exotic/dark_matter"))
+    exoticItems.add(createChildObject("Gamma Ray Burst", "exotic/gamma_ray_burst"))
+    exoticItems.add(createChildObject("Gravitational Lens", "exotic/gravitational_lens"))
 
-    var uni3 = SectionChildObject()
-    uni3.sectionTitle = "GOODS"
-    uni3.query = "the_universe/goods"
-    universeItems.add(uni3)
+    drawerItems.add(NavigationAdapterItem(SectionChildObject("Exotic", "exotic"),
+        NavigationAdapterItem.GROUP, exoticItems))
 
-    var uni4 = SectionChildObject()
-    uni4.sectionTitle = "Hubble Deep Field"
-    uni4.query = "the_universe/hubble_deep_field"
-    universeItems.add(uni4)
+    /**
+     * galaxies
+     */
+    var galaxyItems = ArrayList<SectionChildObject>()
+    galaxyItems.add(createChildObject("Cluster", "galaxy/cluster"))
+    galaxyItems.add(createChildObject("Dwarf", "galaxy/dwarf"))
+    galaxyItems.add(createChildObject("Elliptical", "galaxy/elliptical"))
+    galaxyItems.add(createChildObject("Interacting", "galaxy/interacting"))
+    galaxyItems.add(createChildObject("Irregular", "galaxy/irregular"))
+    galaxyItems.add(createChildObject("Magellanic Cloud", "galaxy/magellanic_cloud"))
+    galaxyItems.add(createChildObject("Quasar/Active Nucleus", "galaxy/quasar_active_nucleus"))
 
-    var uni5 = SectionChildObject()
-    uni5.sectionTitle = "Hubble Ultra Deep Field"
-    uni5.query = "the_universe/hubble_ultra_deep_field"
-    universeItems.add(uni5)
+    drawerItems.add(NavigationAdapterItem(SectionChildObject("Galaxies", "galaxy"),
+        NavigationAdapterItem.GROUP, galaxyItems))
 
-    var uni6 = SectionChildObject()
-    uni6.sectionTitle = "Medium Deep Survey"
-    uni6.query = "the_universe/medium_deep_survey"
-    universeItems.add(uni6)
+    /**
+     * nebulae
+     */
+    var nebulaItems = ArrayList<SectionChildObject>()
+    nebulaItems.add(createChildObject("Dark", "nebula/dark"))
+    nebulaItems.add(createChildObject("Emission", "nebula/emission"))
+    nebulaItems.add(createChildObject("Planetary", "nebula/planetary"))
+    nebulaItems.add(createChildObject("Reflection", "nebula/reflection"))
+    nebulaItems.add(createChildObject("Supernova Remnant", "nebula/supernova_remnant"))
 
-    drawerItems.add(NavigationAdapterItem(universeGroup, NavigationAdapterItem.GROUP, universeItems))
+    drawerItems.add(NavigationAdapterItem(SectionChildObject("Nebulae", "nebula"),
+        NavigationAdapterItem.GROUP, nebulaItems))
+
+    /**
+     * solar system
+     */
+    var solarSystemItems = ArrayList<SectionChildObject>()
+    solarSystemItems.add(createChildObject("Asteroid", "solar_system/comet"))
+    solarSystemItems.add(createChildObject("Comet", "solar_system/emission"))
+    solarSystemItems.add(createChildObject("Jupiter", "solar_system/jupiter"))
+    solarSystemItems.add(createChildObject("Kuiper Belt Object", "solar_system/kuiper_belt_object"))
+    solarSystemItems.add(createChildObject("Mars", "solar_system/mars"))
+    solarSystemItems.add(createChildObject("Neptune", "solar_system/neptune"))
+    solarSystemItems.add(createChildObject("Planetary Moon", "solar_system/planetary_moon"))
+    solarSystemItems.add(createChildObject("Planetary Ring", "solar_system/planetary_ring"))
+    solarSystemItems.add(createChildObject("Pluto", "solar_system/pluto"))
+    solarSystemItems.add(createChildObject("Saturn", "solar_system/saturn"))
+    solarSystemItems.add(createChildObject("Uranus", "solar_system/uranus"))
+    solarSystemItems.add(createChildObject("Venus", "solar_system/venus"))
+    solarSystemItems.add(createChildObject("Weather/Atmosphere", "solar_system/weather_atmosphere"))
+
+    drawerItems.add(NavigationAdapterItem(SectionChildObject("Solar System", "solar_system"),
+        NavigationAdapterItem.GROUP, solarSystemItems))
+
+    /**
+     * stars
+     */
+    var starItems = ArrayList<SectionChildObject>()
+    starItems.add(createChildObject("Brown Dwarf", "star/brown_dwarf"))
+    starItems.add(createChildObject("Massive Star", "star/massive_star"))
+    starItems.add(createChildObject("Nova", "star/nova"))
+    starItems.add(createChildObject("Protostellar Jet", "star/protostellar_jet"))
+    starItems.add(createChildObject("Protoplanetary Disk", "star/protoplanetary_disk"))
+    starItems.add(createChildObject("Pulsar", "star/pulsar"))
+    starItems.add(createChildObject("Star Cluster", "star/star_cluster"))
+    starItems.add(createChildObject("Star Field", "star/star_field"))
+    starItems.add(createChildObject("Supernova", "star/supernova"))
+    starItems.add(createChildObject("Variable Star", "star/variable_star"))
+    starItems.add(createChildObject("White Dwarf", "star/white_dwarf"))
+
+    drawerItems.add(NavigationAdapterItem(SectionChildObject("Stars", "star"),
+        NavigationAdapterItem.GROUP, nebulaItems))
+
 
     mAdapter = NavDrawerAdapter(context, drawerItems, this)
 
     view.recycler.layoutManager = LinearLayoutManager(context)
     view.recycler.adapter = mAdapter
+  }
+
+  private fun createChildObject(title: String, query: String) : SectionChildObject {
+    return SectionChildObject(title, query)
   }
 
   override fun onSectionClicked(section: SectionObject) {
