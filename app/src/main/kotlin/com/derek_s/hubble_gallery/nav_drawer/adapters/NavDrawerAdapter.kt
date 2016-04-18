@@ -1,14 +1,10 @@
 package com.derek_s.hubble_gallery.nav_drawer.adapters
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.ViewGroup
 import com.bignerdranch.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem
-import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
-import com.derek_s.hubble_gallery.nav_drawer.model.SectionObject
 import java.util.*
 
 class NavDrawerAdapter(context: Context, parentItemList: ArrayList<ParentListItem>,
@@ -39,12 +35,11 @@ class NavDrawerAdapter(context: Context, parentItemList: ArrayList<ParentListIte
 
   override fun onBindChildViewHolder(childViewHolder: SectionViewHolder, position: Int,
                                      childListItem: Any) {
-    Log.d(TAG, "onBindChild type = " + childListItem)
     childViewHolder.onBind(childListItem as SectionChildObject, listener)
   }
 
   interface NavAdapterListener {
-    fun onSectionClicked(section: SectionObject)
+    fun onSectionClicked(section: SectionChildObject)
   }
 
 }

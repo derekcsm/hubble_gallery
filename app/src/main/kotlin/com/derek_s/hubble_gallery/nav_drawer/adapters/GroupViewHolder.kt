@@ -1,22 +1,27 @@
 package com.derek_s.hubble_gallery.nav_drawer.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.TextView
 import butterknife.bindView
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder
 import com.derek_s.hubble_gallery.R
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
-import com.derek_s.hubble_gallery.nav_drawer.model.SectionObject
 import com.derek_s.hubble_gallery.utils.ui.FontFactory
 
 class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(itemView) {
 
   val tvTitle: TextView by bindView(R.id.tv_title)
   val ivExpand: ImageView by bindView(R.id.iv_expand)
+
+  private val INITIAL_POSITION = 0.0f
+  private val ROTATED_POSITION = 180f
 
   init {
     beautifyViews()
@@ -30,10 +35,7 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
     var section: SectionChildObject = item.`object` as SectionChildObject
 
     tvTitle.text = section.sectionTitle
-
-    tvTitle.setOnClickListener {
-      //listener.onSectionClicked(section)
-    }
+    tvTitle.setOnClickListener { listener.onSectionClicked(section) }
 
     if (item.childObjectList == null) {
       ivExpand.visibility = View.GONE
@@ -46,6 +48,42 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
           expandView()
         }
       }
+    }
+  }
+
+  @SuppressLint("NewApi")
+  override fun setExpanded(expanded: Boolean) {
+    super.setExpanded(expanded)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      if (expanded) {
+        ivExpand.setRotation(ROTATED_POSITION)
+      } else {
+        ivExpand.setRotation(INITIAL_POSITION)
+      }
+    }
+  }
+
+  override fun onExpansionToggled(expanded: Boolean) {
+    super.onExpansionToggled(expanded)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      val rotateAnimation: RotateAnimation
+      if (expanded) {
+        // rotate clockwise
+        rotateAnimation = RotateAnimation(ROTATED_POSITION,
+            INITIAL_POSITION,
+            RotateAnimation.RELATIVE_TO_SELF, 0.5f,
+            RotateAnimation.RELATIVE_TO_SELF, 0.5f)
+      } else {
+        // rotate counterclockwise
+        rotateAnimation = RotateAnimation(-1 * ROTATED_POSITION,
+            INITIAL_POSITION,
+            RotateAnimation.RELATIVE_TO_SELF, 0.5f,
+            RotateAnimation.RELATIVE_TO_SELF, 0.5f)
+      }
+
+      rotateAnimation.duration = 200
+      rotateAnimation.fillAfter = true
+      ivExpand.startAnimation(rotateAnimation)
     }
   }
 

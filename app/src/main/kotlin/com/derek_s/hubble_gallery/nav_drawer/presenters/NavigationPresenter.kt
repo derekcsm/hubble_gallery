@@ -7,7 +7,6 @@ import com.bignerdranch.expandablerecyclerview.Model.ParentListItem
 import com.derek_s.hubble_gallery.nav_drawer.adapters.NavDrawerAdapter
 import com.derek_s.hubble_gallery.nav_drawer.adapters.NavigationAdapterItem
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
-import com.derek_s.hubble_gallery.nav_drawer.model.SectionObject
 import com.derek_s.hubble_gallery.nav_drawer.views.NavigationView
 import java.util.*
 
@@ -134,11 +133,11 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
     view.recycler.adapter = mAdapter
   }
 
-  private fun createChildObject(title: String, query: String) : SectionChildObject {
+  private fun createChildObject(title: String, query: String): SectionChildObject {
     return SectionChildObject(title, query)
   }
 
-  override fun onSectionClicked(section: SectionObject) {
+  override fun onSectionClicked(section: SectionChildObject) {
     // todo
     Log.d(TAG, "onSectionClicked: " + section.sectionTitle)
   }

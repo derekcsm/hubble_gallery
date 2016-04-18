@@ -26,9 +26,7 @@ class SectionViewHolder private constructor(itemView: View) : ChildViewHolder(it
   fun onBind(section: SectionChildObject, listener: NavDrawerAdapter.NavAdapterListener) {
     tvTitle.text = section.sectionTitle
 
-    tvTitle.setOnClickListener {
-     // listener.onSectionClicked(section)
-    }
+    tvTitle.setOnClickListener { listener.onSectionClicked(section) }
   }
 
   companion object {
