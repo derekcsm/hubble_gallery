@@ -8,7 +8,7 @@ import android.widget.TextView
 import butterknife.bindView
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ChildViewHolder
 import com.derek_s.hubble_gallery.R
-import com.derek_s.hubble_gallery.nav_drawer.model.SectionObject
+import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
 import com.derek_s.hubble_gallery.utils.ui.FontFactory
 
 class SectionViewHolder private constructor(itemView: View) : ChildViewHolder(itemView) {
@@ -23,13 +23,11 @@ class SectionViewHolder private constructor(itemView: View) : ChildViewHolder(it
     tvTitle.typeface = FontFactory.getMedium(itemView.context)
   }
 
-  fun onBind(item: NavigationAdapterItem<*>, listener: NavDrawerAdapter.NavAdapterListener) {
-    var section: SectionObject = item.`object` as SectionObject
-
+  fun onBind(section: SectionChildObject, listener: NavDrawerAdapter.NavAdapterListener) {
     tvTitle.text = section.sectionTitle
 
     tvTitle.setOnClickListener {
-      listener.onSectionClicked(section)
+     // listener.onSectionClicked(section)
     }
   }
 

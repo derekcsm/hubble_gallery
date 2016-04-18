@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.bignerdranch.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder
+import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionObject
 import java.util.*
 
@@ -20,62 +21,26 @@ class NavDrawerAdapter(context: Context, parentItemList: ArrayList<ParentListIte
 
   init {
     mContext = context
-    this.mItemList = parentItemList as List<Any>?
     this.listener = listener
   }
 
-  override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-    Log.d(TAG, "onCreateViewHolder type=" + viewType)
-
-    when (viewType) {
-      NavigationAdapterItem.GROUP.toInt() -> {
-        return GroupViewHolder.create(mContext, viewGroup)
-      }
-
-      NavigationAdapterItem.SECTION.toInt() -> {
-        return SectionViewHolder.create(mContext, viewGroup)
-      }
-
-      NavigationAdapterItem.STANDALONE_SECTION.toInt() -> {
-        return StandaloneSectionViewHolder.create(mContext, viewGroup)
-      }
-
-      else -> throw IllegalStateException("Incorrect ViewType found")
-    }
+  override fun onCreateParentViewHolder(parentViewGroup: ViewGroup): GroupViewHolder? {
+    return GroupViewHolder.create(mContext, parentViewGroup)
   }
 
-  override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-    val currentItem = mItemList[position] as NavigationAdapterItem<*>
-
-    if (holder is GroupViewHolder) {
-      holder.onBind(currentItem, listener)
-    } else if (holder is SectionViewHolder) {
-      holder.onBind(currentItem, listener)
-    } else if (holder is StandaloneSectionViewHolder) {
-      holder.onBind(currentItem, listener)
-    } else {
-      super.onBindViewHolder(holder, position)
-    }
+  override fun onCreateChildViewHolder(childViewGroup: ViewGroup): SectionViewHolder? {
+    return SectionViewHolder.create(mContext, childViewGroup)
   }
 
-  override fun onCreateChildViewHolder(childViewGroup: ViewGroup?): SectionViewHolder? {
-    return null
-  }
-
-  override fun onCreateParentViewHolder(parentViewGroup: ViewGroup?): GroupViewHolder? {
-    return null
+  override fun onBindParentViewHolder(parentViewHolder: GroupViewHolder, position: Int,
+                                      parentListItem: ParentListItem) {
+    parentViewHolder.onBind(parentListItem as NavigationAdapterItem, listener)
   }
 
   override fun onBindChildViewHolder(childViewHolder: SectionViewHolder, position: Int,
-                                     childListItem: Any?)
-      = childViewHolder.onBind(childListItem as NavigationAdapterItem<*>, listener)
-
-  override fun onBindParentViewHolder(parentViewHolder: GroupViewHolder, position: Int,
-                                      parentListItem: ParentListItem?)
-      = parentViewHolder.onBind(parentListItem as NavigationAdapterItem<*>, listener)
-
-  override fun getItemViewType(position: Int): Int {
-    return (mItemList[position] as NavigationAdapterItem<*>).viewType.toInt()
+                                     childListItem: Any) {
+    Log.d(TAG, "onBindChild type = " + childListItem)
+    childViewHolder.onBind(childListItem as SectionChildObject, listener)
   }
 
   interface NavAdapterListener {

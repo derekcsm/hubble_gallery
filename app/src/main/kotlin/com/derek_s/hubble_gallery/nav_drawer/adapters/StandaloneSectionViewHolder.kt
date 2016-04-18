@@ -25,7 +25,7 @@ class StandaloneSectionViewHolder private constructor(itemView: View) : ParentVi
     tvTitle.typeface = FontFactory.getMedium(itemView.context)
   }
 
-  fun onBind(item: NavigationAdapterItem<*>, listener: NavDrawerAdapter.NavAdapterListener) {
+  fun onBind(item: NavigationAdapterItem, listener: NavDrawerAdapter.NavAdapterListener) {
     var section: SectionObject = item.`object` as SectionObject
 
     tvTitle.text = section.sectionTitle

@@ -33,7 +33,7 @@ class FooterViewHolder private constructor(itemView: View) : ParentViewHolder(it
         tvAbout.setTypeface(FontFactory.getMedium(itemView.getContext()))
     }
 
-    fun onBind(item: NavigationAdapterItem<SectionObject>) {
+    fun onBind(item: NavigationAdapterItem) {
 
         tvFavorites.setOnClickListener {
             // TODO

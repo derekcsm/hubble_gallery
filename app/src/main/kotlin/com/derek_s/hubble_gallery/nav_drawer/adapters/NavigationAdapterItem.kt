@@ -3,17 +3,19 @@ package com.derek_s.hubble_gallery.nav_drawer.adapters
 import android.support.annotation.IntDef
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem
 
-class NavigationAdapterItem<T>(`object`: T, viewType: Long) : ParentListItem {
+class NavigationAdapterItem(`object`: Any?, viewType: Long, childObjectList: List<Any>?) :
+    ParentListItem {
 
   @ViewType
   var viewType: Long = 0
-  var `object`: T? = null
-  var childObjectList: List<Any>? = null
+  var `object`: Any?
+  var childObjectList: List<Any>?
   var isSelected: Boolean = false
 
   init {
     this.`object` = `object`
     this.viewType = viewType
+    this.childObjectList = childObjectList
   }
 
   override fun getChildItemList(): List<Any>? {

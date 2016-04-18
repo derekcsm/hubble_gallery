@@ -25,23 +25,18 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
   }
 
   fun populateAdapter() {
-    // TODO
     var drawerItems = ArrayList<ParentListItem>()
 
-    // TODO header here
-
-    // Standalone
     var entireSection = SectionObject()
     entireSection.sectionTitle = "Entire Collection"
     entireSection.query = "entire"
-    drawerItems.add(NavigationAdapterItem(entireSection, NavigationAdapterItem.STANDALONE_SECTION))
+    drawerItems.add(NavigationAdapterItem(entireSection, NavigationAdapterItem.STANDALONE_SECTION, null))
 
     var heritageSection = SectionObject()
     heritageSection.sectionTitle = "Hubble Heritage"
     heritageSection.query = "heritage"
-    drawerItems.add(NavigationAdapterItem(heritageSection, NavigationAdapterItem.STANDALONE_SECTION))
+    drawerItems.add(NavigationAdapterItem(heritageSection, NavigationAdapterItem.STANDALONE_SECTION, null))
 
-    //Groups TODO
     /**
      * the universe
      */
@@ -49,55 +44,43 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
     universeGroup.sectionTitle = "The Universe"
     universeGroup.query = "the_universe"
 
-    var universeItems = ArrayList<NavigationAdapterItem<*>>()
+    var universeItems = ArrayList<SectionChildObject>()
 
     var uni1 = SectionChildObject()
     uni1.sectionTitle = "Distant Galaxies"
     uni1.query = "the_universe/distant_galaxies"
-    var uniAd1 = NavigationAdapterItem(uni1, NavigationAdapterItem.SECTION)
-    universeItems.add(uniAd1);
+    universeItems.add(uni1)
 
     var uni2 = SectionChildObject()
     uni2.sectionTitle = "Intergalactic Gas"
     uni2.query = "the_universe/intergalactic_gas"
-    var uniAd2 = NavigationAdapterItem(uni2, NavigationAdapterItem.SECTION)
-    universeItems.add(uniAd2);
+    universeItems.add(uni2)
 
-//    section = new SectionChildObject();
-//    section.setSectionTitle("GOODS");
-//    section.setQuery("the_universe/goods");
-//    subList.add(section);
-//
-//    section = new SectionChildObject();
-//    section.setSectionTitle("Hubble Deep Field");
-//    section.setQuery("the_universe/hubble_deep_field");
-//    subList.add(section);
-//
-//    section = new SectionChildObject();
-//    section.setSectionTitle("Hubble Ultra Deep Field");
-//    section.setQuery("the_universe/hubble_ultra_deep_field");
-//    subList.add(section);
-//
-//    section = new SectionChildObject();
-//    section.setSectionTitle("Medium Deep Survey");
-//    section.setQuery("the_universe/medium_deep_survey");
-//    subList.add(section);
+    var uni3 = SectionChildObject()
+    uni3.sectionTitle = "GOODS"
+    uni3.query = "the_universe/goods"
+    universeItems.add(uni3)
 
-    var universeAdapterItem = NavigationAdapterItem(universeGroup, NavigationAdapterItem.GROUP)
-    universeAdapterItem.childObjectList = universeItems
-    drawerItems.add(universeAdapterItem)
-    
+    var uni4 = SectionChildObject()
+    uni4.sectionTitle = "Hubble Deep Field"
+    uni4.query = "the_universe/hubble_deep_field"
+    universeItems.add(uni4)
 
-    // TODO footer below groups
+    var uni5 = SectionChildObject()
+    uni5.sectionTitle = "Hubble Ultra Deep Field"
+    uni5.query = "the_universe/hubble_ultra_deep_field"
+    universeItems.add(uni5)
+
+    var uni6 = SectionChildObject()
+    uni6.sectionTitle = "Medium Deep Survey"
+    uni6.query = "the_universe/medium_deep_survey"
+    universeItems.add(uni6)
+
+    drawerItems.add(NavigationAdapterItem(universeGroup, NavigationAdapterItem.GROUP, universeItems))
 
     mAdapter = NavDrawerAdapter(context, drawerItems, this)
 
-    //mAdapter.setParentAndIconExpandOnClick(true)
-    //mAdapter.setParentClickableViewAnimationDefaultDuration()
-
-
     view.recycler.layoutManager = LinearLayoutManager(context)
-
     view.recycler.adapter = mAdapter
   }
 

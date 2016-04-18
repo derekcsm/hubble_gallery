@@ -25,7 +25,7 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
     tvTitle.typeface = FontFactory.getMedium(itemView.context)
   }
 
-  fun onBind(item: NavigationAdapterItem<*>, listener: NavDrawerAdapter.NavAdapterListener) {
+  fun onBind(item: NavigationAdapterItem, listener: NavDrawerAdapter.NavAdapterListener) {
     var section: SectionObject = item.`object` as SectionObject
 
     tvTitle.text = section.sectionTitle
@@ -34,11 +34,16 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
       listener.onSectionClicked(section)
     }
 
-    ivExpand.setOnClickListener {
-      if (isExpanded()) {
-        collapseView()
-      } else {
-        expandView()
+    if (item.childObjectList == null) {
+      ivExpand.visibility = View.GONE
+    } else {
+      ivExpand.visibility = View.VISIBLE
+      ivExpand.setOnClickListener {
+        if (isExpanded) {
+          collapseView()
+        } else {
+          expandView()
+        }
       }
     }
   }
