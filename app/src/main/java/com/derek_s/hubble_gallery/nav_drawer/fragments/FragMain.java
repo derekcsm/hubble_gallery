@@ -38,6 +38,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
   private static String CAN_LOAD_MORE = "can_load_more";
   private static String IS_HIRES = "is_hires";
   private static String CURRENT_QUERY = "current_query";
+
   @Bind(R.id.gv_main)
   ObservableGridView gvMain;
   @Bind(R.id.square)
@@ -48,6 +49,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
   TextView tvZeroTitle;
   @Bind(R.id.tv_retry)
   TextView tvRetry;
+
   public GridAdapter mAdapter;
   public static int currentPage = 1;
   public boolean isLoading = false;

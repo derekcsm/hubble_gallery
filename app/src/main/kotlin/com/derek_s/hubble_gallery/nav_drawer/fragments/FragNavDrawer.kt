@@ -25,7 +25,7 @@ interface NavDrawerListeners {
     get
 }
 
-class FragNavigationDrawer : Fragment(), NavigationView {
+class FragNavDrawer : Fragment(), NavigationView {
 
   private var mDrawerToggle: ActionBarDrawerToggle? = null
   private var mDrawerLayout: DrawerLayout? = null

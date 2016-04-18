@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/navigation_drawer"
-        android:name="com.derek_s.hubble_gallery.nav_drawer.fragments.FragNavigationDrawer"
+        android:name="com.derek_s.hubble_gallery.nav_drawer.fragments.FragNavDrawer"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
