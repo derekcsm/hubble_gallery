@@ -19,7 +19,6 @@ import com.derek_s.hubble_gallery.api.GetAlbum;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.base.FragBase;
 import com.derek_s.hubble_gallery.nav_drawer.adapters.GridAdapter;
-import com.derek_s.hubble_gallery.nav_drawer.ui.activities.ActMain;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 import com.github.ksoichiro.android.observablescrollview.ObservableGridView;
@@ -161,7 +160,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
 
   public void loadInitialItems(String query) {
     mAdapter.clear();
-    ActMain.instance.toggleFilterVisible(true);
+    //ActMain.instance.toggleFilterVisible(true);
     mode = Constants.LOADED_MODE;
     showLoadingAnimation(true);
     isLoading = true;
@@ -188,7 +187,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
   }
 
   public void openFavorites(boolean scroll) {
-    ActMain.instance.toggleFilterVisible(false);
+    //ActMain.instance.toggleFilterVisible(false);
     mode = Constants.FAVORITES_MODE;
     mAdapter.clear();
     if (favoriteUtils.getFavorites() != null) {

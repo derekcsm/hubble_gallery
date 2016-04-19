@@ -2,7 +2,6 @@ package com.derek_s.hubble_gallery.nav_drawer.presenters
 
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem
 import com.derek_s.hubble_gallery.nav_drawer.adapters.NavDrawerAdapter
 import com.derek_s.hubble_gallery.nav_drawer.adapters.NavigationAdapterItem
@@ -138,7 +137,6 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
   }
 
   override fun onSectionClicked(section: SectionChildObject) {
-    // todo
-    Log.d(TAG, "onSectionClicked: " + section.sectionTitle)
+    view.selectSection(section)
   }
 }

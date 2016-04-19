@@ -17,12 +17,15 @@ import android.view.ViewGroup
 import butterknife.Bind
 import butterknife.ButterKnife
 import com.derek_s.hubble_gallery.R
+import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
 import com.derek_s.hubble_gallery.nav_drawer.presenters.NavigationPresenter
 import com.derek_s.hubble_gallery.nav_drawer.views.NavigationView
 
 interface NavDrawerListeners {
   val toolbar: Toolbar
     get
+
+  fun selectSection(section: SectionChildObject)
 }
 
 class FragNavDrawer : Fragment(), NavigationView {
@@ -155,7 +158,10 @@ class FragNavDrawer : Fragment(), NavigationView {
     }
   }
 
-  fun updateSelectedItem(groupPosition: Int, childPosition: Int, title: String) {
+  override fun selectSection(section: SectionChildObject) {
+    //Toasty.show(context, section.sectionTitle, Toasty.LENGTH_SHORT)
+    mCallbacks!!.selectSection(section)
+
     // TODO
     // if (groupPosition != -2 && tvFavorites != null) {
     // tvFavorites.setBackgroundResource(R.drawable.selector_default);
@@ -168,10 +174,6 @@ class FragNavDrawer : Fragment(), NavigationView {
     //        mCurSelectedPositions = ArrayList()
     //        mCurSelectedPositions.add(0, groupPosition)
     //        mCurSelectedPositions.add(1, childPosition)
-    // ActMain.instance.mTitle = title;
-    // ActMain.instance.restoreActionBar();
-    // if (ActMain.instance.toolbar != null)
-    // ActMain.instance.showToolbar();
   }
 
   override val recycler: RecyclerView
