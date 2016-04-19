@@ -12,6 +12,7 @@ import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.widget.RelativeLayout
 import android.widget.TextSwitcher
+import android.widget.TextView
 import butterknife.ButterKnife
 import butterknife.bindView
 import com.daimajia.androidanimations.library.Techniques
@@ -28,6 +29,7 @@ import com.derek_s.hubble_gallery.nav_drawer.fragments.NavDrawerListeners
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
 import com.derek_s.hubble_gallery.utils.network.NetworkUtil
 import com.derek_s.hubble_gallery.utils.ui.Toasty
+import com.derek_s.hubble_gallery.utils.ui.ToolbarTitle
 import com.github.ksoichiro.android.observablescrollview.ObservableGridView
 import com.github.ksoichiro.android.observablescrollview.ScrollState
 import org.jetbrains.annotations.NotNull
@@ -41,7 +43,7 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
   var navDrawer: FragNavDrawer? = null
 
   override val toolbar: Toolbar by bindView(R.id.toolbar)
-  val switcherTitle: TextSwitcher by bindView(R.id.switcher_title)
+  var switcherTitle: TextSwitcher? = null
   val mDrawerLayout: DrawerLayout by bindView(R.id.drawer_layout)
 
   @Inject
@@ -60,19 +62,20 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
     navDrawer!!.setUp(mDrawerLayout)
     if (!db.getBoolean(Constants.ONBOARDING_SHOWN)) {
       /*
-      * TODO make an ActFirst Activity that directs to correct Activity instead of handling here
-      * show user welcome screen
-      */
+       * TODO make an ActFirst Activity that directs to correct Activity instead of handling here
+       * show user welcome screen
+       */
       db.putBoolean(Constants.ONBOARDING_SHOWN, true)
-      val intent = Intent(this@ActMain, ActWelcome::class.java)
+      val intent = Intent(this, ActWelcome::class.java)
       startActivity(intent)
     }
     setSupportActionBar(toolbar)
     toolbar.setNavigationOnClickListener { navDrawer!!.toggleDrawerState() }
     toolbar.inflateMenu(R.menu.act_main)
 
-    //val toolbarTitle = ToolbarTitle()
-    //switcherTitle = toolbarTitle.init(switcherTitle, instance)
+    val toolbarTitle = ToolbarTitle()
+    switcherTitle = findViewById(R.id.switcher_title) as TextSwitcher
+    switcherTitle = toolbarTitle.init(switcherTitle, this)
 
     if (savedInstanceState != null) {
       mTitle = savedInstanceState.getString(CUR_TITLE)
@@ -95,14 +98,14 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
     val actionBar = supportActionBar
     if (actionBar != null) {
       actionBar.setDisplayShowTitleEnabled(false)
-      //val currentView = switcherTitle.currentView as TextView
-      //if (currentView.text.toString().equals(mTitle)) {
+      val currentView = switcherTitle!!.currentView as TextView
+      if (currentView.text.toString().equals(mTitle)) {
         // don't animate
-      //  switcherTitle.setCurrentText(mTitle)
-      //} else {
+        switcherTitle!!.setCurrentText(mTitle)
+      } else {
         // animate
-      //  switcherTitle.setText(mTitle)
-      //}
+        switcherTitle!!.setText(mTitle)
+      }
     }
   }
 
