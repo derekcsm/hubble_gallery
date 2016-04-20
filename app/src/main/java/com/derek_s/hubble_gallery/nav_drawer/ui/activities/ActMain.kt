@@ -248,6 +248,7 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
     restoreActionBar()
     showToolbar()
     fragMain!!.loadInitialItems(section.query)
+
   }
 
   override fun injectComponent(component: ActivityComponent) {

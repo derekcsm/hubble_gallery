@@ -113,10 +113,10 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
 
       @Override
       public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                /*
-                Algorithm to check if the last item is visible or not, only load more if
-                we're NOT in favorites mode
-                 */
+        /*
+         * Algorithm to check if the last item is visible or not, only load more if
+         * we're NOT in favorites mode
+         */
         if (mode == Constants.LOADED_MODE || mode == Constants.SEARCH_MODE) {
           final int lastItem = firstVisibleItem + visibleItemCount;
           if (lastItem == totalItemCount && canLoadMore && !isLoading) {
@@ -314,7 +314,8 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
 
   @Override
   public void onUpOrCancelMotionEvent(ScrollState scrollState) {
-    mCallbacks.adjustToolbar(scrollState, gvMain);
+    if (scrollState != null)
+      mCallbacks.adjustToolbar(scrollState, gvMain);
   }
 
   public interface FragMainCallbacks {

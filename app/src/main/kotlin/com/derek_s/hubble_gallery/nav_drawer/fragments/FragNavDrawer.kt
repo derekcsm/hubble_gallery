@@ -127,7 +127,7 @@ class FragNavDrawer : Fragment(), NavigationView {
       }
     }
     mDrawerLayout?.post(object : Runnable {
-      public override fun run() {
+      override fun run() {
         mDrawerToggle?.syncState()
       }
     })
@@ -135,11 +135,11 @@ class FragNavDrawer : Fragment(), NavigationView {
   }
 
   fun openDrawer() {
-    mDrawerLayout?.openDrawer(Gravity.LEFT)
+    mDrawerLayout!!.openDrawer(Gravity.LEFT)
   }
 
   fun closeDrawer() {
-    mDrawerLayout?.closeDrawer(Gravity.LEFT)
+    mDrawerLayout!!.closeDrawer(Gravity.LEFT)
   }
 
   val isOpen: Boolean
@@ -159,21 +159,10 @@ class FragNavDrawer : Fragment(), NavigationView {
   }
 
   override fun selectSection(section: SectionChildObject) {
-    //Toasty.show(context, section.sectionTitle, Toasty.LENGTH_SHORT)
+    closeDrawer()
     mCallbacks!!.selectSection(section)
 
-    // TODO
-    // if (groupPosition != -2 && tvFavorites != null) {
-    // tvFavorites.setBackgroundResource(R.drawable.selector_default);
-    // tvFavorites.setTextColor(context.getResources().getColor(R.color.body_dark_theme));
-    // }
-    /*
-    if childPosition == -1, then there are no children
-    for the group item
-    */
-    //        mCurSelectedPositions = ArrayList()
-    //        mCurSelectedPositions.add(0, groupPosition)
-    //        mCurSelectedPositions.add(1, childPosition)
+    // TODO select position
   }
 
   override val recycler: RecyclerView
