@@ -1,106 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  android:paddingBottom="8dp"
+  tools:ignore="rtlHardcoded">
+
+  <View
+    android:id="@+id/divider"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="1dp"
+    android:layout_marginBottom="8dp"
+    android:background="@color/divider_dark_theme"/>
 
-    <View
-        android:id="@+id/spacer1"
-        android:layout_width="match_parent"
-        android:layout_height="8dp" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/spacer1"
-        android:background="@color/divider_dark_theme" />
-
-    <View
-        android:id="@+id/spacer2"
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:layout_below="@+id/divider" />
+  <RelativeLayout
+    android:id="@+id/rl_favorites"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_default">
 
     <TextView
-        android:id="@+id/tv_favorites"
-        style="@style/text_body1_dark"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/spacer2"
-        android:layout_centerVertical="true"
-        android:background="@drawable/selector_default"
-        android:gravity="center_vertical"
-        android:maxLines="1"
-        android:paddingLeft="72dp"
-        android:paddingRight="16dp"
-        android:text="@string/favorites" />
+      android:id="@+id/tv_favorites"
+      style="@style/text_body1_dark"
+      android:layout_width="match_parent"
+      android:layout_height="48dp"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:layout_centerVertical="true"
+      android:gravity="center_vertical"
+      android:maxLines="1"
+      android:paddingLeft="72dp"
+      android:paddingRight="16dp"
+      android:text="@string/favorites"/>
 
     <ImageView
-        android:id="@+id/iv_favorites"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_alignBottom="@+id/tv_favorites"
-        android:src="@drawable/ic_favorite_white_24dp" />
+      android:id="@+id/iv_favorites"
+      android:layout_width="wrap_content"
+      android:layout_height="48dp"
+      android:layout_alignBottom="@+id/tv_favorites"
+      android:layout_marginLeft="16dp"
+      android:gravity="center_vertical"
+      android:src="@drawable/ic_favorite_white_24dp"/>
+
+  </RelativeLayout>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/tv_rate"
-        style="@style/text_body1_dark"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/tv_favorites"
-        android:layout_centerVertical="true"
-        android:background="@drawable/selector_default"
-        android:gravity="center_vertical"
-        android:maxLines="1"
-        android:paddingLeft="72dp"
-        android:paddingRight="16dp"
-        android:text="@string/rate" />
-
-    <ImageView
-        android:id="@+id/iv_rate"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_alignBottom="@+id/tv_rate"
-        android:src="@drawable/ic_star_white_24dp" />
-
+      android:id="@+id/tv_about"
+      style="@style/text_body1_dark"
+      android:layout_width="wrap_content"
+      android:layout_height="48dp"
+      android:background="@drawable/selector_default"
+      android:gravity="center_vertical"
+      android:maxLines="1"
+      android:paddingLeft="@dimen/activity_horizontal_margin"
+      android:paddingRight="@dimen/activity_horizontal_margin"
+      android:text="@string/about"
+      android:textAllCaps="true"/>
 
     <TextView
-        android:id="@+id/tv_about"
-        style="@style/text_body1_dark"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/tv_rate"
-        android:layout_centerVertical="true"
-        android:background="@drawable/selector_default"
-        android:gravity="center_vertical"
-        android:maxLines="1"
-        android:paddingLeft="72dp"
-        android:paddingRight="16dp"
-        android:text="@string/about" />
+      android:id="@+id/tv_rate"
+      style="@style/text_body1_dark"
+      android:layout_width="wrap_content"
+      android:layout_height="48dp"
+      android:background="@drawable/selector_default"
+      android:gravity="center_vertical"
+      android:maxLines="1"
+      android:paddingLeft="@dimen/activity_horizontal_margin"
+      android:paddingRight="@dimen/activity_horizontal_margin"
+      android:text="@string/rate"
+      android:textAllCaps="true"/>
 
-    <ImageView
-        android:id="@+id/iv_about"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_alignBottom="@+id/tv_about"
-        android:src="@drawable/ic_info_white_24dp" />
+  </LinearLayout>
 
-    <View
-        android:id="@+id/spacer3"
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:layout_below="@+id/tv_about" />
-
-</RelativeLayout>
+</LinearLayout>
