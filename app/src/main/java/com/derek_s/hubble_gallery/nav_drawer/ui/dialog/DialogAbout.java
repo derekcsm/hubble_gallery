@@ -1,8 +1,6 @@
 package com.derek_s.hubble_gallery.nav_drawer.ui.dialog;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
@@ -11,8 +9,6 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
 import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery.nav_drawer.ui.activities.ActMain;
-import com.derek_s.hubble_gallery.nav_drawer.ui.activities.ActWelcome;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 
 /**
@@ -62,16 +58,16 @@ public class DialogAbout {
         tvShowIntro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActMain.instance, ActWelcome.class);
-                ActMain.instance.startActivity(intent);
+                //Intent intent = new Intent(ActMain.instance, ActWelcome.class);
+                //ActMain.instance.startActivity(intent);
             }
         });
 
         tvSourceCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/derekcsm/hubble_gallery"));
-                ActMain.instance.startActivity(browserIntent);
+                //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/derekcsm/hubble_gallery"));
+                //ActMain.instance.startActivity(browserIntent);
             }
         });
 

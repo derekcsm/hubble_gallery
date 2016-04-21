@@ -17,15 +17,18 @@ import android.view.ViewGroup
 import butterknife.Bind
 import butterknife.ButterKnife
 import com.derek_s.hubble_gallery.R
+import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
 import com.derek_s.hubble_gallery.nav_drawer.presenters.NavigationPresenter
 import com.derek_s.hubble_gallery.nav_drawer.views.NavigationView
 
 interface NavDrawerListeners {
   val toolbar: Toolbar
     get
+
+  fun selectSection(section: SectionChildObject)
 }
 
-class FragNavigationDrawer : Fragment(), NavigationView {
+class FragNavDrawer : Fragment(), NavigationView {
 
   private var mDrawerToggle: ActionBarDrawerToggle? = null
   private var mDrawerLayout: DrawerLayout? = null
@@ -124,7 +127,7 @@ class FragNavigationDrawer : Fragment(), NavigationView {
       }
     }
     mDrawerLayout?.post(object : Runnable {
-      public override fun run() {
+      override fun run() {
         mDrawerToggle?.syncState()
       }
     })
@@ -132,11 +135,11 @@ class FragNavigationDrawer : Fragment(), NavigationView {
   }
 
   fun openDrawer() {
-    mDrawerLayout?.openDrawer(Gravity.LEFT)
+    mDrawerLayout!!.openDrawer(Gravity.LEFT)
   }
 
   fun closeDrawer() {
-    mDrawerLayout?.closeDrawer(Gravity.LEFT)
+    mDrawerLayout!!.closeDrawer(Gravity.LEFT)
   }
 
   val isOpen: Boolean
@@ -155,23 +158,11 @@ class FragNavigationDrawer : Fragment(), NavigationView {
     }
   }
 
-  fun updateSelectedItem(groupPosition: Int, childPosition: Int, title: String) {
-    // TODO
-    // if (groupPosition != -2 && tvFavorites != null) {
-    // tvFavorites.setBackgroundResource(R.drawable.selector_default);
-    // tvFavorites.setTextColor(context.getResources().getColor(R.color.body_dark_theme));
-    // }
-    /*
-    if childPosition == -1, then there are no children
-    for the group item
-    */
-    //        mCurSelectedPositions = ArrayList()
-    //        mCurSelectedPositions.add(0, groupPosition)
-    //        mCurSelectedPositions.add(1, childPosition)
-    // ActMain.instance.mTitle = title;
-    // ActMain.instance.restoreActionBar();
-    // if (ActMain.instance.toolbar != null)
-    // ActMain.instance.showToolbar();
+  override fun selectSection(section: SectionChildObject) {
+    closeDrawer()
+    mCallbacks!!.selectSection(section)
+
+    // TODO select position
   }
 
   override val recycler: RecyclerView
