@@ -13,7 +13,6 @@ import android.view.animation.Transformation
 import android.widget.RelativeLayout
 import android.widget.TextSwitcher
 import android.widget.TextView
-import butterknife.ButterKnife
 import butterknife.bindView
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
@@ -54,7 +53,6 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.act_main)
-    ButterKnife.bind(this)
     /**
      * setup navigation drawer
      */

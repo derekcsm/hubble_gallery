@@ -14,12 +14,16 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
+import android.widget.TextView
 import butterknife.Bind
 import butterknife.ButterKnife
 import com.derek_s.hubble_gallery.R
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
 import com.derek_s.hubble_gallery.nav_drawer.presenters.NavigationPresenter
 import com.derek_s.hubble_gallery.nav_drawer.views.NavigationView
+import com.derek_s.hubble_gallery.utils.ui.FontFactory
 
 interface NavDrawerListeners {
   val toolbar: Toolbar
@@ -36,6 +40,11 @@ class FragNavDrawer : Fragment(), NavigationView {
 
   @Bind(R.id.rv_drawer)
   lateinit var rvDrawer: RecyclerView
+  lateinit var llFooterItems : LinearLayout
+  lateinit var tvAbout : TextView
+  lateinit var tvRate : TextView
+  lateinit var rlFavorites : RelativeLayout
+  lateinit var tvFavorites : TextView
 
   private var mCallbacks: NavDrawerListeners? = null
 
@@ -66,7 +75,22 @@ class FragNavDrawer : Fragment(), NavigationView {
     val rootView = inflater.inflate(R.layout.frag_nav_drawer, container, false)
     ButterKnife.bind(this, rootView)
 
+    llFooterItems = rootView.findViewById(R.id.ll_footer_items) as LinearLayout
+    tvAbout = rootView.findViewById(R.id.tv_about) as TextView
+    tvRate = rootView.findViewById(R.id.tv_rate) as TextView
+    rlFavorites = rootView.findViewById(R.id.rl_favorites) as RelativeLayout
+    tvFavorites = rootView.findViewById(R.id.tv_favorites) as TextView
+
+    beautifyViews();
     presenter!!.populateAdapter()
+
+    llFooterItems.setOnClickListener {} // intentionally empty
+
+    tvAbout.setOnClickListener {  } // todo
+
+    tvRate.setOnClickListener {  } // todo
+
+    rlFavorites.setOnClickListener {  } // todo
 
     // header
     // ViewGroup header = (ViewGroup) inflater.inflate(R.layout.item_header_nav_drawer, lvMenu, false);
@@ -167,4 +191,10 @@ class FragNavDrawer : Fragment(), NavigationView {
 
   override val recycler: RecyclerView
     get() = rvDrawer
+
+  private fun beautifyViews() {
+    tvAbout.typeface = FontFactory.getCondensedBold(context);
+    tvRate.typeface = FontFactory.getCondensedBold(context);
+    tvFavorites.typeface = FontFactory.getMedium(context);
+  }
 }

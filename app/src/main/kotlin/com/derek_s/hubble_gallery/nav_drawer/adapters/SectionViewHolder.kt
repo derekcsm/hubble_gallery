@@ -20,7 +20,7 @@ class SectionViewHolder private constructor(itemView: View) : ChildViewHolder(it
   }
 
   fun beautifyViews() {
-    tvTitle.typeface = FontFactory.getMedium(itemView.context)
+    tvTitle.typeface = FontFactory.getRegular(itemView.context)
   }
 
   fun onBind(section: SectionChildObject, listener: NavDrawerAdapter.NavAdapterListener) {

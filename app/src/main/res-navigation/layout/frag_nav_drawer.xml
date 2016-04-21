@@ -15,6 +15,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"/>
 
   <include
+    android:id="@+id/ll_footer_items"
     layout="@layout/item_footer_nav_drawer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
