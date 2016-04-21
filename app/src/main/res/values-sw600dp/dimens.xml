@@ -1,13 +1,18 @@
 <resources>
 
-    <!-- nav drawer -->
-    <dimen name="navigation_drawer_width">400dp</dimen>
+  <dimen name="first_keyline">24dp</dimen>
+  <dimen name="first_keyline_half">12dp</dimen>
+  <dimen name="second_keyline">80dp</dimen>
 
-    <!-- num of columns in portrait -->
-    <integer name="grid_columns">3</integer>
+  <!-- misc -->
+  <dimen name="navigation_drawer_width">400dp</dimen>
+  <dimen name="list_item_height">52dp</dimen>
 
-    <!-- square flipper -->
-    <dimen name="square_flipper_small">32dp</dimen>
-    <dimen name="square_flipper_large">48dp</dimen>
+  <!-- num of columns in portrait -->
+  <integer name="grid_columns">3</integer>
+
+  <!-- square flipper -->
+  <dimen name="square_flipper_small">32dp</dimen>
+  <dimen name="square_flipper_large">48dp</dimen>
 
 </resources>
