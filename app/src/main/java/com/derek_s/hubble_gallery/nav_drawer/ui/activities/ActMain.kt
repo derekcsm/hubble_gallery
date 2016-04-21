@@ -58,7 +58,7 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
     /**
      * setup navigation drawer
      */
-    navDrawer = getSupportFragmentManager().findFragmentById(R.id.navigation_drawer)as FragNavDrawer
+    navDrawer = supportFragmentManager.findFragmentById(R.id.navigation_drawer)as FragNavDrawer
     navDrawer!!.setUp(mDrawerLayout)
     if (!db.getBoolean(Constants.ONBOARDING_SHOWN)) {
       /*
@@ -79,6 +79,9 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
 
     if (savedInstanceState != null) {
       mTitle = savedInstanceState.getString(CUR_TITLE)
+    } else {
+      // default selected item
+      mTitle = "Entire Collection"
     }
     val fragmentManager = supportFragmentManager
 
@@ -89,8 +92,8 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
       fragmentManager.beginTransaction().replace(R.id.container, fragMain).commit()
     }
     if (fragMain!!.hiRes) {
-      val res = toolbar.getMenu().findItem(R.id.filter_resolution)
-      res.setChecked(true)
+      val res = toolbar.menu.findItem(R.id.filter_resolution)
+      res.isChecked = true
     }
   }
 
@@ -118,24 +121,24 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
     this.menu = menu
-    getMenuInflater().inflate(R.menu.act_main, menu)
+    menuInflater.inflate(R.menu.act_main, menu)
     restoreActionBar()
     if (fragMain!!.hiRes) {
       val res = menu.findItem(R.id.filter_resolution)
-      res.setChecked(true)
+      res.isChecked = true
     }
     return super.onCreateOptionsMenu(menu)
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    when (item.getItemId()) {
+    when (item.itemId) {
       R.id.filter_popular -> {
-        item.setChecked(true)
+        item.isChecked = true
         fragMain!!.hiRes = false
         fragMain!!.loadInitialItems(fragMain!!.currentQuery)
       }
       R.id.filter_resolution -> {
-        item.setChecked(true)
+        item.isChecked = true
         fragMain!!.hiRes = true
         fragMain!!.loadInitialItems(fragMain!!.currentQuery)
       }
@@ -144,7 +147,7 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
   }
 
   override fun onGridItemClicked(tileObject: TileObject) {
-    if (networkUtil.isConnected()) {
+    if (networkUtil.isConnected) {
       val intent = Intent(this, ActDetails::class.java)
       intent.putExtra(Constants.PARAM_TILE_KEY, tileObject.serialize())
       startActivity(intent)
@@ -155,9 +158,9 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
   }
 
   override fun adjustToolbar(scrollState: ScrollState, gridView: ObservableGridView) {
-    val toolbarHeight = toolbar.getHeight()
+    val toolbarHeight = toolbar.height
     val scrollable = gridView
-    val scrollY = scrollable.getCurrentScrollY()
+    val scrollY = scrollable.currentScrollY
     if (scrollState === ScrollState.DOWN) {
       showToolbar()
     } else if (scrollState === ScrollState.UP) {
@@ -171,18 +174,18 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
 
   fun toggleFilterVisible(visible: Boolean) {
     Log.i(TAG, "toggleFilterVisible " + visible)
-    val actionFilter = toolbar.getMenu().findItem(R.id.action_filter)
-    val actionFilterPopular = toolbar.getMenu().findItem(R.id.filter_popular)
-    val actionFilterResolution = toolbar.getMenu().findItem(R.id.filter_resolution)
+    val actionFilter = toolbar.menu.findItem(R.id.action_filter)
+    val actionFilterPopular = toolbar.menu.findItem(R.id.filter_popular)
+    val actionFilterResolution = toolbar.menu.findItem(R.id.filter_resolution)
     if (actionFilter != null)
       if (visible) {
-        actionFilter.setVisible(true)
-        actionFilterPopular.setVisible(true)
-        actionFilterResolution.setVisible(true)
+        actionFilter.isVisible = true
+        actionFilterPopular.isVisible = true
+        actionFilterResolution.isVisible = true
       } else {
-        actionFilter.setVisible(false)
-        actionFilterPopular.setVisible(false)
-        actionFilterResolution.setVisible(false)
+        actionFilter.isVisible = false
+        actionFilterPopular.isVisible = false
+        actionFilterResolution.isVisible = false
       }
   }
 
@@ -201,12 +204,12 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
     YoYo.with(Techniques.FadeInDown).duration(200).playOn(toolbar)
     toolbarIsShown = true
     v.measure(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
-    val targetHeight = v.getMeasuredHeight()
-    v.getLayoutParams().height = 0
-    v.setVisibility(View.VISIBLE)
+    val targetHeight = v.measuredHeight
+    v.layoutParams.height = 0
+    v.visibility = View.VISIBLE
     val a = object : Animation() {
       override fun applyTransformation(interpolatedTime: Float, t: Transformation) {
-        v.getLayoutParams().height = if (interpolatedTime == 1f)
+        v.layoutParams.height = if (interpolatedTime == 1f)
           RelativeLayout.LayoutParams.WRAP_CONTENT
         else
           (targetHeight * interpolatedTime).toInt()
@@ -217,20 +220,20 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
         return true
       }
     }
-    a.setDuration(200)
+    a.duration = 200
     v.startAnimation(a)
   }
 
   fun collapse(v: View) {
     YoYo.with(Techniques.FadeOutUp).duration(100).playOn(toolbar)
     toolbarIsShown = false
-    val initialHeight = v.getMeasuredHeight()
+    val initialHeight = v.measuredHeight
     val a = object : Animation() {
       override fun applyTransformation(interpolatedTime: Float, t: Transformation) {
         if (interpolatedTime == 1f) {
-          v.setVisibility(View.GONE)
+          v.visibility = View.GONE
         } else {
-          v.getLayoutParams().height = initialHeight - (initialHeight * interpolatedTime).toInt()
+          v.layoutParams.height = initialHeight - (initialHeight * interpolatedTime).toInt()
           v.requestLayout()
         }
       }
@@ -239,7 +242,7 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
         return true
       }
     }
-    a.setDuration(200)
+    a.duration = 200
     v.startAnimation(a)
   }
 
