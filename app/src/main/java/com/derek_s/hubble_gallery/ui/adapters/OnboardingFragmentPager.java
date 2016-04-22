@@ -1,12 +1,12 @@
-package com.derek_s.hubble_gallery.nav_drawer.adapters;
+package com.derek_s.hubble_gallery.ui.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
 
-import com.derek_s.hubble_gallery.nav_drawer.fragments.FragWelcomeInfo;
-import com.derek_s.hubble_gallery.nav_drawer.fragments.FragWelcomeOutline;
+import com.derek_s.hubble_gallery.ui.fragments.FragWelcomeInfo;
+import com.derek_s.hubble_gallery.ui.fragments.FragWelcomeOutline;
 
 /**
  * Created by dereksmith on 15-05-04.

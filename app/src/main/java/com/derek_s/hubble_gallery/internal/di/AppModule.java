@@ -21,38 +21,38 @@ import dagger.Provides;
 @Module
 public class AppModule {
 
-    private final Application application;
+  private final Application application;
 
-    public AppModule(Application application) {
-        this.application = application;
-    }
+  public AppModule(Application application) {
+    this.application = application;
+  }
 
-    @Provides
-    Context provideContext() {
-        return application.getBaseContext();
-    }
+  @Provides
+  Context provideContext() {
+    return application.getBaseContext();
+  }
 
-    @Provides
-    @Singleton
-    Resources provideResources(Context context) {
-        return context.getResources();
-    }
+  @Provides
+  @Singleton
+  Resources provideResources(Context context) {
+    return context.getResources();
+  }
 
-    @Provides
-    @Singleton
-    ConnectivityManager provideConnectivityManager() {
-        return (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);
-    }
+  @Provides
+  @Singleton
+  ConnectivityManager provideConnectivityManager() {
+    return (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);
+  }
 
-    @Provides
-    @Singleton
-    NetworkUtil provideNetworkStateManager(ConnectivityManager connectivityManagerCompat, Context context) {
-        return new NetworkUtil(connectivityManagerCompat, context);
-    }
+  @Provides
+  @Singleton
+  NetworkUtil provideNetworkStateManager(ConnectivityManager connectivityManagerCompat, Context context) {
+    return new NetworkUtil(connectivityManagerCompat, context);
+  }
 
-    @Provides
-    @Singleton
-    TinyDB provideTinyDb(Context context) {
-        return new TinyDB(context);
-    }
+  @Provides
+  @Singleton
+  TinyDB provideTinyDb(Context context) {
+    return new TinyDB(context);
+  }
 }

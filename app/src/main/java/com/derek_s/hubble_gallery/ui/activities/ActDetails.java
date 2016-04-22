@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.nav_drawer.ui.activities;
+package com.derek_s.hubble_gallery.ui.activities;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -21,8 +21,8 @@ import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery._shared.model.DetailsObject;
 import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
-import com.derek_s.hubble_gallery.nav_drawer.presenters.DetailsPresenter;
-import com.derek_s.hubble_gallery.nav_drawer.views.DetailsView;
+import com.derek_s.hubble_gallery.ui.presenters.DetailsPresenter;
+import com.derek_s.hubble_gallery.ui.views.DetailsView;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;

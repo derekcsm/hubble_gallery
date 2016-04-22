@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.nav_drawer.ui.activities;
+package com.derek_s.hubble_gallery.act_main;
 
 import android.content.Intent
 import android.os.Bundle
@@ -22,10 +22,12 @@ import com.derek_s.hubble_gallery.base.ActBase
 import com.derek_s.hubble_gallery.base.Constants
 import com.derek_s.hubble_gallery.base.TinyDB
 import com.derek_s.hubble_gallery.internal.di.ActivityComponent
-import com.derek_s.hubble_gallery.nav_drawer.fragments.FragMain
 import com.derek_s.hubble_gallery.nav_drawer.fragments.FragNavDrawer
 import com.derek_s.hubble_gallery.nav_drawer.fragments.NavDrawerListeners
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
+import com.derek_s.hubble_gallery.ui.activities.ActDetails
+import com.derek_s.hubble_gallery.ui.activities.ActWelcome
+import com.derek_s.hubble_gallery.ui.fragments.FragMain
 import com.derek_s.hubble_gallery.utils.network.NetworkUtil
 import com.derek_s.hubble_gallery.utils.ui.Toasty
 import com.derek_s.hubble_gallery.utils.ui.ToolbarTitle

@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.nav_drawer.ui.widgets;
+package com.derek_s.hubble_gallery.ui.widgets;
 
 /*
 * Copyright 2014 Google Inc.

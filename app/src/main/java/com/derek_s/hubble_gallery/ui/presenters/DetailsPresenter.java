@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.nav_drawer.presenters;
+package com.derek_s.hubble_gallery.ui.presenters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,7 @@ import com.derek_s.hubble_gallery._shared.model.DetailsObject;
 import com.derek_s.hubble_gallery._shared.model.TileObject;
 import com.derek_s.hubble_gallery.api.GetDetails;
 import com.derek_s.hubble_gallery.base.Constants;
-import com.derek_s.hubble_gallery.nav_drawer.views.DetailsView;
+import com.derek_s.hubble_gallery.ui.views.DetailsView;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.ImageUtils;
 import com.derek_s.hubble_gallery.utils.ui.Toasty;

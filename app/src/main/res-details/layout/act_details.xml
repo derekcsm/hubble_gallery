@@ -21,7 +21,7 @@
                 android:clickable="true"
                 android:foreground="@drawable/selector_default">
 
-            <com.derek_s.hubble_gallery.nav_drawer.ui.widgets.StretchyImageView
+            <com.derek_s.hubble_gallery.ui.widgets.StretchyImageView
                 android:id="@+id/iv_display"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

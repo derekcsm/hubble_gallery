@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context=".nav_drawer.ui.activities.ActImageViewer">
+    tools:context=".ui.activities.ActImageViewer">
 
-    <com.derek_s.hubble_gallery.nav_drawer.ui.widgets.TouchImageView
+    <com.derek_s.hubble_gallery.ui.widgets.TouchImageView
         android:id="@+id/iv_fullscreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

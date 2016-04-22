@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.nav_drawer.views;
+package com.derek_s.hubble_gallery.ui.views;
 
 import android.content.Intent;
 import android.widget.ImageView;

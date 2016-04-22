@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.nav_drawer.ui.activities;
+package com.derek_s.hubble_gallery.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
-import com.derek_s.hubble_gallery.nav_drawer.ui.widgets.TouchImageView;
+import com.derek_s.hubble_gallery.ui.widgets.TouchImageView;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;

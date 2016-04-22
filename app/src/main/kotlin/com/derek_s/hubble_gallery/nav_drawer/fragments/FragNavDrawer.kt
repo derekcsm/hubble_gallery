@@ -92,31 +92,6 @@ class FragNavDrawer : Fragment(), NavigationView {
 
     rlFavorites.setOnClickListener {  } // todo
 
-    // header
-    // ViewGroup header = (ViewGroup) inflater.inflate(R.layout.item_header_nav_drawer, lvMenu, false);
-    // TextView tvVersionName = (TextView) header.findViewById(R.id.tv_version_name);
-    // tvVersionName.setTypeface(FontFactory.getCondensedRegular(getActivity()));
-    // PackageInfo pInfo = null;
-    // try {
-    // pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-    // } catch (PackageManager.NameNotFoundException ex) {
-    // ex.printStackTrace();
-    // }
-    // tvVersionName.setText("BETA V " + pInfo.versionName);
-    // adapter TODO
-    // mAdapter = new SectionsAdapter(getActivity(), getActivity());
-    // lvMenu.addFooterView(footer, null, false);
-    // lvMenu.addHeaderView(header, null, false);
-    // lvMenu.setAdapter(mAdapter);
-    // mAdapter.addItems();
-
-
-    //        if (savedInstanceState != null) {
-    //            if (mCurSelectedPositions.get(0) === -2) {
-    //                tvFavorites.setBackgroundColor(getResources().getColor(R.color.focused_color))
-    //                tvFavorites.setTextColor(getResources().getColor(R.color.seleted_item_color))
-    //            }
-    //        }
     return rootView
   }
 

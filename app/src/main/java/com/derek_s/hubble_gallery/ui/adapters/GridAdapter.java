@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.nav_drawer.adapters;
+package com.derek_s.hubble_gallery.ui.adapters;
 
 import android.app.Activity;
 import android.content.Context;

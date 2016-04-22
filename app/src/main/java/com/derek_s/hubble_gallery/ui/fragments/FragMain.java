@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.nav_drawer.fragments;
+package com.derek_s.hubble_gallery.ui.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -18,7 +18,7 @@ import com.derek_s.hubble_gallery._shared.model.Tiles;
 import com.derek_s.hubble_gallery.api.GetAlbum;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.base.FragBase;
-import com.derek_s.hubble_gallery.nav_drawer.adapters.GridAdapter;
+import com.derek_s.hubble_gallery.ui.adapters.GridAdapter;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 import com.github.ksoichiro.android.observablescrollview.ObservableGridView;

@@ -3,7 +3,7 @@
     android:id="@+id/rl_onboarding"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".nav_drawer.ui.activities.ActWelcome">
+    tools:context=".ui.activities.ActWelcome">
 
     <SurfaceView
         android:id="@+id/sv_starfield"
