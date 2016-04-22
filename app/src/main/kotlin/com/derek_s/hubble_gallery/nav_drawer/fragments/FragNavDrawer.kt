@@ -30,6 +30,8 @@ interface NavDrawerListeners {
     get
 
   fun selectSection(section: SectionChildObject)
+
+  fun openFavorites(scroll: Boolean);
 }
 
 class FragNavDrawer : Fragment(), NavigationView {
@@ -90,7 +92,10 @@ class FragNavDrawer : Fragment(), NavigationView {
 
     tvRate.setOnClickListener {  } // todo
 
-    rlFavorites.setOnClickListener {  } // todo
+    rlFavorites.setOnClickListener {
+      mCallbacks!!.openFavorites(true)
+      closeDrawer()
+    }
 
     return rootView
   }

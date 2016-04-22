@@ -251,7 +251,13 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
     restoreActionBar()
     showToolbar()
     fragMain!!.loadInitialItems(section.query)
+  }
 
+  override fun openFavorites(scroll: Boolean) {
+    mTitle = resources.getString(R.string.favorites)
+    restoreActionBar()
+    showToolbar()
+    fragMain!!.openFavorites(scroll)
   }
 
   override fun injectComponent(component: ActivityComponent) {

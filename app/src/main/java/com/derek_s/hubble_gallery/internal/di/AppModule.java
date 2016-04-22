@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 
 import com.derek_s.hubble_gallery.base.TinyDB;
 import com.derek_s.hubble_gallery.utils.network.NetworkUtil;
+import com.google.gson.Gson;
 
 import javax.inject.Singleton;
 
@@ -54,5 +55,11 @@ public class AppModule {
   @Singleton
   TinyDB provideTinyDb(Context context) {
     return new TinyDB(context);
+  }
+
+  @Provides
+  @Singleton
+  Gson provideGson() {
+    return new Gson();
   }
 }

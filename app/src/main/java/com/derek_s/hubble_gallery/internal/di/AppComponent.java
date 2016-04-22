@@ -9,6 +9,7 @@ import com.derek_s.hubble_gallery.base.TinyDB;
 import com.derek_s.hubble_gallery.ui.presenters.DetailsPresenter;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.network.NetworkUtil;
+import com.google.gson.Gson;
 
 import javax.inject.Singleton;
 
@@ -31,6 +32,8 @@ public interface AppComponent {
   DetailsPresenter provideActDetailsPresenter();
 
   FavoriteUtils provideFavoriteUtils();
+
+  Gson provideGson();
 
   void inject(HubbleApplication app);
 }

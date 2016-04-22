@@ -3,8 +3,7 @@ package com.derek_s.hubble_gallery.utils;
 import com.derek_s.hubble_gallery._shared.model.TileObject;
 import com.derek_s.hubble_gallery._shared.model.Tiles;
 import com.derek_s.hubble_gallery.base.TinyDB;
-
-import java.util.ArrayList;
+import com.google.gson.Gson;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -16,30 +15,28 @@ public class FavoriteUtils {
 
   @Inject
   TinyDB tinyDB;
+  @Inject
+  Gson gson;
 
   @Inject
   public FavoriteUtils() {
   }
 
   public void saveFavorite(TileObject tileObject) {
-    Tiles currentFaves = Tiles.Companion.create(tinyDB.getString(FAVORITES_KEY));
+    Tiles currentFaves = getFavorites();
     if (currentFaves == null)
       currentFaves = new Tiles();
 
-    if (currentFaves.getTiles() == null)
-      currentFaves.setTiles(new ArrayList<TileObject>());
-
     currentFaves.getTiles().add(tileObject);
-
     tinyDB.putString(FAVORITES_KEY, currentFaves.serialize());
   }
 
   public Tiles getFavorites() {
-    return Tiles.Companion.create(tinyDB.getString(FAVORITES_KEY));
+    return gson.fromJson(tinyDB.getString(FAVORITES_KEY), Tiles.class);
   }
 
   public void removeFavorite(TileObject tileObject) {
-    Tiles currentFaves = Tiles.Companion.create(tinyDB.getString(FAVORITES_KEY));
+    Tiles currentFaves = getFavorites();
 
     for (int i = 0; i < currentFaves.getTiles().size(); i++) {
       TileObject curTile = currentFaves.getTiles().get(i);
@@ -52,7 +49,7 @@ public class FavoriteUtils {
   }
 
   public boolean isFavorited(TileObject tileObject) {
-    Tiles currentFaves = Tiles.Companion.create(tinyDB.getString(FAVORITES_KEY));
+    Tiles currentFaves = getFavorites();
 
     if (currentFaves == null)
       return false;
