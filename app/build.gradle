@@ -106,6 +106,7 @@ dependencies {
     compile "org.jsoup:jsoup:$jsoup_version"
 
     // UI
+    compile "org.sufficientlysecure:html-textview:$htmltextview_version"
     compile "com.bignerdranch.android:expandablerecyclerview:$expandablerecycler_version"
     compile "com.github.ksoichiro:android-observablescrollview:$observablescrollview_version"
     compile "com.daimajia.easing:library:$daimajiaeasing_version"
