@@ -17,9 +17,8 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import butterknife.Bind
-import butterknife.ButterKnife
 import com.derek_s.hubble_gallery.R
+import com.derek_s.hubble_gallery.nav_drawer.dialog.DialogAbout
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
 import com.derek_s.hubble_gallery.nav_drawer.presenters.NavigationPresenter
 import com.derek_s.hubble_gallery.nav_drawer.views.NavigationView
@@ -40,7 +39,6 @@ class FragNavDrawer : Fragment(), NavigationView {
   private var mDrawerLayout: DrawerLayout? = null
   private var presenter: NavigationPresenter? = null
 
-  @Bind(R.id.rv_drawer)
   lateinit var rvDrawer: RecyclerView
   lateinit var llFooterItems : LinearLayout
   lateinit var tvAbout : TextView
@@ -49,6 +47,7 @@ class FragNavDrawer : Fragment(), NavigationView {
   lateinit var tvFavorites : TextView
 
   private var mCallbacks: NavDrawerListeners? = null
+  private var dialogAbout: DialogAbout? = null
 
   override fun onCreate(savedState: Bundle?) {
     super.onCreate(savedState)
@@ -75,8 +74,8 @@ class FragNavDrawer : Fragment(), NavigationView {
                             savedInstanceState: Bundle?): View? {
 
     val rootView = inflater.inflate(R.layout.frag_nav_drawer, container, false)
-    ButterKnife.bind(this, rootView)
 
+    rvDrawer = rootView.findViewById(R.id.rv_drawer) as RecyclerView
     llFooterItems = rootView.findViewById(R.id.ll_footer_items) as LinearLayout
     tvAbout = rootView.findViewById(R.id.tv_about) as TextView
     tvRate = rootView.findViewById(R.id.tv_rate) as TextView
@@ -88,7 +87,10 @@ class FragNavDrawer : Fragment(), NavigationView {
 
     llFooterItems.setOnClickListener {} // intentionally empty
 
-    tvAbout.setOnClickListener {  } // todo
+    dialogAbout = DialogAbout(context)
+    tvAbout.setOnClickListener {
+      dialogAbout!!.show()
+    } // todo
 
     tvRate.setOnClickListener {  } // todo
 

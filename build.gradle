@@ -19,7 +19,6 @@ buildscript {
     ext.verticalviewpager_version = '19.0.1'
     ext.androidsvg_version = '1.2.2-beta-1'
     ext.materialdialogs_version = '0.8.5.8@aar'
-    ext.htmltextview_version = '1.5'
 
     ext.dagger_version = '2.0.1'
     ext.picasso_version = '2.5.0'
