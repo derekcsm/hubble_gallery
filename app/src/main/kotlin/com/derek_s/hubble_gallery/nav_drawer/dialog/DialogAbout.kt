@@ -30,6 +30,8 @@ class DialogAbout(context: Context) {
           .customView(R.layout.dialog_about, false)
           .backgroundColorRes(R.color.background)
           .theme(Theme.DARK)
+          .forceStacking(true)
+          .positiveText(context.resources.getString(R.string.show_intro))
           .build()
     } else {
       return dialog!!
