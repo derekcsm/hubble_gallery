@@ -24,6 +24,7 @@ import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 import com.github.ksoichiro.android.observablescrollview.ObservableGridView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -92,11 +93,12 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
       canLoadMore = savedInstanceState.getBoolean(CAN_LOAD_MORE);
       hiRes = savedInstanceState.getBoolean(IS_HIRES);
 
-      Tiles nTiles = Tiles.Companion.create(savedInstanceState.getString(CURRENT_TILES));
+      Gson gson = new Gson();
+      Tiles nTiles = gson.fromJson(savedInstanceState.getString(CURRENT_TILES), Tiles.class);
       if (nTiles.getTiles().isEmpty()) {
         loadInitialItems(currentQuery);
       } else {
-        mAdapter.addItems(Tiles.Companion.create(savedInstanceState.getString(CURRENT_TILES)).getTiles());
+        mAdapter.addItems(gson.fromJson(savedInstanceState.getString(CURRENT_TILES), Tiles.class).getTiles());
       }
     }
 
