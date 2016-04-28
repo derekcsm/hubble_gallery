@@ -2,6 +2,7 @@ package com.derek_s.hubble_gallery.nav_drawer.fragments;
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -19,9 +20,11 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.derek_s.hubble_gallery.R
 import com.derek_s.hubble_gallery.nav_drawer.dialog.DialogAbout
+import com.derek_s.hubble_gallery.nav_drawer.dialog.DialogAboutListener
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
 import com.derek_s.hubble_gallery.nav_drawer.presenters.NavigationPresenter
 import com.derek_s.hubble_gallery.nav_drawer.views.NavigationView
+import com.derek_s.hubble_gallery.ui.activities.ActWelcome
 import com.derek_s.hubble_gallery.utils.ui.FontFactory
 
 interface NavDrawerListeners {
@@ -40,11 +43,11 @@ class FragNavDrawer : Fragment(), NavigationView {
   private var presenter: NavigationPresenter? = null
 
   lateinit var rvDrawer: RecyclerView
-  lateinit var llFooterItems : LinearLayout
-  lateinit var tvAbout : TextView
-  lateinit var tvRate : TextView
-  lateinit var rlFavorites : RelativeLayout
-  lateinit var tvFavorites : TextView
+  lateinit var llFooterItems: LinearLayout
+  lateinit var tvAbout: TextView
+  lateinit var tvRate: TextView
+  lateinit var rlFavorites: RelativeLayout
+  lateinit var tvFavorites: TextView
 
   private var mCallbacks: NavDrawerListeners? = null
   private var dialogAbout: DialogAbout? = null
@@ -87,12 +90,16 @@ class FragNavDrawer : Fragment(), NavigationView {
 
     llFooterItems.setOnClickListener {} // intentionally empty
 
-    dialogAbout = DialogAbout(context)
+    dialogAbout = DialogAbout(context, object : DialogAboutListener {
+      override fun onShowIntroClicked() {
+        activity.startActivity(Intent(activity, ActWelcome::class.java));
+      }
+    })
     tvAbout.setOnClickListener {
       dialogAbout!!.show()
     } // todo
 
-    tvRate.setOnClickListener {  } // todo
+    tvRate.setOnClickListener { } // todo
 
     rlFavorites.setOnClickListener {
       mCallbacks!!.openFavorites(true)

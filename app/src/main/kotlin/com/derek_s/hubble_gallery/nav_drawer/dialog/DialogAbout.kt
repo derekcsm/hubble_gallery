@@ -11,9 +11,10 @@ import com.afollestad.materialdialogs.Theme
 import com.derek_s.hubble_gallery.R
 import com.derek_s.hubble_gallery.utils.ui.FontFactory
 
-class DialogAbout(context: Context) {
+class DialogAbout(context: Context, listener: DialogAboutListener) {
 
   private val context: Context
+  private val listener: DialogAboutListener
   private var dialog: MaterialDialog? = null
 
   private var tvTitle: TextView? = null
@@ -22,6 +23,7 @@ class DialogAbout(context: Context) {
 
   init {
     this.context = context
+    this.listener = listener
   }
 
   fun getDialog() : MaterialDialog {
@@ -32,6 +34,7 @@ class DialogAbout(context: Context) {
           .theme(Theme.DARK)
           .forceStacking(true)
           .positiveText(context.resources.getString(R.string.show_intro))
+          .onPositive { materialDialog, dialogAction ->  listener.onShowIntroClicked()}
           .build()
     } else {
       return dialog!!
