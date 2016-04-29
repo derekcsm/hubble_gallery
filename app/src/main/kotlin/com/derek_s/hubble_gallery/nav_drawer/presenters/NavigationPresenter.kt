@@ -139,4 +139,8 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
   override fun onSectionClicked(section: SectionChildObject) {
     view.selectSection(section)
   }
+
+  override fun setSelectedQuery(query: String) {
+    mAdapter!!.setSelectedQuery(query)
+  }
 }

@@ -15,6 +15,8 @@ class NavDrawerAdapter(context: Context, parentItemList: ArrayList<ParentListIte
   private val mContext: Context
   private val listener: NavAdapterListener
 
+  private var selectedQuery = "entire";
+
   init {
     mContext = context
     this.listener = listener
@@ -30,16 +32,23 @@ class NavDrawerAdapter(context: Context, parentItemList: ArrayList<ParentListIte
 
   override fun onBindParentViewHolder(parentViewHolder: GroupViewHolder, position: Int,
                                       parentListItem: ParentListItem) {
-    parentViewHolder.onBind(parentListItem as NavigationAdapterItem, listener)
+    parentViewHolder.onBind(parentListItem as NavigationAdapterItem, listener, position, selectedQuery)
   }
 
   override fun onBindChildViewHolder(childViewHolder: SectionViewHolder, position: Int,
                                      childListItem: Any) {
-    childViewHolder.onBind(childListItem as SectionChildObject, listener)
+    childViewHolder.onBind(childListItem as SectionChildObject, listener, position, selectedQuery)
+  }
+
+  fun setSelectedQuery(query: String) {
+    selectedQuery = query
+    notifyDataSetChanged()
   }
 
   interface NavAdapterListener {
     fun onSectionClicked(section: SectionChildObject)
+
+    fun setSelectedQuery(selectedQuery: String)
   }
 
 }
