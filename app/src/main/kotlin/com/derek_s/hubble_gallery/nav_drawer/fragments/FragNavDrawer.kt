@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
@@ -97,9 +98,16 @@ class FragNavDrawer : Fragment(), NavigationView {
     })
     tvAbout.setOnClickListener {
       dialogAbout!!.show()
-    } // todo
+    }
 
-    tvRate.setOnClickListener { } // todo
+    tvRate.setOnClickListener {
+      var appPackageName = context.packageName;
+      try {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+      } catch (anfe: android.content.ActivityNotFoundException) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+      }
+    }
 
     rlFavorites.setOnClickListener {
       mCallbacks!!.openFavorites(true)
