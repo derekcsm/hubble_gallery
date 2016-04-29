@@ -7,6 +7,7 @@ import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -112,6 +113,9 @@ class FragNavDrawer : Fragment(), NavigationView {
     rlFavorites.setOnClickListener {
       mCallbacks!!.openFavorites(true)
       closeDrawer()
+      tvFavorites.setBackgroundColor(ContextCompat.getColor(context, R.color.focused_color));
+      tvFavorites.setTextColor(ContextCompat.getColor(context, R.color.seleted_item_color));
+      presenter!!.setSelectedQuery("")
     }
 
     return rootView
@@ -137,13 +141,13 @@ class FragNavDrawer : Fragment(), NavigationView {
         R.string.navigation_drawer_close) {
       override fun onDrawerClosed(drawerView: View) {
         super.onDrawerClosed(drawerView)
-        if (!isAdded())
+        if (!isAdded)
           return
       }
 
       override fun onDrawerOpened(drawerView: View) {
         super.onDrawerOpened(drawerView)
-        if (!isAdded())
+        if (!isAdded)
           return
       }
     }
@@ -183,7 +187,8 @@ class FragNavDrawer : Fragment(), NavigationView {
     closeDrawer()
     mCallbacks!!.selectSection(section)
 
-    // TODO select position
+    tvFavorites.setBackgroundResource(R.drawable.selector_default);
+    tvFavorites.setTextColor(ContextCompat.getColor(context, R.color.body_dark_theme));
   }
 
   override val recycler: RecyclerView

@@ -8,4 +8,6 @@ interface NavigationView {
     get
 
   fun selectSection(section: SectionChildObject) { }
+
+  fun deselectFavorites() {}
 }
