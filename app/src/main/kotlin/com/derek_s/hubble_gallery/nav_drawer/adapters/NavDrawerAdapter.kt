@@ -45,6 +45,10 @@ class NavDrawerAdapter(context: Context, parentItemList: ArrayList<ParentListIte
     notifyDataSetChanged()
   }
 
+  fun getSelectedQuery() : String {
+    return selectedQuery
+  }
+
   interface NavAdapterListener {
     fun onSectionClicked(section: SectionChildObject)
 

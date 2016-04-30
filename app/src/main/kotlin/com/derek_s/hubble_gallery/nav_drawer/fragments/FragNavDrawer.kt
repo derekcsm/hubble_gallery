@@ -89,6 +89,7 @@ class FragNavDrawer : Fragment(), NavigationView {
 
     beautifyViews();
     presenter!!.populateAdapter()
+    presenter!!.restoreState(savedInstanceState)
 
     llFooterItems.setOnClickListener {} // intentionally empty
 
@@ -122,6 +123,12 @@ class FragNavDrawer : Fragment(), NavigationView {
   }
 
   override fun onSaveInstanceState(outState: Bundle) {
+    if (presenter == null)
+      return
+
+    if (presenter!!.getSelectedQuery() != null)
+      outState.putString(presenter!!.KEY_SELECTED_QUERY, presenter!!.getSelectedQuery())
+
     super.onSaveInstanceState(outState)
   }
 
