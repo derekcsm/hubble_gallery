@@ -7,6 +7,7 @@ import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -88,6 +89,7 @@ class FragNavDrawer : Fragment(), NavigationView {
 
     beautifyViews();
     presenter!!.populateAdapter()
+    presenter!!.restoreState(savedInstanceState)
 
     llFooterItems.setOnClickListener {} // intentionally empty
 
@@ -109,15 +111,29 @@ class FragNavDrawer : Fragment(), NavigationView {
       }
     }
 
+    if (presenter!!.getSelectedQuery().equals("favorites")) {
+      setFavoritesSelectedUI(true)
+    } else {
+      setFavoritesSelectedUI(false)
+    }
+
     rlFavorites.setOnClickListener {
       mCallbacks!!.openFavorites(true)
       closeDrawer()
+      setFavoritesSelectedUI(true)
+      presenter!!.setSelectedQuery("favorites")
     }
 
     return rootView
   }
 
   override fun onSaveInstanceState(outState: Bundle) {
+    if (presenter == null)
+      return
+
+    if (presenter!!.getSelectedQuery() != null)
+      outState.putString(presenter!!.KEY_SELECTED_QUERY, presenter!!.getSelectedQuery())
+
     super.onSaveInstanceState(outState)
   }
 
@@ -137,13 +153,13 @@ class FragNavDrawer : Fragment(), NavigationView {
         R.string.navigation_drawer_close) {
       override fun onDrawerClosed(drawerView: View) {
         super.onDrawerClosed(drawerView)
-        if (!isAdded())
+        if (!isAdded)
           return
       }
 
       override fun onDrawerOpened(drawerView: View) {
         super.onDrawerOpened(drawerView)
-        if (!isAdded())
+        if (!isAdded)
           return
       }
     }
@@ -179,11 +195,20 @@ class FragNavDrawer : Fragment(), NavigationView {
     }
   }
 
+  private fun setFavoritesSelectedUI(isSelected: Boolean) {
+    if (isSelected) {
+      rlFavorites.setBackgroundColor(ContextCompat.getColor(context, R.color.focused_color));
+      tvFavorites.setTextColor(ContextCompat.getColor(context, R.color.seleted_item_color));
+    } else {
+      rlFavorites.setBackgroundResource(R.drawable.selector_default);
+      tvFavorites.setTextColor(ContextCompat.getColor(context, R.color.body_dark_theme));
+    }
+  }
+
   override fun selectSection(section: SectionChildObject) {
     closeDrawer()
     mCallbacks!!.selectSection(section)
-
-    // TODO select position
+    setFavoritesSelectedUI(false)
   }
 
   override val recycler: RecyclerView

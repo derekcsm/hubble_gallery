@@ -1,6 +1,7 @@
 package com.derek_s.hubble_gallery.nav_drawer.presenters
 
 import android.content.Context
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem
 import com.derek_s.hubble_gallery.nav_drawer.adapters.NavDrawerAdapter
@@ -17,9 +18,23 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
   var context: Context
   var mAdapter: NavDrawerAdapter? = null
 
+  val KEY_SELECTED_QUERY = "selected_query"
+
   init {
     this.view = view
     this.context = context
+  }
+
+  fun restoreState(savedState: Bundle?) {
+    if (savedState == null)
+      return
+
+    if (savedState.containsKey(KEY_SELECTED_QUERY))
+      mAdapter!!.setSelectedQuery(savedState.getString(KEY_SELECTED_QUERY))
+  }
+
+  fun getSelectedQuery() : String? {
+    return mAdapter!!.getSelectedQuery()
   }
 
   fun populateAdapter() {
@@ -138,5 +153,9 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
 
   override fun onSectionClicked(section: SectionChildObject) {
     view.selectSection(section)
+  }
+
+  override fun setSelectedQuery(query: String) {
+    mAdapter!!.setSelectedQuery(query)
   }
 }

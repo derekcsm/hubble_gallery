@@ -3,6 +3,7 @@ package com.derek_s.hubble_gallery.nav_drawer.adapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,11 +32,25 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
     tvTitle.typeface = FontFactory.getMedium(itemView.context)
   }
 
-  fun onBind(item: NavigationAdapterItem, listener: NavDrawerAdapter.NavAdapterListener) {
+  fun onBind(item: NavigationAdapterItem, listener: NavDrawerAdapter.NavAdapterListener,
+             pos: Int, selectedQuery: String) {
     var section: SectionChildObject = item.`object` as SectionChildObject
 
+    if (section.query.equals(selectedQuery)) {
+      tvTitle.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.focused_color));
+      tvTitle.setTextColor(ContextCompat.getColor(itemView.context, R.color.seleted_item_color));
+    } else {
+      tvTitle.setBackgroundResource(R.drawable.selector_default);
+      tvTitle.setTextColor(ContextCompat.getColor(itemView.context, R.color.body_dark_theme));
+    }
+
     tvTitle.text = section.sectionTitle
-    tvTitle.setOnClickListener { listener.onSectionClicked(section) }
+    tvTitle.setOnClickListener {
+      listener.onSectionClicked(section)
+      listener.setSelectedQuery(section.query)
+      tvTitle.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.focused_color));
+      tvTitle.setTextColor(ContextCompat.getColor(itemView.context, R.color.seleted_item_color));
+    }
 
     if (item.childObjectList == null) {
       ivExpand.visibility = View.GONE
@@ -56,9 +71,9 @@ class GroupViewHolder private constructor(itemView: View) : ParentViewHolder(ite
     super.setExpanded(expanded)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
       if (expanded) {
-        ivExpand.setRotation(ROTATED_POSITION)
+        ivExpand.rotation = ROTATED_POSITION
       } else {
-        ivExpand.setRotation(INITIAL_POSITION)
+        ivExpand.rotation = INITIAL_POSITION
       }
     }
   }
