@@ -111,12 +111,17 @@ class FragNavDrawer : Fragment(), NavigationView {
       }
     }
 
+    if (presenter!!.getSelectedQuery().equals("favorites")) {
+      setFavoritesSelectedUI(true)
+    } else {
+      setFavoritesSelectedUI(false)
+    }
+
     rlFavorites.setOnClickListener {
       mCallbacks!!.openFavorites(true)
       closeDrawer()
-      tvFavorites.setBackgroundColor(ContextCompat.getColor(context, R.color.focused_color));
-      tvFavorites.setTextColor(ContextCompat.getColor(context, R.color.seleted_item_color));
-      presenter!!.setSelectedQuery("")
+      setFavoritesSelectedUI(true)
+      presenter!!.setSelectedQuery("favorites")
     }
 
     return rootView
@@ -190,12 +195,20 @@ class FragNavDrawer : Fragment(), NavigationView {
     }
   }
 
+  private fun setFavoritesSelectedUI(isSelected: Boolean) {
+    if (isSelected) {
+      rlFavorites.setBackgroundColor(ContextCompat.getColor(context, R.color.focused_color));
+      tvFavorites.setTextColor(ContextCompat.getColor(context, R.color.seleted_item_color));
+    } else {
+      rlFavorites.setBackgroundResource(R.drawable.selector_default);
+      tvFavorites.setTextColor(ContextCompat.getColor(context, R.color.body_dark_theme));
+    }
+  }
+
   override fun selectSection(section: SectionChildObject) {
     closeDrawer()
     mCallbacks!!.selectSection(section)
-
-    tvFavorites.setBackgroundResource(R.drawable.selector_default);
-    tvFavorites.setTextColor(ContextCompat.getColor(context, R.color.body_dark_theme));
+    setFavoritesSelectedUI(false)
   }
 
   override val recycler: RecyclerView
