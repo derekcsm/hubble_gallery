@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.derek_s.hubble_gallery.nav_drawer.ui.widgets.SquareImageView
+    <com.derek_s.hubble_gallery.ui.widgets.SquareImageView
         android:id="@+id/iv_tile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

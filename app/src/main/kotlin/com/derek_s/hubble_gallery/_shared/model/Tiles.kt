@@ -12,10 +12,4 @@ class Tiles {
     return gson.toJson(this)
   }
 
-  companion object {
-    fun create(serializedData: String): Tiles {
-      val gson = Gson()
-      return gson.fromJson(serializedData, Tiles::class.java)
-    }
-  }
 }

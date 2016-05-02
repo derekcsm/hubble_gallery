@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.nav_drawer.fragments;
+package com.derek_s.hubble_gallery.ui.fragments;
 
 import android.os.Bundle;
 import android.os.Handler;

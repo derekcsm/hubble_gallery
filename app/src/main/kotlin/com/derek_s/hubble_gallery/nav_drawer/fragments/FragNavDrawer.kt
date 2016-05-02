@@ -2,9 +2,12 @@ package com.derek_s.hubble_gallery.nav_drawer.fragments;
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -14,18 +17,25 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import butterknife.Bind
-import butterknife.ButterKnife
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
+import android.widget.TextView
 import com.derek_s.hubble_gallery.R
+import com.derek_s.hubble_gallery.nav_drawer.dialog.DialogAbout
+import com.derek_s.hubble_gallery.nav_drawer.dialog.DialogAboutListener
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
 import com.derek_s.hubble_gallery.nav_drawer.presenters.NavigationPresenter
 import com.derek_s.hubble_gallery.nav_drawer.views.NavigationView
+import com.derek_s.hubble_gallery.ui.activities.ActWelcome
+import com.derek_s.hubble_gallery.utils.ui.FontFactory
 
 interface NavDrawerListeners {
   val toolbar: Toolbar
     get
 
   fun selectSection(section: SectionChildObject)
+
+  fun openFavorites(scroll: Boolean);
 }
 
 class FragNavDrawer : Fragment(), NavigationView {
@@ -34,10 +44,15 @@ class FragNavDrawer : Fragment(), NavigationView {
   private var mDrawerLayout: DrawerLayout? = null
   private var presenter: NavigationPresenter? = null
 
-  @Bind(R.id.rv_drawer)
   lateinit var rvDrawer: RecyclerView
+  lateinit var llFooterItems: LinearLayout
+  lateinit var tvAbout: TextView
+  lateinit var tvRate: TextView
+  lateinit var rlFavorites: RelativeLayout
+  lateinit var tvFavorites: TextView
 
   private var mCallbacks: NavDrawerListeners? = null
+  private var dialogAbout: DialogAbout? = null
 
   override fun onCreate(savedState: Bundle?) {
     super.onCreate(savedState)
@@ -64,39 +79,61 @@ class FragNavDrawer : Fragment(), NavigationView {
                             savedInstanceState: Bundle?): View? {
 
     val rootView = inflater.inflate(R.layout.frag_nav_drawer, container, false)
-    ButterKnife.bind(this, rootView)
 
+    rvDrawer = rootView.findViewById(R.id.rv_drawer) as RecyclerView
+    llFooterItems = rootView.findViewById(R.id.ll_footer_items) as LinearLayout
+    tvAbout = rootView.findViewById(R.id.tv_about) as TextView
+    tvRate = rootView.findViewById(R.id.tv_rate) as TextView
+    rlFavorites = rootView.findViewById(R.id.rl_favorites) as RelativeLayout
+    tvFavorites = rootView.findViewById(R.id.tv_favorites) as TextView
+
+    beautifyViews();
     presenter!!.populateAdapter()
+    presenter!!.restoreState(savedInstanceState)
 
-    // header
-    // ViewGroup header = (ViewGroup) inflater.inflate(R.layout.item_header_nav_drawer, lvMenu, false);
-    // TextView tvVersionName = (TextView) header.findViewById(R.id.tv_version_name);
-    // tvVersionName.setTypeface(FontFactory.getCondensedRegular(getActivity()));
-    // PackageInfo pInfo = null;
-    // try {
-    // pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-    // } catch (PackageManager.NameNotFoundException ex) {
-    // ex.printStackTrace();
-    // }
-    // tvVersionName.setText("BETA V " + pInfo.versionName);
-    // adapter TODO
-    // mAdapter = new SectionsAdapter(getActivity(), getActivity());
-    // lvMenu.addFooterView(footer, null, false);
-    // lvMenu.addHeaderView(header, null, false);
-    // lvMenu.setAdapter(mAdapter);
-    // mAdapter.addItems();
+    llFooterItems.setOnClickListener {} // intentionally empty
 
+    dialogAbout = DialogAbout(context, object : DialogAboutListener {
+      override fun onShowIntroClicked() {
+        activity.startActivity(Intent(activity, ActWelcome::class.java));
+      }
+    })
+    tvAbout.setOnClickListener {
+      dialogAbout!!.show()
+    }
 
-    //        if (savedInstanceState != null) {
-    //            if (mCurSelectedPositions.get(0) === -2) {
-    //                tvFavorites.setBackgroundColor(getResources().getColor(R.color.focused_color))
-    //                tvFavorites.setTextColor(getResources().getColor(R.color.seleted_item_color))
-    //            }
-    //        }
+    tvRate.setOnClickListener {
+      var appPackageName = context.packageName;
+      try {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+      } catch (anfe: android.content.ActivityNotFoundException) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+      }
+    }
+
+    if (presenter!!.getSelectedQuery().equals("favorites")) {
+      setFavoritesSelectedUI(true)
+    } else {
+      setFavoritesSelectedUI(false)
+    }
+
+    rlFavorites.setOnClickListener {
+      mCallbacks!!.openFavorites(true)
+      closeDrawer()
+      setFavoritesSelectedUI(true)
+      presenter!!.setSelectedQuery("favorites")
+    }
+
     return rootView
   }
 
   override fun onSaveInstanceState(outState: Bundle) {
+    if (presenter == null)
+      return
+
+    if (presenter!!.getSelectedQuery() != null)
+      outState.putString(presenter!!.KEY_SELECTED_QUERY, presenter!!.getSelectedQuery())
+
     super.onSaveInstanceState(outState)
   }
 
@@ -116,13 +153,13 @@ class FragNavDrawer : Fragment(), NavigationView {
         R.string.navigation_drawer_close) {
       override fun onDrawerClosed(drawerView: View) {
         super.onDrawerClosed(drawerView)
-        if (!isAdded())
+        if (!isAdded)
           return
       }
 
       override fun onDrawerOpened(drawerView: View) {
         super.onDrawerOpened(drawerView)
-        if (!isAdded())
+        if (!isAdded)
           return
       }
     }
@@ -158,13 +195,28 @@ class FragNavDrawer : Fragment(), NavigationView {
     }
   }
 
+  private fun setFavoritesSelectedUI(isSelected: Boolean) {
+    if (isSelected) {
+      rlFavorites.setBackgroundColor(ContextCompat.getColor(context, R.color.focused_color));
+      tvFavorites.setTextColor(ContextCompat.getColor(context, R.color.seleted_item_color));
+    } else {
+      rlFavorites.setBackgroundResource(R.drawable.selector_default);
+      tvFavorites.setTextColor(ContextCompat.getColor(context, R.color.body_dark_theme));
+    }
+  }
+
   override fun selectSection(section: SectionChildObject) {
     closeDrawer()
     mCallbacks!!.selectSection(section)
-
-    // TODO select position
+    setFavoritesSelectedUI(false)
   }
 
   override val recycler: RecyclerView
     get() = rvDrawer
+
+  private fun beautifyViews() {
+    tvAbout.typeface = FontFactory.getCondensedBold(context);
+    tvRate.typeface = FontFactory.getCondensedBold(context);
+    tvFavorites.typeface = FontFactory.getMedium(context);
+  }
 }

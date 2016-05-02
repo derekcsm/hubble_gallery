@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.nav_drawer.ui.activities;
+package com.derek_s.hubble_gallery.ui.activities;
 
 import android.graphics.Color;
 import android.graphics.Point;
@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
-import com.derek_s.hubble_gallery.nav_drawer.adapters.OnboardingFragmentPager;
+import com.derek_s.hubble_gallery.ui.adapters.OnboardingFragmentPager;
 import com.derek_s.hubble_gallery.utils.ui.starfield.StarField;
 
 import butterknife.Bind;

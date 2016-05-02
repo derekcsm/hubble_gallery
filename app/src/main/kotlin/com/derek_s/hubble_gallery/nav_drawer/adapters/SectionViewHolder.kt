@@ -1,6 +1,7 @@
 package com.derek_s.hubble_gallery.nav_drawer.adapters
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,13 +21,25 @@ class SectionViewHolder private constructor(itemView: View) : ChildViewHolder(it
   }
 
   fun beautifyViews() {
-    tvTitle.typeface = FontFactory.getMedium(itemView.context)
+    tvTitle.typeface = FontFactory.getRegular(itemView.context)
   }
 
-  fun onBind(section: SectionChildObject, listener: NavDrawerAdapter.NavAdapterListener) {
+  fun onBind(section: SectionChildObject, listener: NavDrawerAdapter.NavAdapterListener,
+             pos: Int, selectedQuery: String) {
     tvTitle.text = section.sectionTitle
 
-    tvTitle.setOnClickListener { listener.onSectionClicked(section) }
+    if (section.query.equals(selectedQuery)) {
+      tvTitle.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.focused_color));
+      tvTitle.setTextColor(ContextCompat.getColor(itemView.context, R.color.seleted_item_color));
+    } else {
+      tvTitle.setBackgroundResource(R.drawable.selector_default);
+      tvTitle.setTextColor(ContextCompat.getColor(itemView.context, R.color.body_dark_theme));
+    }
+
+    tvTitle.setOnClickListener {
+      listener.onSectionClicked(section)
+      listener.setSelectedQuery(section.query)
+    }
   }
 
   companion object {

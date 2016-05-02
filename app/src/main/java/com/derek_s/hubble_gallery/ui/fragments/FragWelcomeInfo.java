@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.nav_drawer.fragments;
+package com.derek_s.hubble_gallery.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.derek_s.hubble_gallery.R;
+import com.derek_s.hubble_gallery.act_main.ActMain;
 import com.derek_s.hubble_gallery.base.FragBase;
-import com.derek_s.hubble_gallery.nav_drawer.ui.activities.ActMain;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 
 import butterknife.Bind;
