@@ -9,22 +9,22 @@ import com.derek_s.hubble_gallery.internal.di.DaggerActivityComponent;
 
 public abstract class ActBase extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedState) {
-        super.onCreate(savedState);
+  @Override
+  protected void onCreate(@Nullable Bundle savedState) {
+    super.onCreate(savedState);
 
-        injectComponent(DaggerActivityComponent.builder()
-                .appComponent(((HubbleApplication) getApplication()).getAppComponent())
-                .build());
-    }
+    injectComponent(DaggerActivityComponent.builder()
+        .appComponent(((HubbleApplication) getApplication()).getAppComponent())
+        .build());
+  }
 
-    /**
-     * <p>
-     * This method must be implemented
-     * </p>
-     * <code>component.inject(this)</code>
-     *
-     * @param component
-     */
-    protected abstract void injectComponent(ActivityComponent component);
+  /**
+   * <p>
+   * This method must be implemented
+   * </p>
+   * <code>component.inject(this)</code>
+   *
+   * @param component
+   */
+  protected abstract void injectComponent(ActivityComponent component);
 }

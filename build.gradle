@@ -1,13 +1,43 @@
 buildscript {
+
+    ext.play_services_version = '8.4.0'
+    ext.android_support_version = '23.3.0'
+    ext.multidex_version = '1.0.1'
+
+    ext.kotlin_version = '1.0.1-1'
+    ext.lombok_version = '1.16.8'
+    ext.jsr250_version = '1.0'
+    ext.javaxannotations_version = '10.0-b28'
+
+    ext.jsoup_version = '1.8.3'
+
+    ext.expandablerecycler_version = '2.1.1'
+    ext.observablescrollview_version = '1.5.0'
+    ext.daimajiaeasing_version = '1.0.1@aar'
+    ext.androidanimations_version = '1.1.3@aar'
+    ext.supertoasts_version = '1.3.4@aar'
+    ext.verticalviewpager_version = '19.0.1'
+    ext.androidsvg_version = '1.2.2-beta-1'
+    ext.materialdialogs_version = '0.8.5.8@aar'
+
+    ext.dagger_version = '2.0.1'
+    ext.picasso_version = '2.5.0'
+    ext.gson_version = '2.4'
+    ext.butterknife_version = '7.0.1'
+    ext.kotterknife_version = '0.1.0-SNAPSHOT'
+    ext.nineoldandroids_version = '2.4.0'
+
+    ext.crashlytics_version = '2.5.2@aar'
+
     repositories {
         jcenter()
         mavenCentral()
-        maven { url 'https://maven.fabric.io/public' }
+        maven {
+            url 'https://maven.fabric.io/public'
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.3.0'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.7'
-        classpath 'me.tatarka:gradle-retrolambda:3.2.3'
+        classpath 'com.android.tools.build:gradle:2.0.0'
     }
 }
 
@@ -16,6 +46,11 @@ allprojects {
         jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
-        maven { url 'https://maven.fabric.io/public' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
     }
 }
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+

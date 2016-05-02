@@ -1,89 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+
+  <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:background="@color/title_background"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/first_keyline"
+    android:paddingLeft="@dimen/dialog_margin"
+    android:paddingRight="@dimen/dialog_margin"
+    android:paddingTop="@dimen/first_keyline">
 
     <TextView
-        android:id="@+id/tv_title"
-        style="@style/text_title_dark"
+      android:id="@+id/tv_title"
+      style="@style/text_title_dark"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/app_name"/>
+
+    <TextView
+      android:id="@+id/tv_version"
+      style="@style/text_caption_dark"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      tools:text="V 1.0.0"/>
+
+  </LinearLayout>
+
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:paddingBottom="@dimen/first_keyline"
+      android:paddingLeft="@dimen/dialog_margin"
+      android:paddingRight="@dimen/dialog_margin"
+      android:paddingTop="@dimen/first_keyline">
+
+      <TextView
+        android:id="@+id/tv_body"
+        android:linksClickable="true"
+        style="@style/text_body1_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
-        android:paddingLeft="@dimen/dialog_margin"
-        android:paddingRight="@dimen/dialog_margin"
-        android:paddingTop="@dimen/dialog_margin"
-        android:text="@string/about" />
+        tools:text="body text goes here"/>
 
-    <RelativeLayout
-        android:id="@+id/rl_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp">
+    </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_built_by"
-            style="@style/text_body1_dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="16dp"
-            android:paddingLeft="@dimen/dialog_margin"
-            android:text="@string/built_by" />
-
-        <TextView
-            android:id="@+id/tv_built_content"
-            style="@style/text_body1_dark"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/tv_built_by"
-            android:layout_toRightOf="@+id/tv_built_by"
-            android:gravity="right"
-            android:lineSpacingExtra="4dp"
-            android:paddingBottom="16dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="@dimen/dialog_margin"
-            android:textColorLink="@color/accent"
-            tools:text="Derek Smith \nderek-s.com" />
-
-    </RelativeLayout>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider_dark_theme" />
-
-    <TextView
-        android:id="@+id/tv_source_code"
-        style="@style/text_body1_light"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/selector_default"
-        android:gravity="center_vertical|right"
-        android:paddingLeft="@dimen/dialog_margin"
-        android:paddingRight="@dimen/dialog_margin"
-        android:text="@string/source_code"
-        android:textAllCaps="true"
-        android:textColor="@color/accent" />
-
-    <TextView
-        android:id="@+id/tv_show_intro"
-        style="@style/text_body1_light"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/selector_default"
-        android:gravity="center_vertical|right"
-        android:paddingLeft="@dimen/dialog_margin"
-        android:paddingRight="@dimen/dialog_margin"
-        android:text="@string/show_intro"
-        android:textAllCaps="true"
-        android:textColor="@color/accent" />
-
-    <View
-        android:id="@+id/padding_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="8dp" />
+  </ScrollView>
 
 </LinearLayout>

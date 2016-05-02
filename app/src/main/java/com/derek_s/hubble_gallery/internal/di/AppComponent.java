@@ -9,6 +9,7 @@ import com.derek_s.hubble_gallery.base.TinyDB;
 import com.derek_s.hubble_gallery.ui.presenters.DetailsPresenter;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.network.NetworkUtil;
+import com.google.gson.Gson;
 
 import javax.inject.Singleton;
 
@@ -18,19 +19,21 @@ import dagger.Component;
 @Component(modules = {AppModule.class})
 public interface AppComponent {
 
-    Context context();
+  Context context();
 
-    Resources resources();
+  Resources resources();
 
-    ConnectivityManager provideConnectivityManager();
+  ConnectivityManager provideConnectivityManager();
 
-    NetworkUtil provideNetworkUtil();
+  NetworkUtil provideNetworkUtil();
 
-    TinyDB provideTinyDB();
+  TinyDB provideTinyDB();
 
-    DetailsPresenter provideActDetailsPresenter();
+  DetailsPresenter provideActDetailsPresenter();
 
-    FavoriteUtils provideFavoriteUtils();
+  FavoriteUtils provideFavoriteUtils();
 
-    void inject(HubbleApplication app);
+  Gson provideGson();
+
+  void inject(HubbleApplication app);
 }

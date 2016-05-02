@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="@dimen/list_item_height"
+  tools:ignore="rtlHardcoded,rtlSymmetry">
+
+  <TextView
+    android:id="@+id/tv_title"
+    style="@style/text_body1_dark"
     android:layout_width="match_parent"
-    android:layout_height="48dp">
+    android:layout_height="match_parent"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_centerVertical="true"
+    android:layout_toLeftOf="@+id/iv_expand"
+    android:layout_toStartOf="@+id/iv_expand"
+    android:background="@drawable/selector_default"
+    android:gravity="center_vertical"
+    android:maxLines="1"
+    android:paddingLeft="@dimen/first_keyline"
+    tools:text="Test group title"/>
 
-    <TextView
-        android:id="@+id/tv_group_title"
-        style="@style/text_body1_dark"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/iv_expand"
-        android:layout_toStartOf="@+id/iv_expand"
-        android:background="@drawable/selector_default"
-        android:gravity="center_vertical"
-        android:maxLines="1"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:text="Teeest" />
-
-    <ImageView
-        android:id="@+id/iv_expand"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/selector_default"
-        android:scaleType="centerInside"
-        android:src="@drawable/ic_keyboard_arrow_down_white_24dp" />
+  <ImageView
+    android:id="@+id/iv_expand"
+    android:layout_width="@dimen/list_item_height"
+    android:layout_height="@dimen/list_item_height"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginRight="4dp"
+    android:background="@drawable/selector_circle_default"
+    android:scaleType="centerInside"
+    android:src="@drawable/ic_keyboard_arrow_down_white_24dp"/>
 
 </RelativeLayout>

@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery.model.TileObject;
+import com.derek_s.hubble_gallery._shared.model.TileObject;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 import com.squareup.picasso.Picasso;
 

@@ -1,34 +1,36 @@
 <resources>
-    <!-- Default screen margins -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="dialog_margin">24dp</dimen>
-    <dimen name="toolbar_height">?attr/actionBarSize</dimen>
+  <!-- Default screen margins -->
+  <dimen name="first_keyline">16dp</dimen>
+  <dimen name="first_keyline_half">8dp</dimen>
+  <dimen name="second_keyline">72dp</dimen>
+  <dimen name="dialog_margin">24dp</dimen>
+  <dimen name="toolbar_height">?attr/actionBarSize</dimen>
 
-    <!-- Typography -->
-    <dimen name="display_4">112sp</dimen>
-    <dimen name="display_3">56sp</dimen>
-    <dimen name="display_2">45sp</dimen>
-    <dimen name="display_1">34sp</dimen>
-    <dimen name="headline">24sp</dimen>
-    <dimen name="title">20sp</dimen>
-    <dimen name="subhead">14sp</dimen>
-    <dimen name="body">14sp</dimen>
-    <dimen name="caption">12sp</dimen>
+  <!-- Typography -->
+  <dimen name="display_4">112sp</dimen>
+  <dimen name="display_3">56sp</dimen>
+  <dimen name="display_2">45sp</dimen>
+  <dimen name="display_1">34sp</dimen>
+  <dimen name="headline">24sp</dimen>
+  <dimen name="title">20sp</dimen>
+  <dimen name="subhead">14sp</dimen>
+  <dimen name="body">14sp</dimen>
+  <dimen name="caption">12sp</dimen>
 
-    <!-- animations -->
-    <integer name="text_switch_anim_duration">320</integer>
-    <integer name="act_transition_length">350</integer>
-    <item name="act_fade_deg" format="float" type="dimen">0.6</item>
+  <!-- animations -->
+  <integer name="text_switch_anim_duration">320</integer>
+  <integer name="act_transition_length">350</integer>
+  <item name="act_fade_deg" format="float" type="dimen">0.6</item>
 
-    <!-- nav drawer -->
-    <dimen name="navigation_drawer_width">300dp</dimen>
+  <!-- misc -->
+  <dimen name="navigation_drawer_width">300dp</dimen>
+  <dimen name="list_item_height">48dp</dimen>
 
-    <!-- num of columns in portrait -->
-    <integer name="grid_columns">2</integer>
+  <!-- num of columns in portrait -->
+  <integer name="grid_columns">2</integer>
 
-    <!-- square flipper -->
-    <dimen name="square_flipper_small">24dp</dimen>
-    <dimen name="square_flipper_large">32dp</dimen>
+  <!-- square flipper -->
+  <dimen name="square_flipper_small">24dp</dimen>
+  <dimen name="square_flipper_large">32dp</dimen>
 
 </resources>
