@@ -30,10 +30,6 @@
         android:value=".act_main.ActMain"/>
     </activity>
 
-    <meta-data
-      android:name="io.fabric.ApiKey"
-      android:value="86709631566e2c951c17207f1f0c8f7fbd20ccfc"/>
-
     <activity
       android:name=".ui.activities.ActWelcome"
       android:label="@string/title_activity_act_onboarding">
