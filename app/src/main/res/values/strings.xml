@@ -97,8 +97,9 @@
       </p>
 
       <p>
-        This is not an official app, I have no affiliation with NASA or JPL. All source code and client
-        content is under the MIT Open Source License.
+        This is not an official app, I have no affiliation with NASA or JPL. All source code for
+        this project is licensed under the
+        <a href=\"http://www.apache.org/licenses/LICENSE-2.0\">Apache License Version 2.0</a>.
       </p>
 
   ]]></string>
