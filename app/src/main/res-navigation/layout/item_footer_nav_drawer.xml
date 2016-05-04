@@ -5,14 +5,12 @@
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:orientation="vertical"
-  android:paddingBottom="@dimen/first_keyline_half"
   tools:ignore="rtlHardcoded">
 
   <View
     android:id="@+id/divider"
     android:layout_width="match_parent"
     android:layout_height="1dp"
-    android:layout_marginBottom="@dimen/first_keyline_half"
     android:background="@color/divider_dark_theme"/>
 
   <RelativeLayout

@@ -138,7 +138,7 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
     starItems.add(createChildObject("White Dwarf", "star/white_dwarf"))
 
     drawerItems.add(NavigationAdapterItem(SectionChildObject("Stars", "star"),
-        NavigationAdapterItem.GROUP, nebulaItems))
+        NavigationAdapterItem.GROUP, starItems))
 
 
     mAdapter = NavDrawerAdapter(context, drawerItems, this)

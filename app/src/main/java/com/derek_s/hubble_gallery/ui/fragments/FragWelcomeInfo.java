@@ -2,6 +2,8 @@ package com.derek_s.hubble_gallery.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +25,7 @@ public class FragWelcomeInfo extends FragBase {
 
   private static int pagePos = 1;
 
-  public static final FragWelcomeInfo newInstance(int position) {
+  public static FragWelcomeInfo newInstance(int position) {
     final FragWelcomeInfo fragment = new FragWelcomeInfo();
     // Supply int position as an argument.
     Bundle args = new Bundle();
@@ -68,7 +70,8 @@ public class FragWelcomeInfo extends FragBase {
         tvInfo.setText(getActivity().getResources().getText(R.string.info_2));
         break;
       case (3):
-        tvInfo.setText(getActivity().getResources().getText(R.string.info_3));
+        tvInfo.setText(Html.fromHtml(getActivity().getResources().getString(R.string.info_3)));
+        tvInfo.setMovementMethod(LinkMovementMethod.getInstance());
         break;
       case (4):
         tvInfo.setVisibility(View.INVISIBLE);

@@ -26,7 +26,7 @@ class DialogAbout(context: Context, listener: DialogAboutListener) {
     this.listener = listener
   }
 
-  fun getDialog() : MaterialDialog {
+  fun getDialog(): MaterialDialog {
     if (dialog == null) {
       return MaterialDialog.Builder(context)
           .customView(R.layout.dialog_about, false)
@@ -34,7 +34,7 @@ class DialogAbout(context: Context, listener: DialogAboutListener) {
           .theme(Theme.DARK)
           .forceStacking(true)
           .positiveText(context.resources.getString(R.string.show_intro))
-          .onPositive { materialDialog, dialogAction ->  listener.onShowIntroClicked()}
+          .onPositive { materialDialog, dialogAction -> listener.onShowIntroClicked() }
           .build()
     } else {
       return dialog!!
@@ -53,7 +53,18 @@ class DialogAbout(context: Context, listener: DialogAboutListener) {
     tvVersion!!.text = "V " + version
 
     tvBody!!.movementMethod = LinkMovementMethod.getInstance()
-    tvBody!!.text = Html.fromHtml(context.resources.getString(R.string.about_body))
+    tvBody!!.text = removeHtmlBottomPadding(Html.fromHtml(context.resources.getString(R.string.about_body)))
+  }
+
+  private fun removeHtmlBottomPadding(mText: CharSequence?): CharSequence? {
+    var text: CharSequence = mText ?: return null
+    if (text.length == 0)
+      return text
+
+    while (text[text.length - 1] == '\n') {
+      text = text.subSequence(0, text.length - 1)
+    }
+    return text
   }
 
   private fun findViews(dView: View?) {
