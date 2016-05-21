@@ -18,7 +18,7 @@ import com.derek_s.hubble_gallery._shared.model.Tiles;
 import com.derek_s.hubble_gallery.api.GetAlbum;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.base.FragBase;
-import com.derek_s.hubble_gallery.ui.adapters.RecyclerAdapter;
+import com.derek_s.hubble_gallery.ui.adapters.MainGridAdapter;
 import com.derek_s.hubble_gallery.ui.adapters.RecyclerViewItemClickListener;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
@@ -41,7 +41,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
   private static String IS_HIRES = "is_hires";
   private static String CURRENT_QUERY = "current_query";
   public GridLayoutManager gManager;
-  public RecyclerAdapter mAdapter;
+  public MainGridAdapter mAdapter;
   public boolean isLoading = false;
   public boolean canLoadMore = true;
   public boolean hiRes = false;
@@ -87,7 +87,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
     int gridRows = getContext().getResources().getInteger(R.integer.grid_columns);
     gManager = new GridLayoutManager(getContext(), gridRows);
     rvMain.setLayoutManager(gManager);
-    mAdapter = new RecyclerAdapter(getActivity(), getActivity());
+    mAdapter = new MainGridAdapter(getActivity(), getActivity());
     rvMain.setAdapter(mAdapter);
 
     if (savedInstanceState == null) {
