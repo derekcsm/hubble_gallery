@@ -1,19 +1,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rl_onboarding"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/rl_onboarding"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ui.activities.ActWelcome">
+
+  <SurfaceView
+    android:id="@+id/sv_starfield"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activities.ActWelcome">
-
-    <SurfaceView
-        android:id="@+id/sv_starfield"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    android:layout_height="match_parent"/>
 
 
-    <fr.castorflex.android.verticalviewpager.VerticalViewPager
-        android:id="@+id/vertical_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+  <fr.castorflex.android.verticalviewpager.VerticalViewPager
+    android:id="@+id/vertical_pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
 
 </RelativeLayout>

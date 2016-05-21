@@ -14,37 +14,36 @@ import butterknife.ButterKnife;
 
 public class ActImageViewer extends ActBase {
 
-    public static final String EXTRA_IMAGE_SRC = "extra_successful_src";
-    private String imgSrc;
+  public static final String EXTRA_IMAGE_SRC = "extra_successful_src";
+  @Bind(R.id.iv_fullscreen)
+  TouchImageView ivFullscreen;
+  private String imgSrc;
 
-    @Bind(R.id.iv_fullscreen)
-    TouchImageView ivFullscreen;
+  @Override
+  protected void onCreate(Bundle savedState) {
+    super.onCreate(savedState);
+    setContentView(R.layout.act_image_viewer);
+    ButterKnife.bind(this);
 
-    @Override
-    protected void onCreate(Bundle savedState) {
-        super.onCreate(savedState);
-        setContentView(R.layout.act_image_viewer);
-        ButterKnife.bind(this);
-
-        Intent intent = getIntent();
-        if (intent != null) {
-            imgSrc = intent.getStringExtra(EXTRA_IMAGE_SRC);
-        }
-
-        if (savedState != null)
-            imgSrc = savedState.getString(EXTRA_IMAGE_SRC);
-
-        Picasso.with(this).load(imgSrc).into(ivFullscreen);
+    Intent intent = getIntent();
+    if (intent != null) {
+      imgSrc = intent.getStringExtra(EXTRA_IMAGE_SRC);
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putString(EXTRA_IMAGE_SRC, imgSrc);
-        super.onSaveInstanceState(outState);
-    }
+    if (savedState != null)
+      imgSrc = savedState.getString(EXTRA_IMAGE_SRC);
 
-    @Override
-    protected void injectComponent(ActivityComponent component) {
-        component.inject(this);
-    }
+    Picasso.with(this).load(imgSrc).into(ivFullscreen);
+  }
+
+  @Override
+  public void onSaveInstanceState(Bundle outState) {
+    outState.putString(EXTRA_IMAGE_SRC, imgSrc);
+    super.onSaveInstanceState(outState);
+  }
+
+  @Override
+  protected void injectComponent(ActivityComponent component) {
+    component.inject(this);
+  }
 }

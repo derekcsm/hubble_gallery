@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:r="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+                xmlns:r="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true">
+
+  <com.derek_s.hubble_gallery.utils.svg.SvgView
+    android:id="@+id/hubble_outline"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_height="300dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_centerVertical="true"
+    android:padding="32dp"
+    android:visibility="invisible"
+    r:duration="5000"
+    r:fadeFactor="10.0"
+    r:phase="1.0"
+    r:strokeColor="#fff"
+    r:strokeWidth="1.8"
+    r:waitRadius="0dp"
+    tools:visibility="visible"/>
 
-    <com.derek_s.hubble_gallery.utils.svg.SvgView
-        android:id="@+id/hubble_outline"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:padding="32dp"
-        android:visibility="invisible"
-        r:duration="5000"
-        r:fadeFactor="10.0"
-        r:phase="1.0"
-        r:strokeColor="#fff"
-        r:strokeWidth="1.8"
-        r:waitRadius="0dp"
-        tools:visibility="visible" />
+  <TextView
+    android:id="@+id/tv_app_title"
+    style="@style/text_title_dark"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignBottom="@+id/hubble_outline"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:gravity="center"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp"
+    android:text="@string/app_name"
+    android:textAllCaps="true"
+    android:textSize="30sp"
+    android:visibility="invisible"
+    tools:visibility="visible"/>
 
-    <TextView
-        android:id="@+id/tv_app_title"
-        style="@style/text_title_dark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/hubble_outline"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:gravity="center"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        android:text="@string/app_name"
-        android:textAllCaps="true"
-        android:textSize="30sp"
-        android:visibility="invisible"
-        tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/tv_scroll_down"
-        style="@style/text_caption_dark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/hubble_outline"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:text="@string/scroll_down"
-        android:textAllCaps="true"
-        android:visibility="invisible"
-        tools:visibility="visible" />
+  <TextView
+    android:id="@+id/tv_scroll_down"
+    style="@style/text_caption_dark"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/hubble_outline"
+    android:layout_centerHorizontal="true"
+    android:gravity="center"
+    android:text="@string/scroll_down"
+    android:textAllCaps="true"
+    android:visibility="invisible"
+    tools:visibility="visible"/>
 
 </RelativeLayout>

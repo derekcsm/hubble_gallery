@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  android:orientation="vertical"
-  tools:ignore="rtlHardcoded">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              tools:ignore="rtlHardcoded">
 
   <View
     android:id="@+id/divider"
@@ -24,13 +23,13 @@
       style="@style/text_body1_dark"
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
+      android:layout_toEndOf="@+id/iv_favorites"
+      android:layout_toRightOf="@+id/iv_favorites"
       android:gravity="center_vertical"
       android:maxLines="1"
-      android:paddingRight="@dimen/first_keyline"
       android:paddingLeft="@dimen/first_keyline"
-      android:text="@string/favorites"
-      android:layout_toRightOf="@+id/iv_favorites"
-      android:layout_toEndOf="@+id/iv_favorites"/>
+      android:paddingRight="@dimen/first_keyline"
+      android:text="@string/favorites"/>
 
     <ImageView
       android:id="@+id/iv_favorites"

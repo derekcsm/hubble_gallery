@@ -32,25 +32,22 @@ import javax.inject.Singleton;
 
 @Singleton
 public class DetailsPresenter {
-  private String TAG = getClass().getSimpleName();
-  private DetailsView view;
-
+  public TileObject tileObject;
+  public DetailsObject detailsObject;
+  public String successfulSrc;
+  public int scrollYPos;
+  public int darkVibrantColor;
+  public int lightVibrantColor;
+  public int toolbarBgColorAlpha;
   @Inject
   Context context;
   @Inject
   Resources resources;
   @Inject
   FavoriteUtils favoriteUtils;
-
-  public TileObject tileObject;
-  public DetailsObject detailsObject;
+  private String TAG = getClass().getSimpleName();
+  private DetailsView view;
   private int imgLoadAttempt = 0;
-  public String successfulSrc;
-  public int scrollYPos;
-
-  public int darkVibrantColor;
-  public int lightVibrantColor;
-  public int toolbarBgColorAlpha;
 
   @Inject
   public DetailsPresenter() {
