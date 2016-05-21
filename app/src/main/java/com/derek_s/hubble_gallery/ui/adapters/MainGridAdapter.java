@@ -19,14 +19,14 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
+public class MainGridAdapter extends RecyclerView.Adapter<MainGridAdapter.RecyclerViewHolder> {
 
   private static LayoutInflater inflater = null;
   public ArrayList<TileObject> mTiles;
   Context context;
 
 
-  public RecyclerAdapter(Activity activity, Context context) {
+  public MainGridAdapter(Activity activity, Context context) {
 
     this.mTiles = new ArrayList<>();
     this.context = context;
