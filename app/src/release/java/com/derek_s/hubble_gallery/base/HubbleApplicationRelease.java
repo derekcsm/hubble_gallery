@@ -1,6 +1,7 @@
 package com.derek_s.hubble_gallery.base;
 
 import com.crashlytics.android.Crashlytics;
+
 import io.fabric.sdk.android.Fabric;
 
 public class HubbleApplicationRelease extends HubbleApplication {

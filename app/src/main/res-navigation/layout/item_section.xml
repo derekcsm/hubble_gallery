@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="@dimen/list_item_height"
-  android:orientation="horizontal"
-  tools:ignore="rtlHardcoded">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/list_item_height"
+              android:orientation="horizontal"
+              tools:ignore="rtlHardcoded">
 
   <View
     android:layout_width="@dimen/first_keyline"

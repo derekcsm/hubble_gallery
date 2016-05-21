@@ -33,7 +33,7 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
       mAdapter!!.setSelectedQuery(savedState.getString(KEY_SELECTED_QUERY))
   }
 
-  fun getSelectedQuery() : String? {
+  fun getSelectedQuery(): String? {
     return mAdapter!!.getSelectedQuery()
   }
 
