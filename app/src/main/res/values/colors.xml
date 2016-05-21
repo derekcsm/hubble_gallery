@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#ff131313</color>
-    <color name="primary_dark">#ff000000</color>
-    <color name="accent">#00BCD4</color>
+  <color name="primary">#ff131313</color>
+  <color name="primary_dark">#ff000000</color>
+  <color name="accent">#00BCD4</color>
 
-    <color name="background">#ff151515</color>
-    <color name="title_background">#006064</color>
+  <color name="background">#ff151515</color>
+  <color name="title_background">#006064</color>
 
-    <!-- Plain typography-->
-    <color name="display_light_theme">#89000000</color>
-    <color name="title_light_theme">#de000000</color>
-    <color name="body_light_theme">#de000000</color>
-    <color name="caption_light_theme">#89000000</color>
-    <color name="divider_light_theme">#1f000000</color>
+  <!-- Plain typography-->
+  <color name="display_light_theme">#89000000</color>
+  <color name="title_light_theme">#de000000</color>
+  <color name="body_light_theme">#de000000</color>
+  <color name="caption_light_theme">#89000000</color>
+  <color name="divider_light_theme">#1f000000</color>
 
-    <color name="display_dark_theme">#89ffffff</color>
-    <color name="title_dark_theme">#deffffff</color>
-    <color name="body_dark_theme">#deffffff</color>
-    <color name="caption_dark_theme">#89ffffff</color>
-    <color name="divider_dark_theme">#1fffffff</color>
+  <color name="display_dark_theme">#89ffffff</color>
+  <color name="title_dark_theme">#deffffff</color>
+  <color name="body_dark_theme">#deffffff</color>
+  <color name="caption_dark_theme">#89ffffff</color>
+  <color name="divider_dark_theme">#1fffffff</color>
 
-    <color name="seleted_item_color">#00BCD4</color>
-    <color name="selector_color">#6700bcd4</color>
-    <color name="focused_color">#2100bcd4</color>
+  <color name="seleted_item_color">#00BCD4</color>
+  <color name="selector_color">#6700bcd4</color>
+  <color name="focused_color">#2100bcd4</color>
 
-    <color name="black_overlay">#66000000</color>
+  <color name="black_overlay">#66000000</color>
 </resources>

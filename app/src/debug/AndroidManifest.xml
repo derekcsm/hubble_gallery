@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.derek_s.hubble_gallery"
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.derek_s.hubble_gallery">
 
-    <application
-        android:name=".base.HubbleApplicationDebug"
-        tools:replace="name">
+  <application
+    android:name=".base.HubbleApplicationDebug"
+    tools:replace="name">
 
-    </application>
+  </application>
 
 </manifest>

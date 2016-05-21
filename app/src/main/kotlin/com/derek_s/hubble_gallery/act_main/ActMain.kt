@@ -31,7 +31,7 @@ import com.derek_s.hubble_gallery.ui.fragments.FragMain
 import com.derek_s.hubble_gallery.utils.network.NetworkUtil
 import com.derek_s.hubble_gallery.utils.ui.Toasty
 import com.derek_s.hubble_gallery.utils.ui.ToolbarTitle
-import com.github.ksoichiro.android.observablescrollview.ObservableGridView
+import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
 import com.github.ksoichiro.android.observablescrollview.ScrollState
 import org.jetbrains.annotations.NotNull
 import javax.inject.Inject
@@ -157,7 +157,7 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
     }
   }
 
-  override fun adjustToolbar(scrollState: ScrollState, gridView: ObservableGridView) {
+  override fun adjustToolbar(scrollState: ScrollState, gridView: ObservableRecyclerView) {
     val toolbarHeight = toolbar.height
     val scrollable = gridView
     val scrollY = scrollable.currentScrollY

@@ -8,21 +8,21 @@ import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 
 public interface DetailsView {
 
-    void showLoadingAnimation(boolean show, int type);
+  void showLoadingAnimation(boolean show, int type);
 
-    void populateDetails(DetailsObject detailsObject);
+  void populateDetails(DetailsObject detailsObject);
 
-    void showZeroState(boolean show);
+  void showZeroState(boolean show);
 
-    void generatePalette();
+  void generatePalette();
 
-    void openActivityIntent(Intent intent);
+  void openActivityIntent(Intent intent);
 
-    void openImageViewer();
+  void openImageViewer();
 
-    ImageView getIvDisplay();
+  ImageView getIvDisplay();
 
-    ObservableScrollView getScrollView();
+  ObservableScrollView getScrollView();
 
-    void updateMenu();
+  void updateMenu();
 }
