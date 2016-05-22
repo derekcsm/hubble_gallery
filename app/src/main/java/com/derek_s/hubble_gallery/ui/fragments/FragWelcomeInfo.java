@@ -19,11 +19,14 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class FragWelcomeInfo extends FragBase {
+  private static final String CURRENT_PAGE = "current_page";
   private static String TAG = "FragWelcomeInfo";
   private static String PAGE_KEY = "page_number";
-  private static final String CURRENT_PAGE = "current_page";
-
   private static int pagePos = 1;
+  @Bind(R.id.tv_welcome_info)
+  TextView tvInfo;
+  @Bind(R.id.tv_enter)
+  TextView tvEnter;
 
   public static FragWelcomeInfo newInstance(int position) {
     final FragWelcomeInfo fragment = new FragWelcomeInfo();
@@ -44,11 +47,6 @@ public class FragWelcomeInfo extends FragBase {
       pagePos = savedInstanceState.getInt(CURRENT_PAGE);
     }
   }
-
-  @Bind(R.id.tv_welcome_info)
-  TextView tvInfo;
-  @Bind(R.id.tv_enter)
-  TextView tvEnter;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,

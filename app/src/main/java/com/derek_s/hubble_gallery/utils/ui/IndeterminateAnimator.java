@@ -12,19 +12,19 @@ import com.derek_s.hubble_gallery.ui.widgets.CircleProgressView;
  */
 public class IndeterminateAnimator {
 
-    public static void show(final CircleProgressView prog, Techniques technique) {
-        prog.setVisibility(View.VISIBLE);
-        YoYo.with(technique).duration(300).playOn(prog);
-    }
+  public static void show(final CircleProgressView prog, Techniques technique) {
+    prog.setVisibility(View.VISIBLE);
+    YoYo.with(technique).duration(300).playOn(prog);
+  }
 
-    public static void stop(final CircleProgressView prog, Techniques technique) {
-        YoYo.with(technique).duration(300).playOn(prog);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                prog.setVisibility(View.GONE);
-            }
-        }, 320);
-    }
+  public static void stop(final CircleProgressView prog, Techniques technique) {
+    YoYo.with(technique).duration(300).playOn(prog);
+    new Handler().postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        prog.setVisibility(View.GONE);
+      }
+    }, 320);
+  }
 
 }

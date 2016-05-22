@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
   <LinearLayout
     android:layout_width="match_parent"
@@ -47,10 +46,10 @@
 
       <TextView
         android:id="@+id/tv_body"
-        android:linksClickable="true"
         style="@style/text_body1_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:linksClickable="true"
         tools:text="body text goes here"/>
 
     </LinearLayout>
