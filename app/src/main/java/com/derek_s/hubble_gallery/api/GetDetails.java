@@ -60,7 +60,6 @@ public class GetDetails extends AsyncTask<Void, Void, DetailsObject> {
       Elements p = doc.getElementsByTag("p");
       detailsObject.setDescription(p.toString());
 
-
     } catch (IOException e) {
       e.printStackTrace();
     }
