@@ -34,7 +34,7 @@
       android:name=".ui.activities.ActWelcome"
       android:label="@string/title_activity_act_onboarding"/>
     <activity
-      android:name=".ui.activities.ActImageViewer"
+      android:name=".imageviewer.ImageViewerActivity"
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:label="@string/title_activity_act_image_viewer"
       android:parentActivityName=".detailspage.DetailsActivity"

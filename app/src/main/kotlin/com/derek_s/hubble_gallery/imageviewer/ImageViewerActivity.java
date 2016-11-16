@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.ui.activities;
+package com.derek_s.hubble_gallery.imageviewer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ActImageViewer extends ActBase {
+public class ImageViewerActivity extends ActBase {
 
   public static final String EXTRA_IMAGE_SRC = "extra_successful_src";
   @Bind(R.id.iv_fullscreen)

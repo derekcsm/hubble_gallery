@@ -20,8 +20,8 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery._shared.model.DetailsObject;
 import com.derek_s.hubble_gallery.base.ActBase;
+import com.derek_s.hubble_gallery.imageviewer.ImageViewerActivity;
 import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
-import com.derek_s.hubble_gallery.ui.activities.ActImageViewer;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
@@ -133,8 +133,8 @@ public class DetailsActivity extends ActBase implements ObservableScrollViewCall
     if (presenter.successfulSrc == null) {
       Toasty.show(this, R.string.error_loading_image, Toasty.LENGTH_MEDIUM);
     } else {
-      Intent intent = new Intent(DetailsActivity.this, ActImageViewer.class);
-      intent.putExtra(ActImageViewer.EXTRA_IMAGE_SRC, presenter.successfulSrc);
+      Intent intent = new Intent(DetailsActivity.this, ImageViewerActivity.class);
+      intent.putExtra(ImageViewerActivity.EXTRA_IMAGE_SRC, presenter.successfulSrc);
       startActivity(intent);
     }
   }
