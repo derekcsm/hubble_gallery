@@ -6,7 +6,7 @@ import android.net.ConnectivityManager;
 
 import com.derek_s.hubble_gallery.base.HubbleApplication;
 import com.derek_s.hubble_gallery.base.TinyDB;
-import com.derek_s.hubble_gallery.ui.presenters.DetailsPresenter;
+import com.derek_s.hubble_gallery.detailspage.DetailsPresenter;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.network.NetworkUtil;
 import com.google.gson.Gson;

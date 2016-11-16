@@ -170,7 +170,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
 
   public void loadInitialItems(String query) {
     mAdapter.clear();
-    //ActMain.instance.toggleFilterVisible(true);
+    //ActHome.instance.toggleFilterVisible(true);
     mode = Constants.LOADED_MODE;
     showLoadingAnimation(true);
     isLoading = true;
@@ -197,7 +197,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
   }
 
   public void openFavorites(boolean scroll) {
-    //ActMain.instance.toggleFilterVisible(false);
+    //ActHome.instance.toggleFilterVisible(false);
     mode = Constants.FAVORITES_MODE;
     mAdapter.clear();
     if (favoriteUtils.getFavorites() != null) {

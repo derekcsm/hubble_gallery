@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery.act_main.ActMain;
 import com.derek_s.hubble_gallery.base.FragBase;
+import com.derek_s.hubble_gallery.home.ActHome;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 
 import butterknife.Bind;
@@ -78,7 +78,7 @@ public class FragWelcomeInfo extends FragBase {
         tvEnter.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            Intent i = new Intent(getActivity(), ActMain.class);
+            Intent i = new Intent(getActivity(), ActHome.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
             getActivity().overridePendingTransition(android.R.anim.fade_in, R.anim.zoom_in_exit);

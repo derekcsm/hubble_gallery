@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.ui.activities;
+package com.derek_s.hubble_gallery.detailspage;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -21,8 +21,7 @@ import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery._shared.model.DetailsObject;
 import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
-import com.derek_s.hubble_gallery.ui.presenters.DetailsPresenter;
-import com.derek_s.hubble_gallery.ui.views.DetailsView;
+import com.derek_s.hubble_gallery.ui.activities.ActImageViewer;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
@@ -38,7 +37,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ActDetails extends ActBase implements ObservableScrollViewCallbacks, DetailsView {
+public class DetailsActivity extends ActBase implements ObservableScrollViewCallbacks, DetailsContract {
 
   @Bind(R.id.iv_display)
   ImageView ivDisplay;
@@ -134,7 +133,7 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
     if (presenter.successfulSrc == null) {
       Toasty.show(this, R.string.error_loading_image, Toasty.LENGTH_MEDIUM);
     } else {
-      Intent intent = new Intent(ActDetails.this, ActImageViewer.class);
+      Intent intent = new Intent(DetailsActivity.this, ActImageViewer.class);
       intent.putExtra(ActImageViewer.EXTRA_IMAGE_SRC, presenter.successfulSrc);
       startActivity(intent);
     }
