@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hubble Gallery</string>
+    <string name="about">Über</string>
+    <string name="add_favorite">Zu Favoriten hinzufügen</string>
+    <string name="copy_link">Link kopieren</string>
+    <string name="dummy_button">Dummy Knopf</string>
+    <string name="enter">Eingabe</string>
+    <string name="error_loading_image">Fehler beim Laden des Bildes</string>
+    <string name="error_saving_image">Fehler beim Speichern des Bildes</string>
+    <string name="favorites">Favoriten</string>
+    <string name="highest_resolution">Beste Auflösung</string>
+    <string name="image_fullscreen">Vollbild</string>
+    <string name="image_saved">Bilder gespeichert in /Pictures/Hubble</string>
+    <string name="info_1">Das Weltraumteleskop "Hubble" wurde 1990 in eine niedrige Erdumlaufbahn (low earth orbit) gestartet. Es ist bis heute in Betrieb. Hubble verfügt über ein 2,4-Meter-Spiegelteleskop uns über vier Hauptinstrumente, die im nahen Ultraviolettbereich, im infraroten Himmelsbeobachtungen ermöglichen.</string>
+    <string name="info_2">Hubbles Umlaufbahn befindet sich außerhalb der Erdatmosphäre, so dass atmosphärische Aberrationen entfallen. Dies ermöglicht äußerst hochauflösende Aufnahmen mit vernachlässigbarem Hintergrundleuchten. Hubble hat einige der detailreichsten Aufnahmen im sichtbaren Wellenlängenbereich gemacht über die wir bis heute verfügen. Hubble erlaubt damit Tiefe Einblicke in Raum und Zeit. Zahlreiche Beobachtungen von Hubble haben zu Durchbrüchen in der Astrophysik geführt, so konnte bspw. die Expansionsrate des Universums sehr genau bestimmt werden.</string>
+    <string name="most_popular">Am beliebtesten</string>
+    <string name="navigation_drawer_close">Schließen</string>
+    <string name="navigation_drawer_open">Öffnen</string>
+    <string name="no_connection">Kein Internetzugriff</string>
+    <string name="open_in_browser">Im Browser öffnen</string>
+    <string name="rate"><![CDATA[Ansehen & teilen]]></string>
+    <string name="reload">Neu laden</string>
+    <string name="remove_favorite">Aus Favoriten entfernen</string>
+    <string name="retry">Erneut versuchen</string>
+    <string name="save_image">Bild speichern</string>
+    <string name="scroll_down">Herunterscrollen</string>
+    <string name="search">Suchen</string>
+    <string name="set_as"><![CDATA[Setze Bild als &#8230]]></string>
+    <string name="share_image">Bild teilen</string>
+    <string name="share_link">Link teilen</string>
+    <string name="show_intro">Einführung anzeigen</string>
+    <string name="sort_by">Sortiere nach</string>
+    <string name="source_code">Quelltext zeigen</string>
+    <string name="title_activity_act_details">Details</string>
+    <string name="title_activity_act_image_viewer">Bildbetrachter</string>
+    <string name="title_activity_act_onboarding">Willkommen</string>
+    <string name="zero_state_favorites_1">Entdecke Bilder und speichere sie als Favorit. Sie werden dann hier erscheinen.</string>
+    <string name="zero_state_favorites_2">Du hast bisher keine Favoriten gesetzt.</string>
+    <string name="zero_state_favorites_3">Ich bin sicher, du findest einige Favoriten!</string>
+</resources>
