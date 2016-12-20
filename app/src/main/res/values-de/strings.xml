@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Hubble Gallery</string>
+    <string name="app_name">Hubble Gallerie</string>
     <string name="about">Über</string>
     <string name="add_favorite">Zu Favoriten hinzufügen</string>
     <string name="copy_link">Link kopieren</string>
     <string name="dummy_button">Dummy Knopf</string>
-    <string name="enter">Eingabe</string>
+    <string name="enter">Eintreten</string>
     <string name="error_loading_image">Fehler beim Laden des Bildes</string>
     <string name="error_saving_image">Fehler beim Speichern des Bildes</string>
     <string name="favorites">Favoriten</string>
     <string name="highest_resolution">Beste Auflösung</string>
     <string name="image_fullscreen">Vollbild</string>
     <string name="image_saved">Bilder gespeichert in /Pictures/Hubble</string>
-    <string name="info_1">Das Weltraumteleskop "Hubble" wurde 1990 in eine niedrige Erdumlaufbahn (low earth orbit) gestartet. Es ist bis heute in Betrieb. Hubble verfügt über ein 2,4-Meter-Spiegelteleskop uns über vier Hauptinstrumente, die im nahen Ultraviolettbereich, im infraroten Himmelsbeobachtungen ermöglichen.</string>
+    <string name="info_1">Das Weltraumteleskop \"Hubble\" wurde 1990 in eine niedrige Erdumlaufbahn (low earth orbit) gestartet. Es ist bis heute in Betrieb. Hubble verfügt über ein 2,4-Meter-Spiegelteleskop uns über vier Hauptinstrumente, die im nahen Ultraviolettbereich, im infraroten Himmelsbeobachtungen ermöglichen.</string>
     <string name="info_2">Hubbles Umlaufbahn befindet sich außerhalb der Erdatmosphäre, so dass atmosphärische Aberrationen entfallen. Dies ermöglicht äußerst hochauflösende Aufnahmen mit vernachlässigbarem Hintergrundleuchten. Hubble hat einige der detailreichsten Aufnahmen im sichtbaren Wellenlängenbereich gemacht über die wir bis heute verfügen. Hubble erlaubt damit Tiefe Einblicke in Raum und Zeit. Zahlreiche Beobachtungen von Hubble haben zu Durchbrüchen in der Astrophysik geführt, so konnte bspw. die Expansionsrate des Universums sehr genau bestimmt werden.</string>
     <string name="most_popular">Am beliebtesten</string>
     <string name="navigation_drawer_close">Schließen</string>
@@ -26,7 +26,7 @@
     <string name="save_image">Bild speichern</string>
     <string name="scroll_down">Herunterscrollen</string>
     <string name="search">Suchen</string>
-    <string name="set_as"><![CDATA[Setze Bild als &#8230]]></string>
+    <string name="set_as"><![CDATA[Setze Bild als &#8230;]]></string>
     <string name="share_image">Bild teilen</string>
     <string name="share_link">Link teilen</string>
     <string name="show_intro">Einführung anzeigen</string>
@@ -37,5 +37,42 @@
     <string name="title_activity_act_onboarding">Willkommen</string>
     <string name="zero_state_favorites_1">Entdecke Bilder und speichere sie als Favorit. Sie werden dann hier erscheinen.</string>
     <string name="zero_state_favorites_2">Du hast bisher keine Favoriten gesetzt.</string>
-    <string name="zero_state_favorites_3">Ich bin sicher, du findest einige Favoriten!</string>
+    <string name="zero_state_favorites_3">Ich bin sicher, du findest einige Favoriten!</string><string name="about_body"><![CDATA[
+
+      <p>
+        Entwickelt von <a href=\“http://www.derekcsm.xyz/\”>Derek Smith</a>,
+        folge mir auf Twitter <a href=\“https://twitter.com/drkcsm\”>@drkcsm</a>, um \"Hallo\" zu sagen. Oder noch besser: Schicke mir etwas Taschengeld an<a href=\"https://www.paypal.me/derekcsm\">paypal.me/derekcsm</a>
+         und hilf mit, dass dieses Projekt weitergeführt wird! <3
+      </p>
+
+      </p>
+        <i>Beiträge von:</i>
+        <br>
+        - <a href=\“https://github.com/PedroVictorB/\”>PedroVictorB</a>
+      </p>
+
+      <br>
+
+      <p>
+        Hubble Gallerie ist ein Open Source Projekt
+        <a href=\“https://github.com/derekcsm/hubble_gallery/\”>github.com/derekcsm/hubble_gallery</a>
+       Bewertungen im Play Store sind willkommen! Wenn Du daran interessiert bist, etwas zu dem Projekt beizutragen wäre das klasse!
+       Bitte beachte die Richtlinien in README und ich werde Deinen Beitrag in das Projekt aufnehmen.
+       </p>
+
+      <p>
+        Der Inhalt dieser App wird bereitgestellt von <a href=\"http://hubblesite.org/\">HubbleSite</a>,
+        betrieben vom Space Telescope Science Institute\'s Office of Public Outreach.
+      </p>
+
+      <p>
+        Diese ist keine offizielle App. Es besteht keinerlei Verbindung zu NASA oder JPL.
+        Der gesamte Quellcode dieses Projektes wurde lizenziert unter der
+        <a href=\"http://www.apache.org/licenses/LICENSE-2.0\">Apache License Version 2.0</a>.
+      </p>
+
+  ]]></string>
+    <string name="info_3"><![CDATA[     Der mit dieser App angezeigte Inhalt stammt von HubbleSite, betrieben vom Space Telescope Science     Institute\'s Office of Public Outreach.
+	Hubble Gallerie ist ein     <a href=\“https://github.com/derekcsm/hubble_gallery/\”>Open Source Projekt</a>.     Entwickelt von<a href=\“https://twitter.com/drkcsm\”>@drkcsm</a>.
+	Wenn Du in Spendierlaune bist, sende etwas Taschengeld an <a href=\"https://www.paypal.me/derekcsm\">paypal.me/derekcsm</a>    und hilf, das Projekt am Laugen zu halten!     ]]></string>
 </resources>
