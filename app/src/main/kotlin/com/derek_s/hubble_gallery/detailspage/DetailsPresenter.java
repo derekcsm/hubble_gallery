@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.ui.presenters;
+package com.derek_s.hubble_gallery.detailspage;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,6 @@ import com.derek_s.hubble_gallery._shared.model.DetailsObject;
 import com.derek_s.hubble_gallery._shared.model.TileObject;
 import com.derek_s.hubble_gallery.api.GetDetails;
 import com.derek_s.hubble_gallery.base.Constants;
-import com.derek_s.hubble_gallery.ui.views.DetailsView;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.ImageUtils;
 import com.derek_s.hubble_gallery.utils.ui.Toasty;
@@ -46,14 +45,14 @@ public class DetailsPresenter {
   @Inject
   FavoriteUtils favoriteUtils;
   private String TAG = getClass().getSimpleName();
-  private DetailsView view;
+  private DetailsContract view;
   private int imgLoadAttempt = 0;
 
   @Inject
   public DetailsPresenter() {
   }
 
-  public void setView(DetailsView view) {
+  public void setView(DetailsContract view) {
     this.view = view;
   }
 

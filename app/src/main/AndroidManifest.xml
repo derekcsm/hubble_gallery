@@ -13,7 +13,7 @@
     android:label="@string/app_name"
     android:theme="@style/AppTheme">
     <activity
-      android:name=".act_main.ActMain"
+      android:name=".home.ActHome"
       android:label="@string/hubble">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
@@ -22,26 +22,26 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".ui.activities.ActDetails"
+      android:name=".detailspage.DetailsActivity"
       android:label="@string/title_activity_act_details"
-      android:parentActivityName=".act_main.ActMain">
+      android:parentActivityName=".home.ActHome">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value=".act_main.ActMain"/>
+        android:value=".home.ActHome"/>
     </activity>
 
     <activity
       android:name=".ui.activities.ActWelcome"
       android:label="@string/title_activity_act_onboarding"/>
     <activity
-      android:name=".ui.activities.ActImageViewer"
+      android:name=".imageviewer.ImageViewerActivity"
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:label="@string/title_activity_act_image_viewer"
-      android:parentActivityName=".ui.activities.ActDetails"
+      android:parentActivityName=".detailspage.DetailsActivity"
       android:theme="@style/FullscreenTheme">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value=".ui.activities.ActDetails"/>
+        android:value=".detailspage.DetailsActivity"/>
     </activity>
 
     <meta-data

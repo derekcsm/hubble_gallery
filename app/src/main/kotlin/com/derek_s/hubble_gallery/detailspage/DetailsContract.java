@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.ui.views;
+package com.derek_s.hubble_gallery.detailspage;
 
 import android.content.Intent;
 import android.widget.ImageView;
@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import com.derek_s.hubble_gallery._shared.model.DetailsObject;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 
-public interface DetailsView {
+public interface DetailsContract {
 
   void showLoadingAnimation(boolean show, int type);
 

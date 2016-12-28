@@ -2,9 +2,6 @@ package com.derek_s.hubble_gallery.base;
 
 import android.os.Environment;
 
-/**
- * Created by dereksmith on 15-03-15.
- */
 public class Constants {
 
   public static final String MODE_KEY = "current_mode";
