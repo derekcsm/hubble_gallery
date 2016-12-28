@@ -45,9 +45,9 @@ public class GetAlbum extends AsyncTask<Void, Void, ArrayList<TileObject>> {
       Document doc = null;
 
       if (hiRes) {
-        doc = Jsoup.connect("http://hubblesite.org/gallery/album/" + query + "/npp/" + limit + "/hires/true/" + "+" + page).get();
+        doc = Jsoup.connect("http://hubble.stsci.edu/gallery/album/" + query + "/npp/" + limit + "/hires/true/" + "+" + page).get();
       } else {
-        doc = Jsoup.connect("http://hubblesite.org/gallery/album/" + query + "/npp/" + limit + "/" + "+" + page).get();
+        doc = Jsoup.connect("http://hubble.stsci.edu/gallery/album/" + query + "/npp/" + limit + "/" + "+" + page).get();
       }
       Elements links = doc.select("div#ListBlock");
       for (int i = 0; i < limit; i++) {

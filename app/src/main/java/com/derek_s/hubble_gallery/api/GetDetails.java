@@ -42,7 +42,7 @@ public class GetDetails extends AsyncTask<Void, Void, DetailsObject> {
 
       if (!href.contains("newscenter")) {
         // get the newscenter url
-        doc = Jsoup.connect("http://hubblesite.org" + href).timeout(8 * 1000).get();
+        doc = Jsoup.connect("http://hubble.stsci.edu" + href).timeout(8 * 1000).get();
         infoHolder = doc.getElementsByClass("info-holder").first();
       }
 
@@ -55,7 +55,7 @@ public class GetDetails extends AsyncTask<Void, Void, DetailsObject> {
       Log.i(TAG, "newsUrl " + newsUrl);
 
       // with the new url then get the info
-      doc = Jsoup.connect("http://hubblesite.org" + newsUrl).get();
+      doc = Jsoup.connect("http://hubble.stsci.edu" + newsUrl).get();
 
       Elements p = doc.getElementsByTag("p");
       detailsObject.setDescription(p.toString());
@@ -74,6 +74,5 @@ public class GetDetails extends AsyncTask<Void, Void, DetailsObject> {
   public interface OnTaskComplete {
     void setTaskComplete(DetailsObject result, String newsUrl);
   }
-
 
 }
