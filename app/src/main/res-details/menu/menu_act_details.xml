@@ -1,56 +1,56 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.activities.ActDetails">
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".detailspage.DetailsActivity">
 
-    <item
-        android:id="@+id/action_expand"
-        android:icon="@drawable/ic_fullscreen_white_24dp"
-        android:title="@string/image_fullscreen"
-        android:orderInCategory="0"
-        app:showAsAction="always" />
+  <item
+    android:id="@+id/action_expand"
+    android:icon="@drawable/ic_fullscreen_white_24dp"
+    android:orderInCategory="0"
+    android:title="@string/image_fullscreen"
+    app:showAsAction="always"/>
 
-    <item
-        android:id="@+id/action_favorite"
-        android:icon="@drawable/ic_favorite_outline_white_24dp"
-        android:title="@string/add_favorite"
-        android:orderInCategory="1"
-        app:showAsAction="always" />
+  <item
+    android:id="@+id/action_favorite"
+    android:icon="@drawable/ic_favorite_outline_white_24dp"
+    android:orderInCategory="1"
+    android:title="@string/add_favorite"
+    app:showAsAction="always"/>
 
-    <item
-        android:id="@+id/action_share_image"
-        android:orderInCategory="2"
-        android:title="@string/share_image"
-        app:showAsAction="never" />
+  <item
+    android:id="@+id/action_share_image"
+    android:orderInCategory="2"
+    android:title="@string/share_image"
+    app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_save_image"
-        android:orderInCategory="3"
-        android:title="@string/save_image"
-        app:showAsAction="never" />
+  <item
+    android:id="@+id/action_save_image"
+    android:orderInCategory="3"
+    android:title="@string/save_image"
+    app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_set_image"
-        android:orderInCategory="4"
-        android:title="@string/set_as"
-        app:showAsAction="never" />
+  <item
+    android:id="@+id/action_set_image"
+    android:orderInCategory="4"
+    android:title="@string/set_as"
+    app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_open_in_browser"
-        android:orderInCategory="3"
-        android:title="@string/open_in_browser"
-        app:showAsAction="never" />
+  <item
+    android:id="@+id/action_open_in_browser"
+    android:orderInCategory="3"
+    android:title="@string/open_in_browser"
+    app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_share_link"
-        android:orderInCategory="5"
-        android:title="@string/share_link"
-        app:showAsAction="never" />
+  <item
+    android:id="@+id/action_share_link"
+    android:orderInCategory="5"
+    android:title="@string/share_link"
+    app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_copy_link"
-        android:orderInCategory="6"
-        android:title="@string/copy_link"
-        app:showAsAction="never" />
+  <item
+    android:id="@+id/action_copy_link"
+    android:orderInCategory="6"
+    android:title="@string/copy_link"
+    app:showAsAction="never"/>
 
 </menu>

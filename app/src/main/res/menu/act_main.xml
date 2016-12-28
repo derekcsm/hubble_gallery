@@ -1,29 +1,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ActMain">
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".ActMain">
 
-    <item
-        android:id="@+id/action_filter"
-        android:icon="@drawable/ic_filter_list_white_24dp"
-        android:orderInCategory="1"
-        android:title="@string/sort_by"
-        app:showAsAction="always">
+  <item
+    android:id="@+id/action_filter"
+    android:icon="@drawable/ic_filter_list_white_24dp"
+    android:orderInCategory="1"
+    android:title="@string/sort_by"
+    app:showAsAction="always">
 
-        <menu>
-            <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/filter_popular"
-                    android:checked="true"
-                    android:title="@string/most_popular"
-                    app:showAsAction="never" />
-                <item
-                    android:id="@+id/filter_resolution"
-                    android:title="@string/highest_resolution"
-                    app:showAsAction="never" />
+    <menu>
+      <group android:checkableBehavior="single">
+        <item
+          android:id="@+id/filter_popular"
+          android:checked="true"
+          android:title="@string/most_popular"
+          app:showAsAction="never"/>
+        <item
+          android:id="@+id/filter_resolution"
+          android:title="@string/highest_resolution"
+          app:showAsAction="never"/>
 
-            </group>
-        </menu>
+      </group>
+    </menu>
 
-    </item>
+  </item>
 </menu>

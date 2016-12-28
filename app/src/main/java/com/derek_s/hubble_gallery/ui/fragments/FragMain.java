@@ -2,11 +2,11 @@ package com.derek_s.hubble_gallery.ui.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,10 +18,11 @@ import com.derek_s.hubble_gallery._shared.model.Tiles;
 import com.derek_s.hubble_gallery.api.GetAlbum;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.base.FragBase;
-import com.derek_s.hubble_gallery.ui.adapters.GridAdapter;
+import com.derek_s.hubble_gallery.ui.adapters.MainGridAdapter;
+import com.derek_s.hubble_gallery.ui.adapters.RecyclerViewItemClickListener;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
-import com.github.ksoichiro.android.observablescrollview.ObservableGridView;
+import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.google.gson.Gson;
@@ -33,14 +34,23 @@ import butterknife.ButterKnife;
 
 public class FragMain extends FragBase implements ObservableScrollViewCallbacks {
 
+  public static int currentPage = 1;
   private static String CURRENT_PAGE = "current_page";
   private static String CURRENT_TILES = "current_tiles";
   private static String CAN_LOAD_MORE = "can_load_more";
   private static String IS_HIRES = "is_hires";
   private static String CURRENT_QUERY = "current_query";
-
-  @Bind(R.id.gv_main)
-  ObservableGridView gvMain;
+  public GridLayoutManager gManager;
+  public MainGridAdapter mAdapter;
+  public boolean isLoading = false;
+  public boolean canLoadMore = true;
+  public boolean hiRes = false;
+  public String currentQuery = "entire";
+  public int loadAmount = 128;
+  public int mode = 0;
+  public SquareFlipper squareFlipper = new SquareFlipper();
+  @Bind(R.id.rv_main)
+  ObservableRecyclerView rvMain;
   @Bind(R.id.square)
   View square;
   @Bind(R.id.zero_state)
@@ -49,16 +59,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
   TextView tvZeroTitle;
   @Bind(R.id.tv_retry)
   TextView tvRetry;
-
-  public GridAdapter mAdapter;
-  public static int currentPage = 1;
-  public boolean isLoading = false;
-  public boolean canLoadMore = true;
-  public boolean hiRes = false;
-  public String currentQuery = "entire";
-  public int loadAmount = 128;
   private FragMainCallbacks mCallbacks;
-  public int mode = 0;
 
   @Override
   public void onCreate(Bundle savedState) {
@@ -77,14 +78,17 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
     View rootView = inflater.inflate(R.layout.frag_main, container, false);
     ButterKnife.bind(this, rootView);
 
-    gvMain.setScrollViewCallbacks(this);
-    gvMain.setTouchInterceptionViewGroup((ViewGroup) getActivity().findViewById(R.id.container));
-    if (getActivity() instanceof ObservableScrollViewCallbacks) {
-      gvMain.setScrollViewCallbacks((ObservableScrollViewCallbacks) getActivity());
-    }
 
-    mAdapter = new GridAdapter(getActivity(), getActivity());
-    gvMain.setAdapter(mAdapter);
+    rvMain.setScrollViewCallbacks(this);
+    rvMain.setTouchInterceptionViewGroup((ViewGroup) getActivity().findViewById(R.id.container));
+    if (getActivity() instanceof ObservableScrollViewCallbacks) {
+      rvMain.setScrollViewCallbacks((ObservableScrollViewCallbacks) getActivity());
+    }
+    int gridRows = getContext().getResources().getInteger(R.integer.grid_columns);
+    gManager = new GridLayoutManager(getContext(), gridRows);
+    rvMain.setLayoutManager(gManager);
+    mAdapter = new MainGridAdapter(getActivity(), getActivity());
+    rvMain.setAdapter(mAdapter);
 
     if (savedInstanceState == null) {
       loadInitialItems(currentQuery);
@@ -106,20 +110,23 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
     set scroll listener after either initial load
     or saved state re-instantiation, to avoid rustling jimmies
     */
-    gvMain.setOnScrollListener(new AbsListView.OnScrollListener() {
-
+    rvMain.setOnScrollListener(new RecyclerView.OnScrollListener() {
       @Override
-      public void onScrollStateChanged(AbsListView view, int scrollState) {
-
+      public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+        super.onScrollStateChanged(recyclerView, newState);
       }
 
       @Override
-      public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-        /*
+      public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+        super.onScrolled(recyclerView, dx, dy);
+              /*
          * Algorithm to check if the last item is visible or not, only load more if
          * we're NOT in favorites mode
          */
         if (mode == Constants.LOADED_MODE || mode == Constants.SEARCH_MODE) {
+          int visibleItemCount = recyclerView.getChildCount();
+          int totalItemCount = gManager.getItemCount();
+          int firstVisibleItem = gManager.findFirstVisibleItemPosition();
           final int lastItem = firstVisibleItem + visibleItemCount;
           if (lastItem == totalItemCount && canLoadMore && !isLoading) {
             isLoading = true;
@@ -140,14 +147,15 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
       }
     });
 
-    gvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-      @Override
-      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (mCallbacks != null) {
-          mCallbacks.onGridItemClicked(mAdapter.getItem(position));
-        }
-      }
-    });
+    rvMain.addOnItemTouchListener(new RecyclerViewItemClickListener(getContext(),
+        new RecyclerViewItemClickListener.OnItemClickListener() {
+          @Override
+          public void onItemClick(View v, int position) {
+            if (mCallbacks != null) {
+              mCallbacks.onGridItemClicked(mAdapter.getItemAtPosition(position));
+            }
+          }
+        }));
 
     return rootView;
   }
@@ -162,7 +170,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
 
   public void loadInitialItems(String query) {
     mAdapter.clear();
-    //ActMain.instance.toggleFilterVisible(true);
+    //ActHome.instance.toggleFilterVisible(true);
     mode = Constants.LOADED_MODE;
     showLoadingAnimation(true);
     isLoading = true;
@@ -176,7 +184,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
         /*
          scroll to the top (aka position 0)
          */
-        gvMain.smoothScrollToPositionFromTop(0, 0);
+        rvMain.smoothScrollToPosition(0);
         if (result == null || result.size() == 0) {
           showZeroState(true);
         } else {
@@ -189,18 +197,18 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
   }
 
   public void openFavorites(boolean scroll) {
-    //ActMain.instance.toggleFilterVisible(false);
+    //ActHome.instance.toggleFilterVisible(false);
     mode = Constants.FAVORITES_MODE;
     mAdapter.clear();
     if (favoriteUtils.getFavorites() != null) {
       mAdapter.addItems(favoriteUtils.getFavorites().getTiles());
       if (scroll)
-        gvMain.smoothScrollToPositionFromTop(0, 0);
+        rvMain.smoothScrollToPosition(0);
     } else {
       showZeroState(true);
     }
 
-    if (mAdapter.getCount() == 0) {
+    if (mAdapter.getItemCount() == 0) {
       showZeroState(true);
     }
   }
@@ -209,14 +217,12 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
     showZeroState(false);
     if (show) {
       showSquareFlipper(true);
-      YoYo.with(Techniques.FadeOut).duration(200).playOn(gvMain);
+      YoYo.with(Techniques.FadeOut).duration(200).playOn(rvMain);
     } else {
       showSquareFlipper(false);
-      YoYo.with(Techniques.FadeIn).duration(320).playOn(gvMain);
+      YoYo.with(Techniques.FadeIn).duration(320).playOn(rvMain);
     }
   }
-
-  public SquareFlipper squareFlipper = new SquareFlipper();
 
   public void showSquareFlipper(boolean show) {
     if (show) {
@@ -262,7 +268,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
       }
 
       showSquareFlipper(false);
-      YoYo.with(Techniques.FadeOut).duration(200).playOn(gvMain);
+      YoYo.with(Techniques.FadeOut).duration(200).playOn(rvMain);
 
       zeroState.setVisibility(View.VISIBLE);
       YoYo.with(Techniques.FadeInUp).duration(120).playOn(zeroState);
@@ -317,13 +323,13 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
   @Override
   public void onUpOrCancelMotionEvent(ScrollState scrollState) {
     if (scrollState != null)
-      mCallbacks.adjustToolbar(scrollState, gvMain);
+      mCallbacks.adjustToolbar(scrollState, rvMain);
   }
 
   public interface FragMainCallbacks {
     void onGridItemClicked(TileObject tileObject);
 
-    void adjustToolbar(ScrollState scrollState, ObservableGridView gridView);
+    void adjustToolbar(ScrollState scrollState, ObservableRecyclerView gridView);
   }
 
 }

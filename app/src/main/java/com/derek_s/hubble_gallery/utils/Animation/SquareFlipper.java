@@ -11,10 +11,10 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
 public class SquareFlipper {
-  private View flippingView;
-  private FlipAnimator flipAnimator;
   boolean stop = false;
   boolean justStarted = false;
+  private View flippingView;
+  private FlipAnimator flipAnimator;
 
   public void startAnimation(final View view) {
     if (flipAnimator != null) {

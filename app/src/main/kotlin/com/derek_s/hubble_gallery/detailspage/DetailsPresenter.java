@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.ui.presenters;
+package com.derek_s.hubble_gallery.detailspage;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,6 @@ import com.derek_s.hubble_gallery._shared.model.DetailsObject;
 import com.derek_s.hubble_gallery._shared.model.TileObject;
 import com.derek_s.hubble_gallery.api.GetDetails;
 import com.derek_s.hubble_gallery.base.Constants;
-import com.derek_s.hubble_gallery.ui.views.DetailsView;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.ImageUtils;
 import com.derek_s.hubble_gallery.utils.ui.Toasty;
@@ -32,31 +31,28 @@ import javax.inject.Singleton;
 
 @Singleton
 public class DetailsPresenter {
-  private String TAG = getClass().getSimpleName();
-  private DetailsView view;
-
+  public TileObject tileObject;
+  public DetailsObject detailsObject;
+  public String successfulSrc;
+  public int scrollYPos;
+  public int darkVibrantColor;
+  public int lightVibrantColor;
+  public int toolbarBgColorAlpha;
   @Inject
   Context context;
   @Inject
   Resources resources;
   @Inject
   FavoriteUtils favoriteUtils;
-
-  public TileObject tileObject;
-  public DetailsObject detailsObject;
+  private String TAG = getClass().getSimpleName();
+  private DetailsContract view;
   private int imgLoadAttempt = 0;
-  public String successfulSrc;
-  public int scrollYPos;
-
-  public int darkVibrantColor;
-  public int lightVibrantColor;
-  public int toolbarBgColorAlpha;
 
   @Inject
   public DetailsPresenter() {
   }
 
-  public void setView(DetailsView view) {
+  public void setView(DetailsContract view) {
     this.view = view;
   }
 

@@ -11,19 +11,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery.act_main.ActMain;
 import com.derek_s.hubble_gallery.base.FragBase;
+import com.derek_s.hubble_gallery.home.ActHome;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class FragWelcomeInfo extends FragBase {
+  private static final String CURRENT_PAGE = "current_page";
   private static String TAG = "FragWelcomeInfo";
   private static String PAGE_KEY = "page_number";
-  private static final String CURRENT_PAGE = "current_page";
-
   private static int pagePos = 1;
+  @Bind(R.id.tv_welcome_info)
+  TextView tvInfo;
+  @Bind(R.id.tv_enter)
+  TextView tvEnter;
 
   public static FragWelcomeInfo newInstance(int position) {
     final FragWelcomeInfo fragment = new FragWelcomeInfo();
@@ -44,11 +47,6 @@ public class FragWelcomeInfo extends FragBase {
       pagePos = savedInstanceState.getInt(CURRENT_PAGE);
     }
   }
-
-  @Bind(R.id.tv_welcome_info)
-  TextView tvInfo;
-  @Bind(R.id.tv_enter)
-  TextView tvEnter;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,7 +78,7 @@ public class FragWelcomeInfo extends FragBase {
         tvEnter.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            Intent i = new Intent(getActivity(), ActMain.class);
+            Intent i = new Intent(getActivity(), ActHome.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
             getActivity().overridePendingTransition(android.R.anim.fade_in, R.anim.zoom_in_exit);

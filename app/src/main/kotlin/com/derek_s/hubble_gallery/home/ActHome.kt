@@ -1,4 +1,4 @@
-package com.derek_s.hubble_gallery.act_main;
+package com.derek_s.hubble_gallery.home;
 
 import android.content.Intent
 import android.os.Bundle
@@ -21,24 +21,24 @@ import com.derek_s.hubble_gallery._shared.model.TileObject
 import com.derek_s.hubble_gallery.base.ActBase
 import com.derek_s.hubble_gallery.base.Constants
 import com.derek_s.hubble_gallery.base.TinyDB
+import com.derek_s.hubble_gallery.detailspage.DetailsActivity
 import com.derek_s.hubble_gallery.internal.di.ActivityComponent
 import com.derek_s.hubble_gallery.nav_drawer.fragments.FragNavDrawer
 import com.derek_s.hubble_gallery.nav_drawer.fragments.NavDrawerListeners
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
-import com.derek_s.hubble_gallery.ui.activities.ActDetails
 import com.derek_s.hubble_gallery.ui.activities.ActWelcome
 import com.derek_s.hubble_gallery.ui.fragments.FragMain
 import com.derek_s.hubble_gallery.utils.network.NetworkUtil
 import com.derek_s.hubble_gallery.utils.ui.Toasty
 import com.derek_s.hubble_gallery.utils.ui.ToolbarTitle
-import com.github.ksoichiro.android.observablescrollview.ObservableGridView
+import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
 import com.github.ksoichiro.android.observablescrollview.ScrollState
 import org.jetbrains.annotations.NotNull
 import javax.inject.Inject
 
-class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
+class ActHome : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
 
-  private val TAG = "ActMain"
+  private val TAG = "ActHome"
   var mTitle = ""
   var fragMain: FragMain? = null
   var navDrawer: FragNavDrawer? = null
@@ -148,7 +148,7 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
 
   override fun onGridItemClicked(tileObject: TileObject) {
     if (networkUtil.isConnected) {
-      val intent = Intent(this, ActDetails::class.java)
+      val intent = Intent(this, DetailsActivity::class.java)
       intent.putExtra(Constants.PARAM_TILE_KEY, tileObject.serialize())
       startActivity(intent)
       this.overridePendingTransition(R.anim.slide_in_left, R.anim.fade_out_shadow)
@@ -157,7 +157,7 @@ class ActMain : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
     }
   }
 
-  override fun adjustToolbar(scrollState: ScrollState, gridView: ObservableGridView) {
+  override fun adjustToolbar(scrollState: ScrollState, gridView: ObservableRecyclerView) {
     val toolbarHeight = toolbar.height
     val scrollable = gridView
     val scrollY = scrollable.currentScrollY

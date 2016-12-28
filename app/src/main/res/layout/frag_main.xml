@@ -1,35 +1,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+  <View
+    android:id="@+id/square"
+    android:layout_width="@dimen/square_flipper_large"
+    android:layout_height="@dimen/square_flipper_large"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:layout_gravity="center"
+    android:background="@android:color/white"
+    android:visibility="gone"
+    tools:visibility="visible"/>
+
+  <com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
+    android:id="@+id/rv_main"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:choiceMode="singleChoice"
+    android:drawSelectorOnTop="true"
+    android:listSelector="@drawable/selector_default"/>
+
+  <include
+    android:id="@+id/zero_state"
+    layout="@layout/zero_state_list"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <View
-        android:id="@+id/square"
-        android:layout_width="@dimen/square_flipper_large"
-        android:layout_height="@dimen/square_flipper_large"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:background="@android:color/white"
-        android:visibility="gone"
-        tools:visibility="visible" />
-
-    <com.github.ksoichiro.android.observablescrollview.ObservableGridView
-        android:id="@+id/gv_main"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:choiceMode="singleChoice"
-        android:drawSelectorOnTop="true"
-        android:listSelector="@drawable/selector_default"
-        android:numColumns="@integer/grid_columns" />
-
-    <include
-        android:id="@+id/zero_state"
-        layout="@layout/zero_state_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible" />
+    android:layout_height="match_parent"
+    android:visibility="invisible"/>
 </RelativeLayout>
