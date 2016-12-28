@@ -7,7 +7,9 @@ interface NavigationView {
   val recycler: RecyclerView
     get
 
-  fun selectSection(section: SectionChildObject) { }
+  fun selectSection(section: SectionChildObject) {
+  }
 
-  fun deselectFavorites() {}
+  fun deselectFavorites() {
+  }
 }

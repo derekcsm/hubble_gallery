@@ -12,21 +12,21 @@ import javax.inject.Inject;
 
 public class FragBase extends Fragment {
 
-    @Override
-    public void onCreate(Bundle savedState) {
-        super.onCreate(savedState);
-        DaggerActivityComponent.builder()
-                .appComponent(((HubbleApplication) getActivity().getApplication()).getAppComponent())
-                .build()
-                .inject(this);
-    }
+  @Inject
+  public Resources resources;
+  @Inject
+  public NetworkUtil networkUtil;
+  @Inject
+  public TinyDB db;
+  @Inject
+  public FavoriteUtils favoriteUtils;
 
-    @Inject
-    public Resources resources;
-    @Inject
-    public NetworkUtil networkUtil;
-    @Inject
-    public TinyDB db;
-    @Inject
-    public FavoriteUtils favoriteUtils;
+  @Override
+  public void onCreate(Bundle savedState) {
+    super.onCreate(savedState);
+    DaggerActivityComponent.builder()
+        .appComponent(((HubbleApplication) getActivity().getApplication()).getAppComponent())
+        .build()
+        .inject(this);
+  }
 }

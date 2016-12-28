@@ -1,92 +1,92 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/primary_dark</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="windowActionModeOverlay">true</item>
-        <item name="drawerArrowStyle">@style/arrow_toggle_style</item>
-        <item name="actionOverflowButtonStyle">@style/toolbar_overflow_style</item>
-    </style>
+  <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <item name="colorPrimary">@color/primary_dark</item>
+    <item name="colorPrimaryDark">@color/primary_dark</item>
+    <item name="colorAccent">@color/accent</item>
+    <item name="windowActionModeOverlay">true</item>
+    <item name="drawerArrowStyle">@style/arrow_toggle_style</item>
+    <item name="actionOverflowButtonStyle">@style/toolbar_overflow_style</item>
+  </style>
 
-    <style name="FullscreenTheme" parent="AppTheme">
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowBackground">@null</item>
-    </style>
+  <style name="FullscreenTheme" parent="AppTheme">
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="android:windowBackground">@null</item>
+  </style>
 
-    <!-- Toolbar -->
-    <style name="toolbar" parent="Theme.AppCompat">
-        <item name="popupTheme">@style/toolbar_popup_style</item>
-        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="actionOverflowButtonStyle">@style/toolbar_overflow_style</item>
-    </style>
+  <!-- Toolbar -->
+  <style name="toolbar" parent="Theme.AppCompat">
+    <item name="popupTheme">@style/toolbar_popup_style</item>
+    <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    <item name="actionOverflowButtonStyle">@style/toolbar_overflow_style</item>
+  </style>
 
-    <style name="toolbar_popup_style" parent="Theme.AppCompat">
-        <item name="colorAccent">@color/accent</item>
-    </style>
+  <style name="toolbar_popup_style" parent="Theme.AppCompat">
+    <item name="colorAccent">@color/accent</item>
+  </style>
 
-    <style name="arrow_toggle_style" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="color">@android:color/white</item>
-    </style>
+  <style name="arrow_toggle_style" parent="Widget.AppCompat.DrawerArrowToggle">
+    <item name="color">@android:color/white</item>
+  </style>
 
-    <style name="toolbar_overflow_style" parent="Widget.AppCompat.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_more_vert_white_24dp</item>
-    </style>
+  <style name="toolbar_overflow_style" parent="Widget.AppCompat.ActionButton.Overflow">
+    <item name="android:src">@drawable/ic_more_vert_white_24dp</item>
+  </style>
 
-    <!-- Typography -->
+  <!-- Typography -->
 
-    <style name="edit_text_light" parent="Theme.AppCompat.Light">
-        <item name="android:textSize">@dimen/body</item>
-        <item name="android:textColor">@color/body_light_theme</item>
-        <item name="android:textColorHint">@color/caption_light_theme</item>
-        <item name="android:textColorPrimaryDisableOnly">@color/caption_light_theme</item>
-    </style>
+  <style name="edit_text_light" parent="Theme.AppCompat.Light">
+    <item name="android:textSize">@dimen/body</item>
+    <item name="android:textColor">@color/body_light_theme</item>
+    <item name="android:textColorHint">@color/caption_light_theme</item>
+    <item name="android:textColorPrimaryDisableOnly">@color/caption_light_theme</item>
+  </style>
 
-    <style name="edit_text_dark" parent="Theme.AppCompat">
-        <item name="android:textSize">@dimen/body</item>
-        <item name="android:textColor">@color/body_dark_theme</item>
-        <item name="android:textColorHint">@color/caption_dark_theme</item>
-        <item name="android:textColorPrimaryDisableOnly">@color/caption_dark_theme</item>
-    </style>
+  <style name="edit_text_dark" parent="Theme.AppCompat">
+    <item name="android:textSize">@dimen/body</item>
+    <item name="android:textColor">@color/body_dark_theme</item>
+    <item name="android:textColorHint">@color/caption_dark_theme</item>
+    <item name="android:textColorPrimaryDisableOnly">@color/caption_dark_theme</item>
+  </style>
 
-    <style name="text_title_light" parent="Theme.AppCompat.Light">
-        <item name="android:textSize">@dimen/title</item>
-        <item name="android:textColor">@color/title_light_theme</item>
-    </style>
+  <style name="text_title_light" parent="Theme.AppCompat.Light">
+    <item name="android:textSize">@dimen/title</item>
+    <item name="android:textColor">@color/title_light_theme</item>
+  </style>
 
-    <style name="text_title_dark" parent="Theme.AppCompat">
-        <item name="android:textSize">@dimen/title</item>
-        <item name="android:textColor">@color/title_dark_theme</item>
-    </style>
+  <style name="text_title_dark" parent="Theme.AppCompat">
+    <item name="android:textSize">@dimen/title</item>
+    <item name="android:textColor">@color/title_dark_theme</item>
+  </style>
 
-    <style name="text_body1_light" parent="Theme.AppCompat.Light">
-        <item name="android:textSize">@dimen/body</item>
-        <item name="android:textColor">@color/body_light_theme</item>
-    </style>
+  <style name="text_body1_light" parent="Theme.AppCompat.Light">
+    <item name="android:textSize">@dimen/body</item>
+    <item name="android:textColor">@color/body_light_theme</item>
+  </style>
 
-    <style name="text_body1_dark" parent="Theme.AppCompat">
-        <item name="android:textSize">@dimen/body</item>
-        <item name="android:textColor">@color/body_dark_theme</item>
-    </style>
+  <style name="text_body1_dark" parent="Theme.AppCompat">
+    <item name="android:textSize">@dimen/body</item>
+    <item name="android:textColor">@color/body_dark_theme</item>
+  </style>
 
-    <style name="text_body2_light" parent="Theme.AppCompat.Light">
-        <item name="android:textSize">@dimen/body</item>
-        <item name="android:textColor">@color/title_light_theme</item>
-    </style>
+  <style name="text_body2_light" parent="Theme.AppCompat.Light">
+    <item name="android:textSize">@dimen/body</item>
+    <item name="android:textColor">@color/title_light_theme</item>
+  </style>
 
-    <style name="text_body2_dark" parent="Theme.AppCompat">
-        <item name="android:textSize">@dimen/body</item>
-        <item name="android:textColor">@color/title_dark_theme</item>
-    </style>
+  <style name="text_body2_dark" parent="Theme.AppCompat">
+    <item name="android:textSize">@dimen/body</item>
+    <item name="android:textColor">@color/title_dark_theme</item>
+  </style>
 
-    <style name="text_caption_light" parent="Theme.AppCompat.Light">
-        <item name="android:textSize">@dimen/caption</item>
-        <item name="android:textColor">@color/caption_light_theme</item>
-    </style>
+  <style name="text_caption_light" parent="Theme.AppCompat.Light">
+    <item name="android:textSize">@dimen/caption</item>
+    <item name="android:textColor">@color/caption_light_theme</item>
+  </style>
 
-    <style name="text_caption_dark" parent="Theme.AppCompat">
-        <item name="android:textSize">@dimen/caption</item>
-        <item name="android:textColor">@color/caption_dark_theme</item>
-    </style>
+  <style name="text_caption_dark" parent="Theme.AppCompat">
+    <item name="android:textSize">@dimen/caption</item>
+    <item name="android:textColor">@color/caption_dark_theme</item>
+  </style>
 
 </resources>

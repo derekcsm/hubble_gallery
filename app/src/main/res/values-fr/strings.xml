@@ -28,7 +28,7 @@
 
   <string name="error_saving_image">Erreur lors de la sauvegarde de l\'image</string>
   <string name="image_saved">Image sauvegarée à /Pictures/Hubble</string>
-  <string name="image_fullscreen">Montrer l'image en plein écran</string>
+  <string name="image_fullscreen">Montrer l\'image en plein écran</string>
 
   <!-- zero states -->
   <string name="zero_state_favorites_1">Découvrez et mettez en favoris des images, elles seront affichées ici</string>

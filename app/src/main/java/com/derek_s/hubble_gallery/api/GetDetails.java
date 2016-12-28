@@ -15,17 +15,13 @@ import java.io.IOException;
 public class GetDetails extends AsyncTask<Void, Void, DetailsObject> {
 
   private static String TAG = "GetDetails";
-  private OnTaskComplete onTaskComplete;
   String newsUrl;
   String href;
+  private OnTaskComplete onTaskComplete;
 
   public GetDetails(String href) {
     this.href = href;
     Log.i(TAG, "href: " + href);
-  }
-
-  public interface OnTaskComplete {
-    void setTaskComplete(DetailsObject result, String newsUrl);
   }
 
   public void setGetDetailsCompleteListener(OnTaskComplete onTaskComplete) {
@@ -64,7 +60,6 @@ public class GetDetails extends AsyncTask<Void, Void, DetailsObject> {
       Elements p = doc.getElementsByTag("p");
       detailsObject.setDescription(p.toString());
 
-
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -74,6 +69,10 @@ public class GetDetails extends AsyncTask<Void, Void, DetailsObject> {
   @Override
   protected void onPostExecute(DetailsObject result) {
     onTaskComplete.setTaskComplete(result, newsUrl);
+  }
+
+  public interface OnTaskComplete {
+    void setTaskComplete(DetailsObject result, String newsUrl);
   }
 
 

@@ -45,7 +45,7 @@ class NavDrawerAdapter(context: Context, parentItemList: ArrayList<ParentListIte
     notifyDataSetChanged()
   }
 
-  fun getSelectedQuery() : String {
+  fun getSelectedQuery(): String {
     return selectedQuery
   }
 

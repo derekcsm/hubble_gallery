@@ -40,8 +40,6 @@ import butterknife.ButterKnife;
 
 public class ActDetails extends ActBase implements ObservableScrollViewCallbacks, DetailsView {
 
-  private String TAG = getClass().getSimpleName();
-
   @Bind(R.id.iv_display)
   ImageView ivDisplay;
   @Bind(R.id.tv_title)
@@ -62,12 +60,11 @@ public class ActDetails extends ActBase implements ObservableScrollViewCallbacks
   TextView tvRetry;
   @Bind(R.id.fl_stretchy)
   FrameLayout flStretchy;
-
   @Inject
   DetailsPresenter presenter;
   @Inject
   FavoriteUtils favoriteUtils;
-
+  private String TAG = getClass().getSimpleName();
   private SquareFlipper squareFlipper = new SquareFlipper();
   private MenuItem actionFavorite;
   private Menu menu;
