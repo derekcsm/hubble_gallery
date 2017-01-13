@@ -8,7 +8,7 @@ Discover and read about the Hubble Telescope's best images.
 <a href="https://f-droid.org/repository/browse/?fdid=com.derek_s.hubble_gallery" target="_blank">
   <img src="https://f-droid.org/badge/get-it-on.png" height="90"/>
 </a>
-<a href="https://play.google.com/store/apps/details?id=jp.forkhub" target="_blank">
+<a href="https://play.google.com/store/apps/details?id=com.derek_s.hubble_gallery" target="_blank">
   <img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height="90"/>
 </a>
 
