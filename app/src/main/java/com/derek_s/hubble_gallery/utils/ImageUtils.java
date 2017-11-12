@@ -4,8 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.widget.ImageView;
 
-import com.derek_s.hubble_gallery.base.Constants;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -13,7 +11,7 @@ import java.io.IOException;
 
 public class ImageUtils {
 
-  public static String saveImage(ImageView imageView, String imgUrl, ImageLoadingListener listener) {
+  public static String saveImage(ImageView imageView, String imgUrl, String targetPath, ImageLoadingListener listener) {
     if (null != imgUrl && imgUrl.length() > 0) {
       int endIndex = imgUrl.lastIndexOf("/");
       if (endIndex != -1) {
@@ -32,8 +30,17 @@ public class ImageUtils {
       return null;
     }
 
-    new File(Constants.imageDirectory()).mkdirs();
-    File image = new File(Constants.imageDirectory(), imgUrl);
+    boolean mkDirsResult = true;
+    File targetFile = new File(targetPath);
+    if (!targetFile.exists()) {
+      mkDirsResult = targetFile.mkdirs();
+    }
+    if (!mkDirsResult) {
+      listener.onImageLoadFailed();
+      return null;
+    }
+
+    File image = new File(targetPath, imgUrl);
 
     boolean success = false;
     // Encode the file as a PNG image.

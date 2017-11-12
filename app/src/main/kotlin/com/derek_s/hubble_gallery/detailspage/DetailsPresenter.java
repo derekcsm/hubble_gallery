@@ -20,6 +20,7 @@ import com.derek_s.hubble_gallery.api.GetDetails;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.ImageUtils;
+import com.derek_s.hubble_gallery.utils.StorageHelper;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -32,12 +33,10 @@ import javax.inject.Singleton;
 public class DetailsPresenter {
   private static final String TAG = DetailsPresenter.class.getSimpleName();
 
-  @Inject
-  Context context;
-  @Inject
-  Resources resources;
-  @Inject
-  FavoriteUtils favoriteUtils;
+  @Inject Context context;
+  @Inject Resources resources;
+  @Inject FavoriteUtils favoriteUtils;
+  @Inject StorageHelper storageHelper;
 
   TileObject tileObject;
   DetailsObject detailsObject;
@@ -162,10 +161,6 @@ public class DetailsPresenter {
       @Override
       public boolean onMenuItemClick(MenuItem item) {
         int id = item.getItemId();
-        String filename;
-        String path;
-        File f;
-        Uri imgUri;
         switch (id) {
           case R.id.action_expand:
             view.openImageViewer();
@@ -179,47 +174,13 @@ public class DetailsPresenter {
 
             break;
           case R.id.action_share_image:
-            filename = ImageUtils.saveImage(view.getIvDisplay(), successfulSrc, new ImageListener(false));
-            if (filename != null) {
-              path = Constants.imageDirectory() + filename;
-              f = new File(path);
-              imgUri = Uri.fromFile(f);
-
-              Log.i(TAG, "imgUri" + imgUri);
-              if (imgUri != null) {
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("*/*");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, "via http://bit.ly/1dm23ZQ");
-                shareIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
-
-                view.openActivityIntent(Intent.createChooser(shareIntent,
-                    resources.getString(R.string.share_image)));
-              } else {
-                view.showMessage(context.getString(R.string.error_saving_image));
-              }
-            }
+            view.startShare();
             break;
           case R.id.action_save_image:
-            ImageUtils.saveImage(view.getIvDisplay(), successfulSrc, new ImageListener(true));
+            view.startSave();
             break;
           case R.id.action_set_image:
-            filename = ImageUtils.saveImage(view.getIvDisplay(), successfulSrc, new ImageListener(false));
-            if (filename != null) {
-              path = Constants.imageDirectory() + filename;
-              f = new File(path);
-              imgUri = Uri.fromFile(f);
-
-              Log.i(TAG, "imgUri" + imgUri);
-              if (imgUri != null) {
-                Intent attachIntent = new Intent(Intent.ACTION_ATTACH_DATA);
-                attachIntent.setDataAndType(imgUri, "image/jpeg");
-                Intent openInChooser = Intent.createChooser(attachIntent,
-                    resources.getString(R.string.set_as));
-                view.openActivityIntent(openInChooser);
-              } else {
-                view.showMessage(context.getString(R.string.error_saving_image));
-              }
-            }
+            view.startSet();
             break;
           case R.id.action_open_in_browser:
             Intent browserIntent = new Intent(Intent.ACTION_VIEW,
@@ -227,6 +188,7 @@ public class DetailsPresenter {
             view.openActivityIntent(browserIntent);
             break;
           case R.id.action_share_link:
+            view.startShare();
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
             sendIntent.putExtra(Intent.EXTRA_TEXT,
@@ -245,6 +207,55 @@ public class DetailsPresenter {
         return true;
       }
     };
+  }
+
+  void performSave() {
+    ImageUtils.saveImage(view.getIvDisplay(), successfulSrc,
+        storageHelper.getDirectoryPath(), new ImageListener(true));
+  }
+
+  void performSet() {
+    String filename = ImageUtils.saveImage(view.getIvDisplay(), successfulSrc,
+        storageHelper.getDirectoryPath(), new ImageListener(false));
+    if (filename != null) {
+      String path = storageHelper.getDirectoryPath() + filename;
+      File f = new File(path);
+      Uri imgUri = Uri.fromFile(f);
+
+      Log.i(TAG, "imgUri" + imgUri);
+      if (imgUri != null) {
+        Intent attachIntent = new Intent(Intent.ACTION_ATTACH_DATA);
+        attachIntent.setDataAndType(imgUri, "image/jpeg");
+        Intent openInChooser = Intent.createChooser(attachIntent,
+            resources.getString(R.string.set_as));
+        view.openActivityIntent(openInChooser);
+      } else {
+        view.showMessage(context.getString(R.string.error_saving_image));
+      }
+    }
+  }
+
+  void performShare() {
+    String filename = ImageUtils.saveImage(view.getIvDisplay(), successfulSrc,
+        storageHelper.getDirectoryPath(), new ImageListener(false));
+    if (filename != null) {
+      String path = storageHelper.getDirectoryPath() + filename;
+      File f = new File(path);
+      Uri imgUri = Uri.fromFile(f);
+
+      Log.i(TAG, "imgUri" + imgUri);
+      if (imgUri != null) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("*/*");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "via http://bit.ly/1dm23ZQ");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
+
+        view.openActivityIntent(Intent.createChooser(shareIntent,
+            resources.getString(R.string.share_image)));
+      } else {
+        view.showMessage(context.getString(R.string.error_saving_image));
+      }
+    }
   }
 
   void setPaletteColors(Palette palette) {

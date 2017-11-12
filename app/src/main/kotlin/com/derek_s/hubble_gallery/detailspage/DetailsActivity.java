@@ -1,9 +1,14 @@
 package com.derek_s.hubble_gallery.detailspage;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -39,18 +44,34 @@ import butterknife.ButterKnife;
 
 public class DetailsActivity extends ActBase implements ObservableScrollViewCallbacks, DetailsContract {
 
-  @BindView(R.id.iv_display) ImageView ivDisplay;
-  @BindView(R.id.tv_title) TextView tvTitle;
-  @BindView(R.id.tv_body) TextView tvBody;
-  @BindView(R.id.toolbar) Toolbar toolbar;
-  @BindView(R.id.scroll) ObservableScrollView scrollView;
-  @BindView(R.id.square) View square;
-  @BindView(R.id.zero_state) View zeroState;
-  @BindView(R.id.tv_zero_state_info) TextView tvZeroStateInfo;
-  @BindView(R.id.tv_retry) TextView tvRetry;
-  @BindView(R.id.fl_stretchy) FrameLayout flStretchy;
-  @Inject DetailsPresenter presenter;
-  @Inject FavoriteUtils favoriteUtils;
+  private final static int REQUEST_WRITE_FOR_SET = 1;
+  private final static int REQUEST_WRITE_FOR_SAVE = 2;
+  private final static int REQUEST_WRITE_FOR_SHARE = 3;
+
+  @BindView(R.id.iv_display)
+  ImageView ivDisplay;
+  @BindView(R.id.tv_title)
+  TextView tvTitle;
+  @BindView(R.id.tv_body)
+  TextView tvBody;
+  @BindView(R.id.toolbar)
+  Toolbar toolbar;
+  @BindView(R.id.scroll)
+  ObservableScrollView scrollView;
+  @BindView(R.id.square)
+  View square;
+  @BindView(R.id.zero_state)
+  View zeroState;
+  @BindView(R.id.tv_zero_state_info)
+  TextView tvZeroStateInfo;
+  @BindView(R.id.tv_retry)
+  TextView tvRetry;
+  @BindView(R.id.fl_stretchy)
+  FrameLayout flStretchy;
+  @Inject
+  DetailsPresenter presenter;
+  @Inject
+  FavoriteUtils favoriteUtils;
   private SquareFlipper squareFlipper = new SquareFlipper();
   private MenuItem actionFavorite;
   private Menu menu;
@@ -212,6 +233,50 @@ public class DetailsActivity extends ActBase implements ObservableScrollViewCall
   }
 
   @Override
+  public void startShare() {
+    boolean permissionGranted = checkPermissions(REQUEST_WRITE_FOR_SHARE);
+    if (permissionGranted) {
+      presenter.performShare();
+    }
+  }
+
+  @Override
+  public void startSet() {
+    boolean permissionGranted = checkPermissions(REQUEST_WRITE_FOR_SET);
+    if (permissionGranted) {
+      presenter.performSet();
+    }
+  }
+
+  @Override
+  public void startSave() {
+    boolean permissionGranted = checkPermissions(REQUEST_WRITE_FOR_SAVE);
+    if (permissionGranted) {
+      presenter.performSave();
+    }
+  }
+
+  private boolean checkPermissions(int requestCode) {
+    int result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    if (result == PackageManager.PERMISSION_GRANTED) {
+      return true;
+    } else {
+      requestPermission(requestCode);
+      return false;
+    }
+  }
+
+  private void requestPermission(int requestCode) {
+    if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+      Toasty.show(this,
+          "Write External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toasty.LENGTH_LONG);
+    } else {
+      ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, requestCode);
+    }
+  }
+
+
+  @Override
   public ImageView getIvDisplay() {
     return ivDisplay;
   }
@@ -274,5 +339,24 @@ public class DetailsActivity extends ActBase implements ObservableScrollViewCall
   @Override
   protected void injectComponent(ActivityComponent activityComponent) {
     activityComponent.inject(this);
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+      switch (requestCode) {
+        case REQUEST_WRITE_FOR_SAVE:
+          presenter.performSave();
+          break;
+        case REQUEST_WRITE_FOR_SET:
+          presenter.performSet();
+          break;
+        case REQUEST_WRITE_FOR_SHARE:
+          presenter.performShare();
+          break;
+      }
+    } else {
+      Toasty.show(this, "Cannot perform action", Toasty.LENGTH_SHORT);
+    }
   }
 }

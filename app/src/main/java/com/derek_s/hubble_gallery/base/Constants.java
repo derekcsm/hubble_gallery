@@ -2,6 +2,8 @@ package com.derek_s.hubble_gallery.base;
 
 import android.os.Environment;
 
+import java.io.File;
+
 public class Constants {
 
   public static final String MODE_KEY = "current_mode";
@@ -12,8 +14,11 @@ public class Constants {
   public static final int FAVORITES_MODE = 1;
   public static final int SEARCH_MODE = 2;
 
-  public static String imageDirectory() {
+  public static String externalImageDirectory() {
     return Environment.getExternalStorageDirectory() + "/Pictures/Hubble";
   }
 
+  public static String internalImageDirectory(File rootDir) {
+    return rootDir + "/Pictures/Hubble";
+  }
 }

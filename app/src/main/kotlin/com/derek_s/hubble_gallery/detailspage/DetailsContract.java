@@ -27,4 +27,10 @@ public interface DetailsContract {
   void updateMenu();
 
   void showMessage(String messageText);
+
+  void startShare();
+
+  void startSet();
+
+  void startSave();
 }

@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.net.ConnectivityManager;
 
 import com.derek_s.hubble_gallery.base.TinyDB;
+import com.derek_s.hubble_gallery.utils.StorageHelper;
 import com.derek_s.hubble_gallery.utils.network.NetworkUtil;
 import com.google.gson.Gson;
 
@@ -43,6 +44,12 @@ public class AppModule {
   @Singleton
   ConnectivityManager provideConnectivityManager() {
     return (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);
+  }
+
+  @Provides
+  @Singleton
+  StorageHelper provideStorageHelper(Context context) {
+    return new StorageHelper(context);
   }
 
   @Provides
