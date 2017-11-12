@@ -1,16 +1,11 @@
 buildscript {
-    ext.kotlin_version = '1.0.5-2'
-
-    ext.play_services_version = '8.4.0'
-    ext.android_support_version = '23.3.0'
+    ext.play_services_version = '11.6.0'
+    ext.android_support_version = '26.1.0'
     ext.multidex_version = '1.0.1'
 
-    ext.kotlin_version = '1.0.1-1'
-    ext.lombok_version = '1.16.8'
-    ext.jsr250_version = '1.0'
-    ext.javaxannotations_version = '10.0-b28'
+    ext.kotlin_version = '1.1.51'
 
-    ext.jsoup_version = '1.8.3'
+    ext.jsoup_version = '1.11.1'
 
     ext.expandablerecycler_version = '2.1.1'
     ext.observablescrollview_version = '1.5.0'
@@ -21,10 +16,10 @@ buildscript {
     ext.androidsvg_version = '1.2.2-beta-1'
     ext.materialdialogs_version = '0.8.5.8@aar'
 
-    ext.dagger_version = '2.0.1'
+    ext.dagger_version = '2.13'
     ext.picasso_version = '2.5.0'
     ext.gson_version = '2.4'
-    ext.butterknife_version = '7.0.1'
+    ext.butterknife_version = '8.8.1'
     ext.kotterknife_version = '0.1.0-SNAPSHOT'
     ext.nineoldandroids_version = '2.4.0'
 
@@ -36,9 +31,10 @@ buildscript {
         maven {
             url 'https://maven.fabric.io/public'
         }
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:3.0.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }

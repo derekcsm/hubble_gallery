@@ -34,36 +34,23 @@ import com.nineoldandroids.view.ViewHelper;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DetailsActivity extends ActBase implements ObservableScrollViewCallbacks, DetailsContract {
 
-  @Bind(R.id.iv_display)
-  ImageView ivDisplay;
-  @Bind(R.id.tv_title)
-  TextView tvTitle;
-  @Bind(R.id.tv_body)
-  TextView tvBody;
-  @Bind(R.id.toolbar)
-  Toolbar toolbar;
-  @Bind(R.id.scroll)
-  ObservableScrollView scrollView;
-  @Bind(R.id.square)
-  View square;
-  @Bind(R.id.zero_state)
-  View zeroState;
-  @Bind(R.id.tv_zero_state_info)
-  TextView tvZeroStateInfo;
-  @Bind(R.id.tv_retry)
-  TextView tvRetry;
-  @Bind(R.id.fl_stretchy)
-  FrameLayout flStretchy;
-  @Inject
-  DetailsPresenter presenter;
-  @Inject
-  FavoriteUtils favoriteUtils;
-  private String TAG = getClass().getSimpleName();
+  @BindView(R.id.iv_display) ImageView ivDisplay;
+  @BindView(R.id.tv_title) TextView tvTitle;
+  @BindView(R.id.tv_body) TextView tvBody;
+  @BindView(R.id.toolbar) Toolbar toolbar;
+  @BindView(R.id.scroll) ObservableScrollView scrollView;
+  @BindView(R.id.square) View square;
+  @BindView(R.id.zero_state) View zeroState;
+  @BindView(R.id.tv_zero_state_info) TextView tvZeroStateInfo;
+  @BindView(R.id.tv_retry) TextView tvRetry;
+  @BindView(R.id.fl_stretchy) FrameLayout flStretchy;
+  @Inject DetailsPresenter presenter;
+  @Inject FavoriteUtils favoriteUtils;
   private SquareFlipper squareFlipper = new SquareFlipper();
   private MenuItem actionFavorite;
   private Menu menu;

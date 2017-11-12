@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.TextView
-import butterknife.bindView
+import kotterknife.bindView
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder
 import com.derek_s.hubble_gallery.R
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject

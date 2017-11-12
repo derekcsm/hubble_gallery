@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import butterknife.bindView
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ChildViewHolder
 import com.derek_s.hubble_gallery.R
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
 import com.derek_s.hubble_gallery.utils.ui.FontFactory
+import kotterknife.bindView
 
 class SectionViewHolder private constructor(itemView: View) : ChildViewHolder(itemView) {
 

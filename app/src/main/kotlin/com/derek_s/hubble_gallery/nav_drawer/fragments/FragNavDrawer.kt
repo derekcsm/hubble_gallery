@@ -35,7 +35,7 @@ interface NavDrawerListeners {
 
   fun selectSection(section: SectionChildObject)
 
-  fun openFavorites(scroll: Boolean);
+  fun openFavorites(scroll: Boolean)
 }
 
 class FragNavDrawer : Fragment(), NavigationView {
@@ -80,12 +80,12 @@ class FragNavDrawer : Fragment(), NavigationView {
 
     val rootView = inflater.inflate(R.layout.frag_nav_drawer, container, false)
 
-    rvDrawer = rootView.findViewById(R.id.rv_drawer) as RecyclerView
-    llFooterItems = rootView.findViewById(R.id.ll_footer_items) as LinearLayout
-    tvAbout = rootView.findViewById(R.id.tv_about) as TextView
-    tvRate = rootView.findViewById(R.id.tv_rate) as TextView
-    rlFavorites = rootView.findViewById(R.id.rl_favorites) as RelativeLayout
-    tvFavorites = rootView.findViewById(R.id.tv_favorites) as TextView
+    rvDrawer = rootView.findViewById(R.id.rv_drawer)
+    llFooterItems = rootView.findViewById(R.id.ll_footer_items)
+    tvAbout = rootView.findViewById(R.id.tv_about)
+    tvRate = rootView.findViewById(R.id.tv_rate)
+    rlFavorites = rootView.findViewById(R.id.rl_favorites)
+    tvFavorites = rootView.findViewById(R.id.tv_favorites)
 
     beautifyViews();
     presenter!!.populateAdapter()

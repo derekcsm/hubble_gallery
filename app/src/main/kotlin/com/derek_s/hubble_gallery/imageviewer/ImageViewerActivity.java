@@ -9,13 +9,13 @@ import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
 import com.derek_s.hubble_gallery.ui.widgets.TouchImageView;
 import com.squareup.picasso.Picasso;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ImageViewerActivity extends ActBase {
 
   public static final String EXTRA_IMAGE_SRC = "extra_successful_src";
-  @Bind(R.id.iv_fullscreen)
+  @BindView(R.id.iv_fullscreen)
   TouchImageView ivFullscreen;
   private String imgSrc;
 

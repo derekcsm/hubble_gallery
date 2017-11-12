@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainGridAdapter extends RecyclerView.Adapter<MainGridAdapter.RecyclerViewHolder> {
@@ -73,10 +73,8 @@ public class MainGridAdapter extends RecyclerView.Adapter<MainGridAdapter.Recycl
 
   public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
-    @Bind(R.id.iv_tile)
-    ImageView ivTile;
-    @Bind(R.id.tv_title)
-    TextView tvTitle;
+    @BindView(R.id.iv_tile) ImageView ivTile;
+    @BindView(R.id.tv_title) TextView tvTitle;
 
     public RecyclerViewHolder(View view) {
       super(view);

@@ -71,9 +71,9 @@ class DialogAbout(context: Context, listener: DialogAboutListener) {
     if (dView == null)
       return
 
-    tvTitle = dView.findViewById(R.id.tv_title) as TextView
-    tvVersion = dView.findViewById(R.id.tv_version) as TextView
-    tvBody = dView.findViewById(R.id.tv_body) as TextView
+    tvTitle = dView.findViewById(R.id.tv_title)
+    tvVersion = dView.findViewById(R.id.tv_version)
+    tvBody = dView.findViewById(R.id.tv_body)
   }
 
   private fun beautifyViews() {

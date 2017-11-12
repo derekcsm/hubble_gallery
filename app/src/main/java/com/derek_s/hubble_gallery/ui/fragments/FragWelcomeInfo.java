@@ -15,7 +15,7 @@ import com.derek_s.hubble_gallery.base.FragBase;
 import com.derek_s.hubble_gallery.home.ActHome;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class FragWelcomeInfo extends FragBase {
@@ -23,10 +23,8 @@ public class FragWelcomeInfo extends FragBase {
   private static String TAG = "FragWelcomeInfo";
   private static String PAGE_KEY = "page_number";
   private static int pagePos = 1;
-  @Bind(R.id.tv_welcome_info)
-  TextView tvInfo;
-  @Bind(R.id.tv_enter)
-  TextView tvEnter;
+  @BindView(R.id.tv_welcome_info) TextView tvInfo;
+  @BindView(R.id.tv_enter) TextView tvEnter;
 
   public static FragWelcomeInfo newInstance(int position) {
     final FragWelcomeInfo fragment = new FragWelcomeInfo();
