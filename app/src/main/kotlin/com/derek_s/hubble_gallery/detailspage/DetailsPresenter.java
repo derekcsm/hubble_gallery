@@ -20,7 +20,6 @@ import com.derek_s.hubble_gallery.api.GetDetails;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.utils.FavoriteUtils;
 import com.derek_s.hubble_gallery.utils.ImageUtils;
-import com.derek_s.hubble_gallery.utils.ui.Toasty;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -31,22 +30,28 @@ import javax.inject.Singleton;
 
 @Singleton
 public class DetailsPresenter {
-  public TileObject tileObject;
-  public DetailsObject detailsObject;
-  public String successfulSrc;
-  public int scrollYPos;
-  public int darkVibrantColor;
-  public int lightVibrantColor;
-  public int toolbarBgColorAlpha;
-  @Inject Context context;
-  @Inject Resources resources;
-  @Inject FavoriteUtils favoriteUtils;
-  private String TAG = getClass().getSimpleName();
+  private static final String TAG = DetailsPresenter.class.getSimpleName();
+
+  @Inject
+  Context context;
+  @Inject
+  Resources resources;
+  @Inject
+  FavoriteUtils favoriteUtils;
+
+  TileObject tileObject;
+  DetailsObject detailsObject;
+  String successfulSrc;
+  int scrollYPos;
+  int darkVibrantColor;
+  int lightVibrantColor;
+  int toolbarBgColorAlpha;
+
   private DetailsContract view;
   private int imgLoadAttempt = 0;
 
   @Inject
-  public DetailsPresenter() {
+  DetailsPresenter() {
   }
 
   public void setView(DetailsContract view) {
@@ -79,17 +84,17 @@ public class DetailsPresenter {
     }
   }
 
-  public void handleIntent(Intent intent) {
+  void handleIntent(Intent intent) {
     tileObject = TileObject.Companion.create(intent.getStringExtra(Constants.PARAM_TILE_KEY));
   }
 
-  public void onStart() {
+  void onStart() {
   }
 
-  public void onStop() {
+  void onStop() {
   }
 
-  public void loadPage() {
+  void loadPage() {
     getDetails();
     loadImage(tileObject.getSrc());
   }
@@ -152,7 +157,7 @@ public class DetailsPresenter {
     });
   }
 
-  public Toolbar.OnMenuItemClickListener getMenuItemListener() {
+  Toolbar.OnMenuItemClickListener getMenuItemListener() {
     return new Toolbar.OnMenuItemClickListener() {
       @Override
       public boolean onMenuItemClick(MenuItem item) {
@@ -174,42 +179,47 @@ public class DetailsPresenter {
 
             break;
           case R.id.action_share_image:
-            filename = ImageUtils.saveImage(view.getIvDisplay(), successfulSrc, context, false);
-            path = Constants.imageDirectory() + filename;
-            f = new File(path);
-            imgUri = Uri.fromFile(f);
+            filename = ImageUtils.saveImage(view.getIvDisplay(), successfulSrc, new ImageListener(false));
+            if (filename != null) {
+              path = Constants.imageDirectory() + filename;
+              f = new File(path);
+              imgUri = Uri.fromFile(f);
 
-            Log.i(TAG, "imgUri" + imgUri);
-            if (imgUri != null) {
-              Intent shareIntent = new Intent(Intent.ACTION_SEND);
-              shareIntent.setType("*/*");
-              shareIntent.putExtra(Intent.EXTRA_TEXT, "via http://bit.ly/1dm23ZQ");
-              shareIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
+              Log.i(TAG, "imgUri" + imgUri);
+              if (imgUri != null) {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("*/*");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "via http://bit.ly/1dm23ZQ");
+                shareIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
 
-              view.openActivityIntent(Intent.createChooser(shareIntent,
-                  resources.getString(R.string.share_image)));
-            } else
-              Toasty.show(context, R.string.error_saving_image, Toasty.LENGTH_LONG);
-
+                view.openActivityIntent(Intent.createChooser(shareIntent,
+                    resources.getString(R.string.share_image)));
+              } else {
+                view.showMessage(context.getString(R.string.error_saving_image));
+              }
+            }
             break;
           case R.id.action_save_image:
-            ImageUtils.saveImage(view.getIvDisplay(), successfulSrc, context, true);
+            ImageUtils.saveImage(view.getIvDisplay(), successfulSrc, new ImageListener(true));
             break;
           case R.id.action_set_image:
-            filename = ImageUtils.saveImage(view.getIvDisplay(), successfulSrc, context, false);
-            path = Constants.imageDirectory() + filename;
-            f = new File(path);
-            imgUri = Uri.fromFile(f);
+            filename = ImageUtils.saveImage(view.getIvDisplay(), successfulSrc, new ImageListener(false));
+            if (filename != null) {
+              path = Constants.imageDirectory() + filename;
+              f = new File(path);
+              imgUri = Uri.fromFile(f);
 
-            Log.i(TAG, "imgUri" + imgUri);
-            if (imgUri != null) {
-              Intent attachIntent = new Intent(Intent.ACTION_ATTACH_DATA);
-              attachIntent.setDataAndType(imgUri, "image/jpeg");
-              Intent openInChooser = Intent.createChooser(attachIntent,
-                  resources.getString(R.string.set_as));
-              view.openActivityIntent(openInChooser);
-            } else
-              Toasty.show(context, R.string.error_saving_image, Toasty.LENGTH_LONG);
+              Log.i(TAG, "imgUri" + imgUri);
+              if (imgUri != null) {
+                Intent attachIntent = new Intent(Intent.ACTION_ATTACH_DATA);
+                attachIntent.setDataAndType(imgUri, "image/jpeg");
+                Intent openInChooser = Intent.createChooser(attachIntent,
+                    resources.getString(R.string.set_as));
+                view.openActivityIntent(openInChooser);
+              } else {
+                view.showMessage(context.getString(R.string.error_saving_image));
+              }
+            }
             break;
           case R.id.action_open_in_browser:
             Intent browserIntent = new Intent(Intent.ACTION_VIEW,
@@ -229,7 +239,7 @@ public class DetailsPresenter {
             ClipboardManager _clipboard =
                 (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             _clipboard.setText("http://hubblesite.org" + tileObject.getHref());
-            Toasty.show(context, "Copied link to clipboard", Toasty.LENGTH_MEDIUM);
+            view.showMessage("Copied link to clipboard");
             break;
         }
         return true;
@@ -237,7 +247,7 @@ public class DetailsPresenter {
     };
   }
 
-  public void setPaletteColors(Palette palette) {
+  void setPaletteColors(Palette palette) {
     darkVibrantColor = palette.getDarkVibrantColor(ContextCompat.getColor(context, R.color.title_background));
     lightVibrantColor = palette.getLightVibrantColor(ContextCompat.getColor(context, R.color.accent));
   }
@@ -245,7 +255,7 @@ public class DetailsPresenter {
   /**
    * Returns darker version of specified <code>color</code>.
    */
-  public int darker(int color, float factor) {
+  int darker(int color, float factor) {
     int a = Color.alpha(color);
     int r = Color.red(color);
     int g = Color.green(color);
@@ -257,4 +267,26 @@ public class DetailsPresenter {
         Math.max((int) (b * factor), 0));
   }
 
+  private class ImageListener implements ImageUtils.ImageLoadingListener {
+
+    private final boolean reactToSuccess;
+
+    private ImageListener(boolean reactToSuccess) {
+      this.reactToSuccess = reactToSuccess;
+    }
+
+    @Override
+    public void onImageLoaded() {
+      if (reactToSuccess) {
+        String message = context.getString(R.string.image_saved);
+        view.showMessage(message);
+      }
+    }
+
+    @Override
+    public void onImageLoadFailed() {
+      String message = context.getString(R.string.error_saving_image);
+      view.showMessage(message);
+    }
+  }
 }

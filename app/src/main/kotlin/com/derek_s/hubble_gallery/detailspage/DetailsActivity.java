@@ -207,6 +207,11 @@ public class DetailsActivity extends ActBase implements ObservableScrollViewCall
   }
 
   @Override
+  public void showMessage(String message) {
+    Toasty.show(this, message, Toasty.LENGTH_LONG);
+  }
+
+  @Override
   public ImageView getIvDisplay() {
     return ivDisplay;
   }

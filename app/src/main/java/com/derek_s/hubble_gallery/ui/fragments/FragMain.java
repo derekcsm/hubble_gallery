@@ -104,7 +104,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
     set scroll listener after either initial load
     or saved state re-instantiation, to avoid rustling jimmies
     */
-    rvMain.setOnScrollListener(new RecyclerView.OnScrollListener() {
+    rvMain.addOnScrollListener(new RecyclerView.OnScrollListener() {
       @Override
       public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
         super.onScrollStateChanged(recyclerView, newState);
