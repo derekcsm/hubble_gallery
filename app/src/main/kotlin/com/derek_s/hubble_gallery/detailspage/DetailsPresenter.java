@@ -38,12 +38,9 @@ public class DetailsPresenter {
   public int darkVibrantColor;
   public int lightVibrantColor;
   public int toolbarBgColorAlpha;
-  @Inject
-  Context context;
-  @Inject
-  Resources resources;
-  @Inject
-  FavoriteUtils favoriteUtils;
+  @Inject Context context;
+  @Inject Resources resources;
+  @Inject FavoriteUtils favoriteUtils;
   private String TAG = getClass().getSimpleName();
   private DetailsContract view;
   private int imgLoadAttempt = 0;
