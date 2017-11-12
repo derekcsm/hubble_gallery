@@ -17,13 +17,13 @@ buildscript {
     ext.materialdialogs_version = '0.8.5.8@aar'
 
     ext.dagger_version = '2.13'
-    ext.picasso_version = '2.5.0'
-    ext.gson_version = '2.4'
+    ext.picasso_version = '2.5.2'
+    ext.gson_version = '2.8.2'
     ext.butterknife_version = '8.8.1'
     ext.kotterknife_version = '0.1.0-SNAPSHOT'
     ext.nineoldandroids_version = '2.4.0'
 
-    ext.crashlytics_version = '2.5.2@aar'
+    ext.crashlytics_version = '2.7.1@aar'
 
     repositories {
         jcenter()
