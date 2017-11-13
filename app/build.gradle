@@ -27,7 +27,7 @@ kapt {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion "26.0.2"
 
     def verName = "1.5.1"
@@ -36,7 +36,7 @@ android {
     defaultConfig {
         applicationId 'com.derek_s.hubble_gallery'
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode verCode
         versionName verName
         multiDexEnabled = true
@@ -85,6 +85,7 @@ dependencies {
     compile "com.android.support:appcompat-v7:$android_support_version"
     compile "com.android.support:palette-v7:$android_support_version"
     compile "com.android.support:recyclerview-v7:$android_support_version"
+    compile "com.android.support:design:$android_support_version"
     compile "com.android.support:multidex:$multidex_version"
 
     // kotlin related

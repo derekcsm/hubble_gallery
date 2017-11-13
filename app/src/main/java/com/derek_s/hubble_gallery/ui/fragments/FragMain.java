@@ -22,17 +22,16 @@ import com.derek_s.hubble_gallery.ui.adapters.MainGridAdapter;
 import com.derek_s.hubble_gallery.ui.adapters.RecyclerViewItemClickListener;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
-import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
-import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
-import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.google.gson.Gson;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FragMain extends FragBase implements ObservableScrollViewCallbacks {
+public class FragMain extends FragBase {
 
   public static int currentPage = 1;
   private static String CURRENT_PAGE = "current_page";
@@ -49,7 +48,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
   public int loadAmount = 128;
   public int mode = 0;
   public SquareFlipper squareFlipper = new SquareFlipper();
-  @BindView(R.id.rv_main) ObservableRecyclerView rvMain;
+  @BindView(R.id.rv_main) RecyclerView rvMain;
   @BindView(R.id.square) View square;
   @BindView(R.id.zero_state) RelativeLayout zeroState;
   @BindView(R.id.tv_zero_state) TextView tvZeroTitle;
@@ -68,16 +67,11 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+  public View onCreateView(@NotNull  LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.frag_main, container, false);
     ButterKnife.bind(this, rootView);
 
-    rvMain.setScrollViewCallbacks(this);
-    rvMain.setTouchInterceptionViewGroup((ViewGroup) getActivity().findViewById(R.id.container));
-    if (getActivity() instanceof ObservableScrollViewCallbacks) {
-      rvMain.setScrollViewCallbacks((ObservableScrollViewCallbacks) getActivity());
-    }
     int gridRows = getContext().getResources().getInteger(R.integer.grid_columns);
     gManager = new GridLayoutManager(getContext(), gridRows);
     rvMain.setLayoutManager(gManager);
@@ -306,24 +300,8 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
     super.onSaveInstanceState(outState);
   }
 
-  @Override
-  public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
-  }
-
-  @Override
-  public void onDownMotionEvent() {
-  }
-
-  @Override
-  public void onUpOrCancelMotionEvent(ScrollState scrollState) {
-    if (scrollState != null)
-      mCallbacks.adjustToolbar(scrollState, rvMain);
-  }
-
   public interface FragMainCallbacks {
     void onGridItemClicked(TileObject tileObject);
-
-    void adjustToolbar(ScrollState scrollState, ObservableRecyclerView gridView);
   }
 
 }
