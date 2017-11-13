@@ -19,6 +19,7 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
     maven { url "https://jitpack.io" }
     mavenCentral()
+    google()
 }
 
 kapt {
@@ -26,8 +27,8 @@ kapt {
 }
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
 
     def verName = "1.5.1"
     def verCode = 21
@@ -35,7 +36,7 @@ android {
     defaultConfig {
         applicationId 'com.derek_s.hubble_gallery'
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 26
         versionCode verCode
         versionName verName
         multiDexEnabled = true
@@ -83,24 +84,21 @@ dependencies {
     compile "com.android.support:support-v4:$android_support_version"
     compile "com.android.support:appcompat-v7:$android_support_version"
     compile "com.android.support:palette-v7:$android_support_version"
+    compile "com.android.support:recyclerview-v7:$android_support_version"
     compile "com.android.support:multidex:$multidex_version"
 
     // kotlin related
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    provided "org.glassfish:javax.annotation:$javaxannotations_version"
 
     // general
     compile "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     compile "com.jakewharton:kotterknife:$kotterknife_version"
     compile "com.jakewharton:butterknife:$butterknife_version"
-    kapt "com.jakewharton:butterknife:$butterknife_version"
+    kapt "com.jakewharton:butterknife-compiler:$butterknife_version"
     compile "com.google.code.gson:gson:$gson_version"
     compile "com.squareup.picasso:picasso:$picasso_version"
     compile "com.nineoldandroids:library:$nineoldandroids_version"
-    provided "javax.annotation:jsr250-api:$jsr250_version"
-    provided "org.projectlombok:lombok:$lombok_version"
-    kapt "org.projectlombok:lombok:$lombok_version"
 
     // network
     compile "org.jsoup:jsoup:$jsoup_version"

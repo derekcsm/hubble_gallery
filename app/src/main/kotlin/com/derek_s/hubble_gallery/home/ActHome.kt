@@ -13,7 +13,6 @@ import android.view.animation.Transformation
 import android.widget.RelativeLayout
 import android.widget.TextSwitcher
 import android.widget.TextView
-import butterknife.bindView
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.derek_s.hubble_gallery.R
@@ -33,6 +32,7 @@ import com.derek_s.hubble_gallery.utils.ui.Toasty
 import com.derek_s.hubble_gallery.utils.ui.ToolbarTitle
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
 import com.github.ksoichiro.android.observablescrollview.ScrollState
+import kotterknife.bindView
 import org.jetbrains.annotations.NotNull
 import javax.inject.Inject
 
@@ -74,7 +74,7 @@ class ActHome : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
     toolbar.inflateMenu(R.menu.act_main)
 
     val toolbarTitle = ToolbarTitle()
-    switcherTitle = findViewById(R.id.switcher_title) as TextSwitcher
+    switcherTitle = findViewById(R.id.switcher_title)
     switcherTitle = toolbarTitle.init(switcherTitle, this)
 
     if (savedInstanceState != null) {

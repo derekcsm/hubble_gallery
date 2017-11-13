@@ -14,17 +14,14 @@ import com.derek_s.hubble_gallery.base.FragBase;
 import com.derek_s.hubble_gallery.utils.svg.SvgView;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class FragWelcomeOutline extends FragBase {
 
-  @Bind(R.id.hubble_outline)
-  SvgView hubbleOutline;
-  @Bind(R.id.tv_app_title)
-  TextView tvTitle;
-  @Bind(R.id.tv_scroll_down)
-  TextView tvScrollDown;
+  @BindView(R.id.hubble_outline) SvgView hubbleOutline;
+  @BindView(R.id.tv_app_title) TextView tvTitle;
+  @BindView(R.id.tv_scroll_down) TextView tvScrollDown;
   Handler showTitleHandler;
 
   @Override

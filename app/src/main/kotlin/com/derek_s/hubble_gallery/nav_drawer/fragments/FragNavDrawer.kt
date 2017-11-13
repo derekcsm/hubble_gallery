@@ -35,7 +35,7 @@ interface NavDrawerListeners {
 
   fun selectSection(section: SectionChildObject)
 
-  fun openFavorites(scroll: Boolean);
+  fun openFavorites(scroll: Boolean)
 }
 
 class FragNavDrawer : Fragment(), NavigationView {
@@ -56,7 +56,7 @@ class FragNavDrawer : Fragment(), NavigationView {
 
   override fun onCreate(savedState: Bundle?) {
     super.onCreate(savedState)
-    presenter = NavigationPresenter(this, getContext())
+    presenter = NavigationPresenter(this, context!!)
   }
 
   override fun onAttach(context: Context) {
@@ -80,12 +80,12 @@ class FragNavDrawer : Fragment(), NavigationView {
 
     val rootView = inflater.inflate(R.layout.frag_nav_drawer, container, false)
 
-    rvDrawer = rootView.findViewById(R.id.rv_drawer) as RecyclerView
-    llFooterItems = rootView.findViewById(R.id.ll_footer_items) as LinearLayout
-    tvAbout = rootView.findViewById(R.id.tv_about) as TextView
-    tvRate = rootView.findViewById(R.id.tv_rate) as TextView
-    rlFavorites = rootView.findViewById(R.id.rl_favorites) as RelativeLayout
-    tvFavorites = rootView.findViewById(R.id.tv_favorites) as TextView
+    rvDrawer = rootView.findViewById(R.id.rv_drawer)
+    llFooterItems = rootView.findViewById(R.id.ll_footer_items)
+    tvAbout = rootView.findViewById(R.id.tv_about)
+    tvRate = rootView.findViewById(R.id.tv_rate)
+    rlFavorites = rootView.findViewById(R.id.rl_favorites)
+    tvFavorites = rootView.findViewById(R.id.tv_favorites)
 
     beautifyViews();
     presenter!!.populateAdapter()
@@ -93,9 +93,9 @@ class FragNavDrawer : Fragment(), NavigationView {
 
     llFooterItems.setOnClickListener {} // intentionally empty
 
-    dialogAbout = DialogAbout(context, object : DialogAboutListener {
+    dialogAbout = DialogAbout(context!!, object : DialogAboutListener {
       override fun onShowIntroClicked() {
-        activity.startActivity(Intent(activity, ActWelcome::class.java));
+        activity!!.startActivity(Intent(activity, ActWelcome::class.java))
       }
     })
     tvAbout.setOnClickListener {
@@ -103,7 +103,7 @@ class FragNavDrawer : Fragment(), NavigationView {
     }
 
     tvRate.setOnClickListener {
-      var appPackageName = context.packageName;
+      var appPackageName = context!!.packageName;
       try {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
       } catch (anfe: android.content.ActivityNotFoundException) {
@@ -196,6 +196,7 @@ class FragNavDrawer : Fragment(), NavigationView {
   }
 
   private fun setFavoritesSelectedUI(isSelected: Boolean) {
+    val context = context!!
     if (isSelected) {
       rlFavorites.setBackgroundColor(ContextCompat.getColor(context, R.color.focused_color));
       tvFavorites.setTextColor(ContextCompat.getColor(context, R.color.seleted_item_color));

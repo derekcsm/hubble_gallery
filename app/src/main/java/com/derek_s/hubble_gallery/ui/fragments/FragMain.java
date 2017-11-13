@@ -29,7 +29,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class FragMain extends FragBase implements ObservableScrollViewCallbacks {
@@ -49,16 +49,11 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
   public int loadAmount = 128;
   public int mode = 0;
   public SquareFlipper squareFlipper = new SquareFlipper();
-  @Bind(R.id.rv_main)
-  ObservableRecyclerView rvMain;
-  @Bind(R.id.square)
-  View square;
-  @Bind(R.id.zero_state)
-  RelativeLayout zeroState;
-  @Bind(R.id.tv_zero_state)
-  TextView tvZeroTitle;
-  @Bind(R.id.tv_retry)
-  TextView tvRetry;
+  @BindView(R.id.rv_main) ObservableRecyclerView rvMain;
+  @BindView(R.id.square) View square;
+  @BindView(R.id.zero_state) RelativeLayout zeroState;
+  @BindView(R.id.tv_zero_state) TextView tvZeroTitle;
+  @BindView(R.id.tv_retry) TextView tvRetry;
   private FragMainCallbacks mCallbacks;
 
   @Override
@@ -77,7 +72,6 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
                            Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.frag_main, container, false);
     ButterKnife.bind(this, rootView);
-
 
     rvMain.setScrollViewCallbacks(this);
     rvMain.setTouchInterceptionViewGroup((ViewGroup) getActivity().findViewById(R.id.container));
@@ -110,7 +104,7 @@ public class FragMain extends FragBase implements ObservableScrollViewCallbacks 
     set scroll listener after either initial load
     or saved state re-instantiation, to avoid rustling jimmies
     */
-    rvMain.setOnScrollListener(new RecyclerView.OnScrollListener() {
+    rvMain.addOnScrollListener(new RecyclerView.OnScrollListener() {
       @Override
       public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
         super.onScrollStateChanged(recyclerView, newState);

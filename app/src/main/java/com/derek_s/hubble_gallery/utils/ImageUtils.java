@@ -1,47 +1,46 @@
 package com.derek_s.hubble_gallery.utils;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.widget.ImageView;
-
-import com.derek_s.hubble_gallery.R;
-import com.derek_s.hubble_gallery.base.Constants;
-import com.derek_s.hubble_gallery.utils.ui.Toasty;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- * Created by dereksmith on 15-04-11.
- */
 public class ImageUtils {
 
-  public static String saveImage(ImageView imageView, String imgUrl, Context context, boolean toastOnSuccess) {
-    String savedUri = null;
-
+  public static String saveImage(ImageView imageView, String imgUrl, String targetPath, ImageLoadingListener listener) {
     if (null != imgUrl && imgUrl.length() > 0) {
       int endIndex = imgUrl.lastIndexOf("/");
       if (endIndex != -1) {
         imgUrl = imgUrl.substring(endIndex, imgUrl.length());
       }
     } else {
-      Toasty.show(context, R.string.error_saving_image, Toasty.LENGTH_LONG);
-      return savedUri;
+      listener.onImageLoadFailed();
+      return null;
     }
 
     BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
     Bitmap bitmap = drawable.getBitmap();
 
     if (bitmap == null) {
-      Toasty.show(context, R.string.error_saving_image, Toasty.LENGTH_LONG);
-      return savedUri;
+      listener.onImageLoadFailed();
+      return null;
     }
 
-    new File(Constants.imageDirectory()).mkdirs();
-    File image = new File(Constants.imageDirectory(), imgUrl);
+    boolean mkDirsResult = true;
+    File targetFile = new File(targetPath);
+    if (!targetFile.exists()) {
+      mkDirsResult = targetFile.mkdirs();
+    }
+    if (!mkDirsResult) {
+      listener.onImageLoadFailed();
+      return null;
+    }
+
+    File image = new File(targetPath, imgUrl);
 
     boolean success = false;
     // Encode the file as a PNG image.
@@ -61,13 +60,19 @@ public class ImageUtils {
     }
 
     if (success) {
-      if (toastOnSuccess)
-        Toasty.show(context, R.string.image_saved, Toasty.LENGTH_MEDIUM);
+      listener.onImageLoaded();
       return imgUrl;
     } else {
-      Toasty.show(context, R.string.error_saving_image, Toasty.LENGTH_LONG);
+      listener.onImageLoadFailed();
       return null;
     }
+  }
+
+  public interface ImageLoadingListener {
+
+    void onImageLoaded();
+
+    void onImageLoadFailed();
   }
 
 }

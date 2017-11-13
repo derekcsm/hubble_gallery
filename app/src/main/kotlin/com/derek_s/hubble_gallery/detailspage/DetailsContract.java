@@ -25,4 +25,12 @@ public interface DetailsContract {
   ObservableScrollView getScrollView();
 
   void updateMenu();
+
+  void showMessage(String messageText);
+
+  void startShare();
+
+  void startSet();
+
+  void startSave();
 }
