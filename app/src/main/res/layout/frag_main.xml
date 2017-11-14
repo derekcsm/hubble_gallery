@@ -14,7 +14,7 @@
     android:visibility="gone"
     tools:visibility="visible"/>
 
-  <com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
+  <android.support.v7.widget.RecyclerView
     android:id="@+id/rv_main"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"

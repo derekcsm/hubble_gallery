@@ -30,7 +30,6 @@ import com.derek_s.hubble_gallery.ui.fragments.FragMain
 import com.derek_s.hubble_gallery.utils.network.NetworkUtil
 import com.derek_s.hubble_gallery.utils.ui.Toasty
 import com.derek_s.hubble_gallery.utils.ui.ToolbarTitle
-import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
 import com.github.ksoichiro.android.observablescrollview.ScrollState
 import kotterknife.bindView
 import org.jetbrains.annotations.NotNull
@@ -154,21 +153,6 @@ class ActHome : ActBase(), FragMain.FragMainCallbacks, NavDrawerListeners {
       this.overridePendingTransition(R.anim.slide_in_left, R.anim.fade_out_shadow)
     } else {
       Toasty.show(this, R.string.no_connection, Toasty.LENGTH_MEDIUM)
-    }
-  }
-
-  override fun adjustToolbar(scrollState: ScrollState, gridView: ObservableRecyclerView) {
-    val toolbarHeight = toolbar.height
-    val scrollable = gridView
-    val scrollY = scrollable.currentScrollY
-    if (scrollState === ScrollState.DOWN) {
-      showToolbar()
-    } else if (scrollState === ScrollState.UP) {
-      if (toolbarHeight <= scrollY) {
-        hideToolbar()
-      } else {
-        showToolbar()
-      }
     }
   }
 
