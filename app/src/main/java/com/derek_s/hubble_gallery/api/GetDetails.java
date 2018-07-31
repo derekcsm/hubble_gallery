@@ -41,24 +41,15 @@ public class GetDetails extends AsyncTask<Void, Void, DetailsObject> {
       Element infoHolder = null;
 
       if (!href.contains("newscenter")) {
-        // get the newscenter url
-        doc = Jsoup.connect("http://hubble.stsci.edu" + href).timeout(8 * 1000).get();
-        infoHolder = doc.getElementsByClass("info-holder").first();
+        // get the hubblesite url
+        doc = Jsoup.connect("http://hubblesite.org" + href).timeout(8 * 1000).get();
+        infoHolder = doc.getElementById("image_details");
       }
 
       if (infoHolder != null) {
-        newsUrl = infoHolder.attr("href");
-      } else {
-        // probably from a redirect
-        newsUrl = href;
+        Elements p = infoHolder.getElementsByTag("p");
+        detailsObject.setDescription(p.toString());
       }
-      Log.i(TAG, "newsUrl " + newsUrl);
-
-      // with the new url then get the info
-      doc = Jsoup.connect("http://hubble.stsci.edu" + newsUrl).get();
-
-      Elements p = doc.getElementsByTag("p");
-      detailsObject.setDescription(p.toString());
 
     } catch (IOException e) {
       e.printStackTrace();
