@@ -16,17 +16,20 @@ import com.derek_s.hubble_gallery.R;
 import com.derek_s.hubble_gallery.base.ActBase;
 import com.derek_s.hubble_gallery.internal.di.ActivityComponent;
 import com.derek_s.hubble_gallery.ui.adapters.OnboardingFragmentPager;
+import com.derek_s.hubble_gallery.utils.ui.VerticalViewPager;
 import com.derek_s.hubble_gallery.utils.ui.starfield.StarField;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 
 public class ActWelcome extends ActBase {
 
-  @BindView(R.id.rl_onboarding) RelativeLayout rlOnboarding;
-  @BindView(R.id.sv_starfield) SurfaceView svStarfield;
-  @BindView(R.id.vertical_pager) VerticalViewPager verticalViewPager;
+  @BindView(R.id.rl_onboarding)
+  RelativeLayout rlOnboarding;
+  @BindView(R.id.sv_starfield)
+  SurfaceView svStarfield;
+  @BindView(R.id.vertical_pager)
+  VerticalViewPager verticalViewPager;
   int width;
   int height;
   boolean fromOnCreate = false;

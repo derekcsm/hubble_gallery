@@ -13,6 +13,7 @@ buildscript {
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'io.fabric'
 
 repositories {
@@ -28,10 +29,10 @@ kapt {
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "26.0.2"
+    buildToolsVersion "27.0.3"
 
-    def verName = "1.5.1"
-    def verCode = 21
+    def verName = "1.5.2"
+    def verCode = 22
 
     defaultConfig {
         applicationId 'com.derek_s.hubble_gallery'
@@ -78,45 +79,43 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Google - Android
-    compile "com.android.support:support-v4:$android_support_version"
-    compile "com.android.support:appcompat-v7:$android_support_version"
-    compile "com.android.support:palette-v7:$android_support_version"
-    compile "com.android.support:recyclerview-v7:$android_support_version"
-    compile "com.android.support:design:$android_support_version"
-    compile "com.android.support:multidex:$multidex_version"
+    implementation "com.android.support:support-v4:$android_support_version"
+    implementation "com.android.support:appcompat-v7:$android_support_version"
+    implementation "com.android.support:palette-v7:$android_support_version"
+    implementation "com.android.support:recyclerview-v7:$android_support_version"
+    implementation "com.android.support:design:$android_support_version"
+    implementation "com.android.support:multidex:$multidex_version"
 
     // kotlin related
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // general
-    compile "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    compile "com.jakewharton:kotterknife:$kotterknife_version"
-    compile "com.jakewharton:butterknife:$butterknife_version"
+    implementation "com.jakewharton:kotterknife:$kotterknife_version"
+    implementation "com.jakewharton:butterknife:$butterknife_version"
     kapt "com.jakewharton:butterknife-compiler:$butterknife_version"
-    compile "com.google.code.gson:gson:$gson_version"
-    compile "com.squareup.picasso:picasso:$picasso_version"
-    compile "com.nineoldandroids:library:$nineoldandroids_version"
+    implementation "com.google.code.gson:gson:$gson_version"
+    implementation "com.squareup.picasso:picasso:$picasso_version"
+    implementation "com.nineoldandroids:library:$nineoldandroids_version"
 
     // network
-    compile "org.jsoup:jsoup:$jsoup_version"
+    implementation "org.jsoup:jsoup:$jsoup_version"
 
     // UI
-    compile "com.bignerdranch.android:expandablerecyclerview:$expandablerecycler_version"
-    compile "com.github.ksoichiro:android-observablescrollview:$observablescrollview_version"
-    compile "com.daimajia.easing:library:$daimajiaeasing_version"
-    compile "com.daimajia.androidanimations:library:$androidanimations_version"
-    compile "com.github.johnpersano:supertoasts:$supertoasts_version"
-    compile "com.github.castorflex.verticalviewpager:library:$verticalviewpager_version"
-    compile "com.caverock:androidsvg:$androidsvg_version"
-    compile("com.github.afollestad.material-dialogs:core:$materialdialogs_version") {
+    implementation "com.github.ksoichiro:android-observablescrollview:$observablescrollview_version"
+    implementation "com.daimajia.easing:library:$daimajiaeasing_version"
+    implementation "com.daimajia.androidanimations:library:$androidanimations_version"
+    implementation "com.github.johnpersano:supertoasts:$supertoasts_version"
+    implementation "com.caverock:androidsvg:$androidsvg_version"
+    implementation("com.github.afollestad.material-dialogs:core:$materialdialogs_version") {
         transitive = true
     }
 
-    compile("com.crashlytics.sdk.android:crashlytics:$crashlytics_version") {
+    implementation("com.crashlytics.sdk.android:crashlytics:$crashlytics_version") {
         transitive = true;
     }
 }

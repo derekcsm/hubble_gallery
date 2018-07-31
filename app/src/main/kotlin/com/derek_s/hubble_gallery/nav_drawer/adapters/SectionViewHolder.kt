@@ -6,17 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.bignerdranch.expandablerecyclerview.ViewHolder.ChildViewHolder
 import com.derek_s.hubble_gallery.R
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
 import com.derek_s.hubble_gallery.utils.ui.FontFactory
-import kotterknife.bindView
+import com.derek_s.hubble_gallery.utils.ui.expandablerecyclerview.ViewHolder.ChildViewHolder
 
 class SectionViewHolder private constructor(itemView: View) : ChildViewHolder(itemView) {
 
-  val tvTitle: TextView by bindView(R.id.tv_title)
+  val tvTitle: TextView
 
   init {
+    tvTitle = itemView.findViewById(R.id.tv_title)
     beautifyViews()
   }
 

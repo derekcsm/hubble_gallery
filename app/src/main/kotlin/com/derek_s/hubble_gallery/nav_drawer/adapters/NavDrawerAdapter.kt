@@ -2,9 +2,9 @@ package com.derek_s.hubble_gallery.nav_drawer.adapters
 
 import android.content.Context
 import android.view.ViewGroup
-import com.bignerdranch.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter
-import com.bignerdranch.expandablerecyclerview.Model.ParentListItem
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
+import com.derek_s.hubble_gallery.utils.ui.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter
+import com.derek_s.hubble_gallery.utils.ui.expandablerecyclerview.Model.ParentListItem
 import java.util.*
 
 class NavDrawerAdapter(context: Context, parentItemList: ArrayList<ParentListItem>,

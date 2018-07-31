@@ -3,11 +3,11 @@ package com.derek_s.hubble_gallery.nav_drawer.presenters
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import com.bignerdranch.expandablerecyclerview.Model.ParentListItem
 import com.derek_s.hubble_gallery.nav_drawer.adapters.NavDrawerAdapter
 import com.derek_s.hubble_gallery.nav_drawer.adapters.NavigationAdapterItem
 import com.derek_s.hubble_gallery.nav_drawer.model.SectionChildObject
 import com.derek_s.hubble_gallery.nav_drawer.views.NavigationView
+import com.derek_s.hubble_gallery.utils.ui.expandablerecyclerview.Model.ParentListItem
 import java.util.*
 
 class NavigationPresenter constructor(view: NavigationView, context: Context) :
@@ -41,10 +41,10 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
     var drawerItems = ArrayList<ParentListItem>()
 
     drawerItems.add(NavigationAdapterItem(SectionChildObject("Entire Collection", "entire"),
-        NavigationAdapterItem.STANDALONE_SECTION, null))
+        NavigationAdapterItem.ViewType.STANDALONE_SECTION, null))
 
     drawerItems.add(NavigationAdapterItem(SectionChildObject("Hubble Heritage", "heritage"),
-        NavigationAdapterItem.STANDALONE_SECTION, null))
+        NavigationAdapterItem.ViewType.STANDALONE_SECTION, null))
 
     /**
      * the universe
@@ -58,7 +58,7 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
     universeItems.add(createChildObject("Medium Deep Survey", "the_universe/medium_deep_survey"))
 
     drawerItems.add(NavigationAdapterItem(SectionChildObject("The Universe", "the_universe"),
-        NavigationAdapterItem.GROUP, universeItems))
+        NavigationAdapterItem.ViewType.GROUP, universeItems))
 
     /**
      * exotic
@@ -70,7 +70,7 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
     exoticItems.add(createChildObject("Gravitational Lens", "exotic/gravitational_lens"))
 
     drawerItems.add(NavigationAdapterItem(SectionChildObject("Exotic", "exotic"),
-        NavigationAdapterItem.GROUP, exoticItems))
+        NavigationAdapterItem.ViewType.GROUP, exoticItems))
 
     /**
      * galaxies
@@ -85,7 +85,7 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
     galaxyItems.add(createChildObject("Quasar/Active Nucleus", "galaxy/quasar_active_nucleus"))
 
     drawerItems.add(NavigationAdapterItem(SectionChildObject("Galaxies", "galaxy"),
-        NavigationAdapterItem.GROUP, galaxyItems))
+        NavigationAdapterItem.ViewType.GROUP, galaxyItems))
 
     /**
      * nebulae
@@ -98,7 +98,7 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
     nebulaItems.add(createChildObject("Supernova Remnant", "nebula/supernova_remnant"))
 
     drawerItems.add(NavigationAdapterItem(SectionChildObject("Nebulae", "nebula"),
-        NavigationAdapterItem.GROUP, nebulaItems))
+        NavigationAdapterItem.ViewType.GROUP, nebulaItems))
 
     /**
      * solar system
@@ -119,7 +119,7 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
     solarSystemItems.add(createChildObject("Weather/Atmosphere", "solar_system/weather_atmosphere"))
 
     drawerItems.add(NavigationAdapterItem(SectionChildObject("Solar System", "solar_system"),
-        NavigationAdapterItem.GROUP, solarSystemItems))
+        NavigationAdapterItem.ViewType.GROUP, solarSystemItems))
 
     /**
      * stars
@@ -138,7 +138,7 @@ class NavigationPresenter constructor(view: NavigationView, context: Context) :
     starItems.add(createChildObject("White Dwarf", "star/white_dwarf"))
 
     drawerItems.add(NavigationAdapterItem(SectionChildObject("Stars", "star"),
-        NavigationAdapterItem.GROUP, starItems))
+        NavigationAdapterItem.ViewType.GROUP, starItems))
 
 
     mAdapter = NavDrawerAdapter(context, drawerItems, this)
