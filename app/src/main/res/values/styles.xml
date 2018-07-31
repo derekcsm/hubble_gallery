@@ -1,6 +1,6 @@
 <resources>
 
-  <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+  <style name="hubble_theme" parent="Theme.AppCompat.NoActionBar">
     <item name="colorPrimary">@color/primary_dark</item>
     <item name="colorPrimaryDark">@color/primary_dark</item>
     <item name="colorAccent">@color/accent</item>
@@ -9,7 +9,12 @@
     <item name="actionOverflowButtonStyle">@style/toolbar_overflow_style</item>
   </style>
 
-  <style name="FullscreenTheme" parent="AppTheme">
+  <style name="hubble_swipe_back" parent="hubble_theme">
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+  </style>
+
+  <style name="FullscreenTheme" parent="hubble_theme">
     <item name="android:windowContentOverlay">@null</item>
     <item name="android:windowBackground">@null</item>
   </style>

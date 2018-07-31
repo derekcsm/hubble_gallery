@@ -114,6 +114,7 @@ dependencies {
     implementation("com.github.afollestad.material-dialogs:core:$materialdialogs_version") {
         transitive = true
     }
+    implementation "com.gongwen:swipeback:$swipebackVersion"
 
     implementation("com.crashlytics.sdk.android:crashlytics:$crashlytics_version") {
         transitive = true;

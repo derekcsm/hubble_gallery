@@ -1,112 +1,122 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:background="@color/background">
+<?xml version="1.0" encoding="utf-8"?>
+<com.gw.swipeback.SwipeBackLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/swipe_back_layout"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  app:directionMode="left"
+  app:isSwipeFromEdge="false"
+  app:swipeBackFactor="0.5">
 
-  <com.github.ksoichiro.android.observablescrollview.ObservableScrollView
-    android:id="@+id/scroll"
+  <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@color/background">
 
-    <RelativeLayout
+    <com.github.ksoichiro.android.observablescrollview.ObservableScrollView
+      android:id="@+id/scroll"
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="match_parent"
+      android:fillViewport="true">
 
-      <FrameLayout
-        android:id="@+id/fl_stretchy"
+      <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:foreground="@drawable/selector_default">
+        android:layout_height="match_parent">
 
-        <com.derek_s.hubble_gallery.ui.widgets.StretchyImageView
-          android:id="@+id/iv_display"
+        <FrameLayout
+          android:id="@+id/fl_stretchy"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:background="@drawable/selector_default"
-          android:drawSelectorOnTop="true"
-          android:minHeight="100dp"
+          android:clickable="true"
+          android:foreground="@drawable/selector_default">
+
+          <com.derek_s.hubble_gallery.ui.widgets.StretchyImageView
+            android:id="@+id/iv_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_default"
+            android:drawSelectorOnTop="true"
+            android:minHeight="100dp"
+            android:visibility="invisible"
+            tools:visibility="visible" />
+
+        </FrameLayout>
+
+        <View
+          android:id="@+id/view_below_title_bg"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_above="@+id/tv_body"
+          android:layout_below="@+id/fl_stretchy"
+          android:background="@color/background"
+          android:minHeight="5dp" />
+
+        <TextView
+          android:id="@+id/tv_title"
+          style="@style/text_title_dark"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/fl_stretchy"
+          android:background="@color/background"
+          android:paddingBottom="16dp"
+          android:paddingLeft="72dp"
+          android:paddingRight="16dp"
+          android:paddingTop="16dp"
+          android:text="Nebula shows largest black hole ever discovered"
           android:visibility="invisible"
-          tools:visibility="visible"/>
+          tools:visibility="visible" />
 
-      </FrameLayout>
+        <include
+          android:id="@+id/zero_state"
+          layout="@layout/zero_state_details"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/tv_title"
+          android:visibility="invisible"
+          tools:visiblity="visible" />
 
-      <View
-        android:id="@+id/view_below_title_bg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/tv_body"
-        android:layout_below="@+id/fl_stretchy"
-        android:background="@color/background"
-        android:minHeight="5dp"/>
+        <TextView
+          android:id="@+id/tv_body"
+          style="@style/text_body1_dark"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/tv_title"
+          android:background="@color/background"
+          android:lineSpacingExtra="1dp"
+          android:paddingBottom="32dp"
+          android:paddingLeft="72dp"
+          android:paddingRight="16dp"
+          android:paddingTop="16dp"
+          android:scrollHorizontally="false"
+          android:textColorLink="@color/accent"
+          android:visibility="gone"
+          tools:visibility="visible" />
 
-      <TextView
-        android:id="@+id/tv_title"
-        style="@style/text_title_dark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/fl_stretchy"
-        android:background="@color/background"
-        android:paddingBottom="16dp"
-        android:paddingLeft="72dp"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp"
-        android:text="Nebula shows largest black hole ever discovered"
-        android:visibility="invisible"
-        tools:visibility="visible"/>
+      </RelativeLayout>
 
-      <include
-        android:id="@+id/zero_state"
-        layout="@layout/zero_state_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_title"
-        android:visibility="invisible"
-        tools:visiblity="visible"/>
+    </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>
 
-      <TextView
-        android:id="@+id/tv_body"
-        style="@style/text_body1_dark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_title"
-        android:background="@color/background"
-        android:lineSpacingExtra="1dp"
-        android:paddingBottom="32dp"
-        android:paddingLeft="72dp"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp"
-        android:scrollHorizontally="false"
-        android:textColorLink="@color/accent"
-        android:visibility="gone"
-        tools:visibility="visible"/>
+    <View
+      android:id="@+id/square"
+      android:layout_width="@dimen/square_flipper_large"
+      android:layout_height="@dimen/square_flipper_large"
+      android:layout_centerHorizontal="true"
+      android:layout_centerVertical="true"
+      android:layout_gravity="center"
+      android:background="@android:color/white"
+      android:visibility="gone"
+      tools:visibility="visible" />
 
-    </RelativeLayout>
+    <android.support.v7.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:background="@android:color/transparent"
+      android:popupTheme="@style/toolbar_popup_style"
+      android:theme="@style/toolbar"
+      android:visibility="invisible"
+      tools:visibility="visible" />
 
-  </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>
-
-  <View
-    android:id="@+id/square"
-    android:layout_width="@dimen/square_flipper_large"
-    android:layout_height="@dimen/square_flipper_large"
-    android:layout_centerHorizontal="true"
-    android:layout_centerVertical="true"
-    android:layout_gravity="center"
-    android:background="@android:color/white"
-    android:visibility="gone"
-    tools:visibility="visible"/>
-
-  <android.support.v7.widget.Toolbar
-    android:id="@+id/toolbar"
-    android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:background="@android:color/transparent"
-    android:popupTheme="@style/toolbar_popup_style"
-    android:theme="@style/toolbar"
-    android:visibility="invisible"
-    tools:visibility="visible"/>
-
-</FrameLayout>
-
+  </FrameLayout>
+</com.gw.swipeback.SwipeBackLayout>
