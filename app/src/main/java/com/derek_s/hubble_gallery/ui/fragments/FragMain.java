@@ -19,7 +19,7 @@ import com.derek_s.hubble_gallery.api.GetAlbum;
 import com.derek_s.hubble_gallery.base.Constants;
 import com.derek_s.hubble_gallery.base.FragBase;
 import com.derek_s.hubble_gallery.ui.adapters.MainGridAdapter;
-import com.derek_s.hubble_gallery.ui.adapters.RecyclerViewItemClickListener;
+import com.derek_s.hubble_gallery.ui.adapters.MainGridAdapter.Listener;
 import com.derek_s.hubble_gallery.utils.Animation.SquareFlipper;
 import com.derek_s.hubble_gallery.utils.ui.FontFactory;
 import com.google.gson.Gson;
@@ -48,11 +48,16 @@ public class FragMain extends FragBase {
   public int loadAmount = 128;
   public int mode = 0;
   public SquareFlipper squareFlipper = new SquareFlipper();
-  @BindView(R.id.rv_main) RecyclerView rvMain;
-  @BindView(R.id.square) View square;
-  @BindView(R.id.zero_state) RelativeLayout zeroState;
-  @BindView(R.id.tv_zero_state) TextView tvZeroTitle;
-  @BindView(R.id.tv_retry) TextView tvRetry;
+  @BindView(R.id.rv_main)
+  RecyclerView rvMain;
+  @BindView(R.id.square)
+  View square;
+  @BindView(R.id.zero_state)
+  RelativeLayout zeroState;
+  @BindView(R.id.tv_zero_state)
+  TextView tvZeroTitle;
+  @BindView(R.id.tv_retry)
+  TextView tvRetry;
   private FragMainCallbacks mCallbacks;
 
   @Override
@@ -67,7 +72,7 @@ public class FragMain extends FragBase {
   }
 
   @Override
-  public View onCreateView(@NotNull  LayoutInflater inflater, ViewGroup container,
+  public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.frag_main, container, false);
     ButterKnife.bind(this, rootView);
@@ -75,7 +80,14 @@ public class FragMain extends FragBase {
     int gridRows = getContext().getResources().getInteger(R.integer.grid_columns);
     gManager = new GridLayoutManager(getContext(), gridRows);
     rvMain.setLayoutManager(gManager);
-    mAdapter = new MainGridAdapter(getActivity(), getActivity());
+    mAdapter = new MainGridAdapter(getActivity(), getActivity(), new Listener() {
+      @Override
+      public void onItemClicked(TileObject tileObject) {
+        if (mCallbacks != null) {
+          mCallbacks.onGridItemClicked(tileObject);
+        }
+      }
+    });
     rvMain.setAdapter(mAdapter);
 
     if (savedInstanceState == null) {
@@ -107,7 +119,7 @@ public class FragMain extends FragBase {
       @Override
       public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
-              /*
+        /*
          * Algorithm to check if the last item is visible or not, only load more if
          * we're NOT in favorites mode
          */
@@ -134,16 +146,6 @@ public class FragMain extends FragBase {
         }
       }
     });
-
-    rvMain.addOnItemTouchListener(new RecyclerViewItemClickListener(getContext(),
-        new RecyclerViewItemClickListener.OnItemClickListener() {
-          @Override
-          public void onItemClick(View v, int position) {
-            if (mCallbacks != null) {
-              mCallbacks.onGridItemClicked(mAdapter.getItemAtPosition(position));
-            }
-          }
-        }));
 
     return rootView;
   }
@@ -263,13 +265,12 @@ public class FragMain extends FragBase {
 
     } else {
       zeroState.setVisibility(View.INVISIBLE);
-            /*
-             TODO for test set listener with 120 sec delay
-              after delay set visibility to invisible
-             */
+      /*
+      TODO for test set listener with 120 sec delay
+      after delay set visibility to invisible
+      */
     }
   }
-
 
   @Override
   public void onAttach(Activity activity) {

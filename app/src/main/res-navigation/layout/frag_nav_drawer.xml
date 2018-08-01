@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/background"
-              android:orientation="vertical">
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/background"
+  android:orientation="vertical">
 
   <android.support.v7.widget.RecyclerView
     android:id="@+id/rv_drawer"
@@ -11,12 +11,12 @@
     android:layout_weight="1"
     android:clipToPadding="false"
     android:paddingBottom="@dimen/first_keyline_half"
-    android:paddingTop="@dimen/first_keyline_half"/>
+    android:paddingTop="@dimen/first_keyline" />
 
   <include
     android:id="@+id/ll_footer_items"
     layout="@layout/item_footer_nav_drawer"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
+    android:layout_height="wrap_content" />
 
 </LinearLayout>

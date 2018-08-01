@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:orientation="vertical">
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/rl_bg"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:adjustViewBounds="true"
+  android:foreground="@drawable/selector_default"
+  android:orientation="vertical">
 
   <com.derek_s.hubble_gallery.ui.widgets.SquareImageView
     android:id="@+id/iv_tile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    android:scaleType="centerCrop"
-
-    />
+    android:scaleType="centerCrop" />
 
   <TextView
     android:id="@+id/tv_title"
@@ -25,5 +25,5 @@
     android:ellipsize="end"
     android:maxLines="2"
     android:padding="16dp"
-    tools:text="Test title"/>
+    tools:text="Test title" />
 </RelativeLayout>
