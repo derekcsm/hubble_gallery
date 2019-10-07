@@ -1,4 +1,4 @@
-# Hubble Gallery
+# Hubble Gallery (DEPRECATED)
 Discover and read about the Hubble Telescope's best images.
  
 ![icon](http://i.imgur.com/wEWW2OH.png)
