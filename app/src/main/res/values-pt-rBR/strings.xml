@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="app_name">Hubble Gallery</string>
+  <string name="hubble">Hubble</string>
+  <string name="title_activity_act_onboarding">Bem Vindo</string>
+
+  <!-- main -->
+  <string name="favorites">Favoritos</string>
+  <string name="search">Buscar</string>
+  <string name="about">Sobre</string>
+  <string name="rate">Avaliar &amp; compartilhar</string>
+
+  <string name="sort_by">Ordenar por</string>
+  <string name="most_popular">Mais populares</string>
+  <string name="highest_resolution">Maior resolução</string>
+  <string name="title_activity_act_details">Detalhes</string>
+
+  <!-- details -->
+  <string name="set_as">Definir imagem como&#8230;</string>
+  <string name="share_image">Compartilhar imagem</string>
+  <string name="save_image">Salvar imagem</string>
+  <string name="open_in_browser">Abrir no navegador</string>
+  <string name="share_link">Compartilhar link</string>
+  <string name="copy_link">Copiar link</string>
+  <string name="add_favorite">Acidionar aos favoritos</string>
+  <string name="remove_favorite">Remover dos favoritos</string>
+
+  <string name="error_saving_image">Erro ao salvar a imagem</string>
+  <string name="image_saved">Imagem salva em /Pictures/Hubble</string>
+  <string name="image_fullscreen">Mostrar a imagem em tela cheia</string>
+
+  <!-- zero states -->
+  <string name="zero_state_favorites_1">Explore e favorite imagens, elas aparecerão aqui</string>
+  <string name="zero_state_favorites_2">Você não tem favoritos&#8230; ainda</string>
+  <string name="zero_state_favorites_3">Eu tenho certeza que você vai achar algumas favoritas!</string>
+
+  <!-- error states -->
+  <string name="no_connection">Sem conexão com a internet</string>
+  <string name="retry">Tentar de novo</string>
+  <string name="reload">Recarregar</string>
+  <string name="error_loading_image">Erro ao carregar imagem</string>
+
+  <!-- on boarding -->
+  <string name="scroll_down">Rolar para baixo</string>
+  <string name="enter">Enter</string>
+    <string name="info_1">O Telescópio Espacial Hubble foi lançado para
+        a baixa óribta da Terra em 1990, e continua em operação. Com um espelho de 2,4 metros (7,9 pés), os quatro
+        instrumentos principais do Hubble observam próximo ao ultravioleta, visível, e perto do espectro infravermelho.</string>
+
+    <string name="info_2">O Hubble orbita fora da distorção da atmosfera da Terra o que permite a ele capturar
+        imagens com resoluções extremas com pouca luz de fundo. O Hubble gravou alguumas das
+        images mais detalhadas de luz visível possível, deixando uma longa vista para o espaço e tempo. Muitas
+        observações do Hubble levaram a avanços na astrofísica, como a determinação precisa
+        da taxa de expansão do universo.</string>
+
+    <string name="info_3"><![CDATA[
+    O conteúdo exibido neste app vem da página HubbleSite, mantido pelo Space Telescope Science
+    Institute\'s Office de Public Outreach. Hubble Gallery é um
+    <a href=\“https://github.com/derekcsm/hubble_gallery/\”>projeto de código aberto</a>.
+    Mantido por <a href=\“https://twitter.com/drkcsm\”>@drkcsm</a>. Sevocê está se sentindo generoso,
+    mande algum dinheiro para a padaria para <a href=\"https://www.paypal.me/derekcsm\">paypal.me/derekcsm</a>
+    para ajudar este projeto a continuar!
+    ]]></string>
+
+  <!-- about -->
+  <string name="built_by">Construído por —</string>
+  <string name="source_code">Ver código fonte</string>
+  <string name="show_intro">Mostrar introdução</string>
+  <string name="about_body"><![CDATA[
+      <p>
+        Mantido por <a href=\“http://www.derekcsm.xyz/\”>Derek Smith</a>,
+        Siga-me no Twitter <a href=\“https://twitter.com/drkcsm\”>@drkcsm</a> para dizer olá. Ou
+        melhor ainda, me envie dinheiro para a padaria por<a href=\"https://www.paypal.me/derekcsm\">paypal.me/derekcsm</a>
+        para ajudar o projeto a continuar! <3
+      </p>
+      </p>
+        <i>Contribuições de:</i>
+        <br>
+        - <a href=\“https://github.com/PedroVictorB/\”>PedroVictorB</a>
+      </p>
+      <br>
+      <p>
+        O Hubble gallery é um projeto de código aberto
+        <a href=\“https://github.com/derekcsm/hubble_gallery/\”>github.com/derekcsm/hubble_gallery</a>
+        estrelas são muito bem vindas. Se você está interessado em contribuir isso é incrível! Por favor veja
+        os guias em README e eu estarei mais do que feliz em ajudá-lo a fundir seu PR no projeto.
+      </p>
+      <p>
+        O conteúdo exibido neste app vem de <a href=\"http://hubblesite.org/\">HubbleSite</a>,
+        mantido pelo Space Telescope Science Institute\'s Office de Public Outreach.
+      </p>
+      <p>
+        Este não é um app oficial, eu não tenho afiliação com a NASA ou JPL. Todos os códigos para
+        este projeto estão licenciados sob a
+        <a href=\"http://www.apache.org/licenses/LICENSE-2.0\">Apache License Version 2.0</a>.
+      </p>
+  ]]></string>
+
+  <!-- font faces -->
+  <string name="roboto_black">fonts/Roboto-Black.ttf</string>
+  <string name="roboto_black_italic">fonts/Roboto-BlackItalic.ttf</string>
+  <string name="roboto_bold">fonts/Roboto-Bold.ttf</string>
+  <string name="roboto_bold_italic">fonts/Roboto-BoldItalic.ttf</string>
+  <string name="roboto_regular">fonts/Roboto-Regular.ttf</string>
+  <string name="roboto_thin">fonts/Roboto-Thin.ttf</string>
+  <string name="roboto_thin_italic">fonts/Roboto-ThinItalic.ttf</string>
+  <string name="roboto_italic">fonts/Roboto-Italic.ttf</string>
+  <string name="roboto_light">fonts/Roboto-Light.ttf</string>
+  <string name="roboto_light_italic">fonts/Roboto-LightItalic.ttf</string>
+  <string name="roboto_medium">fonts/Roboto-Medium.ttf</string>
+  <string name="roboto_medium_italic">fonts/Roboto-MediumItalic.ttf</string>
+
+  <string name="roboto_condensed_bold">fonts/RobotoCondensed-Bold.ttf</string>
+  <string name="roboto_condensed_bold_italic">fonts/RobotoCondensed-BoldItalic.ttf</string>
+  <string name="roboto_condensed_italic">fonts/RobotoCondensed-Italic.ttf</string>
+  <string name="roboto_condensed_light">fonts/RobotoCondensed-Light.ttf</string>
+  <string name="roboto_condensed_light_italic">fonts/RobotoCondensed-LightItalic.ttf</string>
+  <string name="roboto_condensed_regular">fonts/RobotoCondensed-Regular.ttf</string>
+
+  <string name="navigation_drawer_open">Abrir</string>
+  <string name="navigation_drawer_close">Fechar</string>
+
+  <string name="title_activity_act_image_viewer">ImageViewer</string>
+  <string name="dummy_button">Dummy Button</string>
+  <string name="dummy_content">DUMMY\nCONTENT</string>
+
+</resources>
